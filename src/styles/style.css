@@ -20,15 +20,21 @@ header a {
   font-size: 16px;
 }
 
+section {
+  margin: 4rem;
+}
+
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
   padding: 20px;
 }
 
-.section-register {
+.section-register,
+.section-login {
   background: white;
   padding: 20px;
   border-radius: 8px;
