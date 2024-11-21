@@ -1,3 +1,3 @@
 import FormHandler from "../../components/form/formHandler.js";
 
-FormHandler.initialize("#register-form", "register");
+FormHandler.initialize("#login-form", "login");
