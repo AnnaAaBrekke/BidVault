@@ -13,9 +13,9 @@
       <section id="register-section" class="section section-register">
         <h1 id="register-title" class="title">Register</h1>
         <form id="register-form" class="form form-register">
-          <!-- Avatar Upload Section -->
+          <!-- Avatar Section -->
           <div id="avatar-container" class="avatar-container">
-            <label for="avatar-input" class="avatar-label">
+            <label for="avatar-url" class="avatar-label">
               <img
                 id="avatar-preview"
                 class="avatar-preview"
@@ -28,30 +28,28 @@
               type="url"
               id="avatar-url"
               class="form-input avatar-input"
-              name="avatar"
+              name="avatar.url"
               placeholder="Enter avatar image URL"
               hidden
             />
+            <label for="avatar-alt" class="form-label">Avatar Alt Text:</label>
             <input
-              type="file"
-              id="avatar-file"
-              class="form-input avatar-file"
-              name="avatarFile"
-              accept="image/*"
-              hidden
+              type="text"
+              id="avatar-alt"
+              class="form-input"
+              name="avatar.alt"
+              placeholder="Describe your avatar"
+              maxlength="120"
             />
-            <button type="button" id="avatar-alt-upload" class="btn btn-upload">
-              Upload Avatar
-            </button>
           </div>
 
-          <!-- Banner Upload Section -->
+          <!-- Banner Section -->
           <div id="banner-container" class="banner-container">
-            <label for="banner-input" class="banner-label">
+            <label for="banner-url" class="banner-label">
               <img
                 id="banner-preview"
                 class="banner-preview"
-                src="../src/images/banner-placeholder.png"
+                src="../src/images/banner-bid.jpg"
                 alt="Click to upload banner"
               />
               <span class="banner-text">Click to add banner</span>
@@ -60,21 +58,19 @@
               type="url"
               id="banner-url"
               class="form-input banner-input"
-              name="banner"
+              name="banner.url"
               placeholder="Enter banner image URL"
               hidden
             />
+            <label for="banner-alt" class="form-label">Banner Alt Text:</label>
             <input
-              type="file"
-              id="banner-file"
-              class="form-input banner-file"
-              name="bannerFile"
-              accept="image/*"
-              hidden
+              type="text"
+              id="banner-alt"
+              class="form-input"
+              name="banner.alt"
+              placeholder="Describe your banner"
+              maxlength="120"
             />
-            <button type="button" id="banner-alt-upload" class="btn btn-upload">
-              Upload Banner
-            </button>
           </div>
 
           <!-- Name -->
@@ -84,7 +80,9 @@
             id="name"
             class="form-input"
             name="name"
-            placeholder="Enter your name"
+            placeholder="Enter your username"
+            pattern="^[a-zA-Z0-9_]+$"
+            title="Name must only contain letters, numbers, and underscores (_)"
             required
           />
 
@@ -95,7 +93,9 @@
             id="email"
             class="form-input"
             name="email"
-            placeholder="Enter your email"
+            placeholder="Enter your stud.noroff.no email"
+            pattern="^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$"
+            title="Email must be a valid stud.noroff.no address"
             required
           />
 
@@ -106,7 +106,8 @@
             id="password"
             class="form-input"
             name="password"
-            placeholder="Enter your password"
+            placeholder="Enter your password (min 8 characters)"
+            minlength="8"
             required
           />
 
@@ -117,6 +118,7 @@
             class="form-textarea"
             name="bio"
             placeholder="Tell us about yourself"
+            maxlength="160"
           ></textarea>
 
           <!-- Submit Button -->
@@ -129,6 +131,6 @@
     <footer id="footer" class="footer">
       <p>&copy; 2024 Auction Site</p>
     </footer>
-    <script src="../src/js/app.js"></script>
+    <script src="../src/js/register.js"></script>
   </body>
 </html>
