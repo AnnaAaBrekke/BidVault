@@ -17,11 +17,11 @@
       </a>
     </header>
     <main id="main-content" class="main">
-      <section id="register-section" class="section section-register">
-        <h1 id="register-title" class="title">Register</h1>
-        <form id="register-form" class="form form-register">
+      <section id="register-section">
+        <h1 id="register-title">Register</h1>
+        <form id="register-form" class="form">
           <!-- Avatar Section -->
-          <div id="avatar-container" class="avatar-container">
+          <div id="avatar-container">
             <label for="avatar-url" class="avatar-label">
               <img
                 id="avatar-preview"
@@ -34,7 +34,7 @@
             <input
               type="url"
               id="avatar-url"
-              class="form-input avatar-input"
+              class="form-input"
               name="avatarUrl"
               placeholder="Enter avatar image URL"
             />
@@ -54,7 +54,7 @@
             <input
               type="url"
               id="banner-url"
-              class="form-input banner-input"
+              class="form-input"
               name="bannerUrl"
               placeholder="Enter a URL for your banner image"
             />
@@ -109,14 +109,27 @@
           ></textarea>
 
           <!-- Submit Button -->
-          <button type="submit" id="register-submit" class="btn btn-submit">
+          <button type="submit" id="register-submit" class="btn">
             Register
           </button>
         </form>
       </section>
     </main>
     <footer id="footer" class="footer">
-      <p>&copy; 2024 Auction Site</p>
+      <div class="footer-content">
+        <img
+          src="../../src/images/logo.jpg"
+          alt="Bid Vault Logo"
+          class="footer-logo"
+        />
+        <hr class="footer-line" />
+        <p>&copy; 2018 — 2024</p>
+        <div class="footer-links">
+          <a href="/privacy.html" class="footer-link">Privacy</a>
+          <span class="footer-divider">—</span>
+          <a href="/terms.html" class="footer-link">Terms</a>
+        </div>
+      </div>
     </footer>
     <script type="module" src="../../src/js/views/pages/register.js"></script>
   </body>

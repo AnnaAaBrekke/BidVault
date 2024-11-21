@@ -18,7 +18,9 @@
       <nav id="nav-bar" class="nav">
         <ul>
           <li><a href="#login-section" class="nav-link">Login</a></li>
-          <li><a href="auth/register.html" class="nav-link">Register</a></li>
+          <li>
+            <a href="/auth/register/index.html" class="nav-link">Register</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -26,7 +28,7 @@
     <main id="main-content" class="main">
       <section id="about-section" class="section section-about">
         <h1 id="welcome-title" class="title">Welcome to Bid Vault</h1>
-        <p id="about-text" class="text">
+        <p id="about-text" class="paragraph">
           Explore unique items, bid on auctions, and sell your own treasures.
           Join us today and start bidding!
         </p>
@@ -34,8 +36,8 @@
       </section>
 
       <section id="login-section" class="section section-login">
-        <h2 id="login-title" class="title">Login</h2>
-        <form id="login-form" class="form form-login">
+        <h2 id="login-title">Login</h2>
+        <form id="login-form" class="form">
           <label for="email" class="form-label">Email:</label>
           <input
             type="email"
@@ -56,14 +58,25 @@
             required
           />
 
-          <button type="submit" id="login-submit" class="btn btn-submit">
-            Login
-          </button>
+          <button type="submit" id="login-submit" class="btn">Login</button>
         </form>
       </section>
     </main>
     <footer id="footer" class="footer">
-      <p>&copy; 2024 Bid Vault</p>
+      <div class="footer-content">
+        <img
+          src="../../src/images/logo.jpg"
+          alt="Bid Vault Logo"
+          class="footer-logo"
+        />
+        <hr class="footer-line" />
+        <p>&copy; 2018 — 2024</p>
+        <div class="footer-links">
+          <a href="/privacy.html" class="footer-link">Privacy</a>
+          <span class="footer-divider">—</span>
+          <a href="/terms.html" class="footer-link">Terms</a>
+        </div>
+      </div>
     </footer>
     <script type="module" src="/src/js/views/pages/welcome.js"></script>
   </body>
