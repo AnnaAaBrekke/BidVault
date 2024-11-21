@@ -34,24 +34,28 @@ export default class FormHandler {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Handle nested fields (avatar, banner, etc.)
-    if (data.avatarUrl) {
-      data.avatar = {
-        url: data.avatarUrl,
-        alt: data.avatarAlt || "",
+    /**
+     * Helper function to construct nested objects (e.g., avatar, banner).
+     * @param {string} urlKey - The key for the URL field.
+     * @param {string} altKey - The key for the alt text field.
+     * @returns {Object} - Nested object with `url` and `alt`.
+     */
+    const buildNestedObject = (urlKey, altKey) => {
+      return {
+        url: data[urlKey] || "",
+        alt: data[altKey] || "",
       };
-      delete data.avatarUrl;
-      delete data.avatarAlt;
-    }
+    };
 
-    if (data.bannerUrl) {
-      data.banner = {
-        url: data.bannerUrl,
-        alt: data.bannerAlt || "",
-      };
-      delete data.bannerUrl;
-      delete data.bannerAlt;
-    }
+    // Build avatar and banner objects
+    data.avatar = buildNestedObject("avatarUrl", "avatarAlt");
+    data.banner = buildNestedObject("bannerUrl", "bannerAlt");
+
+    // Clean up unused fields
+    delete data.avatarUrl;
+    delete data.avatarAlt;
+    delete data.bannerUrl;
+    delete data.bannerAlt;
 
     return data;
   }

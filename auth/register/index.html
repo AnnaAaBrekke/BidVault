@@ -27,19 +27,17 @@
                 id="avatar-preview"
                 class="avatar-preview"
                 src="../../src/images/avatar.jpg"
-                alt="Click to upload avatar"
+                alt="Default Avatar"
               />
-              <span class="avatar-text">Click to add avatar</span>
+              <span class="avatar-text">Click to upload an avatar</span>
             </label>
-            <div id="avatar-url-container" class="avatar-url-container">
-              <input
-                type="url"
-                id="avatar-url"
-                class="form-input avatar-input"
-                name="avatar.url"
-                placeholder="Enter avatar image URL"
-              />
-            </div>
+            <input
+              type="url"
+              id="avatar-url"
+              class="form-input avatar-input"
+              name="avatarUrl"
+              placeholder="Enter avatar image URL"
+            />
           </div>
 
           <!-- Banner Section -->
@@ -49,24 +47,16 @@
                 id="banner-preview"
                 class="banner-preview"
                 src="../../src/images/banner-bid.jpg"
-                alt="Click to upload banner"
+                alt="Default Banner"
               />
-              <span class="banner-text">Click to add banner</span>
+              <span class="banner-text">Click to upload a banner</span>
             </label>
             <input
               type="url"
-              id="banner"
-              name="banner"
+              id="banner-url"
+              class="form-input banner-input"
+              name="bannerUrl"
               placeholder="Enter a URL for your banner image"
-              required
-            />
-            <label for="bannerAlt" class="form-label">Banner Alt Text</label>
-            <input
-              type="text"
-              id="bannerAlt"
-              name="bannerAlt"
-              placeholder="Describe your banner image"
-              required
             />
           </div>
 

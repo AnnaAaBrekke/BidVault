@@ -1,6 +1,6 @@
 import { API_AUTH_LOGIN } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { showErrorAlert } from "../../global/alert.js";
 
 /**
  * Logs in a user.
@@ -16,27 +16,20 @@ export async function login(userData) {
       body: JSON.stringify(userData),
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || `Login failed: ${response.status}`);
+    if (response.ok) {
+      const { data } = await response.json();
+      const { accessToken: token, ...user } = data;
+
+      localStorage.setItem("accessToken", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      return data;
     }
 
-    const { data } = await response.json();
-
-    if (!data?.accessToken) {
-      throw new Error("Access token is missing in the response.");
-    }
-
-    localStorage.setItem("accessToken", data.accessToken);
-    localStorage.setItem("user", JSON.stringify(data));
-
-    showSuccessAlert("Login successful! Redirecting...");
-    setTimeout(() => (window.location.href = "../../index.html"), 1500);
-
-    return data;
+    const errorMessage = await response.text();
+    showErrorAlert(`Login failed: ${errorMessage}`);
+    throw new Error(`Login failed: ${errorMessage}`);
   } catch (error) {
-    showErrorAlert(`Login failed: ${error.message}`);
-    console.error("Error logging in:", error.message);
-    throw error;
+    throw new Error(`Login error: ${error.message}`);
   }
 }
