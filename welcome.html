@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome - Bid Vault</title>
+  </head>
+  <body>
+    <header id="main-header" class="header">
+      <nav id="nav-bar" class="nav">
+        <ul>
+          <li><a href="#login-section" class="nav-link">Login</a></li>
+          <li><a href="auth/register.html" class="nav-link">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main-content" class="main">
+      <section id="about-section" class="section section-about">
+        <h1 id="welcome-title" class="title">Welcome to Bid Vault</h1>
+        <p id="about-text" class="text">
+          Explore unique items, bid on auctions, and sell your own treasures.
+          Join us today and start bidding!
+        </p>
+        <a href="#login-section" id="btn-scroll">Start you journey here!</a>
+      </section>
+
+      <section id="login-section" class="section section-login">
+        <h2 id="login-title" class="title">Login</h2>
+        <form id="login-form" class="form form-login">
+          <label for="email" class="form-label">Email:</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="password" class="form-label">Password:</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+
+          <button type="submit" id="login-submit" class="btn btn-submit">
+            Login
+          </button>
+        </form>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <p>&copy; 2024 Bid Vault</p>
+    </footer>
+    <script src="./src/js/app.js"></script>
+  </body>
+</html>

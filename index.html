@@ -3,7 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home - BidVault</title>
   </head>
-  <body></body>
+  <body>
+    <header id="main-header" class="header">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="logo.png" alt="Site Logo" class="logo-img" />
+      </div>
+
+      <!-- Logged-In State (Desktop Menu) -->
+      <div class="desktop-menu logged-in">
+        <div class="user-menu">
+          <img src="avatar.png" alt="User Avatar" class="user-avatar" />
+          <span class="username">Anna</span>
+          <div class="dropdown desktop-dropdown">
+            <ul class="dropdown-menu">
+              <li>
+                <span class="menu-icon">👤</span> Your Profile
+                <span class="arrow-icon">➡️</span>
+              </li>
+              <li>
+                <span class="menu-icon">📄</span> Your Listings
+                <span class="arrow-icon">➡️</span>
+              </li>
+              <li>
+                <span class="menu-icon">✏️</span> Update Profile
+                <span class="arrow-icon">➡️</span>
+              </li>
+              <li>
+                <button class="btn-logout">
+                  <span class="menu-icon">🚪</span> Logout Account
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logged-In State (Mobile Menu) -->
+      <div class="mobile-menu logged-in">
+        <img src="avatar.png" alt="User Avatar" class="user-avatar" />
+        <img
+          src="hamburger-icon.png"
+          alt="Menu"
+          class="hamburger-icon"
+          id="mobile-menu-toggle"
+        />
+        <div class="dropdown mobile-dropdown" id="mobile-dropdown">
+          <ul class="dropdown-menu">
+            <li>
+              <a href="createListing.html"
+                ><span class="menu-icon">➕</span> Create Listing</a
+              >
+            </li>
+            <li>
+              <a href="profile.html#listings-section"
+                ><span class="menu-icon">📄</span> Your Listings</a
+              >
+            </li>
+            <li>
+              <a href="editprofile.html"
+                ><span class="menu-icon">✏️</span> Update Profile</a
+              >
+            </li>
+            <li>
+              <button class="btn-logout">
+                <span class="menu-icon">🚪</span> Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Not Logged-In State -->
+      <div class="not-logged-in">
+        <button id="login-btn" class="btn btn-login">Login</button>
+        <a href="register.html" class="btn btn-register">Register</a>
+      </div>
+    </header>
+
+    <main id="main-content" class="main">
+      <section id="intro-section" class="section section-intro">
+        <h1 id="site-title" class="title">Welcome to Bid Vault</h1>
+        <p id="intro-text" class="text">
+          Browse and bid on a variety of items, or create your own listing for
+          others to bid on.
+        </p>
+        <div id="actions" class="actions">
+          <a href="listing/listing.html" class="btn btn-browse" id="btn-browse"
+            >Start your journey here!</a
+          >
+        </div>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <p>&copy; 2024 Auction Site</p>
+    </footer>
+  </body>
 </html>
