@@ -1,0 +1,311 @@
+<!-- Logged-In State (Desktop Menu) -->
+<div class="desktop-menu logged-in">
+  <div class="user-menu">
+    <img src="src/images/avatar.jpg" alt="User Avatar" class="user-avatar" />
+    <span class="username">Anna</span>
+    <div class="dropdown desktop-dropdown">
+      <ul class="dropdown-menu">
+        <li>
+          <span class="menu-icon">👤</span> Your Profile
+          <span class="arrow-icon">➡️</span>
+        </li>
+        <li>
+          <span class="menu-icon">📄</span> Your Listings
+          <span class="arrow-icon">➡️</span>
+        </li>
+        <li>
+          <span class="menu-icon">✏️</span> Update Profile
+          <span class="arrow-icon">➡️</span>
+        </li>
+        <li>
+          <button class="btn-logout">
+            <span class="menu-icon">🚪</span> Logout Account
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Logged-In State (Mobile Menu) -->
+<div class="mobile-menu logged-in">
+  <img src="avatar.png" alt="User Avatar" class="user-avatar" />
+  <img
+    src="hamburger-icon.png"
+    alt="Menu"
+    class="hamburger-icon"
+    id="mobile-menu-toggle"
+  />
+  <div class="dropdown mobile-dropdown" id="mobile-dropdown">
+    <ul class="dropdown-menu">
+      <li>
+        <a href="createListing.html"
+          ><span class="menu-icon">➕</span> Create Listing</a
+        >
+      </li>
+      <li>
+        <a href="profile.html#listings-section"
+          ><span class="menu-icon">📄</span> Your Listings</a
+        >
+      </li>
+      <li>
+        <a href="editprofile.html"
+          ><span class="menu-icon">✏️</span> Update Profile</a
+        >
+      </li>
+      <li>
+        <button class="btn-logout">
+          <span class="menu-icon">🚪</span> Logout
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Not Logged-In State -->
+<div class="not-logged-in">
+  <button id="login-btn" class="btn btn-login">Login</button>
+  <a href="register.html" class="btn btn-register">Register</a>
+</div>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Bid Vault</title>
+  </head>
+  <body>
+    <header id="main-header" class="header">
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Dashboard</a></li>
+          <li>
+            <a href="../listing/createListing.html" class="nav-link"
+              >Create Listing</a
+            >
+          </li>
+          <li><a href="../auth/logout.html" class="nav-link">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="main">
+      <!-- Profile Section -->
+      <section id="profile-section" class="section section-profile">
+        <div id="banner-container" class="banner-container">
+          <img
+            id="profile-banner"
+            class="profile-banner"
+            src="../src/images/banner-bid.jpg"
+            alt="Profile Banner"
+          />
+        </div>
+        <div id="profile-info" class="profile-info">
+          <img
+            id="profile-avatar"
+            class="profile-avatar"
+            src="../src/images/avatar-placeholder.png"
+            alt="Profile Avatar"
+          />
+          <h1 id="profile-name" class="profile-name">Anna</h1>
+          <p id="profile-bio" class="profile-bio">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p id="profile-credits" class="profile-credits">
+            Current credit balance: <span>1000 credits</span>
+          </p>
+          <button id="update-profile-btn" class="btn btn-update-profile">
+            Update Profile
+          </button>
+        </div>
+      </section>
+
+      <!-- Listings Section -->
+      <section id="listings-section" class="section section-listings">
+        <h2 class="title">Your Listings</h2>
+        <div id="listings-controls" class="listings-controls">
+          <label class="form-label">Sort by:</label>
+          <div class="sort-buttons">
+            <button id="sort-new" class="btn sort-btn" data-sort="new">
+              New
+            </button>
+            <button
+              id="sort-price-asc"
+              class="btn sort-btn"
+              data-sort="price-asc"
+            >
+              Price Ascending
+            </button>
+            <button
+              id="sort-price-desc"
+              class="btn sort-btn"
+              data-sort="price-desc"
+            >
+              Price Descending
+            </button>
+          </div>
+        </div>
+
+        <div id="listings-container" class="listings-container">
+          <!-- Example Listing Card -->
+          <div class="listing-card">
+            <h3 class="listing-title">Auction Item</h3>
+            <p class="listing-creator">Creator: Anna</p>
+          </div>
+          <div class="listing-card">
+            <h3 class="listing-title">Auction Item</h3>
+            <p class="listing-creator">Creator: Anna</p>
+          </div>
+          <div class="listing-card">
+            <h3 class="listing-title">Auction Item</h3>
+            <p class="listing-creator">Creator: Anna</p>
+          </div>
+          <!-- Additional listings will be dynamically loaded -->
+        </div>
+        <button id="see-more-btn" class="btn btn-see-more">See More</button>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer">
+      <p>&copy; 2024 Bid Vault</p>
+    </footer>
+    <script src="../src/js/app.js"></script>
+  </body>
+</html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - Bid Vault</title>
+  </head>
+  <body>
+    <header id="main-header" class="header">
+      <a href="../index.html" class="nav-link">Back to Dashboard</a>
+    </header>
+    <main id="main-content" class="main">
+      <section id="edit-profile-section" class="section section-edit-profile">
+        <h1 id="edit-profile-title" class="title">Edit Profile</h1>
+        <form id="edit-profile-form" class="form form-edit-profile">
+          <!-- Avatar Upload Section -->
+          <div id="avatar-container" class="avatar-container">
+            <label for="avatar-input" class="avatar-label">
+              <img
+                id="avatar-preview"
+                class="avatar-preview"
+                src="../src/images/avatar-placeholder.png"
+                alt="Current Avatar"
+              />
+              <span class="avatar-text">Click to update avatar</span>
+            </label>
+            <input
+              type="url"
+              id="avatar-url"
+              class="form-input avatar-input"
+              name="avatar"
+              placeholder="Enter avatar image URL"
+              hidden
+            />
+            <input
+              type="file"
+              id="avatar-file"
+              class="form-input avatar-file"
+              name="avatarFile"
+              accept="image/*"
+              hidden
+            />
+            <button type="button" id="avatar-alt-upload" class="btn btn-upload">
+              Upload New Avatar
+            </button>
+          </div>
+
+          <!-- Banner Upload Section -->
+          <div id="banner-container" class="banner-container">
+            <label for="banner-input" class="banner-label">
+              <img
+                id="banner-preview"
+                class="banner-preview"
+                src="../src/images/banner-placeholder.png"
+                alt="Current Banner"
+              />
+              <span class="banner-text">Click to update banner</span>
+            </label>
+            <input
+              type="url"
+              id="banner-url"
+              class="form-input banner-input"
+              name="banner"
+              placeholder="Enter banner image URL"
+              hidden
+            />
+            <input
+              type="file"
+              id="banner-file"
+              class="form-input banner-file"
+              name="bannerFile"
+              accept="image/*"
+              hidden
+            />
+            <button type="button" id="banner-alt-upload" class="btn btn-upload">
+              Upload New Banner
+            </button>
+          </div>
+
+          <!-- Name -->
+          <label for="name" class="form-label">Name:</label>
+          <input
+            type="text"
+            id="name"
+            class="form-input"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+
+          <!-- Email (Read-Only if email is not changeable) -->
+          <label for="email" class="form-label">Email:</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            name="email"
+            placeholder="Enter your email"
+            required
+            readonly
+          />
+
+          <!-- Bio -->
+          <label for="bio" class="form-label">Bio:</label>
+          <textarea
+            id="bio"
+            class="form-textarea"
+            name="bio"
+            placeholder="Tell us about yourself"
+          ></textarea>
+
+          <!-- Current Credits (Read-Only) -->
+          <label for="credits" class="form-label">Current Credits:</label>
+          <input
+            type="text"
+            id="credits"
+            class="form-input"
+            name="credits"
+            value="1000"
+          />
+
+          <!-- Submit Button -->
+          <button type="submit" id="save-changes-submit" class="btn btn-submit">
+            Save Changes
+          </button>
+        </form>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <p>&copy; 2024 Auction Site</p>
+    </footer>
+    <script src="../src/js/app.js"></script>
+  </body>
+</html>
