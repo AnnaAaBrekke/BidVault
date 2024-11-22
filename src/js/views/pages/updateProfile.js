@@ -1,5 +1,6 @@
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import FormHandler from "../../components/form/formHandler.js";
+import { setupPreviewInputs } from "../../components/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 
 /**
@@ -13,7 +14,7 @@ function populateUpdateForm(profile) {
   document.getElementById("banner-url").value = profile.banner?.url || "";
 
   document.getElementById("avatar-preview").src =
-    profile.avatar?.url || "../../src/images/avatar-placeholder.png";
+    profile.avatar?.url || "../../src/images/avatar.jpg";
   document.getElementById("banner-preview").src =
     profile.banner?.url || "../../src/images/banner-bid.jpg";
 }
@@ -25,6 +26,13 @@ async function initUpdateForm() {
   try {
     const profile = await fetchProfile();
     populateUpdateForm(profile);
+
+    setupPreviewInputs(
+      "avatar-url",
+      "avatar-preview",
+      "banner-url",
+      "banner-preview",
+    );
 
     FormHandler.initialize("#update-profile-form", "updateProfile");
   } catch (error) {

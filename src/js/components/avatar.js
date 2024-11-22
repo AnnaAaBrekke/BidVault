@@ -9,6 +9,20 @@ export function avatarUpdate() {
   const avatarUpdateInput = document.getElementById("avatar-update-input");
   const avatarUpdateBtn = document.getElementById("avatar-update-btn");
 
+  // // Regular expression to validate URL
+  // const isValidUrl = (url) => {
+  //   const urlPattern = new RegExp(
+  //     "^(https?:\\/\\/)" + // protocol
+  //     "((([a-zA-Z\\d](([a-zA-Z\\d-]*[a-zA-Z\\d])?))\\.)+[a-zA-Z]{2,}|" + // domain name
+  //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR IPv4
+  //     "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // port and path
+  //     "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // query string
+  //     "(\\#[-a-zA-Z\\d_]*)?$", // fragment locator
+  //     "i"
+  //   );
+  //   return urlPattern.test(url);
+  // };
+
   avatarImg.addEventListener("click", async () => {
     avatarUpdateContainer.classList.remove("hidden");
     avatarUpdateInput.focus();

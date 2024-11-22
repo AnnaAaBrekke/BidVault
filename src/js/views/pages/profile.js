@@ -1,5 +1,6 @@
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
+import { setupPreviewInputs } from "../../components/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 
 function displayProfile(profile) {
@@ -18,6 +19,8 @@ function displayProfile(profile) {
     profile.bio || "No bio provided.";
   document.getElementById("profile-credits").innerHTML =
     `Current credit balance:${profile.credits || 0} credits`;
+
+  setupPreviewInputs("avatar-update-input", "profile-avatar");
 }
 
 async function initProfile() {
@@ -27,7 +30,7 @@ async function initProfile() {
     avatarUpdate();
   } catch (error) {
     console.error("Failed to display and init profile", error);
-    showErrorAlert("FFailed to display profile details");
+    showErrorAlert("Failed to display profile details");
   }
 }
 
