@@ -29,7 +29,9 @@
         class="section section-listing-details"
       >
         <h1 id="listing-title" class="title">Auction Item</h1>
-        <p id="listing-description" class="text">Description goes here.</p>
+        <div id="seller-container">
+          <p id="seller-name"></p>
+        </div>
       </section>
 
       <!-- Bids Section -->
@@ -38,6 +40,12 @@
         <ul id="bids-list" class="bids-list">
           <!-- Bids will be dynamically added here -->
         </ul>
+      </section>
+
+      <!-- Deadline Section -->
+      <section id="deadline-section" class="section section-deadline">
+        <h2 class="subtitle">Deadline Date</h2>
+        <p id="deadline" class="text">Deadline goes here.</p>
       </section>
 
       <!-- Place Bid Section -->
@@ -60,11 +68,7 @@
         </form>
       </section>
 
-      <!-- Deadline Section -->
-      <section id="deadline-section" class="section section-deadline">
-        <h2 class="subtitle">Deadline Date</h2>
-        <p id="deadline" class="text">Deadline goes here.</p>
-      </section>
+      <p id="listing-description" class="text">Description goes here.</p>
 
       <!-- Media Gallery Section -->
       <section id="media-gallery-section" class="section section-media-gallery">

@@ -274,3 +274,102 @@ footer {
 .view-details-btn:hover {
   background-color: #0056b3;
 }
+
+/* Media Section */
+.main-media-item img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+/* Listing Details Section */
+.seller-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.seller-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+/* Bids Section */
+.bids-list {
+  list-style: none;
+  padding: 0;
+}
+
+.bid-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.bid-item:last-child {
+  border-bottom: none;
+}
+
+.bid-amount {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Place Bid Section */
+.form-bid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.btn-submit {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Deadline Section */
+#deadline {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Media Gallery Section */
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.media-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
