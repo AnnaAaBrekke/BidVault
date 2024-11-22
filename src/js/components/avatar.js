@@ -10,6 +10,8 @@ export function avatarUpdate() {
   const avatarUpdateBtn = document.getElementById("avatar-update-btn");
   const avatarCancelBtn = document.getElementById("avatar-cancel-btn");
 
+  // Add (alt) here to ?? Because changing the images..
+
   // Store the original avatar URL for fallback
   let originalAvatarUrl = avatarImg.src;
 

@@ -2,6 +2,9 @@ import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
+import { setLogoutListener } from "../../global/logout.js";
+
+setLogoutListener();
 
 /**
  * Populate the update form with fetched profile data.
@@ -12,6 +15,8 @@ function populateUpdateForm(profile) {
   document.getElementById("bio").value = profile.bio || "";
   document.getElementById("avatar-url").value = profile.avatar?.url || "";
   document.getElementById("banner-url").value = profile.banner?.url || "";
+
+  // Add (alt) here to ?? Because changing the images..
 
   document.getElementById("avatar-preview").src =
     profile.avatar?.url || "../../src/images/avatar.jpg";
