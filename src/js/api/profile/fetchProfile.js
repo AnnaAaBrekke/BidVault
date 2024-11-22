@@ -2,8 +2,15 @@ import { showErrorAlert } from "../../global/alert.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
 
-export async function fetchProfile(username) {
+export async function fetchProfile() {
   try {
+    const username = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")).name
+      : null;
+
+    if (!username) {
+      throw new Error("User is not logged in.");
+    }
     const response = await fetch(`${API_AUCTION_PROFILES}/${username}`, {
       method: "GET",
       headers: getHeaders(),
