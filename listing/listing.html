@@ -23,35 +23,16 @@
         class="section section-listing-details"
       >
         <h1 id="listing-title" class="title">Auction Item</h1>
-        <p>Avatar Creator</p>
+        <p id="listing-description" class="text">Description goes here.</p>
       </section>
 
-      <!-- Bid Details Section -->
       <section id="bids-section" class="section section-bids">
         <h2 class="subtitle">Recent Bids</h2>
         <ul id="bids-list" class="bids-list">
-          <li class="bid-item">
-            <span class="bid-amount">118 credit</span>
-            <span class="bid-time">(12.10.24, 12:25)</span>
-            <span class="bid-creator">Anna</span>
-          </li>
-          <li class="bid-item">
-            <span class="bid-amount">117 credit</span>
-            <span class="bid-time">(12.10.24, 12:05)</span>
-            <span class="bid-creator">Current Bid</span>
-          </li>
-          <li class="bid-item">
-            <span class="bid-amount">110 credit</span>
-            <span class="bid-time">(12.10.24, 08:05)</span>
-          </li>
-          <li class="bid-item">
-            <span class="bid-amount">108 credit</span>
-            <span class="bid-time">(09.10.24, 12:05)</span>
-          </li>
+          <!-- Bids will be dynamically added here -->
         </ul>
       </section>
 
-      <!-- Place Bid Section -->
       <section id="place-bid-section" class="section section-place-bid">
         <h2 class="subtitle">Place Your Bid</h2>
         <form id="bid-form" class="form form-bid">
@@ -62,7 +43,7 @@
             class="form-input"
             name="bid-amount"
             placeholder="Enter your bid"
-            min="109"
+            min="0"
             required
           />
           <button type="submit" id="place-bid-btn" class="btn btn-submit">
@@ -71,47 +52,21 @@
         </form>
       </section>
 
-      <!-- Deadline Date -->
       <section id="deadline-section" class="section section-deadline">
         <h2 class="subtitle">Deadline Date</h2>
-        <p id="deadline" class="text">Jun 10, 2024, 9:41 AM</p>
+        <p id="deadline" class="text">Deadline goes here.</p>
       </section>
 
-      <p id="listing-description" class="text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-
-      <!-- Media Gallery -->
       <section id="media-gallery-section" class="section section-media-gallery">
         <h2 class="subtitle">Listing Item Media Gallery</h2>
         <div id="media-gallery" class="media-gallery">
-          <img
-            src="../src/images/example-image1.jpg"
-            alt="Media 1"
-            class="gallery-image"
-          />
-          <img
-            src="../src/images/example-image2.jpg"
-            alt="Media 2"
-            class="gallery-image"
-          />
-          <img
-            src="../src/images/example-image3.jpg"
-            alt="Media 3"
-            class="gallery-image"
-          />
-          <img
-            src="../src/images/example-image3.jpg"
-            alt="Media 3"
-            class="gallery-image"
-          />
+          <!-- Media will be dynamically added here -->
         </div>
       </section>
     </main>
     <footer id="footer" class="footer">
       <p>&copy; 2024 Auction Site</p>
     </footer>
-    <script src="../src/js/app.js"></script>
+    <script type="module" src="../../src/js/views/pages/listing.js"></script>
   </body>
 </html>
