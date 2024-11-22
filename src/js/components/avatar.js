@@ -8,6 +8,10 @@ export function avatarUpdate() {
   );
   const avatarUpdateInput = document.getElementById("avatar-update-input");
   const avatarUpdateBtn = document.getElementById("avatar-update-btn");
+  const avatarCancelBtn = document.getElementById("avatar-cancel-btn");
+
+  // Store the original avatar URL for fallback
+  let originalAvatarUrl = avatarImg.src;
 
   // // Regular expression to validate URL
   // const isValidUrl = (url) => {
@@ -25,6 +29,7 @@ export function avatarUpdate() {
 
   avatarImg.addEventListener("click", async () => {
     avatarUpdateContainer.classList.remove("hidden");
+    avatarUpdateInput.value = originalAvatarUrl; // Prefill with current avatar
     avatarUpdateInput.focus();
   });
 
@@ -42,6 +47,7 @@ export function avatarUpdate() {
       avatarImg.src = newAvatarUrl;
 
       avatarUpdateContainer.classList.add("hidden");
+      originalAvatarUrl = newAvatarUrl;
       avatarUpdateInput.value = "";
 
       showSuccessAlert("Avatar updated successfully!");
@@ -49,5 +55,11 @@ export function avatarUpdate() {
       console.error("Failed to update avatar:", error);
       showErrorAlert("Failed to update avatar. Please try again.");
     }
+  });
+
+  avatarCancelBtn.addEventListener("click", () => {
+    avatarUpdateContainer.classList.add("hidden");
+    avatarImg.src = originalAvatarUrl;
+    avatarUpdateInput.value = "";
   });
 }

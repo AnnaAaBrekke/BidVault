@@ -182,3 +182,24 @@ footer {
 .btn-update-profile:hover {
   background: #0056b3;
 }
+
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.btn-icon:hover {
+  color: #00eeff; /* Optional: hover effect */
+}
+
+.icon {
+  display: inline-block;
+  font-weight: bold;
+}
