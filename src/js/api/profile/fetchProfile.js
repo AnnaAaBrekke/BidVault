@@ -9,21 +9,22 @@ export async function fetchProfile() {
       : null;
 
     if (!username) {
-      throw new Error("User is not logged in.");
+      showErrorAlert("User is not logged in.");
+      window.location.href = "../../welcome.html";
+      return;
     }
     const response = await fetch(`${API_AUCTION_PROFILES}/${username}`, {
       method: "GET",
       headers: getHeaders(),
     });
 
-    if (response.ok) {
-      const { data } = await response.json();
-      console.log("Profile fetched", data);
-      return data;
-    } else {
+    if (!response.ok) {
       const errorMessage = await response.text();
       throw new Error(`Error fetching profile: ${errorMessage}`);
     }
+
+    const { data } = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching profile:", error);
     showErrorAlert(`Error fetching profile: ${error.message}`);

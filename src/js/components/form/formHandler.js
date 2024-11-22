@@ -1,5 +1,6 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
+import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 
 export default class FormHandler {
@@ -111,6 +112,7 @@ export default class FormHandler {
     const actions = {
       register,
       login,
+      updateProfile,
     };
 
     if (!actions[action]) {
@@ -135,6 +137,10 @@ export default class FormHandler {
         setTimeout(() => {
           window.location.href = "../../welcome.html";
         }, 1500);
+      } else if (action === "updateProfile") {
+        setTimeout(() => {
+          window.location.href = "../../profile/index.html";
+        }, 1000);
       }
     } catch (error) {
       showErrorAlert(`An error occurred: ${error.message}`);
