@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Bid Vault</title>
     <link rel="stylesheet" href="../../src/styles/style.css" />
+    <script
+      src="https://kit.fontawesome.com/ead288c181.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header id="main-header" class="header">
@@ -43,6 +47,18 @@
             src="../src/images/avatar-placeholder.png"
             alt="Profile Avatar"
           />
+          <div id="avatar-update-container" class="hidden">
+            <input
+              type="url"
+              id="avatar-update-input"
+              class="form-input"
+              placeholder="Enter new avatar image URL"
+            />
+            <button id="avatar-update-btn" class="btn">Update Avatar</button>
+            <button id="avatar-cancel-btn" class="btn btn-icon">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>
           <h1 id="profile-name" class="profile-name">Anna</h1>
           <p id="profile-bio" class="profile-bio">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
