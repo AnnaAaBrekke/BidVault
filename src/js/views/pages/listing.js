@@ -2,6 +2,16 @@ import { fetchSingleListing } from "../../api/listing/listingService";
 import { showErrorAlert } from "../../global/alert";
 
 export function displaySingleListing(listing) {
+  // Media (one)
+  const mainListingImg = document.getElementById("media-item");
+  const mainListingImgUrl =
+    listing.media.length > 0
+      ? listing.media[0].url
+      : "../../src/images/logo.jpg";
+  mainListingImg.innerHTML = `
+    <img src="${mainListingImgUrl}" alt="${listing.title}"/>
+  `;
+
   // Title
   document.getElementById("listing-title").textContent = listing.title;
 
@@ -48,14 +58,28 @@ export function displaySingleListing(listing) {
     : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
   // Bid form
-  
 
   // Descripton
 
   document.getElementById("listing-description").textContent =
     listing.description || "No description available.";
 
-  // Media
+  // Media Gallery
+  const mediaGallery = document.getElementById("media-gallery");
+  mediaGallery.innerHTML = listing.media.length
+    ? listing.media
+        .slice(1) // Skipping the frist image main
+        .map(
+          (media) => `
+        <img
+          src="${media.url}"
+          alt="${media.alt || "Listing Media"}"
+          class="gallery-image"
+        />
+      `,
+        )
+        .join("")
+    : "<p>No media available for this listing.</p>";
 }
 
 async function initSingleListing() {

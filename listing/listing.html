@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Listing Details - Auction Site</title>
+    <link rel="stylesheet" href="../../src/styles/style.css" />
   </head>
   <body>
     <header id="main-header" class="header">
@@ -22,6 +23,17 @@
         id="listing-details-section"
         class="section section-listing-details"
       >
+        <div class="main-media-item" id="media-item">
+          <input
+            type="url"
+            id="media-1"
+            class="form-input media-input"
+            name="media"
+            placeholder="Enter media URL"
+            required
+          />
+        </div>
+
         <h1 id="listing-title" class="title">Auction Item</h1>
         <p id="listing-description" class="text">Description goes here.</p>
       </section>
