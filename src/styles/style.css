@@ -7,6 +7,10 @@ body {
   color: #333;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   background-color: #dae2ea;
   color: white;
