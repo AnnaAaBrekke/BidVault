@@ -22,3 +22,27 @@ export async function fetchListings() {
     throw error;
   }
 }
+
+export async function fetchSingleListing(listingId) {
+  try {
+    const response = await fetch(
+      `${API_AUCTION_LISTINGS}/${listingId}?_bids=true&_seller=true`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      },
+    );
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error fetching profile: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching single listing:", error);
+    showErrorAlert(`Error fetching single listing: ${error.message}`);
+    throw error;
+  }
+}
