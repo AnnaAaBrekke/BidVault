@@ -2,7 +2,7 @@ import { fetchSingleListing } from "../../api/listing/listingService.js";
 import { showErrorAlert } from "../../global/alert.js";
 
 export function displaySingleListing(listing) {
-  // Main Media (One Image)
+  // Main Media (Firs Image in Media Gallery)
   const mainListingImg = document.getElementById("media-item");
   const mainListingImgUrl =
     listing.media && listing.media.length > 0
@@ -60,6 +60,8 @@ export function displaySingleListing(listing) {
           .join("")
       : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
+  // Bid Form Insert Later
+
   // Description
   const descriptionElement = document.getElementById("listing-description");
   descriptionElement.textContent =
@@ -88,6 +90,7 @@ export function displaySingleListing(listing) {
 }
 
 async function initSingleListing() {
+  // Might make this global later
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("id");
 
