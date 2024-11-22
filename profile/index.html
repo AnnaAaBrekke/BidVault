@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Bid Vault</title>
+    <link rel="stylesheet" href="../../src/styles/style.css" />
+  </head>
+  <body>
+    <header id="main-header" class="header">
+      <a href="../../welcome.html" class="nav-link">
+        <img
+          src="../../src/images/logo.jpg"
+          alt="Back to Welcome"
+          class="header-logo"
+        />
+      </a>
+      <nav id="nav-bar" class="nav">
+        <ul>
+          <li><a href="#login-section" class="nav-link">Login</a></li>
+          <li>
+            <a href="/auth/register/index.html" class="nav-link">Register</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="main">
+      <!-- Profile Section -->
+      <section id="profile-section" class="section section-profile">
+        <div id="banner-container" class="banner-container">
+          <img
+            id="profile-banner"
+            class="profile-banner"
+            src="../src/images/banner-bid.jpg"
+            alt="Profile Banner"
+          />
+        </div>
+        <div id="profile-info" class="profile-info">
+          <img
+            id="profile-avatar"
+            class="profile-avatar"
+            src="../src/images/avatar-placeholder.png"
+            alt="Profile Avatar"
+          />
+          <h1 id="profile-name" class="profile-name">Anna</h1>
+          <p id="profile-bio" class="profile-bio">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p id="profile-credits" class="profile-credits">
+            Current credit balance: <span>1000 credits</span>
+          </p>
+          <a
+            href="../profile/update.html"
+            id="update-profile-btn"
+            class="btn btn-update-profile"
+          >
+            Update Profile
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-content">
+        <img
+          src="../../src/images/logo.jpg"
+          alt="Bid Vault Logo"
+          class="footer-logo"
+        />
+        <hr class="footer-line" />
+        <p>&copy; 2018 — 2024</p>
+        <div class="footer-links">
+          <a href="/privacy.html" class="footer-link">Privacy</a>
+          <span class="footer-divider">—</span>
+          <a href="/terms.html" class="footer-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../../src/js/views/pages/profile.js"></script>
+  </body>
+</html>

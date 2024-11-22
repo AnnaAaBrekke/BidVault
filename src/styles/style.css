@@ -122,3 +122,59 @@ footer {
   background-color: #f1f1f1;
   font-size: 14px;
 }
+
+/* Profile Section */
+.section-profile {
+  text-align: center;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.banner-container img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.profile-info {
+  margin-top: -50px;
+  display: inline-block;
+  text-align: center;
+}
+
+.profile-avatar {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #fff;
+}
+
+.profile-name {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.profile-bio {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.profile-credits {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.btn-update-profile {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-update-profile:hover {
+  background: #0056b3;
+}
