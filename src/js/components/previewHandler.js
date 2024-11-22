@@ -1,4 +1,9 @@
-export function setupPreviewInputs(avatarInputId, avatarPreviewId, bannerInputId, bannerPreviewId) {
+export function setupPreviewInputs(
+  avatarInputId,
+  avatarPreviewId,
+  bannerInputId,
+  bannerPreviewId,
+) {
   const avatarUrlInput = document.getElementById(avatarInputId);
   const avatarPreview = document.getElementById(avatarPreviewId);
 
