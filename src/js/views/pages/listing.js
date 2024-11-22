@@ -2,14 +2,14 @@ import { fetchSingleListing } from "../../api/listing/listingService";
 import { showErrorAlert } from "../../global/alert";
 
 export function displaySingleListing(listing) {
-  // Media (one)
+  // Main Media (One Image)
   const mainListingImg = document.getElementById("media-item");
   const mainListingImgUrl =
     listing.media.length > 0
       ? listing.media[0].url
       : "../../src/images/logo.jpg";
   mainListingImg.innerHTML = `
-    <img src="${mainListingImgUrl}" alt="${listing.title}"/>
+    <img src="${mainListingImgUrl}" alt="${listing.title}" class="main-listing-image"/>
   `;
 
   // Title
@@ -17,10 +17,11 @@ export function displaySingleListing(listing) {
 
   // Seller/Author with Avatar
   const sellerElement = document.createElement("p");
+  sellerElement.classList.add("seller-info");
   sellerElement.innerHTML = `
     <img
-      src="${listing.seller?.avatar.url || "../../src/images/avatar.jpg"}"
-      alt="${listing.seller?.avatar.alt || "Seller"}'s avatar"
+      src="${listing.seller?.avatar?.url || "../../src/images/avatar.jpg"}"
+      alt="${listing.seller?.name || "Seller"}'s avatar"
       class="seller-avatar"
     />
     <strong>${listing.seller?.name || "Unknown Seller"}</strong>
@@ -57,29 +58,29 @@ export function displaySingleListing(listing) {
         .join("")
     : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
-  // Bid form
+  // Bid Form
 
-  // Descripton
-
+  // Description
   document.getElementById("listing-description").textContent =
     listing.description || "No description available.";
 
   // Media Gallery
   const mediaGallery = document.getElementById("media-gallery");
-  mediaGallery.innerHTML = listing.media.length
-    ? listing.media
-        .slice(1) // Skipping the frist image main
-        .map(
-          (media) => `
+  mediaGallery.innerHTML =
+    listing.media.length > 1
+      ? listing.media
+          .slice(1) // Skip the first image as it is displayed as the main image
+          .map(
+            (media) => `
         <img
           src="${media.url}"
           alt="${media.alt || "Listing Media"}"
           class="gallery-image"
         />
       `,
-        )
-        .join("")
-    : "<p>No media available for this listing.</p>";
+          )
+          .join("")
+      : "<p>No additional media available for this listing.</p>";
 }
 
 async function initSingleListing() {
@@ -96,6 +97,7 @@ async function initSingleListing() {
     displaySingleListing(listing);
   } catch (error) {
     console.error("Failed to load the detailed view of listing", error);
+    showErrorAlert("Failed to load listing details. Please try again later.");
   }
 }
 

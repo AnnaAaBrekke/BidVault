@@ -18,26 +18,21 @@
     </header>
 
     <main id="main-content" class="main">
+      <!-- Media Section -->
+      <section id="media-section" class="section section-media">
+        <div class="main-media-item" id="media-item"></div>
+      </section>
+
       <!-- Listing Title Section -->
       <section
         id="listing-details-section"
         class="section section-listing-details"
       >
-        <div class="main-media-item" id="media-item">
-          <input
-            type="url"
-            id="media-1"
-            class="form-input media-input"
-            name="media"
-            placeholder="Enter media URL"
-            required
-          />
-        </div>
-
         <h1 id="listing-title" class="title">Auction Item</h1>
         <p id="listing-description" class="text">Description goes here.</p>
       </section>
 
+      <!-- Bids Section -->
       <section id="bids-section" class="section section-bids">
         <h2 class="subtitle">Recent Bids</h2>
         <ul id="bids-list" class="bids-list">
@@ -45,6 +40,7 @@
         </ul>
       </section>
 
+      <!-- Place Bid Section -->
       <section id="place-bid-section" class="section section-place-bid">
         <h2 class="subtitle">Place Your Bid</h2>
         <form id="bid-form" class="form form-bid">
@@ -64,21 +60,23 @@
         </form>
       </section>
 
+      <!-- Deadline Section -->
       <section id="deadline-section" class="section section-deadline">
         <h2 class="subtitle">Deadline Date</h2>
         <p id="deadline" class="text">Deadline goes here.</p>
       </section>
 
+      <!-- Media Gallery Section -->
       <section id="media-gallery-section" class="section section-media-gallery">
         <h2 class="subtitle">Listing Item Media Gallery</h2>
-        <div id="media-gallery" class="media-gallery">
-          <!-- Media will be dynamically added here -->
-        </div>
+        <div id="media-gallery" class="media-gallery"></div>
       </section>
     </main>
+
     <footer id="footer" class="footer">
       <p>&copy; 2024 Auction Site</p>
     </footer>
+
     <script type="module" src="../../src/js/views/pages/listing.js"></script>
   </body>
 </html>
