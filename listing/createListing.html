@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Listing - Bid Vault</title>
+    <link rel="stylesheet" href="../../src/styles/style.css" />
   </head>
   <body>
     <header id="main-header" class="header">
@@ -22,6 +23,18 @@
       >
         <h1 id="create-listing-title" class="title">Create New Listing</h1>
         <form id="create-listing-form" class="form form-create-listing">
+          <!-- Main Image -->
+          <label for="mainImgUrl" class="form-label">Main Image URL:</label>
+          <input
+            type="url"
+            id="mainImgUrl"
+            name="mainImgUrl"
+            class="form-input"
+            placeholder="Enter main image URL"
+            required
+          />
+
+          <!-- Title -->
           <label for="title" class="form-label">Title:</label>
           <input
             type="text"
@@ -32,6 +45,17 @@
             required
           />
 
+          <!-- Deadline -->
+          <label for="deadline" class="form-label">Deadline:</label>
+          <input
+            type="datetime-local"
+            id="deadline"
+            class="form-input"
+            name="endsAt"
+            required
+          />
+
+          <!-- Description -->
           <label for="description" class="form-label">Description:</label>
           <textarea
             id="description"
@@ -41,41 +65,54 @@
             required
           ></textarea>
 
-          <label for="deadline" class="form-label">Deadline:</label>
-          <input
-            type="date"
-            id="deadline"
-            class="form-input"
-            name="deadline"
-            required
-          />
-
-          <!-- Media Section -->
-          <label for="media-1" class="form-label">Media URLs:</label>
+          <!-- Media Gallery Section -->
+          <label for="media" class="form-label">Media Gallery:</label>
           <div id="media-container" class="media-container">
+            <!-- Initial 5 Media Input Fields -->
             <div class="media-item">
               <input
                 type="url"
-                id="media-1"
                 class="form-input media-input"
                 name="media"
                 placeholder="Enter media URL"
                 required
               />
             </div>
+            <div class="media-item">
+              <input
+                type="url"
+                class="form-input media-input"
+                name="media"
+                placeholder="Enter media URL"
+              />
+            </div>
+            <div class="media-item">
+              <input
+                type="url"
+                class="form-input media-input"
+                name="media"
+                placeholder="Enter media URL"
+              />
+            </div>
+            <div class="media-item">
+              <input
+                type="url"
+                class="form-input media-input"
+                name="media"
+                placeholder="Enter media URL"
+              />
+            </div>
+            <div class="media-item">
+              <input
+                type="url"
+                class="form-input media-input"
+                name="media"
+                placeholder="Enter media URL"
+              />
+            </div>
           </div>
-          <button type="button" id="add-media-btn" class="btn btn-add-media">
-            Add Media
-          </button>
-          <button
-            type="button"
-            id="remove-media-btn"
-            class="btn btn-remove-media"
-            hidden
-          >
-            Remove Media
-          </button>
 
+          <!-- Submit -->
           <button
             type="submit"
             id="create-listing-submit"
