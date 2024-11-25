@@ -34,7 +34,7 @@ export function displaySingleListing(listing) {
           .join("")
       : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
-  // Bid Form Insert Later
+  // Bid Form Insert Later (get headers = true (false else why))
 
   // Construct listing HTML
   const listingHTML = `

@@ -76,3 +76,24 @@ export async function searchListings(query) {
     throw error;
   }
 }
+
+export async function createListing(listingData) {
+  try {
+    const response = await fetch(API_AUCTION_LISTINGS, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify(listingData),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error creating listing: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating listing:", error);
+    throw error;
+  }
+}

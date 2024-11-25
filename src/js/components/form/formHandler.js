@@ -1,5 +1,6 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
+import { createListing } from "../../api/listing/listingService.js";
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 
@@ -26,6 +27,8 @@ export default class FormHandler {
     });
   }
 
+  //DRY THIS LATER GETFORMDATA (media)
+
   /**
    * Extract and structure form data.
    * @param {HTMLFormElement} form
@@ -34,6 +37,15 @@ export default class FormHandler {
   static getFormData(form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    // Collect media gallery inputs into an array of objects
+    const mediaInputs = form.querySelectorAll(".media-input");
+    data.media = Array.from(mediaInputs)
+      .filter((input) => input.value) // Exclude empty fields
+      .map((input) => ({
+        url: input.value, // URL from input field
+        alt: `Media for ${data.title}`, // Optional alt text
+      }));
 
     /**
      * Helper function to construct nested objects (e.g., avatar, banner).
@@ -58,6 +70,8 @@ export default class FormHandler {
     delete data.bannerUrl;
     delete data.bannerAlt;
 
+    delete data.mediaInputs;
+
     return data;
   }
 
@@ -75,6 +89,7 @@ export default class FormHandler {
         "Email must be a valid @noroff.no or @stud.noroff.no address.",
       shortPassword: "Password must be at least 8 characters long.",
       invalidName: "Name must contain only letters, numbers, and underscores.",
+      requiredFields: "All required fields must be filled.",
     };
 
     if (!data || Object.keys(data).length === 0) return errors.empty;
@@ -88,6 +103,24 @@ export default class FormHandler {
       }
       if (!data.password || data.password.length < 8) {
         return errors.shortPassword;
+      }
+    }
+    if (action === "createListing") {
+      if (
+        !data.title ||
+        !data.mainImgUrl ||
+        !data.description ||
+        !data.endsAt
+      ) {
+        return errors.requiredFields;
+      }
+
+      if (
+        !data.media ||
+        !Array.isArray(data.media) ||
+        data.media.length === 0
+      ) {
+        return "At least one media item is required.";
       }
     }
 
@@ -113,6 +146,7 @@ export default class FormHandler {
       register,
       login,
       updateProfile,
+      createListing,
     };
 
     if (!actions[action]) {
@@ -140,6 +174,10 @@ export default class FormHandler {
       } else if (action === "updateProfile") {
         setTimeout(() => {
           window.location.href = "../../profile/index.html";
+        }, 1000);
+      } else if (action === "createListing") {
+        setTimeout(() => {
+          window.location.href = `../../listing/listing.html?id=${result.id}`;
         }, 1000);
       }
     } catch (error) {
