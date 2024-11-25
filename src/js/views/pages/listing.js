@@ -19,36 +19,52 @@ export function displaySingleListing(listing) {
           .join("")
       : "<p>No additional media available for this listing.</p>";
 
-  // Generate bids (can only be shows in registered - fix later)
-  const bidsHTML = isLoggedIn();
-  listing.bids && listing.bids.length
-    ? listing.bids
-        .map(
-          (bid) => `
-          <li class="bid-item">
-            <span class="bid-amount">${bid.amount} credits</span>
-            <span class="bid-time">(${new Date(bid.created).toLocaleString()})</span>
-            <span class="bid-creator">${bid.bidder?.name || "Anonymous"}</span>
-          </li>
-        `,
-        )
-        .join("")
-    : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
+  // Generate bids
+  const bidsHTML =
+    listing.bids && listing.bids.length
+      ? listing.bids
+          .map(
+            (bid) => `
+        <li class="bid-item">
+          <span class="bid-amount">${bid.amount} credits</span>
+          <span class="bid-time">(${new Date(bid.created).toLocaleString()})</span>
+          <span class="bid-creator">${bid.bidder?.name || "Anonymous"}</span>
+        </li>
+      `,
+          )
+          .join("")
+      : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
-  // Bid Form Insert Later (get headers = true (false else why))
-
-  // Construct listing HTML
   const listingHTML = `
     ${outputListings(listing)}
-    <ul id="bids-list">${bidsHTML}</ul>
     <p>${listing.description || "No description available"}</p>
-    <div id="bid-form">Bid form will be inserted here later</div>
+    <div id="bid-list-container">
+      <button id="bid-list-button" class="btn btn-primary">
+        Recent Bids
+      </button>
+      <div id="bids-container" class="hidden">
+        <ul id="bids-list">${bidsHTML}</ul>
+      </div>
+    </div>
     <div id="media-gallery">${gallery}</div>
-  `;
+    `;
 
   mainContainer.innerHTML = listingHTML;
-}
 
+  const toggleButton = document.getElementById("bid-list-button");
+  const bidsContainer = document.getElementById("bids-container");
+
+  toggleButton.addEventListener("click", () => {
+    if (isLoggedIn()) {
+      const isHidden = bidsContainer.classList.toggle("hidden");
+      toggleButton.textContent = isHidden ? "Recent Bids" : "Hide Recent Bids";
+    } else {
+      showErrorAlert("You need to be logged in to view recent bids.");
+    }
+  });
+
+  // Bid Form Insert Later (get headers = true (false else why)
+}
 async function initSingleListing() {
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("id");
