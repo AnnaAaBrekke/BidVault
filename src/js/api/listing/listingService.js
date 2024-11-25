@@ -1,6 +1,7 @@
 import { showErrorAlert } from "../../global/alert.js";
 import {
   API_AUCTION_LISTINGS,
+  API_AUCTION_PROFILES,
   API_AUCTION_SEARCH,
   INCLUDE_BIDS_AND_SELLER,
 } from "../constants.js";
@@ -94,6 +95,29 @@ export async function createListing(listingData) {
     return data;
   } catch (error) {
     console.error("Error creating listing:", error);
+    throw error;
+  }
+}
+
+export async function fetchListingsByUser(username) {
+  try {
+    const response = await fetch(
+      `${API_AUCTION_PROFILES}/${username}/listings${INCLUDE_BIDS_AND_SELLER}`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      },
+    );
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error fetching listings for user: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching listings by profile:", error);
+    showErrorAlert(`Error fetching user listings: ${error.message}`);
     throw error;
   }
 }

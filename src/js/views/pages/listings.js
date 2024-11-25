@@ -8,7 +8,7 @@ export function displayListings(listings) {
     const listingHTML = `
       <div class="listing">
         ${outputListings(listing)}
-        <a href="listing/listing.html?id=${listing.id}" class="view-details-btn">
+        <a href="../../listing/listing.html?id=${listing.id}" class="view-details-btn">
           View Details
         </a>
       </div>

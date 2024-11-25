@@ -1,3 +1,4 @@
+import { displayUserListings } from "../../api/listing/displayListing.js";
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
@@ -31,6 +32,10 @@ async function initProfile() {
     const profile = await fetchProfile();
     displayProfile(profile);
     avatarUpdate();
+
+    if (profile.name) {
+      await displayUserListings(profile.name);
+    }
   } catch (error) {
     console.error("Failed to display and init profile", error);
     showErrorAlert("Failed to display profile details");
@@ -38,8 +43,3 @@ async function initProfile() {
 }
 
 document.addEventListener("DOMContentLoaded", initProfile);
-
-// document.addEventListener("DOMContentLoaded", async () => {
-//   const profile = await fetchProfile();
-//   displayProfile(profile);
-// });
