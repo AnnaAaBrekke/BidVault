@@ -9,7 +9,7 @@ function calculateCurrentBid(bids) {
     : 0;
 }
 
-export function outputListing(listing) {
+export function outputListings(listing) {
   const mediaHtml = displayItemImg(
     listing.media,
     listing.title,
