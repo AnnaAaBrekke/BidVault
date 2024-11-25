@@ -97,3 +97,26 @@ export async function createListing(listingData) {
     throw error;
   }
 }
+
+export async function fetchListingsByUser(username) {
+  try {
+    const response = await fetch(
+      `${API_AUCTION_LISTINGS}/${username}/listings`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      },
+    );
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error fetching listings for user: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching listings by profile:", error);
+    showErrorAlert(`Error fetching user listings: ${error.message}`);
+    throw error;
+  }
+}
