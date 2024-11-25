@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - BidVault</title>
     <link rel="stylesheet" href="./src/styles/style.css" />
+    <script
+      src="https://kit.fontawesome.com/ead288c181.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header id="main-header" class="header">
@@ -26,9 +30,11 @@
 
       <section id="listing-section">
         <h2>Listings</h2>
-        <div id="search-container">
+        <div id="search-container" class="search-wrapper">
           <input type="text" id="search-input" placeholder="Search posts..." />
-          <button id="search-button" class="search-btn">Search</button>
+          <button id="search-button" class="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
         <h3 id="search-results-headline" class="hidden search-headline">
           Search Results
