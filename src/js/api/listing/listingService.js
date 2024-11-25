@@ -82,7 +82,7 @@ export async function createListing(listingData) {
     const response = await fetch(API_AUCTION_LISTINGS, {
       method: "POST",
       headers: getHeaders(),
-      body: JSON.stringify(listingData), // Include the listing data in the body
+      body: JSON.stringify(listingData),
     });
 
     if (!response.ok) {
@@ -94,7 +94,6 @@ export async function createListing(listingData) {
     return data;
   } catch (error) {
     console.error("Error creating listing:", error);
-    showErrorAlert(`Error creating listing: ${error.message}`);
     throw error;
   }
 }

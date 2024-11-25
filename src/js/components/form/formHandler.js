@@ -27,6 +27,8 @@ export default class FormHandler {
     });
   }
 
+  //DRY THIS LATER GETFORMDATA
+
   /**
    * Extract and structure form data.
    * @param {HTMLFormElement} form
@@ -35,6 +37,15 @@ export default class FormHandler {
   static getFormData(form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    // Collect media gallery inputs into an array of objects
+    const mediaInputs = form.querySelectorAll(".media-input");
+    data.media = Array.from(mediaInputs)
+      .filter((input) => input.value) // Exclude empty fields
+      .map((input) => ({
+        url: input.value, // URL from input field
+        alt: `Media for ${data.title}`, // Optional alt text
+      }));
 
     /**
      * Helper function to construct nested objects (e.g., avatar, banner).
@@ -58,6 +69,8 @@ export default class FormHandler {
     delete data.avatarAlt;
     delete data.bannerUrl;
     delete data.bannerAlt;
+
+    delete data.mediaInputs;
 
     return data;
   }
@@ -91,7 +104,8 @@ export default class FormHandler {
       if (!data.password || data.password.length < 8) {
         return errors.shortPassword;
       }
-    } else if (action === "createListing") {
+    }
+    if (action === "createListing") {
       if (
         !data.title ||
         !data.mainImgUrl ||
@@ -99,6 +113,14 @@ export default class FormHandler {
         !data.endsAt
       ) {
         return errors.requiredFields;
+      }
+
+      if (
+        !data.media ||
+        !Array.isArray(data.media) ||
+        data.media.length === 0
+      ) {
+        return "At least one media item is required.";
       }
     }
 
@@ -155,7 +177,7 @@ export default class FormHandler {
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
-          window.location.href = `../../listing/listing.html?id=${result.id}`;
+          window.location.href = `../../index.html`;
         }, 1000);
       }
     } catch (error) {
