@@ -122,6 +122,4 @@ export async function fetchListingsByUser(username) {
   }
 }
 
-export async function deleteListing() {
-  
-}
+export async function deleteListing() {}
