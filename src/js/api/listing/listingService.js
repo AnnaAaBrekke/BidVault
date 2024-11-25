@@ -72,6 +72,7 @@ export async function searchListings(query) {
     return data;
   } catch (error) {
     console.error("Error when searching", error);
+    showErrorAlert(`Error when searching for listings: ${error.message}`);
     throw error;
   }
 }

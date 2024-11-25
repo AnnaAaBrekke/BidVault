@@ -1,5 +1,6 @@
-import { searchListings } from "../api/listing/listingService";
-import { displayListings } from "../views/pages/listings";
+import { searchListings } from "../api/listing/listingService.js";
+import { showErrorAlert } from "../global/alert.js";
+import { displayListings } from "../views/pages/listings.js";
 
 /**
  * Initializes the search functionality for a page.
@@ -19,7 +20,7 @@ export function initializeSearch(
   searchButton.addEventListener("click", async () => {
     const query = searchInput.value.trim();
     if (!query) {
-      alert("Please enter a search term.");
+      showErrorAlert("Please enter your search.");
       return;
     }
     try {
