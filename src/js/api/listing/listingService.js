@@ -1,5 +1,6 @@
 import { showErrorAlert } from "../../global/alert.js";
-import { API_AUCTION_LISTINGS } from "../constants.js";
+import { API_AUCTION_LISTINGS, API_AUCTION_SEARCH } from "../constants.js";
+
 import { getHeaders } from "../headers.js";
 
 export async function fetchListings() {
@@ -46,6 +47,27 @@ export async function fetchSingleListing(listingId) {
   } catch (error) {
     console.error("Error fetching single listing:", error);
     showErrorAlert(`Error fetching single listing: ${error.message}`);
+    throw error;
+  }
+}
+
+export async function searchListings(query) {
+  try {
+    if (!query) {
+      throw new Error("Search query cannot be empty");
+    }
+
+    const response = await fetch(
+      `${API_AUCTION_SEARCH}${encodeURIComponent(query)}`,
+    );
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error fetching search results: ${errorMessage}`);
+    }
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error when searching", error);
     throw error;
   }
 }
