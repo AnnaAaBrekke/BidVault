@@ -1,5 +1,5 @@
-import { displayListings } from "../../views/pages/listings";
-import { fetchListingsByUser } from "./listingService";
+import { displayListings } from "../../views/pages/listings.js";
+import { fetchListingsByUser } from "./listingService.js";
 
 export async function displayUserListings(username) {
   try {
