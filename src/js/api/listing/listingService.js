@@ -1,12 +1,16 @@
 import { showErrorAlert } from "../../global/alert.js";
-import { API_AUCTION_LISTINGS, API_AUCTION_SEARCH } from "../constants.js";
+import {
+  API_AUCTION_LISTINGS,
+  API_AUCTION_SEARCH,
+  INCLUDE_BIDS_AND_SELLER,
+} from "../constants.js";
 
 import { getHeaders } from "../headers.js";
 
 export async function fetchListings() {
   try {
     const response = await fetch(
-      `${API_AUCTION_LISTINGS}/?_seller=true&_bids=true`,
+      `${API_AUCTION_LISTINGS}/${INCLUDE_BIDS_AND_SELLER}`,
       {
         method: "GET",
         headers: getHeaders(),
@@ -30,7 +34,7 @@ export async function fetchListings() {
 export async function fetchSingleListing(listingId) {
   try {
     const response = await fetch(
-      `${API_AUCTION_LISTINGS}/${listingId}?_bids=true&_seller=true`,
+      `${API_AUCTION_LISTINGS}/${listingId}${INCLUDE_BIDS_AND_SELLER}`,
       {
         method: "GET",
         headers: getHeaders(),
@@ -58,7 +62,7 @@ export async function searchListings(query) {
     }
 
     const response = await fetch(
-      `${API_AUCTION_SEARCH}${encodeURIComponent(query)}`,
+      `${API_AUCTION_SEARCH}${encodeURIComponent(query)}&${INCLUDE_BIDS_AND_SELLER}`,
     );
     if (!response.ok) {
       const errorMessage = await response.text();
