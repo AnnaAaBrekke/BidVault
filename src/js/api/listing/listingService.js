@@ -1,6 +1,7 @@
 import { showErrorAlert } from "../../global/alert.js";
 import {
   API_AUCTION_LISTINGS,
+  API_AUCTION_PROFILES,
   API_AUCTION_SEARCH,
   INCLUDE_BIDS_AND_SELLER,
 } from "../constants.js";
@@ -101,7 +102,7 @@ export async function createListing(listingData) {
 export async function fetchListingsByUser(username) {
   try {
     const response = await fetch(
-      `${API_AUCTION_LISTINGS}/${username}/listings`,
+      `${API_AUCTION_PROFILES}/${username}/listings${INCLUDE_BIDS_AND_SELLER}`,
       {
         method: "GET",
         headers: getHeaders(),
