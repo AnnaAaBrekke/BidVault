@@ -4,10 +4,13 @@ import { getHeaders } from "../headers.js";
 
 export async function fetchListings() {
   try {
-    const response = await fetch(API_AUCTION_LISTINGS, {
-      method: "GET",
-      headers: getHeaders(),
-    });
+    const response = await fetch(
+      `${API_AUCTION_LISTINGS}/?_seller=true&_bids=true`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      },
+    );
 
     if (!response.ok) {
       const errorMessage = await response.text();
