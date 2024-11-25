@@ -30,7 +30,7 @@ export function initializeSearch(
     }
   };
 
-  searchButton.addEventListener("click", async () => {
+  const handleSearch = async () => {
     const query = searchInput.value.trim();
     if (!query) {
       showErrorAlert("Please enter your search.");
@@ -47,6 +47,16 @@ export function initializeSearch(
     } catch (error) {
       console.error("Search error:", error);
       listingsContainer.innerHTML = "<p>An error occurred while searching.</p>";
+    }
+  };
+
+  // Event listener for search button on click
+  searchButton.addEventListener("click", handleSearch);
+
+  // Event listener for keypress (Enter key)
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
     }
   });
 }
