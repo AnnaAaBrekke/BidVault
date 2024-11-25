@@ -27,7 +27,7 @@ export default class FormHandler {
     });
   }
 
-  //DRY THIS LATER GETFORMDATA
+  //DRY THIS LATER GETFORMDATA (media)
 
   /**
    * Extract and structure form data.
