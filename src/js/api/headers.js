@@ -1,3 +1,5 @@
+import { isLoggedIn } from "../global/authGuard";
+
 /**
  * Generates headers for API requests, including API key and optional access token.
  *
@@ -20,19 +22,9 @@ export function getHeaders(includeAuth = true) {
   headers.append("X-Noroff-API-Key", apiKey);
   headers.append("Content-Type", "application/json");
 
-  if (includeAuth) {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken) {
-        console.warn("Access token is missing. User may not be logged in.");
-        throw new Error(
-          "Access token is missing. Authorization header not included.",
-        );
-      }
-      headers.append("Authorization", `Bearer ${accessToken}`);
-    } catch (error) {
-      console.error("Error accessing localStorage for token:", error);
-    }
+  if (includeAuth && isLoggedIn()) {
+    const accessToken = localStorage.getItem("accessToken");
+    headers.append("Authorization", `Bearer ${accessToken}`);
   }
 
   return headers;

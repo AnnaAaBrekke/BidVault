@@ -1,6 +1,7 @@
 import { fetchSingleListing } from "../../api/listing/listingService.js";
 import { outputListings } from "../../api/listing/outputListing.js";
 import { showErrorAlert } from "../../global/alert.js";
+import { isLoggedIn } from "../../global/authGuard.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -18,21 +19,21 @@ export function displaySingleListing(listing) {
           .join("")
       : "<p>No additional media available for this listing.</p>";
 
-  // Generate bids
-  const bidsHTML =
-    listing.bids && listing.bids.length
-      ? listing.bids
-          .map(
-            (bid) => `
+  // Generate bids (can only be shows in registered - fix later)
+  const bidsHTML = isLoggedIn();
+  listing.bids && listing.bids.length
+    ? listing.bids
+        .map(
+          (bid) => `
           <li class="bid-item">
             <span class="bid-amount">${bid.amount} credits</span>
             <span class="bid-time">(${new Date(bid.created).toLocaleString()})</span>
             <span class="bid-creator">${bid.bidder?.name || "Anonymous"}</span>
           </li>
         `,
-          )
-          .join("")
-      : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
+        )
+        .join("")
+    : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
   // Bid Form Insert Later (get headers = true (false else why))
 
