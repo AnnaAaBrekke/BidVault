@@ -1,5 +1,6 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
+import { createListing } from "../../api/listing/listingService.js";
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 
@@ -75,6 +76,7 @@ export default class FormHandler {
         "Email must be a valid @noroff.no or @stud.noroff.no address.",
       shortPassword: "Password must be at least 8 characters long.",
       invalidName: "Name must contain only letters, numbers, and underscores.",
+      requiredFields: "All required fields must be filled.",
     };
 
     if (!data || Object.keys(data).length === 0) return errors.empty;
@@ -88,6 +90,15 @@ export default class FormHandler {
       }
       if (!data.password || data.password.length < 8) {
         return errors.shortPassword;
+      }
+    } else if (action === "createListing") {
+      if (
+        !data.title ||
+        !data.mainImgUrl ||
+        !data.description ||
+        !data.endsAt
+      ) {
+        return errors.requiredFields;
       }
     }
 
@@ -113,6 +124,7 @@ export default class FormHandler {
       register,
       login,
       updateProfile,
+      createListing,
     };
 
     if (!actions[action]) {
@@ -140,6 +152,10 @@ export default class FormHandler {
       } else if (action === "updateProfile") {
         setTimeout(() => {
           window.location.href = "../../profile/index.html";
+        }, 1000);
+      } else if (action === "createListing") {
+        setTimeout(() => {
+          window.location.href = `../../listing/listing.html/?=${listing.id}`;
         }, 1000);
       }
     } catch (error) {
