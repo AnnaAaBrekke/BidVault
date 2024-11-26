@@ -142,3 +142,33 @@ export async function deleteListing(listingId) {
     throw error;
   }
 }
+
+export async function bidOnListing(listingId, amount) {
+  try {
+    if (!listingId || !amount || amount <= 0) {
+      throw new Error("Invalid bid amount.");
+    }
+
+    const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}/bids`, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({ amount }),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error bidding on listing: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+    showSuccessAlert(
+      `Bid of $${amount} placed successfully on listing ID: ${listingId}!`,
+    );
+
+    return data;
+  } catch (error) {
+    console.error("Error bidding on listings", error);
+    showErrorAlert(`Error to place a bid on listings: ${error.message}`);
+    throw error;
+  }
+}
