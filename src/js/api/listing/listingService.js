@@ -1,4 +1,4 @@
-import { showErrorAlert } from "../../global/alert.js";
+import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import {
   API_AUCTION_LISTINGS,
   API_AUCTION_PROFILES,
@@ -118,6 +118,27 @@ export async function fetchListingsByUser(username) {
   } catch (error) {
     console.error("Error fetching listings by profile:", error);
     showErrorAlert(`Error fetching user listings: ${error.message}`);
+    throw error;
+  }
+}
+
+export async function deleteListing(listingId) {
+  try {
+    const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}`, {
+      method: "DELETE",
+      headers: getHeaders(),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error deleting listing: ${errorMessage}`);
+    }
+
+    showSuccessAlert("Listing successfully deleted!");
+    return true;
+  } catch (error) {
+    console.error("Error deleting listing:", error);
+    showErrorAlert(`Error deleting listing: ${error.message}`);
     throw error;
   }
 }

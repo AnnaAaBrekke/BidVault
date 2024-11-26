@@ -1,3 +1,4 @@
+import { handleDelete } from "../../components/delete.js";
 import { displayListings } from "../../views/pages/listings.js";
 import { fetchListingsByUser } from "./listingService.js";
 
@@ -12,7 +13,9 @@ export async function displayUserListings(username) {
     }
 
     // Use the existing displayListings function
-    displayListings(listings);
+    displayListings(listings, true);
+
+    listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
     console.error("Failed to fetch user listings", error);
     document.getElementById("listings-container").innerHTML =
