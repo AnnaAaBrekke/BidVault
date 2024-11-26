@@ -8,8 +8,6 @@ export async function handleDelete(event) {
     if (confirm("Are you sure you want to delete this listing?")) {
       try {
         await deleteListing(listingId);
-
-        // Remove the listing element from the DOM
         document.querySelector(`#listing-${listingId}`).remove();
       } catch (error) {
         console.error("Failed to delete the listing:", error);
