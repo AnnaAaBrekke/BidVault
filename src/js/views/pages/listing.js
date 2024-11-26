@@ -1,5 +1,6 @@
 import { fetchSingleListing } from "../../api/listing/listingService.js";
 import { outputListings } from "../../api/listing/outputListing.js";
+import FormHandler from "../../components/form/formHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
 
@@ -35,6 +36,17 @@ export function displaySingleListing(listing) {
           .join("")
       : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
+  // Bid Form HTML
+  const bidFormHTML = `
+    <div id="bid-form-container">
+    <form id="bid-form" data-listing-id="${listing.id}">
+        <label for="bid-amount">Place your bid:</label>
+        <input type="number" id="bid-amount" name="bid-amount" min="1" required />
+        <button type="submit" class="btn btn-primary">Place Bid</button>
+      </form>
+    </div>
+  `;
+
   const listingHTML = `
     ${outputListings(listing)}
     <p>${listing.description || "No description available"}</p>
@@ -47,10 +59,12 @@ export function displaySingleListing(listing) {
       </div>
     </div>
     <div id="media-gallery">${gallery}</div>
-    `;
+    ${isLoggedIn() ? bidFormHTML : "<p>You need to log in to place a bid.</p>"}
+  `;
 
   mainContainer.innerHTML = listingHTML;
 
+  // Handle Recent Bids Toggle
   const toggleButton = document.getElementById("bid-list-button");
   const bidsContainer = document.getElementById("bids-container");
 
@@ -63,8 +77,12 @@ export function displaySingleListing(listing) {
     }
   });
 
-  // Bid Form Insert Later (get headers = true (false else why)
+  // Initialize Bid Form Handler
+  if (isLoggedIn()) {
+    FormHandler.initialize("#bid-form", "bidOnListing");
+  }
 }
+
 async function initSingleListing() {
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("id");

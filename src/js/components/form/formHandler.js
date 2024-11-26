@@ -1,6 +1,9 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
-import { createListing } from "../../api/listing/listingService.js";
+import {
+  bidOnListing,
+  createListing,
+} from "../../api/listing/listingService.js";
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 
@@ -47,6 +50,11 @@ export default class FormHandler {
         alt: `Media for ${data.title}`, // Optional alt text
       }));
 
+    const listingId = form.dataset.listingId;
+    if (listingId) {
+      data.listingId = listingId;
+    }
+
     /**
      * Helper function to construct nested objects (e.g., avatar, banner).
      * @param {string} urlKey - The key for the URL field.
@@ -90,6 +98,7 @@ export default class FormHandler {
       shortPassword: "Password must be at least 8 characters long.",
       invalidName: "Name must contain only letters, numbers, and underscores.",
       requiredFields: "All required fields must be filled.",
+      invalidBid: "Bid amount must be a positive number.",
     };
 
     if (!data || Object.keys(data).length === 0) return errors.empty;
@@ -124,6 +133,13 @@ export default class FormHandler {
       }
     }
 
+    if (action === "bidOnListing") {
+      const amount = parseFloat(data.amount);
+      if (!amount || amount <= 0) {
+        return errors.invalidBid;
+      }
+    }
+
     return null;
   }
 
@@ -147,6 +163,7 @@ export default class FormHandler {
       login,
       updateProfile,
       createListing,
+      bidOnListing,
     };
 
     if (!actions[action]) {
@@ -161,6 +178,8 @@ export default class FormHandler {
         .forEach((el) => (el.disabled = true));
 
       const result = await actions[action](data);
+
+      FormHandler.handleSuccess(action, data, result);
 
       showSuccessAlert(`${action} successful!`);
       if (action === "login" && result?.accessToken) {
@@ -179,6 +198,11 @@ export default class FormHandler {
         setTimeout(() => {
           window.location.href = `../../listing/listing.html?id=${result.id}`;
         }, 1000);
+      } else if (action === "bidOnListing") {
+        showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       }
     } catch (error) {
       showErrorAlert(`An error occurred: ${error.message}`);

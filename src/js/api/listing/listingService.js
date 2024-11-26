@@ -161,6 +161,14 @@ export async function bidOnListing(listingId, amount) {
     }
 
     const { data } = await response.json();
+
+    // Log bid details for debugging
+    console.log(`Bid placed successfully:`, {
+      listingId,
+      amount,
+      data,
+    });
+
     showSuccessAlert(
       `Bid of $${amount} placed successfully on listing ID: ${listingId}!`,
     );
