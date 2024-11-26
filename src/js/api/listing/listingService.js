@@ -145,10 +145,6 @@ export async function deleteListing(listingId) {
 
 export async function bidOnListing(listingId, amount) {
   try {
-    if (!listingId || !amount || amount <= 0) {
-      throw new Error("Invalid bid amount.");
-    }
-
     const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}/bids`, {
       method: "POST",
       headers: getHeaders(),

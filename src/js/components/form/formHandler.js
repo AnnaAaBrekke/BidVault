@@ -151,6 +151,8 @@ export default class FormHandler {
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
+    console.log("Bid Data Submitted:", data);
+
     const validationError = FormHandler.validateFormData(data, action);
 
     if (validationError) {
