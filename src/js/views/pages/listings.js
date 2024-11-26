@@ -11,7 +11,13 @@ export function displayListings(listings, addDeleteButtons = false) {
         <a href="../../listing/listing.html?id=${listing.id}" class="view-details-btn">
           View Details
         </a>
-        ${addDeleteButtons ? `<button class="delete-button" data-listing-id="${listing.id}">Delete</button>` : ""}
+  ${
+    addDeleteButtons
+      ? `<button class="delete-button" data-listing-id="${listing.id}">
+                 <i class="fa-solid fa-xmark"></i>
+               </button>`
+      : ""
+  }
       </div>
     `;
     listingsContainer.innerHTML += listingHTML;
