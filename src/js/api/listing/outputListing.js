@@ -31,7 +31,7 @@ export function outputListings(listing) {
       <h2>${listing.title}</h2>
       <p><strong>Current Bid:</strong> ${currentBid} credits</p>
       <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
-      <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
+      <p id ="countDown"><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
     </div>
   `;
 }
