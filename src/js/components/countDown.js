@@ -10,6 +10,8 @@ export function updateCountdown(endDate, listingId) {
     countdownElement.textContent = "This auction has ended.";
     countdownElement.classList.add("expired");
   } else {
+    const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30.44)); // Estimate months (30.44 days in a month)
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24)) % 30; // Remaining days after months
     const hours = Math.floor(
       (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
@@ -18,6 +20,18 @@ export function updateCountdown(endDate, listingId) {
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    countdownElement.textContent = `Ends in: ${hours}h ${minutes}m ${seconds}s`;
+    let countdownText = "";
+
+    // Display months if greater than 0
+    if (months > 0) {
+      countdownText += `${months} month${months > 1 ? "s" : ""}, `;
+      // Do not include seconds if months
+      countdownText += `${days} day${days !== 1 ? "s" : ""}, ${hours}h ${minutes}m`;
+    } else {
+      // Include seconds when no months
+      countdownText += `${days} day${days !== 1 ? "s" : ""}, ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    countdownElement.textContent = `Ends in: ${countdownText}`;
   }
 }
