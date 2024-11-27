@@ -1,5 +1,8 @@
 import { fetchSingleListing } from "../../api/listing/listingService.js";
-import { outputListings } from "../../api/listing/outputListing.js";
+import {
+  getListingDetails,
+  outputListings,
+} from "../../api/listing/outputListing.js";
 import { bidHandler } from "../../components/bid.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
@@ -48,6 +51,8 @@ export function displaySingleListing(listing) {
     </div>
   `;
 
+  const { hasExpired, lastBid } = getListingDetails(listing);
+
   const listingHTML = `
     ${outputListings(listing)}
     <p>${listing.description || "No description available"}</p>
@@ -60,7 +65,8 @@ export function displaySingleListing(listing) {
       </div>
     </div>
     <div id="media-gallery">${gallery}</div>
-    ${isLoggedIn() ? bidFormHTML : "<p>You need to log in to place a bid.</p>"}
+    <p><strong>${hasExpired ? "Winning Bid" : "Current Bid"}:</strong> ${lastBid} credits</p>
+    ${isLoggedIn() ? (hasExpired ? "<p>This auction has ended.</p>" : bidFormHTML) : "<p>You need to log in to place a bid.</p>"}
   `;
 
   mainContainer.innerHTML = listingHTML;
@@ -78,12 +84,11 @@ export function displaySingleListing(listing) {
   });
 
   // Initialize Bid Form Handler
-  if (isLoggedIn()) {
+  if (isLoggedIn() && !hasExpired) {
     FormHandler.initialize("#bid-form", "bidOnListing");
     bidHandler();
   }
 }
-
 async function initSingleListing() {
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("id");
