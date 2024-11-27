@@ -52,7 +52,12 @@ export function bidHandler() {
       }, 1500);
     } catch (error) {
       console.error("Failed to place bid:", error);
-      showErrorAlert("Unable to place the bid. Please try again.");
+
+      const errorMessage =
+        error.response?.data?.errors?.[0]?.message ||
+        "An unexpected error occurred while placing your bid. Please try again.";
+
+      showErrorAlert(errorMessage);
     }
   });
 }
