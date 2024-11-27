@@ -48,6 +48,8 @@ export function displaySingleListing(listing) {
     </div>
   `;
 
+  const hasExpired = new Date(listing.endsAt) < new Date();
+
   const listingHTML = `
     ${outputListings(listing)}
     <p>${listing.description || "No description available"}</p>
@@ -76,6 +78,16 @@ export function displaySingleListing(listing) {
       showErrorAlert("You need to be logged in to view recent bids.");
     }
   });
+
+  // Disable the bidding form if expired
+  if (hasExpired) {
+    const bidForm = document.getElementById("bid-form");
+    const bidButton = bidForm?.querySelector("button");
+    if (bidButton) {
+      bidButton.disabled = true;
+      bidButton.textContent = "Bidding Closed";
+    }
+  }
 
   // Initialize Bid Form Handler
   if (isLoggedIn()) {
