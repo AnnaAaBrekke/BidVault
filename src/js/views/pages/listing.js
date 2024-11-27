@@ -1,5 +1,6 @@
 import { fetchSingleListing } from "../../api/listing/listingService.js";
 import { outputListings } from "../../api/listing/outputListing.js";
+import { bidHandler } from "../../components/bid.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
@@ -64,9 +65,8 @@ export function displaySingleListing(listing) {
 
   mainContainer.innerHTML = listingHTML;
 
-  // Handle Recent Bids Toggle
   const toggleButton = document.getElementById("bid-list-button");
-  const bidsContainer = document.getElementById("bids-container");
+  const bidsContainer = document.getElementById("place-bid-section");
 
   toggleButton.addEventListener("click", () => {
     if (isLoggedIn()) {
@@ -80,6 +80,7 @@ export function displaySingleListing(listing) {
   // Initialize Bid Form Handler
   if (isLoggedIn()) {
     FormHandler.initialize("#bid-form", "bidOnListing");
+    bidHandler();
   }
 }
 
