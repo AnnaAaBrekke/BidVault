@@ -70,6 +70,8 @@ export async function searchListings(query) {
       throw new Error(`Error fetching search results: ${errorMessage}`);
     }
     const { data } = await response.json();
+    console.log("Search Results:", data); // Inspect `bids` values - ISSUE? FIX LATER
+
     return data;
   } catch (error) {
     console.error("Error when searching", error);
@@ -139,6 +141,40 @@ export async function deleteListing(listingId) {
   } catch (error) {
     console.error("Error deleting listing:", error);
     showErrorAlert(`Error deleting listing: ${error.message}`);
+    throw error;
+  }
+}
+
+export async function bidOnListing(listingId, amount) {
+  try {
+    const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}/bids`, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({ amount }),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error bidding on listing: ${errorMessage}`);
+    }
+
+    const { data } = await response.json();
+
+    // Log bid details for debugging
+    console.log(`Bid placed successfully:`, {
+      listingId,
+      amount,
+      data,
+    });
+
+    showSuccessAlert(
+      `Bid of $${amount} placed successfully on listing ID: ${listingId}!`,
+    );
+
+    return data;
+  } catch (error) {
+    console.error("Error bidding on listings", error);
+    showErrorAlert(`Error to place a bid on listings: ${error.message}`);
     throw error;
   }
 }
