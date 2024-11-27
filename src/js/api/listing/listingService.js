@@ -70,6 +70,8 @@ export async function searchListings(query) {
       throw new Error(`Error fetching search results: ${errorMessage}`);
     }
     const { data } = await response.json();
+    console.log("Search Results:", data); // Inspect `bids` values - ISSUE? FIX LATER
+
     return data;
   } catch (error) {
     console.error("Error when searching", error);
