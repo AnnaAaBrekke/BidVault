@@ -151,7 +151,7 @@ export default class FormHandler {
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
-    console.log("Bid Data Submitted:", data);
+    console.log("Form Input Data Submitted:", data);
 
     const validationError = FormHandler.validateFormData(data, action);
 
@@ -180,8 +180,6 @@ export default class FormHandler {
         .forEach((el) => (el.disabled = true));
 
       const result = await actions[action](data);
-
-      FormHandler.handleSuccess(action, data, result);
 
       showSuccessAlert(`${action} successful!`);
       if (action === "login" && result?.accessToken) {
