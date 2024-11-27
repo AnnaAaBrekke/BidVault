@@ -66,7 +66,7 @@ export function displaySingleListing(listing) {
   mainContainer.innerHTML = listingHTML;
 
   const toggleButton = document.getElementById("bid-list-button");
-  const bidsContainer = document.getElementById("place-bid-section");
+  const bidsContainer = document.getElementById("bids-container");
 
   toggleButton.addEventListener("click", () => {
     if (isLoggedIn()) {
