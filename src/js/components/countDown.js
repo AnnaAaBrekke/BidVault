@@ -1,6 +1,6 @@
 export function updateCountdown(endDate, listingId) {
   const countdownElement = document.getElementById(`countdown-${listingId}`);
-  if (!countdownElement) return; // If the countdown element is not found, exit the function
+  if (!countdownElement) return;
 
   const endTime = new Date(endDate).getTime();
   const now = new Date().getTime();
@@ -10,8 +10,9 @@ export function updateCountdown(endDate, listingId) {
     countdownElement.textContent = "This auction has ended.";
     countdownElement.classList.add("expired");
   } else {
-    const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30.44)); // Estimate months (30.44 days in a month)
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24)) % 30; // Remaining days after months
+    // Copied from ChatGPT:
+    const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30.44));
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24)) % 30;
     const hours = Math.floor(
       (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );

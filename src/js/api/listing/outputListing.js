@@ -1,4 +1,4 @@
-import { updateCountdown } from "../../components/countDown.js";
+import { updateCountdown } from "../../components/countdown.js";
 
 function displayItemImg(media, altText, defaultUrl) {
   const mediaUrl = media && media.length > 0 ? media[0].url : defaultUrl;
@@ -19,10 +19,7 @@ export function outputListings(listing) {
   );
   const currentBid = calculateCurrentBid(listing.bids);
 
-  // Initialize the countdown for this specific listing
   updateCountdown(listing.endsAt, listing.id);
-
-  // Set a unique interval for each listing's countdown to update every second
   setInterval(() => updateCountdown(listing.endsAt, listing.id), 1000);
 
   return `
