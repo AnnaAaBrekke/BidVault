@@ -40,19 +40,24 @@ export function displaySingleListing(listing) {
           .join("")
       : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
-  // Bid Form HTML
-  const bidFormHTML = `
+  // Generate bid form if the auction is active and the user is logged in
+  const { hasExpired } = getListingDetails(listing);
+  const bidFormHTML =
+    isLoggedIn() && !hasExpired
+      ? `
     <div id="bid-form-container">
-    <form id="bid-form" data-listing-id="${listing.id}">
+      <form id="bid-form" data-listing-id="${listing.id}">
         <label for="bid-amount">Place your bid:</label>
         <input type="number" id="bid-amount" name="bid-amount" min="1" required />
         <button type="submit" class="btn btn-primary">Place Bid</button>
       </form>
     </div>
-  `;
+  `
+      : isLoggedIn()
+        ? "<p class='info-message'><a href='../../index.html' class='go-back-link'>Go back to listings</a>.</p>"
+        : "<p>You need to log in to place a bid.</p>";
 
-  const { hasExpired, lastBid } = getListingDetails(listing);
-
+  // Generate full HTML content for the single listing
   const listingHTML = `
     ${outputListings(listing)}
     <p>${listing.description || "No description available"}</p>
@@ -65,8 +70,7 @@ export function displaySingleListing(listing) {
       </div>
     </div>
     <div id="media-gallery">${gallery}</div>
-    <p><strong>${hasExpired ? "Winning Bid" : "Current Bid"}:</strong> ${lastBid} credits</p>
-    ${isLoggedIn() ? (hasExpired ? "<p>This auction has ended.</p>" : bidFormHTML) : "<p>You need to log in to place a bid.</p>"}
+    ${bidFormHTML}
   `;
 
   mainContainer.innerHTML = listingHTML;
@@ -89,6 +93,7 @@ export function displaySingleListing(listing) {
     bidHandler();
   }
 }
+
 async function initSingleListing() {
   const urlParams = new URLSearchParams(window.location.search);
   const listingId = urlParams.get("id");

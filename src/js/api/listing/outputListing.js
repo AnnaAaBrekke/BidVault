@@ -52,19 +52,11 @@ export function outputListings(listing) {
     <p id="countdown-${listing.id}"></p>
 `;
 
-  // If the listing is expired, add a "Closed" message and change the style
   if (hasExpired) {
     listingHTML += `
     <p class="closed-message">This auction has ended.</p>
-    <button class="btn btn-secondary" disabled>Bid Closed</button>
-  `;
-  } else {
-    listingHTML += `
-    <button class="btn btn-primary" id="place-bid-${listing.id}">Place a Bid</button>
   `;
   }
-
-  listingHTML += `</div>`;
 
   return listingHTML;
 }
