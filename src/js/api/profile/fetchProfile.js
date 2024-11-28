@@ -4,9 +4,7 @@ import { getHeaders } from "../headers.js";
 
 export async function fetchProfile() {
   try {
-    const username = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user")).name
-      : null;
+    const username = localStorage.getItem("name");
 
     if (!username) {
       showErrorAlert("User is not logged in.");

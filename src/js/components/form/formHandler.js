@@ -196,7 +196,7 @@ export default class FormHandler {
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
-          window.location.href = `../../listing/listing.html?id=${result.id}`;
+          window.location.href = `../../listing/index.html?id=${result.id}`;
         }, 1000);
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);

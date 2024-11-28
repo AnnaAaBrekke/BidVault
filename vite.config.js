@@ -19,7 +19,7 @@ export default defineConfig({
         profile: resolve(__dirname, "./profile/index.html"),
         updateProfile: resolve(__dirname, "./profile/update.html"),
         createListing: resolve(__dirname, "./listing/createListing.html"),
-        viewListing: resolve(__dirname, "./listing/view.html"),
+        viewListing: resolve(__dirname, "./listing/index.html"),
       },
     },
   },

@@ -1,5 +1,5 @@
 export default async function router(pathname = window.location.pathname) {
-  console.log(`Routing to: ${pathname}`); // Debugging purpose
+  console.log(`Routing to: ${pathname}`); 
 
   switch (pathname) {
     case "/":
