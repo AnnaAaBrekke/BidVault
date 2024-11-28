@@ -1,11 +1,11 @@
 import { handleDelete } from "../../components/delete.js";
 import { isLoggedIn } from "../../global/authGuard.js";
-import { displayListings } from "../../views/pages/listings.js";
 import { fetchListingsByUser } from "./listingService.js";
 import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { bidHandler } from "../../components/bid.js";
 import { recentBidsToggle } from "../../components/buttons.js";
+import { displayListings } from "./displayListings.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");

@@ -1,6 +1,6 @@
 .env
 node_modules
-dist
+dist/
 
 # Logs
 logs

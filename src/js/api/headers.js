@@ -1,4 +1,4 @@
-import { isLoggedIn } from "../global/authGuard";
+import { isLoggedIn } from "../global/authGuard.js";
 
 /**
  * Generates headers for API requests, including API key and optional access token.

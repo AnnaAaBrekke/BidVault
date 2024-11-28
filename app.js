@@ -1,3 +1,9 @@
-// import "./css/main.scss";
+import router from "./src/js/views/router.js";
+import { setLogoutListener } from "./src/js/global/logout.js";
 
-// import router from "./js/router/index.js";
+function initApp() {
+  router();
+  setLogoutListener();
+}
+
+document.addEventListener("DOMContentLoaded", initApp);

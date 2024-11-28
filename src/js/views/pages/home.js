@@ -1,6 +1,6 @@
+import { displayListings } from "../../api/listing/displayListings.js";
 import { fetchListings } from "../../api/listing/listingService.js";
 import { initializeSearch } from "../../components/search.js";
-import { displayListings } from "./listings.js";
 
 // Main Function to Fetch and Display Listings
 async function main() {

@@ -10,7 +10,7 @@ export async function fetchProfile() {
 
     if (!username) {
       showErrorAlert("User is not logged in.");
-      window.location.href = "../../welcome.html";
+      window.location.href = "/";
       return;
     }
     const response = await fetch(`${API_AUCTION_PROFILES}/${username}`, {
