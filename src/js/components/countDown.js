@@ -1,3 +1,5 @@
+// SOURCE: https://medium.com/geekculture/23-javascript-countdown-timer-for-website-273efc2f5618
+
 export function updateCountdown(endDate, listingId) {
   const countdownElement = document.getElementById(`countdown-${listingId}`);
   if (!countdownElement) return;
