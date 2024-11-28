@@ -46,7 +46,7 @@ async function initUpdateForm() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initUpdateForm);
+initUpdateForm();
 
 // document.addEventListener("DOMContentLoaded", async () => {
 //   const profile = await fetchProfile();

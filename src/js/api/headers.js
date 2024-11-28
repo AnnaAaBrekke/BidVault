@@ -6,7 +6,7 @@ import { isLoggedIn } from "../global/authGuard.js";
  * @param {boolean} [includeAuth=true] - Whether to include the Authorization header.
  * @returns {Headers} - A Headers object with the necessary headers.
  */
-export function getHeaders(includeAuth = true) {
+export async function getHeaders(includeAuth = true) {
   const headers = new Headers();
   const apiKey = import.meta.env.VITE_API_KEY;
 

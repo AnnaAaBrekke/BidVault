@@ -9,12 +9,10 @@ async function main() {
 }
 
 // Run the main function when the page loads
-document.addEventListener("DOMContentLoaded", () => {
-  main();
-  initializeSearch(
-    "search-input",
-    "search-button",
-    "listings-container",
-    "search-results-headline",
-  );
-});
+main();
+initializeSearch(
+  "search-input",
+  "search-button",
+  "listings-container",
+  "search-results-headline",
+);

@@ -20,4 +20,4 @@ async function initSingleListing() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initSingleListing);
+initSingleListing();

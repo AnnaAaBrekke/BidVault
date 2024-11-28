@@ -39,4 +39,4 @@ async function initProfile() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initProfile);
+initProfile();
