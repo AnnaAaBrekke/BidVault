@@ -5,12 +5,13 @@ import { fetchListingsByUser } from "./listingService.js";
 import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { bidHandler } from "../../components/bid.js";
-import { showErrorAlert } from "../../global/alert.js";
+import { recentBidsToggle } from "../../components/buttons.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
 
-  // Generate gallery
+  // Additional elements not covered by "outputListings"
+  // Gallery
   const gallery =
     listing.media.length > 1
       ? listing.media
@@ -23,7 +24,7 @@ export function displaySingleListing(listing) {
           .join("")
       : "<p>No additional media available for this listing.</p>";
 
-  // Generate bids
+  // Bids
   const bidsHTML =
     listing.bids && listing.bids.length
       ? listing.bids
@@ -39,8 +40,9 @@ export function displaySingleListing(listing) {
           .join("")
       : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
 
-  // Generate bid form if the auction is active and the user is logged in
   const { hasExpired } = getListingDetails(listing);
+
+  // Bid Form
   const bidFormHTML =
     isLoggedIn() && !hasExpired
       ? `
@@ -57,10 +59,10 @@ export function displaySingleListing(listing) {
         <p class='info-message'><a href='../../index.html' class='go-back-link'>Go back to listings</a>.</p>`
         : "<p>You need to log in to place a bid.</p>";
 
-  // Generate full HTML content for the single listing
   const listingHTML = `
-    ${outputListings(listing)}
-    <p>${listing.description || "No description available"}</p>
+    ${outputListings(listing)} <!-- Shared layout -->
+    
+    <!-- Recent Bids -->
     <div id="bid-list-container">
       <button id="bid-list-button" class="btn btn-primary">
         Recent Bids
@@ -69,25 +71,23 @@ export function displaySingleListing(listing) {
         <ul id="bids-list">${bidsHTML}</ul>
       </div>
     </div>
-    <div id="media-gallery">${gallery}</div>
+
+    <!-- Bid Form -->
     ${bidFormHTML}
+
+    <!-- Description -->
+    <p>${listing.description || "No description available"}</p>
+
+    <!-- Gallery -->
+    <div id="media-gallery">${gallery}</div>
   `;
 
   mainContainer.innerHTML = listingHTML;
 
-  const toggleButton = document.getElementById("bid-list-button");
-  const bidsContainer = document.getElementById("bids-container");
+  // Recent Bids
+  recentBidsToggle("bid-list-button", "bids-container");
 
-  toggleButton.addEventListener("click", () => {
-    if (isLoggedIn()) {
-      const isHidden = bidsContainer.classList.toggle("hidden");
-      toggleButton.textContent = isHidden ? "Recent Bids" : "Hide Recent Bids";
-    } else {
-      showErrorAlert("You need to be logged in to view recent bids.");
-    }
-  });
-
-  // Initialize Bid Form Handler
+  // Initialize Bid Form if Active Auction
   if (isLoggedIn() && !hasExpired) {
     FormHandler.initialize("#bid-form", "bidOnListing");
     bidHandler();
@@ -104,7 +104,6 @@ export async function displayUserListings(username) {
       return;
     }
 
-    // Use the existing displayListings function
     displayListings(listings, true);
 
     listingsContainer.addEventListener("click", handleDelete);
