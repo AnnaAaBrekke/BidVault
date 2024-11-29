@@ -25,3 +25,5 @@ function notFound() {
     window.location.href = "/";
   }, 5000);
 }
+
+notFound();
