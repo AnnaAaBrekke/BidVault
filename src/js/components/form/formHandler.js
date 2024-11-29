@@ -158,15 +158,15 @@ export default class FormHandler {
         }, 1500);
       } else if (action === "register") {
         setTimeout(() => {
-          window.location.href = "/welcome";
+          window.location.href = "./welcome.html";
         }, 1500);
       } else if (action === "updateProfile") {
         setTimeout(() => {
-          window.location.href = "/profile/update";
+          window.location.href = "../profile/update.html";
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
-          window.location.href = `/listing/create?id=${result.id}`;
+          window.location.href = `../listing/createListing.html?id=${result.id}`;
         }, 1000);
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);

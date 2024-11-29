@@ -31,7 +31,6 @@ export async function login(userData) {
       const { data } = await response.json();
       const { accessToken: token, ...user } = data;
 
-      // Store token and user data in local storage
       localStorage.setItem("accessToken", token);
       localStorage.setItem("user", JSON.stringify(user));
 
@@ -39,7 +38,6 @@ export async function login(userData) {
       return data;
     }
 
-    // Handle errors from API
     const errorDetails = await response.json().catch(() => response.text());
     console.error("Login failed:", errorDetails);
     showErrorAlert(
