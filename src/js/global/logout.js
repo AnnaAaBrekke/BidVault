@@ -19,5 +19,5 @@ async function onLogout() {
   localStorage.removeItem("user");
   sessionStorage.removeItem("accessToken");
 
-  window.location.href = "../../welcome.html";
+  window.location.href = "/welcome";
 }

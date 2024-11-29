@@ -13,7 +13,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "./index.html"),
+        home: resolve(__dirname, "./index.html"),
         welcome: resolve(__dirname, "./welcome.html"),
         register: resolve(__dirname, "./auth/register/index.html"),
         profile: resolve(__dirname, "./profile/index.html"),
@@ -22,5 +22,8 @@ export default defineConfig({
         viewListing: resolve(__dirname, "./listing/index.html"),
       },
     },
+  },
+  server: {
+    historyApiFallback: true, // Allow fallback for SPA-style routing
   },
 });

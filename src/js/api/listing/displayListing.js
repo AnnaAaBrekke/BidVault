@@ -56,7 +56,7 @@ export function displaySingleListing(listing) {
   `
       : isLoggedIn()
         ? `  <button class="btn btn-secondary" disabled>Bid Closed</button>
-        <p class='info-message'><a href='../../index.html' class='go-back-link'>Go back to listings</a>.</p>`
+        <p class='info-message'><a href='/' class='go-back-link'>Go back to listings</a>.</p>`
         : "<p>You need to log in to place a bid.</p>";
 
   const listingHTML = `

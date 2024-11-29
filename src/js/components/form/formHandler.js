@@ -107,6 +107,7 @@ export default class FormHandler {
       if (!/^[\w\-.]+@stud\.noroff\.no$/.test(data.email)) {
         return errors.invalidEmail;
       }
+
       if (action === "register" && (!data.name || !/^[\w]+$/.test(data.name))) {
         return errors.invalidName;
       }
@@ -184,19 +185,19 @@ export default class FormHandler {
       showSuccessAlert(`${action} successful!`);
       if (action === "login" && result?.accessToken) {
         setTimeout(() => {
-          window.location.href = "../../index.html";
+          window.location.href = "/";
         }, 1500);
       } else if (action === "register") {
         setTimeout(() => {
-          window.location.href = "../../welcome.html";
+          window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
         setTimeout(() => {
-          window.location.href = "../../profile/index.html";
+          window.location.href = "/profile";
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
-          window.location.href = `../../listing/index.html?id=${result.id}`;
+          window.location.href = `/listing/create?id=${result.id}`;
         }, 1000);
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);

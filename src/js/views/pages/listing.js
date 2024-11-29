@@ -7,6 +7,7 @@ async function initSingleListing() {
   const listingId = urlParams.get("id");
 
   if (!listingId) {
+    console.error("No listing ID provided in query string");
     showErrorAlert("No listing ID was found");
     return;
   }
