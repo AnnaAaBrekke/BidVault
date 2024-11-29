@@ -4,7 +4,7 @@ export default async function router(pathname = window.location.pathname) {
 
   try {
     switch (normalizedPath) {
-      case "":
+      case "/":
         console.log("Loading home.js");
         await import("./pages/home.js");
         break;

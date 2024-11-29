@@ -6,6 +6,7 @@ import {
 } from "../../api/listing/listingService.js";
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { isLoggedIn } from "../../global/authGuard.js";
 
 export default class FormHandler {
   constructor() {}
@@ -30,8 +31,6 @@ export default class FormHandler {
     });
   }
 
-  //DRY THIS LATER GETFORMDATA (media)
-
   /**
    * Extract and structure form data.
    * @param {HTMLFormElement} form
@@ -39,48 +38,7 @@ export default class FormHandler {
    */
   static getFormData(form) {
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    // Collect media gallery inputs into an array of objects
-    const mediaInputs = form.querySelectorAll(".media-input");
-    data.media = Array.from(mediaInputs)
-      .filter((input) => input.value) // Exclude empty fields
-      .map((input) => ({
-        url: input.value, // URL from input field
-        alt: `Media for ${data.title}`, // Optional alt text
-      }));
-
-    const listingId = form.dataset.listingId;
-    if (listingId) {
-      data.listingId = listingId;
-    }
-
-    /**
-     * Helper function to construct nested objects (e.g., avatar, banner).
-     * @param {string} urlKey - The key for the URL field.
-     * @param {string} altKey - The key for the alt text field.
-     * @returns {Object} - Nested object with `url` and `alt`.
-     */
-    const buildNestedObject = (urlKey, altKey) => {
-      return {
-        url: data[urlKey] || "",
-        alt: data[altKey] || "",
-      };
-    };
-
-    // Build avatar and banner objects
-    data.avatar = buildNestedObject("avatarUrl", "avatarAlt");
-    data.banner = buildNestedObject("bannerUrl", "bannerAlt");
-
-    // Clean up unused fields
-    delete data.avatarUrl;
-    delete data.avatarAlt;
-    delete data.bannerUrl;
-    delete data.bannerAlt;
-
-    delete data.mediaInputs;
-
-    return data;
+    return Object.fromEntries(formData.entries());
   }
 
   /**
@@ -148,7 +106,7 @@ export default class FormHandler {
    * Handle form submission.
    *
    * @param {HTMLFormElement} form
-   * @param {string} action
+   * @param {string} action - The action to perform (login, register, update, create, bidOnListing).
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
@@ -175,6 +133,17 @@ export default class FormHandler {
       return;
     }
 
+    // Ensure user is logged in for actions requiring authentication
+    const authRequiredActions = [
+      "bidOnListing",
+      "updateProfile",
+      "createListing",
+    ];
+    if (authRequiredActions.includes(action) && !isLoggedIn()) {
+      showErrorAlert("You must be logged in to perform this action.");
+      return;
+    }
+
     try {
       form
         .querySelectorAll("input, textarea, button")
@@ -193,7 +162,7 @@ export default class FormHandler {
         }, 1500);
       } else if (action === "updateProfile") {
         setTimeout(() => {
-          window.location.href = "/profile";
+          window.location.href = "/profile/update";
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {

@@ -8,7 +8,7 @@ export function displayListings(listings, addDeleteButtons = false) {
     const listingHTML = `
       <div id="listing-${listing.id}" class="listing">
         ${outputListings(listing)}
-        <a href="/listing/?id=${listing.id}" class="view-details-btn">
+        <a href="../listing/index.html?id=${listing.id}" class="view-details-btn">
           View Details
         </a>
   ${
