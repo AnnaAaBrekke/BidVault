@@ -43,7 +43,31 @@ export default class FormHandler {
    */
   static getFormData(form) {
     const formData = new FormData(form);
-    return Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries());
+
+    // Collect media gallery inputs into an array of URLs
+    const mediaInputs = form.querySelectorAll(".media-input");
+    const mediaUrls = [];
+
+    mediaInputs.forEach((input) => {
+      if (input.value.trim()) {
+        // Check if the input field is not empty
+        mediaUrls.push(input.value); // Add non-empty media URL to the array
+      }
+    });
+
+    // Only assign the media URLs if there are any valid entries
+    if (mediaUrls.length > 0) {
+      data.media = mediaUrls;
+    }
+
+    // Handle listingId if present
+    const listingId = form.dataset.listingId;
+    if (listingId) {
+      data.listingId = listingId;
+    }
+
+    return data;
   }
 
   /**
@@ -170,18 +194,26 @@ export default class FormHandler {
       } else if (action === "register") {
         setTimeout(() => {
           // Redirect to the welcome page after successful registration
-          window.location.href = "/welcome.html";
+          window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        setTimeout(() => {
-          // Redirect to profile update page
-          window.location.href = "/profile/index.html";
-        }, 1000);
-      } else if (action === "createListing") {
-        setTimeout(() => {
-          // Redirect to the newly created listing page
-          window.location.href = `/listing/createListing.html?id=${result.id}`;
-        }, 1000);
+        if (result?.id) {
+          setTimeout(() => {
+            // Redirect to profile update page
+            window.location.href = "/profile";
+          }, 1000);
+        } else if (action === "createListing") {
+          if (result?.id) {
+            console.log("Redirecting to the listing page...");
+
+            setTimeout(() => {
+              // Redirect to the newly created listing page
+              window.location.href = `../listing?id=${result.id}`;
+            }, 1000);
+          } else {
+            showErrorAlert("Failed to create listing. Please try again.");
+          }
+        }
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
         setTimeout(() => {
