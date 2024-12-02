@@ -45,18 +45,18 @@ export default class FormHandler {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Collect media gallery inputs into an array of URLs
-    const mediaInputs = form.querySelectorAll(".media-input");
+    // Collect media gallery inputs into an array of objects
+    const mediaInputs = Array.from(form.querySelectorAll(".media-input")); // Convert NodeList to Array
     const mediaUrls = [];
 
     mediaInputs.forEach((input) => {
       if (input.value.trim()) {
-        // Check if the input field is not empty
-        mediaUrls.push(input.value); // Add non-empty media URL to the array
+        // Add non-empty media URL as an object
+        mediaUrls.push({ url: input.value.trim(), alt: "" });
       }
     });
 
-    // Only assign the media URLs if there are any valid entries
+    // Assign the structured media array to data
     if (mediaUrls.length > 0) {
       data.media = mediaUrls;
     }
@@ -203,16 +203,12 @@ export default class FormHandler {
             window.location.href = "/profile";
           }, 1000);
         } else if (action === "createListing") {
-          if (result?.id) {
-            console.log("Redirecting to the listing page...");
-
-            setTimeout(() => {
-              // Redirect to the newly created listing page
-              window.location.href = `../listing?id=${result.id}`;
-            }, 1000);
-          } else {
-            showErrorAlert("Failed to create listing. Please try again.");
-          }
+          setTimeout(() => {
+            // Redirect to the newly created listing page
+            window.location.href = `../listing?id=${result.id}`;
+          }, 1000);
+        } else {
+          showErrorAlert("Failed to create listing. Please try again.");
         }
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
