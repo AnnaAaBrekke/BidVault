@@ -157,28 +157,35 @@ export default class FormHandler {
       console.log("Submitting login with data:", data); // Log before calling the login action
 
       const result = await actions[action](data);
-      console.log("Login result:", result);
+      console.log("Action result:", result);
 
       showSuccessAlert(`${action} successful!`);
+
+      // Redirect based on the action performed
       if (action === "login" && result?.accessToken) {
         setTimeout(() => {
+          // Redirect to home after successful login
           window.location.href = "/";
         }, 1500);
       } else if (action === "register") {
         setTimeout(() => {
-          window.location.href = "./welcome.html";
+          // Redirect to the welcome page after successful registration
+          window.location.href = "/welcome.html";
         }, 1500);
       } else if (action === "updateProfile") {
         setTimeout(() => {
-          window.location.href = "../profile/update.html";
+          // Redirect to profile update page
+          window.location.href = "/profile/update.html";
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
-          window.location.href = `../listing/createListing.html?id=${result.id}`;
+          // Redirect to the newly created listing page
+          window.location.href = `/listing/createListing.html?id=${result.id}`;
         }, 1000);
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
         setTimeout(() => {
+          // Reload the page after placing the bid
           window.location.reload();
         }, 1500);
       }

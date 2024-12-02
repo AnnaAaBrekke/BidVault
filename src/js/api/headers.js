@@ -10,6 +10,7 @@ export async function getHeaders(includeAuth = true) {
   const headers = new Headers();
   const apiKey = import.meta.env.VITE_API_KEY;
 
+  console.log("key", apiKey);
   if (!apiKey) {
     console.error(
       "API key is missing. Ensure VITE_API_KEY is set in your .env file.",
@@ -25,6 +26,7 @@ export async function getHeaders(includeAuth = true) {
   if (includeAuth && isLoggedIn()) {
     const accessToken = localStorage.getItem("accessToken");
     headers.append("Authorization", `Bearer ${accessToken}`);
+    console.log("Access token", accessToken);
   }
 
   return headers;

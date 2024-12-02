@@ -3,12 +3,11 @@ import { defineConfig } from "vite";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-// Emulate __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
-  appType: "mpa", // Ensure this is set for MPA
+  appType: "mpa",
   build: {
     rollupOptions: {
       input: {
@@ -23,6 +22,6 @@ export default defineConfig({
     },
   },
   server: {
-    historyApiFallback: false, // Disable history API fallback (not needed for MPA)
+    historyApiFallback: false,
   },
 });

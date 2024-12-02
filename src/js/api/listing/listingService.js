@@ -149,7 +149,7 @@ export async function bidOnListing(listingId, amount) {
   try {
     const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}/bids`, {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify({ amount }),
     });
 

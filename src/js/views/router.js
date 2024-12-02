@@ -1,8 +1,11 @@
 export default async function router(pathname = window.location.pathname) {
-  // Normalize path by removing trailing slash if present
-  const normalizedPath = pathname
-    .replace(/\/index\.html$/, "")
-    .replace(/\/$/, "");
+  // Normalize path: remove "index.html" if present, and remove trailing slash
+  const normalizedPath =
+    pathname
+      .replace(/\/index\.html$/, "") // Remove /index.html if present
+      .replace(/\/$/, "") || // Remove trailing slash
+    "/"; // Default to "/" for the root path
+
   console.log(`Routing to normalized path: ${normalizedPath}`);
 
   try {
