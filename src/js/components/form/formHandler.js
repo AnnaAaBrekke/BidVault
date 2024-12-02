@@ -175,7 +175,7 @@ export default class FormHandler {
       } else if (action === "updateProfile") {
         setTimeout(() => {
           // Redirect to profile update page
-          window.location.href = "/profile/update.html";
+          window.location.href = "/profile/index.html";
         }, 1000);
       } else if (action === "createListing") {
         setTimeout(() => {
