@@ -1,4 +1,4 @@
-import { isLoggedIn } from "../global/authGuard";
+import { isLoggedIn } from "../global/authGuard.js";
 
 /**
  * Generates headers for API requests, including API key and optional access token.
@@ -6,10 +6,11 @@ import { isLoggedIn } from "../global/authGuard";
  * @param {boolean} [includeAuth=true] - Whether to include the Authorization header.
  * @returns {Headers} - A Headers object with the necessary headers.
  */
-export function getHeaders(includeAuth = true) {
+export async function getHeaders(includeAuth = true) {
   const headers = new Headers();
   const apiKey = import.meta.env.VITE_API_KEY;
 
+  console.log("key", apiKey);
   if (!apiKey) {
     console.error(
       "API key is missing. Ensure VITE_API_KEY is set in your .env file.",
@@ -24,7 +25,9 @@ export function getHeaders(includeAuth = true) {
 
   if (includeAuth && isLoggedIn()) {
     const accessToken = localStorage.getItem("accessToken");
+
     headers.append("Authorization", `Bearer ${accessToken}`);
+    console.log("Access token", accessToken);
   }
 
   return headers;

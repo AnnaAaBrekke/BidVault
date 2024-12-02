@@ -17,13 +17,12 @@ export function bidHandler() {
 
     const listingId = bidForm.dataset.listingId;
     const bidAmountInput = bidForm.querySelector("#bid-amount");
+    const bidAmount = bidAmountInput.value;
 
     if (!listingId) {
       showErrorAlert("Listing ID is missing. Please try again.");
       return;
     }
-
-    const bidAmount = bidAmountInput.value;
 
     if (!bidAmount || isNaN(bidAmount) || parseFloat(bidAmount) <= 0) {
       showErrorAlert("Invalid bid amount. Please enter a positive number.");
@@ -39,17 +38,16 @@ export function bidHandler() {
     }
 
     try {
-      // Call the service function to place the bid
       await bidOnListing(listingId, amount);
 
       showSuccessAlert(
         `Your bid of ${amount} credits has been successfully placed!`,
       );
 
-      // Optionally reload to reflect updated bids
+      bidAmountInput.value = "";
       setTimeout(() => {
         window.location.reload();
-      }, 1500);
+      }, 1000);
     } catch (error) {
       console.error("Failed to place bid:", error);
 

@@ -1,5 +1,5 @@
-import { showErrorAlert } from "../global/alert";
-import { isLoggedIn } from "../global/authGuard";
+import { showErrorAlert } from "../global/alert.js";
+import { isLoggedIn } from "../global/authGuard.js";
 
 export function recentBidsToggle(toggleButtonId, bidsContainerId) {
   const toggleButton = document.getElementById(toggleButtonId);

@@ -2,24 +2,32 @@ import { showErrorAlert } from "../../global/alert.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
 
+/**
+ * Fetches the profile of the logged-in user.
+ *
+ * @returns {Object} - The profile data.
+ */
 export async function fetchProfile() {
   try {
-    const username = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user")).name
-      : null;
+    const username = localStorage.getItem("name");
+    const accessToken = localStorage.getItem("accessToken");
 
-    if (!username) {
-      showErrorAlert("User is not logged in.");
-      window.location.href = "../../welcome.html";
-      return;
+    console.log("Username:", username);
+    console.log("Access Token:", accessToken); // Debug log
+
+    if (!username || !accessToken) {
+      showErrorAlert("Username or Access Token is missing. Please log in.");
+      throw new Error("Missing username or access token.");
     }
+
     const response = await fetch(`${API_AUCTION_PROFILES}/${username}`, {
       method: "GET",
-      headers: getHeaders(),
+      headers: await getHeaders(),
     });
 
     if (!response.ok) {
       const errorMessage = await response.text();
+      console.error("Error response:", errorMessage); // Debug log
       throw new Error(`Error fetching profile: ${errorMessage}`);
     }
 

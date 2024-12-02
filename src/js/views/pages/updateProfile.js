@@ -46,12 +46,4 @@ async function initUpdateForm() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initUpdateForm);
-
-// document.addEventListener("DOMContentLoaded", async () => {
-//   const profile = await fetchProfile();
-//   populateUpdateForm(profile);
-
-//   FormHandler.initialize("#update-profile-form", "updateProfile");
-//   setupPreviewInputs("avatar-url", "avatar-preview", "banner-url", "banner-preview");
-// });
+initUpdateForm();

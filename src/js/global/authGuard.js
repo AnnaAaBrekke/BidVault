@@ -13,9 +13,9 @@ export function isLoggedIn() {
 /**
  * Redirects the user to the login page if not logged in.
  *
- * @param {string} [redirectUrl="../../welcome.html"] - The URL to redirect to.
+ * @param {string} [redirectUrl="/welcome"] - The URL to redirect to.
  */
-export function requireAuth(redirectUrl = "../../welcome.html") {
+export function requireAuth(redirectUrl = "/welcome") {
   if (!isLoggedIn()) {
     showErrorAlert("You must be logged in to view this page.");
 

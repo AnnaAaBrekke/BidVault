@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Bid Vault</title>
     <link rel="stylesheet" href="../../src/styles/style.css" />
+
     <script
       src="https://kit.fontawesome.com/ead288c181.js"
       crossorigin="anonymous"
@@ -12,13 +13,15 @@
   </head>
   <body>
     <header id="main-header" class="header">
-      <a href="../../welcome.html" class="nav-link">
+      <a href="/" class="nav-link">
         <img
           src="../../src/images/logo.jpg"
           alt="Back to Welcome"
           class="header-logo"
         />
       </a>
+      <script type="module" src="../app.js"></script>
+
       <nav id="nav-bar" class="nav">
         <button id="logout-button" class="dropdown-item">
           <i class="fa-solid fa-right-from-bracket"></i>
@@ -42,7 +45,7 @@
           <img
             id="profile-avatar"
             class="profile-avatar"
-            src="../src/images/avatar-placeholder.png"
+            src="../src/images/avatar.jpg"
             alt="Profile Avatar"
           />
           <div id="avatar-update-container" class="hidden">
@@ -66,7 +69,7 @@
             Current credit balance: <span>1000 credits</span>
           </p>
           <a
-            href="../profile/update.html"
+            href="/profile/update"
             id="update-profile-btn"
             class="btn btn-update-profile"
           >
@@ -96,6 +99,6 @@
         </div>
       </div>
     </footer>
-    <script type="module" src="../../src/js/views/pages/profile.js"></script>
   </body>
+  <script type="module" src="../app.js"></script>
 </html>
