@@ -34,6 +34,8 @@ export async function login(userData) {
       localStorage.setItem("accessToken", token);
       localStorage.setItem("user", JSON.stringify(user));
 
+      localStorage.setItem("name", user.name);
+
       console.log("Login successful:", user);
       return data;
     }

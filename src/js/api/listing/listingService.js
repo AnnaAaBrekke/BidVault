@@ -107,7 +107,7 @@ export async function fetchListingsByUser(username) {
       `${API_AUCTION_PROFILES}/${username}/listings${INCLUDE_BIDS_AND_SELLER}`,
       {
         method: "GET",
-        headers: getHeaders(),
+        headers: await getHeaders(),
       },
     );
     if (!response.ok) {

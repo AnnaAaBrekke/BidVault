@@ -39,4 +39,4 @@ async function initProfile() {
   }
 }
 
-await initProfile();
+initProfile();

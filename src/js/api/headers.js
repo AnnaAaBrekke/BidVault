@@ -25,6 +25,7 @@ export async function getHeaders(includeAuth = true) {
 
   if (includeAuth && isLoggedIn()) {
     const accessToken = localStorage.getItem("accessToken");
+
     headers.append("Authorization", `Bearer ${accessToken}`);
     console.log("Access token", accessToken);
   }
