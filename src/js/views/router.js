@@ -1,5 +1,8 @@
 export default async function router(pathname = window.location.pathname) {
-  const normalizedPath = pathname.replace(/\/index\.html$/, "");
+  // Normalize path by removing trailing slash if present
+  const normalizedPath = pathname
+    .replace(/\/index\.html$/, "")
+    .replace(/\/$/, "");
   console.log(`Routing to normalized path: ${normalizedPath}`);
 
   try {
@@ -11,7 +14,6 @@ export default async function router(pathname = window.location.pathname) {
       case "/welcome":
         console.log("Loading welcome.js");
         await import("./pages/welcome.js");
-
         break;
       case "/auth/register":
         console.log("Loading register.js");

@@ -24,8 +24,13 @@ export default class FormHandler {
       throw new Error(`Form with ID "${formId}" not found.`);
     }
 
+    console.log(`Initializing form with ID: ${formId}`);
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      console.log("Submit event prevented");
+
       const handler = new FormHandler();
       await handler.handleSubmit(form, action);
     });
@@ -149,7 +154,10 @@ export default class FormHandler {
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
+      console.log("Submitting login with data:", data); // Log before calling the login action
+
       const result = await actions[action](data);
+      console.log("Login result:", result);
 
       showSuccessAlert(`${action} successful!`);
       if (action === "login" && result?.accessToken) {
