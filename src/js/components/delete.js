@@ -1,5 +1,4 @@
 import { deleteListing } from "../api/listing/listingService.js";
-import { handleError } from "../global/errorMessage.js";
 
 export async function handleDelete(event) {
   if (!event.target.matches(".delete-button, .delete-button *")) {

@@ -1,6 +1,5 @@
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showSuccessAlert } from "../../global/alert.js";
 import { handleError } from "../../global/errorMessage.js";
 
 /**

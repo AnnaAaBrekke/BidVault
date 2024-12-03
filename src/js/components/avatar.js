@@ -1,6 +1,5 @@
 import { updateProfile } from "../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
-import { handleError } from "../global/errorMessage.js";
 
 export function avatarUpdate() {
   const avatarImg = document.getElementById("profile-avatar");

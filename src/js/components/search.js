@@ -1,7 +1,6 @@
 import { displayListings } from "../api/listing/displayListings.js";
 import { searchListings } from "../api/listing/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
-import { handleError } from "../global/errorMessage.js";
 
 /**
  * Initializes the search functionality for a page.
