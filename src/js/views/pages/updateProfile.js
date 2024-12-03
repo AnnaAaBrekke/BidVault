@@ -1,7 +1,7 @@
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
-import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 import { setLogoutListener } from "../../global/logout.js";
 
 setLogoutListener();
@@ -41,8 +41,7 @@ async function initUpdateForm() {
 
     FormHandler.initialize("#update-profile-form", "updateProfile");
   } catch (error) {
-    console.error("Failed to initialize update form:", error);
-    showErrorAlert("Failed to load profile data.");
+    handleError(error, "initializing update form");
   }
 }
 

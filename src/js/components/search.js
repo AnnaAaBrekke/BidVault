@@ -1,6 +1,7 @@
 import { displayListings } from "../api/listing/displayListings.js";
 import { searchListings } from "../api/listing/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
+import { handleError } from "../global/errorMessage.js";
 
 /**
  * Initializes the search functionality for a page.
@@ -45,7 +46,7 @@ export function initializeSearch(
         displayListings(results);
       }
     } catch (error) {
-      console.error("Search error:", error);
+      handleError(error, "searching listings");
       listingsContainer.innerHTML = "<p>An error occurred while searching.</p>";
     }
   };

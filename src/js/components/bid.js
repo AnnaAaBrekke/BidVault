@@ -50,8 +50,7 @@ export function bidHandler() {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      console.error("Failed to place bid:", error);
-      handleError(error);
+      handleError(error, "bidding");
     }
   });
 }

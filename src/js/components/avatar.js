@@ -1,5 +1,6 @@
 import { updateProfile } from "../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
+import { handleError } from "../global/errorMessage.js";
 
 export function avatarUpdate() {
   const avatarImg = document.getElementById("profile-avatar");
@@ -54,8 +55,7 @@ export function avatarUpdate() {
 
       showSuccessAlert("Avatar updated successfully!");
     } catch (error) {
-      console.error("Failed to update avatar:", error);
-      showErrorAlert("Failed to update avatar. Please try again.");
+      handleError(error, "updating avatar");
     }
   });
 
