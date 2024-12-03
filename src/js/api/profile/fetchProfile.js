@@ -13,9 +13,6 @@ export async function fetchProfile() {
     const username = localStorage.getItem("name");
     const accessToken = localStorage.getItem("accessToken");
 
-    console.log("Username:", username);
-    console.log("Access Token:", accessToken); // Debug log
-
     if (!username || !accessToken) {
       showErrorAlert("Username or Access Token is missing. Please log in.");
       throw new Error("Missing username or access token.");
@@ -34,5 +31,6 @@ export async function fetchProfile() {
     return data;
   } catch (error) {
     handleError(error, "fetching profile");
+    throw error;
   }
 }

@@ -29,5 +29,6 @@ export async function updateProfile(updatedData) {
     return await response.json();
   } catch (error) {
     handleError(error, "updating profile");
+    throw error;
   }
 }

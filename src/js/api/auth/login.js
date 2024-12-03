@@ -49,5 +49,6 @@ export async function login(userData) {
     throw new Error(`Login failed: ${errorDetails.message || "Unknown error"}`);
   } catch (error) {
     handleError(error, "logging in");
+    throw error;
   }
 }

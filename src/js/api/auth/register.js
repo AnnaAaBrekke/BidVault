@@ -47,5 +47,6 @@ export async function register(userData) {
     );
   } catch (error) {
     handleError(error, "registering");
+    throw error;
   }
 }
