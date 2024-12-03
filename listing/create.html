@@ -8,7 +8,7 @@
   </head>
   <body>
     <header id="main-header" class="header">
-      <a href="../welcome.html" class="nav-link">Back to Welcome</a>
+      <a href="/" class="nav-link">Back to Welcome</a>
       <nav id="nav-bar" class="nav">
         <button id="logout-button" class="dropdown-item">
           <i class="fa-solid fa-right-from-bracket"></i>
@@ -32,6 +32,12 @@
             class="form-input"
             placeholder="Enter main image URL"
             required
+          />
+          <input
+            type="text"
+            class="form-input media-alt"
+            name="mediaAlt"
+            placeholder="Enter alt text for main image (optional)"
           />
 
           <!-- Title -->
@@ -80,6 +86,12 @@
                 required
               />
             </div>
+            <input
+              type="text"
+              class="form-input media-alt"
+              name="mediaAlt"
+              placeholder="Enter alt text for Media 1 (optional)"
+            />
             <div class="media-item">
               <input
                 type="url"
@@ -88,6 +100,12 @@
                 placeholder="Enter the URL for Media 2"
               />
             </div>
+            <input
+              type="text"
+              class="form-input media-alt"
+              name="mediaAlt"
+              placeholder="Enter alt text for Media 2 (optional)"
+            />
             <div class="media-item">
               <input
                 type="url"
@@ -96,6 +114,12 @@
                 placeholder="Enter the URL for Media 3"
               />
             </div>
+            <input
+              type="text"
+              class="form-input media-alt"
+              name="mediaAlt"
+              placeholder="Enter alt text for Media 3 (optional)"
+            />
             <div class="media-item">
               <input
                 type="url"
@@ -104,12 +128,24 @@
                 placeholder="Enter the URL for Media 4"
               />
             </div>
+            <input
+              type="text"
+              class="form-input media-alt"
+              name="mediaAlt"
+              placeholder="Enter alt text for Media 4 (optional)"
+            />
             <div class="media-item">
               <input
                 type="url"
                 class="form-input media-input"
                 name="media"
                 placeholder="Enter the URL for Media 5"
+              />
+              <input
+                type="text"
+                class="form-input media-alt"
+                name="mediaAlt"
+                placeholder="Enter alt text for Media 5 (optional)"
               />
             </div>
           </div>
@@ -128,6 +164,6 @@
     <footer id="footer" class="footer">
       <p>&copy; 2024 Bid Vault</p>
     </footer>
-    <script type="module" src="../../src/js/views/pages/create.js"></script>
+    <script type="module" src="../app.js"></script>
   </body>
 </html>

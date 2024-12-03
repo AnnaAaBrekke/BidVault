@@ -8,9 +8,8 @@ import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
  */
 export async function updateProfile(updatedData) {
   try {
-    const username = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user")).name
-      : null;
+    const username = localStorage.getItem("name");
+    console.log("Update name", username);
 
     if (!username) {
       throw new Error("User is not logged in.");
@@ -18,7 +17,7 @@ export async function updateProfile(updatedData) {
 
     const response = await fetch(`${API_AUCTION_PROFILES}/${username}`, {
       method: "PUT",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify(updatedData),
     });
 

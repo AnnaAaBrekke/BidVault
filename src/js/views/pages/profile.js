@@ -3,13 +3,10 @@ import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
-import { setLogoutListener } from "../../global/logout.js";
-
-setLogoutListener();
 
 function displayProfile(profile) {
   const avatarImg = document.getElementById("profile-avatar");
-  avatarImg.src = profile.avatar.url || "../images/avatar.jpg";
+  avatarImg.src = profile.avatar.url || "../../src/images/avatar.jpg";
   avatarImg.alt = profile.avatar.alt || "Profile Avatar";
 
   document.getElementById("profile-banner").src =
@@ -42,4 +39,4 @@ async function initProfile() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initProfile);
+initProfile();

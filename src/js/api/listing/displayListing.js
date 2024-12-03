@@ -1,11 +1,11 @@
 import { handleDelete } from "../../components/delete.js";
 import { isLoggedIn } from "../../global/authGuard.js";
-import { displayListings } from "../../views/pages/listings.js";
 import { fetchListingsByUser } from "./listingService.js";
 import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { bidHandler } from "../../components/bid.js";
 import { recentBidsToggle } from "../../components/buttons.js";
+import { displayListings } from "./displayListings.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -56,7 +56,7 @@ export function displaySingleListing(listing) {
   `
       : isLoggedIn()
         ? `  <button class="btn btn-secondary" disabled>Bid Closed</button>
-        <p class='info-message'><a href='../../index.html' class='go-back-link'>Go back to listings</a>.</p>`
+        <p class='info-message'><a href='/' class='go-back-link'>Go back to listings</a>.</p>`
         : "<p>You need to log in to place a bid.</p>";
 
   const listingHTML = `
@@ -108,8 +108,10 @@ export async function displayUserListings(username) {
 
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
-    console.error("Failed to fetch user listings", error);
+    console.error("Failed to fetch user listings:", error);
+
+    // Display an error message in the container if failed to fetch
     document.getElementById("listings-container").innerHTML =
-      "<p>Unable to fetch your listings. Please try again later.</p>";
+      "<p>Unable to fetch your listings. Please try to reload page.</p>";
   }
 }

@@ -84,7 +84,7 @@ export async function createListing(listingData) {
   try {
     const response = await fetch(API_AUCTION_LISTINGS, {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify(listingData),
     });
 
@@ -107,7 +107,7 @@ export async function fetchListingsByUser(username) {
       `${API_AUCTION_PROFILES}/${username}/listings${INCLUDE_BIDS_AND_SELLER}`,
       {
         method: "GET",
-        headers: getHeaders(),
+        headers: await getHeaders(),
       },
     );
     if (!response.ok) {
@@ -128,7 +128,7 @@ export async function deleteListing(listingId) {
   try {
     const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}`, {
       method: "DELETE",
-      headers: getHeaders(),
+      headers: await getHeaders(),
     });
 
     if (!response.ok) {
@@ -149,7 +149,7 @@ export async function bidOnListing(listingId, amount) {
   try {
     const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}/bids`, {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify({ amount }),
     });
 

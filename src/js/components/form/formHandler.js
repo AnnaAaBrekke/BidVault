@@ -6,6 +6,7 @@ import {
 } from "../../api/listing/listingService.js";
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { isLoggedIn } from "../../global/authGuard.js";
 
 export default class FormHandler {
   constructor() {}
@@ -23,14 +24,17 @@ export default class FormHandler {
       throw new Error(`Form with ID "${formId}" not found.`);
     }
 
+    console.log(`Initializing form with ID: ${formId}`);
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      console.log("Submit event prevented");
+
       const handler = new FormHandler();
       await handler.handleSubmit(form, action);
     });
   }
-
-  //DRY THIS LATER GETFORMDATA (media)
 
   /**
    * Extract and structure form data.
@@ -42,43 +46,26 @@ export default class FormHandler {
     const data = Object.fromEntries(formData.entries());
 
     // Collect media gallery inputs into an array of objects
-    const mediaInputs = form.querySelectorAll(".media-input");
-    data.media = Array.from(mediaInputs)
-      .filter((input) => input.value) // Exclude empty fields
-      .map((input) => ({
-        url: input.value, // URL from input field
-        alt: `Media for ${data.title}`, // Optional alt text
-      }));
+    const mediaInputs = Array.from(form.querySelectorAll(".media-input")); // Convert NodeList to Array
+    const mediaUrls = [];
 
+    mediaInputs.forEach((input) => {
+      if (input.value.trim()) {
+        // Add non-empty media URL as an object
+        mediaUrls.push({ url: input.value.trim(), alt: "" });
+      }
+    });
+
+    // Assign the structured media array to data
+    if (mediaUrls.length > 0) {
+      data.media = mediaUrls;
+    }
+
+    // Handle listingId if present
     const listingId = form.dataset.listingId;
     if (listingId) {
       data.listingId = listingId;
     }
-
-    /**
-     * Helper function to construct nested objects (e.g., avatar, banner).
-     * @param {string} urlKey - The key for the URL field.
-     * @param {string} altKey - The key for the alt text field.
-     * @returns {Object} - Nested object with `url` and `alt`.
-     */
-    const buildNestedObject = (urlKey, altKey) => {
-      return {
-        url: data[urlKey] || "",
-        alt: data[altKey] || "",
-      };
-    };
-
-    // Build avatar and banner objects
-    data.avatar = buildNestedObject("avatarUrl", "avatarAlt");
-    data.banner = buildNestedObject("bannerUrl", "bannerAlt");
-
-    // Clean up unused fields
-    delete data.avatarUrl;
-    delete data.avatarAlt;
-    delete data.bannerUrl;
-    delete data.bannerAlt;
-
-    delete data.mediaInputs;
 
     return data;
   }
@@ -107,6 +94,7 @@ export default class FormHandler {
       if (!/^[\w\-.]+@stud\.noroff\.no$/.test(data.email)) {
         return errors.invalidEmail;
       }
+
       if (action === "register" && (!data.name || !/^[\w]+$/.test(data.name))) {
         return errors.invalidName;
       }
@@ -147,7 +135,7 @@ export default class FormHandler {
    * Handle form submission.
    *
    * @param {HTMLFormElement} form
-   * @param {string} action
+   * @param {string} action - The action to perform (login, register, update, create, bidOnListing).
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
@@ -174,33 +162,59 @@ export default class FormHandler {
       return;
     }
 
+    // Ensure user is logged in for actions requiring authentication
+    const authRequiredActions = [
+      "bidOnListing",
+      "updateProfile",
+      "createListing",
+    ];
+    if (authRequiredActions.includes(action) && !isLoggedIn()) {
+      showErrorAlert("You must be logged in to perform this action.");
+      return;
+    }
+
     try {
       form
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
+      console.log("Submitting login with data:", data); // Log before calling the login action
+
       const result = await actions[action](data);
+      console.log("Action result:", result);
 
       showSuccessAlert(`${action} successful!`);
+
+      // Redirect based on the action performed
       if (action === "login" && result?.accessToken) {
         setTimeout(() => {
-          window.location.href = "../../index.html";
+          // Redirect to home after successful login
+          window.location.href = "/";
         }, 1500);
       } else if (action === "register") {
         setTimeout(() => {
-          window.location.href = "../../welcome.html";
+          // Redirect to the welcome page after successful registration
+          window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        setTimeout(() => {
-          window.location.href = "../../profile/index.html";
-        }, 1000);
+        if (result?.id) {
+          setTimeout(() => {
+            // Redirect to profile update page
+            window.location.href = "/profile";
+          }, 1000);
+        }
       } else if (action === "createListing") {
-        setTimeout(() => {
-          window.location.href = `../../listing/listing.html?id=${result.id}`;
-        }, 1000);
+        if (result?.id) {
+          setTimeout(() => {
+            window.location.href = `/listing/?id=${result.id}`;
+          }, 1000);
+        } else {
+          showErrorAlert("Failed to retrieve listing ID. Please try again.");
+        }
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
         setTimeout(() => {
+          // Reload the page after placing the bid
           window.location.reload();
         }, 1500);
       }
