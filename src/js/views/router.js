@@ -6,6 +6,9 @@ export default async function router(pathname = window.location.pathname) {
       .replace(/\/$/, "") || // Remove trailing slash
     "/"; // Default to "/" for the root path
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+
   console.log(`Routing to normalized path: ${normalizedPath}`);
 
   try {
@@ -31,9 +34,11 @@ export default async function router(pathname = window.location.pathname) {
         await import("./pages/updateProfile.js");
         break;
       case "/listing":
-        console.log("Loading listing.js");
-        await import("./pages/listing.js");
-        break;
+        if (id) {
+          console.log("Loading listing.js");
+          await import("./pages/listing.js");
+          break;
+        }
       case "/listing/create":
         console.log("Loading create.js");
         await import("./pages/create.js");

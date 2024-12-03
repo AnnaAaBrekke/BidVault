@@ -1,5 +1,6 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
+import { displaySingleListing } from "../../api/listing/displayListing.js";
 import {
   bidOnListing,
   createListing,
@@ -202,10 +203,14 @@ export default class FormHandler {
             // Redirect to profile update page
             window.location.href = "/profile";
           }, 1000);
-        } else if (action === "createListing") {
-          window.location.href = `/listing?id=${result.id}`;
+        }
+      } else if (action === "createListing") {
+        if (result?.id) {
+          setTimeout(() => {
+            window.location.href = `/listing/?id=${result.id}`;
+          }, 1000);
         } else {
-          showErrorAlert("Failed to create listing. Please try again.");
+          showErrorAlert("Failed to retrieve listing ID. Please try again.");
         }
       } else if (action === "bidOnListing") {
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
