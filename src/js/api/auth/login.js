@@ -1,6 +1,7 @@
 import { API_AUTH_LOGIN } from "../constants.js";
 import { getHeaders } from "../headers.js";
 import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 
 /**
  * Logs in a user.
@@ -47,8 +48,6 @@ export async function login(userData) {
     );
     throw new Error(`Login failed: ${errorDetails.message || "Unknown error"}`);
   } catch (error) {
-    console.error("Login error:", error);
-    showErrorAlert(`An error occurred during login: ${error.message}`);
-    throw error;
+    handleError(error, "logging in");
   }
 }

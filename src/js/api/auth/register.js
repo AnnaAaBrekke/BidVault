@@ -1,6 +1,7 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { getHeaders } from "../headers.js";
 import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 
 /**
  * Registers a new user.
@@ -45,8 +46,6 @@ export async function register(userData) {
       `Registration failed: ${errorDetails.message || "Unknown error"}`,
     );
   } catch (error) {
-    console.error("Registration error:", error);
-    showErrorAlert(`An error occurred during registration: ${error.message}`);
-    throw error;
+    handleError(error, "registering");
   }
 }

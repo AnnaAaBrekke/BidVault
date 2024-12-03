@@ -1,4 +1,5 @@
 import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
 
@@ -26,16 +27,12 @@ export async function fetchProfile() {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      console.error("Error response:", errorMessage); // Debug log
-      throw new Error(`Error fetching profile: ${errorMessage}`);
+      throw new Error("Failed to fetch profile.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    showErrorAlert(`Error fetching profile: ${error.message}`);
-    throw error;
+    handleError(error, "fetching profile");
   }
 }

@@ -12,9 +12,7 @@ export async function getHeaders(includeAuth = true) {
 
   console.log("key", apiKey);
   if (!apiKey) {
-    console.error(
-      "API key is missing. Ensure VITE_API_KEY is set in your .env file.",
-    );
+    console.error("API key is missing.");
     throw new Error(
       "API key is missing. Check your environment configuration.",
     );

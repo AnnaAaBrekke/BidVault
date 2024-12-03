@@ -1,4 +1,4 @@
-import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { showSuccessAlert } from "../../global/alert.js";
 import { handleError } from "../../global/errorMessage.js";
 import {
   API_AUCTION_LISTINGS,
@@ -20,16 +20,13 @@ export async function fetchListings() {
     );
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error fetching profile: ${errorMessage}`);
+      throw new Error("Error fetching listings.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching listings:", error);
-    showErrorAlert(`Error fetching listings: ${error.message}`);
-    throw error;
+    handleError(error, "fetching listings"); // Replaced the catch block with handleError
   }
 }
 
@@ -44,16 +41,13 @@ export async function fetchSingleListing(listingId) {
     );
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error fetching profile: ${errorMessage}`);
+      throw new Error("Error fetching single listing.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching single listing:", error);
-    showErrorAlert(`Error fetching single listing: ${error.message}`);
-    throw error;
+    handleError(error, "fetching single listing"); // Replaced the catch block with handleError
   }
 }
 
@@ -66,18 +60,17 @@ export async function searchListings(query) {
     const response = await fetch(
       `${API_AUCTION_SEARCH}${encodeURIComponent(query)}&${INCLUDE_BIDS_AND_SELLER}`,
     );
+
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error fetching search results: ${errorMessage}`);
+      throw new Error("Error fetching search results.");
     }
+
     const { data } = await response.json();
     console.log("Search Results:", data); // Inspect `bids` values - ISSUE? FIX LATER
 
     return data;
   } catch (error) {
-    console.error("Error when searching", error);
-    showErrorAlert(`Error when searching for listings: ${error.message}`);
-    throw error;
+    handleError(error, "searching listings"); // Replaced the catch block with handleError
   }
 }
 
@@ -90,15 +83,13 @@ export async function createListing(listingData) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error creating listing: ${errorMessage}`);
+      throw new Error("Error creating listing.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error creating listing:", error);
-    throw error;
+    handleError(error, "creating listing"); // Replaced the catch block with handleError
   }
 }
 
@@ -111,17 +102,15 @@ export async function fetchListingsByUser(username) {
         headers: await getHeaders(),
       },
     );
+
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error fetching listings for user: ${errorMessage}`);
+      throw new Error("Error fetching listings for user.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching listings by profile:", error);
-    showErrorAlert(`Error fetching user listings: ${error.message}`);
-    throw error;
+    handleError(error, "fetching listings by profile"); // Replaced the catch block with handleError
   }
 }
 
@@ -133,16 +122,13 @@ export async function deleteListing(listingId) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error deleting listing: ${errorMessage}`);
+      throw new Error("Error deleting listing.");
     }
 
     showSuccessAlert("Listing successfully deleted!");
     return true;
   } catch (error) {
-    console.error("Error deleting listing:", error);
-    showErrorAlert(`Error deleting listing: ${error.message}`);
-    throw error;
+    handleError(error, "deleting listing"); // Replaced the catch block with handleError
   }
 }
 
@@ -155,25 +141,22 @@ export async function bidOnListing(listingId, amount) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error bidding on listing: ${errorMessage}`);
+      throw new Error("Failed to place bid.");
     }
 
     const { data } = await response.json();
 
     // Log bid details for debugging
-    console.log(`Bid placed successfully:`, {
-      listingId,
-      amount,
-      data,
-    });
+    console.log(`Bid placed successfully:`, { listingId, amount, data });
 
+    // Show success message to the user
     showSuccessAlert(
       `Bid of $${amount} placed successfully on listing ID: ${listingId}!`,
     );
 
     return data;
   } catch (error) {
-    handleError(error, "bidding on listing"); // Added the second argument 'bidding on listing'
+    // Handle any errors using the handleError function
+    handleError(error, "bidding on listing"); // Replaced the catch block with handleError
   }
 }
