@@ -108,8 +108,10 @@ export async function displayUserListings(username) {
 
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
-    console.error("Failed to fetch user listings", error);
+    console.error("Failed to fetch user listings:", error);
+
+    // Display an error message in the container if failed to fetch
     document.getElementById("listings-container").innerHTML =
-      "<p>Unable to fetch your listings. Please try again later.</p>";
+      "<p>Unable to fetch your listings. Please try to reload page.</p>";
   }
 }

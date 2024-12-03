@@ -128,7 +128,7 @@ export async function deleteListing(listingId) {
   try {
     const response = await fetch(`${API_AUCTION_LISTINGS}/${listingId}`, {
       method: "DELETE",
-      headers: getHeaders(),
+      headers: await getHeaders(),
     });
 
     if (!response.ok) {
