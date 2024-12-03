@@ -24,9 +24,6 @@ function populateUpdateForm(profile) {
     profile.banner?.url || "../../src/images/banner-bid.jpg";
 }
 
-/**
- * Initialize the update profile page.
- */
 async function initUpdateForm() {
   try {
     const profile = await fetchProfile();

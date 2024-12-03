@@ -55,7 +55,7 @@ export function avatarUpdate() {
 
       showSuccessAlert("Avatar updated successfully!");
     } catch (error) {
-      handleError(error, "updating avatar");
+      console.error(error, "updating avatar");
     }
   });
 

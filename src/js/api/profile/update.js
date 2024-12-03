@@ -25,7 +25,6 @@ export async function updateProfile(updatedData) {
     if (!response.ok) {
       throw new Error("Error updating profile.");
     }
-    showSuccessAlert("Profile updated successfully!");
     return await response.json();
   } catch (error) {
     handleError(error, "updating profile");

@@ -22,6 +22,6 @@ export async function handleDelete(event) {
     const listingElement = document.getElementById(`listing-${listingId}`);
     if (listingElement) listingElement.remove();
   } catch (error) {
-    handleError(error, "deleting listing");
+    console.error(error, "deleting listing");
   }
 }
