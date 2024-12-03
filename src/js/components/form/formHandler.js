@@ -1,6 +1,5 @@
 import { login } from "../../api/auth/login.js";
 import { register } from "../../api/auth/register.js";
-import { displaySingleListing } from "../../api/listing/displayListing.js";
 import {
   bidOnListing,
   createListing,

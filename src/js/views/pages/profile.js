@@ -1,7 +1,6 @@
 import { displayUserListings } from "../../api/listing/displayListing.js";
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
-import { handleDelete } from "../../components/delete.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 

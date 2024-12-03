@@ -1,9 +1,9 @@
 import { deleteListing } from "../api/listing/listingService.js";
-import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
+import { showErrorAlert } from "../global/alert.js";
 
 export async function handleDelete(event) {
   if (!event.target.matches(".delete-button, .delete-button *")) {
-    return; 
+    return;
   }
 
   const button = event.target.closest(".delete-button");
