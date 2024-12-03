@@ -24,9 +24,6 @@ function populateUpdateForm(profile) {
     profile.banner?.url || "../../src/images/banner-bid.jpg";
 }
 
-/**
- * Initialize the update profile page.
- */
 async function initUpdateForm() {
   try {
     const profile = await fetchProfile();
@@ -42,7 +39,7 @@ async function initUpdateForm() {
     FormHandler.initialize("#update-profile-form", "updateProfile");
   } catch (error) {
     console.error("Failed to initialize update form:", error);
-    showErrorAlert("Failed to load profile data.");
+    showErrorAlert("Failed to load update form.");
   }
 }
 

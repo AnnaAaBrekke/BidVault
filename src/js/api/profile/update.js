@@ -1,6 +1,6 @@
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 
 /**
  * Update the profile of the currently logged-in user.
@@ -22,15 +22,11 @@ export async function updateProfile(updatedData) {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Error updating profile: ${errorMessage}`);
+      throw new Error("Error updating profile.");
     }
-
-    showSuccessAlert("Profile updated successfully!");
     return await response.json();
   } catch (error) {
-    console.error("Error updating profile:", error);
-    showErrorAlert(`Error updating profile: ${error.message}`);
+    handleError(error, "updating profile");
     throw error;
   }
 }

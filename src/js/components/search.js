@@ -45,7 +45,7 @@ export function initializeSearch(
         displayListings(results);
       }
     } catch (error) {
-      console.error("Search error:", error);
+      console.error(error, "searching listings");
       listingsContainer.innerHTML = "<p>An error occurred while searching.</p>";
     }
   };

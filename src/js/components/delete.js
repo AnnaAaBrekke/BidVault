@@ -1,5 +1,4 @@
 import { deleteListing } from "../api/listing/listingService.js";
-import { showErrorAlert } from "../global/alert.js";
 
 export async function handleDelete(event) {
   if (!event.target.matches(".delete-button, .delete-button *")) {
@@ -22,9 +21,6 @@ export async function handleDelete(event) {
     const listingElement = document.getElementById(`listing-${listingId}`);
     if (listingElement) listingElement.remove();
   } catch (error) {
-    console.error("Error deleting listing:", error);
-    showErrorAlert(
-      "An error occurred while deleting the listing. Please try again.",
-    );
+    console.error(error, "deleting listing");
   }
 }

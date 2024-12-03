@@ -1,4 +1,4 @@
-import { showErrorAlert } from "./alert.js";
+import { handleError } from "./errorMessage.js";
 
 export function setLogoutListener() {
   const logoutBtn = document.getElementById("logout-button");
@@ -10,8 +10,7 @@ export function setLogoutListener() {
       try {
         await onLogout();
       } catch (error) {
-        console.error("Logout failed:", error);
-        showErrorAlert("An error occurred during logout. Please try again.");
+        handleError(error, "logging out");
       }
     });
   }

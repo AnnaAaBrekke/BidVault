@@ -2,7 +2,6 @@ import { displayUserListings } from "../../api/listing/displayListing.js";
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
-import { showErrorAlert } from "../../global/alert.js";
 
 function displayProfile(profile) {
   const avatarImg = document.getElementById("profile-avatar");
@@ -34,8 +33,7 @@ async function initProfile() {
       await displayUserListings(profile.name);
     }
   } catch (error) {
-    console.error("Failed to display and init profile", error);
-    showErrorAlert("Failed to display profile details");
+    console.error(error, "fetching profile details");
   }
 }
 

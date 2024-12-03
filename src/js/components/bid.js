@@ -1,9 +1,6 @@
 import { bidOnListing } from "../api/listing/listingService.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
 
-/**
- * Handles the bid action on a listing.
- */
 export function bidHandler() {
   const bidForm = document.getElementById("bid-form");
 
@@ -49,13 +46,7 @@ export function bidHandler() {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      console.error("Failed to place bid:", error);
-
-      const errorMessage =
-        error.response?.data?.errors?.[0]?.message ||
-        "An unexpected error occurred while placing your bid. Please try again.";
-
-      showErrorAlert(errorMessage);
+      console.error("Error placing a bid:", error);
     }
   });
 }
