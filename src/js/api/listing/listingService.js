@@ -1,4 +1,5 @@
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 import {
   API_AUCTION_LISTINGS,
   API_AUCTION_PROFILES,
@@ -173,8 +174,6 @@ export async function bidOnListing(listingId, amount) {
 
     return data;
   } catch (error) {
-    console.error("Error bidding on listings", error);
-    showErrorAlert(`Error to place a bid on listings: ${error.message}`);
-    throw error;
+    handleError(error, "bidding on listing"); // Added the second argument 'bidding on listing'
   }
 }

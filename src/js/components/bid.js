@@ -1,5 +1,6 @@
 import { bidOnListing } from "../api/listing/listingService.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
+import { handleError } from "../global/errorMessage";
 
 /**
  * Handles the bid action on a listing.
@@ -50,12 +51,7 @@ export function bidHandler() {
       }, 1000);
     } catch (error) {
       console.error("Failed to place bid:", error);
-
-      const errorMessage =
-        error.response?.data?.errors?.[0]?.message ||
-        "An unexpected error occurred while placing your bid. Please try again.";
-
-      showErrorAlert(errorMessage);
+      handleError(error);
     }
   });
 }
