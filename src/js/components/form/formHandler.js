@@ -7,6 +7,7 @@ import {
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
+import { handleError } from "../../global/errorMessage.js";
 
 export default class FormHandler {
   constructor() {}
@@ -178,8 +179,6 @@ export default class FormHandler {
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
-      console.log("Submitting login with data:", data); // Log before calling the login action
-
       const result = await actions[action](data);
       console.log("Action result:", result);
 
@@ -197,12 +196,11 @@ export default class FormHandler {
           window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        if (result?.id) {
-          setTimeout(() => {
-            // Redirect to profile update page
-            window.location.href = "/profile";
-          }, 1000);
-        }
+        // Check if result contains the name property
+        setTimeout(() => {
+          // Redirect to profile page after successful update
+          window.location.href = "/profile/";
+        }, 1500);
       } else if (action === "createListing") {
         if (result?.id) {
           setTimeout(() => {
@@ -219,8 +217,7 @@ export default class FormHandler {
         }, 1500);
       }
     } catch (error) {
-      showErrorAlert(`An error occurred: ${error.message}`);
-      console.error(`Error during "${action}" submission:`, error);
+      handleError(error, action);
     } finally {
       form
         .querySelectorAll("input, textarea, button")
