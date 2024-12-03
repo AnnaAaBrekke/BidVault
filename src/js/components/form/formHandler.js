@@ -203,10 +203,7 @@ export default class FormHandler {
             window.location.href = "/profile";
           }, 1000);
         } else if (action === "createListing") {
-          setTimeout(() => {
-            // Redirect to the newly created listing page
-            window.location.href = `../listing?id=${result.id}`;
-          }, 1000);
+          window.location.href = `/listing?id=${result.id}`;
         } else {
           showErrorAlert("Failed to create listing. Please try again.");
         }

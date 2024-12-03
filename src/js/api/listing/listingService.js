@@ -84,7 +84,7 @@ export async function createListing(listingData) {
   try {
     const response = await fetch(API_AUCTION_LISTINGS, {
       method: "POST",
-      headers: getHeaders(),
+      headers: await getHeaders(),
       body: JSON.stringify(listingData),
     });
 
