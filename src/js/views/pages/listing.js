@@ -18,6 +18,7 @@ async function initSingleListing() {
     displaySingleListing(listing);
   } catch (error) {
     handleError(error, "loading listing details");
+    throw error;
   }
 }
 

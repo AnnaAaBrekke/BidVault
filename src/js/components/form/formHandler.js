@@ -158,7 +158,10 @@ export default class FormHandler {
     };
 
     if (!actions[action]) {
-      showErrorAlert(`Unknown action: "${action}"`);
+      handleError(
+        new Error(`Unknown action: "${action}"`),
+        "FormHandler.initialize",
+      );
       console.error(`Unknown action: "${action}"`);
       return;
     }

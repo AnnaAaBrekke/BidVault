@@ -1,6 +1,5 @@
 import { bidOnListing } from "../api/listing/listingService.js";
 import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
-import { handleError } from "../global/errorMessage";
 
 /**
  * Handles the bid action on a listing.
@@ -50,7 +49,7 @@ export function bidHandler() {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      handleError(error, "bidding");
+      console.error("Error placing a bid:", error); // Log the error for debugging
     }
   });
 }

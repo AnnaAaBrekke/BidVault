@@ -42,6 +42,7 @@ async function initUpdateForm() {
     FormHandler.initialize("#update-profile-form", "updateProfile");
   } catch (error) {
     handleError(error, "initializing update form");
+    throw error;
   }
 }
 
