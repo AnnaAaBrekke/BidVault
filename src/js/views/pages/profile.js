@@ -12,8 +12,8 @@ function displayProfile(profile) {
   avatarImg.alt = profile.avatar?.alt || "Default Avatar";
 
   const bannerImg = document.getElementById("profile-banner");
-  bannerImg.src = profile.banner?.url || "../../src/images/banner-bid.jpg";
-  bannerImg.alt = profile.banner?.alt || "Default Banner";
+  bannerImg.src = profile.banner.url || "../../src/images/banner-bid.jpg";
+  bannerImg.alt = profile.banner.alt || "Default Banner";
 
   document.getElementById("profile-name").textContent =
     profile.name || "Anonymous";

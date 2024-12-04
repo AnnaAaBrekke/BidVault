@@ -47,6 +47,25 @@ main {
   max-width: 500px;
 }
 
+/* Invalid input field styling */
+input.invalid,
+textarea.invalid {
+  border-color: red; /* Red border for invalid inputs */
+  background-color: #f8d7da; /* Light red background to indicate an error */
+}
+
+input.invalid:focus,
+textarea.invalid:focus {
+  border-color: darkred; /* Darker border when focused */
+  outline: none;
+}
+
+/* Optional: error message styling */
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+}
+
 .section-register h1 {
   text-align: center;
   color: #007bff;

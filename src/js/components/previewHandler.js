@@ -1,3 +1,5 @@
+import { validateImageUrl } from "../global/validImg.js";
+
 export function setupPreviewInputs(
   avatarInputId,
   avatarPreviewId,
@@ -14,25 +16,49 @@ export function setupPreviewInputs(
   const bannerPreview = document.getElementById(bannerPreviewId);
   const bannerAltInput = document.getElementById(bannerAltInputId);
 
-  if (avatarUrlInput && avatarPreview && avatarAltInput) {
+  // Handle avatar input changes
+  if (avatarUrlInput && avatarPreview) {
     avatarUrlInput.addEventListener("input", () => {
       const url = avatarUrlInput.value;
-      avatarPreview.src = url || "../../src/images/avatar.jpg";
+
+      // Validate the avatar URL and provide feedback
+      if (url && !validateImageUrl(url, avatarUrlInput)) {
+        avatarUrlInput.classList.add("invalid"); // Highlight invalid input
+        avatarPreview.src = "../../src/images/avatar.jpg"; // Reset preview
+      } else {
+        avatarUrlInput.classList.remove("invalid"); // Remove invalid styling
+        avatarPreview.src = url || "../../src/images/avatar.jpg"; // Update preview
+      }
     });
 
-    avatarAltInput.addEventListener("input", () => {
-      avatarPreview.alt = avatarAltInput.value || "Default Avatar";
-    });
+    // Handle alt text updates
+    if (avatarAltInput) {
+      avatarAltInput.addEventListener("input", () => {
+        avatarPreview.alt = avatarAltInput.value || "Default Avatar";
+      });
+    }
   }
 
-  if (bannerUrlInput && bannerPreview && bannerAltInput) {
+  // Handle banner input changes
+  if (bannerUrlInput && bannerPreview) {
     bannerUrlInput.addEventListener("input", () => {
       const url = bannerUrlInput.value;
-      bannerPreview.src = url || "../../src/images/banner-bid.jpg";
+
+      // Validate the banner URL and provide feedback
+      if (url && !validateImageUrl(url, bannerUrlInput)) {
+        bannerUrlInput.classList.add("invalid"); // Highlight invalid input
+        bannerPreview.src = "../../src/images/banner-bid.jpg"; // Reset preview
+      } else {
+        bannerUrlInput.classList.remove("invalid"); // Remove invalid styling
+        bannerPreview.src = url || "../../src/images/banner-bid.jpg"; // Update preview
+      }
     });
 
-    bannerAltInput.addEventListener("input", () => {
-      bannerPreview.alt = bannerAltInput.value || "Default Banner";
-    });
+    // Handle alt text updates
+    if (bannerAltInput) {
+      bannerAltInput.addEventListener("input", () => {
+        bannerPreview.alt = bannerAltInput.value || "Default Banner";
+      });
+    }
   }
 }

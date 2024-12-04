@@ -8,6 +8,7 @@ import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
 import { handleError } from "../../global/errorMessage.js";
+import { validateImageUrl } from "../../global/validImg.js";
 
 export default class FormHandler {
   constructor() {}
@@ -45,14 +46,18 @@ export default class FormHandler {
   static getFormData(form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
     const mediaInputs = Array.from(form.querySelectorAll(".media-input"));
     const mediaUrls = [];
 
+    // Validate and collect media URLs
     mediaInputs.forEach((input) => {
-      if (input.value.trim()) {
-        // Add non-empty media URL as an object
-        mediaUrls.push({ url: input.value.trim(), alt: "" });
+      const url = input.value.trim();
+      if (url) {
+        if (!validateImageUrl(input)) {
+          // Skip invalid media URLs
+          return;
+        }
+        mediaUrls.push({ url, alt: "" });
       }
     });
 
@@ -67,7 +72,6 @@ export default class FormHandler {
 
     return data;
   }
-
   /**
    * Validate form data based on the action.
    *
@@ -101,21 +105,8 @@ export default class FormHandler {
       }
     }
     if (action === "createListing") {
-      if (
-        !data.title ||
-        !data.mainImgUrl ||
-        !data.description ||
-        !data.endsAt
-      ) {
+      if (!data.title || !data.description || !data.endsAt) {
         return errors.requiredFields;
-      }
-
-      if (
-        !data.media ||
-        !Array.isArray(data.media) ||
-        data.media.length === 0
-      ) {
-        return "At least one media item is required.";
       }
     }
 
