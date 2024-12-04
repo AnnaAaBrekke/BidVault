@@ -123,8 +123,9 @@ export default class FormHandler {
     }
 
     if (action === "bidOnListing") {
-      const amount = parseFloat(data.amount);
-      if (!amount || amount <= 0) {
+      const amount = parseFloat(data.amount); // This matches the input's `name="amount"`
+      console.log("Validating bid amount:", data.amount, "Parsed:", amount);
+      if (isNaN(amount) || amount <= 0) {
         return errors.invalidBid;
       }
     }
@@ -182,7 +183,10 @@ export default class FormHandler {
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
-      const result = await actions[action](data);
+      const result = await actions[action](
+        data.listingId,
+        parseFloat(data.amount),
+      );
       console.log("Action result:", result);
 
       showSuccessAlert(`${action} successful!`);
@@ -213,11 +217,8 @@ export default class FormHandler {
           showErrorAlert("Failed to retrieve listing ID. Please try again.");
         }
       } else if (action === "bidOnListing") {
+        setTimeout(() => window.location.reload(), 1500);
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
-        setTimeout(() => {
-          // Reload the page after placing the bid
-          window.location.reload();
-        }, 1500);
       }
     } catch (error) {
       handleError(error, action);

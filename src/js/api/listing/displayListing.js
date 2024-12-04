@@ -3,7 +3,6 @@ import { isLoggedIn } from "../../global/authGuard.js";
 import { fetchListingsByUser } from "./listingService.js";
 import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
-import { bidHandler } from "../../components/bid.js";
 import { recentBidsToggle } from "../../components/buttons.js";
 import { displayListings } from "./displayListings.js";
 
@@ -48,8 +47,8 @@ export function displaySingleListing(listing) {
       ? `
     <div id="bid-form-container">
       <form id="bid-form" data-listing-id="${listing.id}">
-        <label for="bid-amount">Place your bid:</label>
-        <input type="number" id="bid-amount" name="bid-amount" min="1" required />
+        <label for="amount">Place your bid:</label>
+        <input type="number" id="amount" name="amount" min="1" required />
         <button type="submit" class="btn btn-primary">Place Bid</button>
       </form>
     </div>
@@ -90,7 +89,6 @@ export function displaySingleListing(listing) {
   // Initialize Bid Form if Active Auction
   if (isLoggedIn() && !hasExpired) {
     FormHandler.initialize("#bid-form", "bidOnListing");
-    bidHandler();
   }
 }
 

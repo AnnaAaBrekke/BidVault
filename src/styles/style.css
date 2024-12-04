@@ -373,3 +373,46 @@ footer {
   border-radius: 8px;
   border: 1px solid #ddd;
 }
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Success alert */
+.alert-success {
+  background-color: #4caf50; /* Green */
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
+}
+
+/* Error alert */
+.alert-error {
+  background-color: #f44336; /* Red */
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+/* Show animation */
+.alert.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Fade-out animation */
+.alert.fade-out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
