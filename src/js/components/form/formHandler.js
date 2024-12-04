@@ -46,8 +46,7 @@ export default class FormHandler {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Collect media gallery inputs into an array of objects
-    const mediaInputs = Array.from(form.querySelectorAll(".media-input")); // Convert NodeList to Array
+    const mediaInputs = Array.from(form.querySelectorAll(".media-input"));
     const mediaUrls = [];
 
     mediaInputs.forEach((input) => {
@@ -57,12 +56,10 @@ export default class FormHandler {
       }
     });
 
-    // Assign the structured media array to data
     if (mediaUrls.length > 0) {
       data.media = mediaUrls;
     }
 
-    // Handle listingId if present
     const listingId = form.dataset.listingId;
     if (listingId) {
       data.listingId = listingId;
@@ -123,7 +120,7 @@ export default class FormHandler {
     }
 
     if (action === "bidOnListing") {
-      const amount = parseFloat(data.amount); // This matches the input's `name="amount"`
+      const amount = parseFloat(data.amount);
       console.log("Validating bid amount:", data.amount, "Parsed:", amount);
       if (isNaN(amount) || amount <= 0) {
         return errors.invalidBid;
