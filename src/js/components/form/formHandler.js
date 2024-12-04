@@ -180,10 +180,15 @@ export default class FormHandler {
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
-      const result = await actions[action](
-        data.listingId,
-        parseFloat(data.amount),
-      );
+      let result;
+      if (action === "bidOnListing") {
+        // Pass `listingId` and `amount` as separate arguments for the bid on listing
+        result = await actions[action](data.listingId, parseFloat(data.amount));
+      } else {
+        // Pass the entire `data` object for other actions
+        result = await actions[action](data);
+      }
+
       console.log("Action result:", result);
 
       showSuccessAlert(`${action} successful!`);
