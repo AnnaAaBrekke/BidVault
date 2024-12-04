@@ -14,20 +14,24 @@ export function avatarUpdate() {
 
   // Store the original avatar URL for fallback
   let originalAvatarUrl = avatarImg.src;
+  // Regular expression to validate URL: Chat GPT + https://regexr.com/3g1v7 created this
+  const isValidUrl = (url) => {
+    const urlPattern = /^https:\/\/[^\s?]+(?:\?[^\s#]*)?$/i;
+    return urlPattern.test(url);
+  };
 
-  // // Regular expression to validate URL
-  // const isValidUrl = (url) => {
-  //   const urlPattern = new RegExp(
-  //     "^(https?:\\/\\/)" + // protocol
-  //     "((([a-zA-Z\\d](([a-zA-Z\\d-]*[a-zA-Z\\d])?))\\.)+[a-zA-Z]{2,}|" + // domain name
-  //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR IPv4
-  //     "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // port and path
-  //     "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // query string
-  //     "(\\#[-a-zA-Z\\d_]*)?$", // fragment locator
-  //     "i"
-  //   );
-  //   return urlPattern.test(url);
-  // };
+  const isImageAccessible = async (url) => {
+    try {
+      const response = await fetch(url, { method: "HEAD" });
+      // Check if the response is OK and the content type is an image
+      return (
+        response.ok &&
+        response.headers.get("content-type")?.startsWith("image/")
+      );
+    } catch {
+      return false; // Return false if the request fails
+    }
+  };
 
   avatarImg.addEventListener("click", async () => {
     avatarUpdateContainer.classList.remove("hidden");
@@ -36,10 +40,18 @@ export function avatarUpdate() {
   });
 
   avatarUpdateBtn.addEventListener("click", async () => {
-    const newAvatarUrl = avatarUpdateInput.value;
+    const newAvatarUrl = avatarUpdateInput.value.trim();
 
-    if (!newAvatarUrl) {
-      showErrorAlert("Please enter a valid URL for the avatar");
+    // Validate the new avatar URL
+    if (!newAvatarUrl || !isValidUrl(newAvatarUrl)) {
+      showErrorAlert("Please enter a valid URL for the avatar.");
+      return;
+    }
+    // Check if the URL points to an accessible image
+    if (!(await isImageAccessible(newAvatarUrl))) {
+      showErrorAlert(
+        "The provided URL is not a live and publicly accessible image.",
+      );
       return;
     }
 
@@ -55,6 +67,7 @@ export function avatarUpdate() {
       showSuccessAlert("Avatar updated successfully!");
     } catch (error) {
       console.error(error, "updating avatar");
+      showErrorAlert("Failed to update avatar. Please try again.");
     }
   });
 
