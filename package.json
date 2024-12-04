@@ -11,8 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier .",
     "prepare": "husky install",
-    "build:css": "sass ./src/styles/scss/styles.scss | npx tailwindcss -i ./src/css/styles.css -o ./src/css/styles.css --minify",
-    "watch:css": "sass --watch ./src/styles/scss/styles.scss:./src/css/styles.css & npx tailwindcss -i ./src/css/styles.css -o ./src/css/styles.css --watch"
+    "build:css": "sass ./src/styles/scss/styles.scss ./src/styles/css/style.css && npx tailwindcss -i ./src/styles/css/style.css -o ./src/styles/css/style.css --minify",
+    "watch:css": "sass --watch ./src/styles/scss/styles.scss:./src/styles/css/style.css & npx tailwindcss -i ./src/styles/css/style.css -o ./src/styles/css/style.css --watch"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

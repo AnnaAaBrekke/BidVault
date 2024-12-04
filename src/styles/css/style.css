@@ -1,4 +1,5 @@
 /* Global Styles */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -48,19 +49,24 @@ main {
 }
 
 /* Invalid input field styling */
+
 input.invalid,
 textarea.invalid {
-  border-color: red; /* Red border for invalid inputs */
-  background-color: #f8d7da; /* Light red background to indicate an error */
+  border-color: red;
+  /* Red border for invalid inputs */
+  background-color: #f8d7da;
+  /* Light red background to indicate an error */
 }
 
 input.invalid:focus,
 textarea.invalid:focus {
-  border-color: darkred; /* Darker border when focused */
+  border-color: darkred;
+  /* Darker border when focused */
   outline: none;
 }
 
 /* Optional: error message styling */
+
 .error-message {
   color: red;
   font-size: 0.875rem;
@@ -129,6 +135,7 @@ textarea.invalid:focus {
   height: 100%;
   border: 2px dashed #ccc;
   cursor: pointer;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -147,6 +154,7 @@ footer {
 }
 
 /* Profile Section */
+
 .section-profile {
   text-align: center;
   padding: 20px;
@@ -156,6 +164,7 @@ footer {
 .banner-container img {
   width: 100%;
   max-height: 150px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -214,7 +223,8 @@ footer {
 }
 
 .btn-icon:hover {
-  color: #00eeff; /* Optional: hover effect */
+  color: #00eeff;
+  /* Optional: hover effect */
 }
 
 .icon {
@@ -223,6 +233,7 @@ footer {
 }
 
 /* General container for listings */
+
 #listings-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -235,6 +246,7 @@ footer {
 }
 
 /* Each listing card */
+
 .listing {
   background-color: #ffffff;
   border: 1px solid #ccc;
@@ -253,14 +265,17 @@ footer {
 }
 
 /* Listing image */
+
 .listing-image {
   width: 100%;
   height: 150px;
+  -o-object-fit: cover;
   object-fit: cover;
   border-radius: 8px;
 }
 
 /* Listing title */
+
 .listing h2 {
   font-size: 1.2rem;
   margin: 10px 0;
@@ -268,6 +283,7 @@ footer {
 }
 
 /* Listing description */
+
 .listing p {
   margin: 5px 0;
   color: #555;
@@ -276,6 +292,7 @@ footer {
 }
 
 /* Button for viewing details */
+
 .view-details-btn {
   display: inline-block;
   margin-top: 10px;
@@ -295,6 +312,7 @@ footer {
 }
 
 /* Media Section */
+
 .main-media-item img {
   width: 100%;
   height: auto;
@@ -305,6 +323,7 @@ footer {
 }
 
 /* Listing Details Section */
+
 .seller-info {
   display: flex;
   align-items: center;
@@ -316,11 +335,13 @@ footer {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  -o-object-fit: cover;
   object-fit: cover;
   border: 1px solid #ddd;
 }
 
 /* Bids Section */
+
 .bids-list {
   list-style: none;
   padding: 0;
@@ -341,6 +362,7 @@ footer {
 }
 
 /* Place Bid Section */
+
 .form-bid {
   display: flex;
   flex-direction: column;
@@ -374,12 +396,14 @@ footer {
 }
 
 /* Deadline Section */
+
 #deadline {
   font-weight: bold;
   color: #007bff;
 }
 
 /* Media Gallery Section */
+
 .media-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -410,24 +434,30 @@ footer {
 }
 
 /* Success alert */
+
 .alert-success {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
+  /* Green */
   box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
 }
 
 /* Error alert */
+
 .alert-error {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
+  /* Red */
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
 }
 
 /* Show animation */
+
 .alert.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
 /* Fade-out animation */
+
 .alert.fade-out {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
