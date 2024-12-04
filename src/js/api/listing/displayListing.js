@@ -5,88 +5,148 @@ import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { recentBidsToggle } from "../../components/buttons.js";
 import { displayListings } from "./displayListings.js";
+import { showErrorAlert } from "../../global/alert.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
+  mainContainer.innerHTML = ""; // Clear previous content
 
-  // Additional elements not covered by "outputListings"
+  // Output shared layout using `outputListings`
+  const sharedLayout = document.createElement("div");
+  sharedLayout.innerHTML = outputListings(listing);
+  mainContainer.appendChild(sharedLayout);
+
   // Gallery
-  const gallery =
-    listing.media.length > 1
-      ? listing.media
-          .slice(1)
-          .map(
-            (media) => `
-        <img src="${media.url}" alt="${media.alt || "Listing Media"}" class="gallery-image" />
-      `,
-          )
-          .join("")
-      : "<p>No additional media available for this listing.</p>";
+  const galleryContainer = document.createElement("div");
+  galleryContainer.id = "media-gallery";
 
-  // Bids
-  const bidsHTML =
-    listing.bids && listing.bids.length
-      ? listing.bids
-          .map(
-            (bid) => `
-        <li class="bid-item">
-          <span class="bid-amount">${bid.amount} credits</span>
-          <span class="bid-time">(${new Date(bid.created).toLocaleString()})</span>
-          <span class="bid-creator">${bid.bidder?.name || "Anonymous"}</span>
-        </li>
-      `,
-          )
-          .join("")
-      : "<li class='bid-item'>No bids yet. Be the first to bid!</li>";
+  if (listing.media.length > 1) {
+    listing.media.slice(1).forEach((media) => {
+      const img = document.createElement("img");
+      img.src = media.url;
+      img.alt = media.alt || "Listing Media";
+      img.classList.add("gallery-image");
+      galleryContainer.appendChild(img);
+    });
+  } else {
+    const noMediaMessage = document.createElement("p");
+    noMediaMessage.textContent =
+      "No additional media available for this listing.";
+    galleryContainer.appendChild(noMediaMessage);
+  }
+  mainContainer.appendChild(galleryContainer);
 
-  const { hasExpired } = getListingDetails(listing);
+  // Bids Section
+  const bidListContainer = document.createElement("div");
+  bidListContainer.id = "bid-list-container";
 
-  const loggedInUser = JSON.parse(localStorage.getItem("user")); // Adjust if user info is stored elsewhere
-  const isOwner = loggedInUser && loggedInUser.name === listing.seller.name;
+  const bidListButton = document.createElement("button");
+  bidListButton.id = "bid-list-button";
+  bidListButton.classList.add("btn", "btn-primary");
+  bidListButton.textContent = "Recent Bids";
+  bidListContainer.appendChild(bidListButton);
+
+  const bidsContainer = document.createElement("div");
+  bidsContainer.id = "bids-container";
+  bidsContainer.classList.add("hidden");
+
+  const bidsList = document.createElement("ul");
+  bidsList.id = "bids-list";
+
+  if (listing.bids && listing.bids.length) {
+    listing.bids.forEach((bid) => {
+      const bidItem = document.createElement("li");
+      bidItem.classList.add("bid-item");
+
+      const bidAmount = document.createElement("span");
+      bidAmount.classList.add("bid-amount");
+      bidAmount.textContent = `${bid.amount} credits`;
+      bidItem.appendChild(bidAmount);
+
+      const bidTime = document.createElement("span");
+      bidTime.classList.add("bid-time");
+      bidTime.textContent = ` (${new Date(bid.created).toLocaleString()})`;
+      bidItem.appendChild(bidTime);
+
+      const bidCreator = document.createElement("span");
+      bidCreator.classList.add("bid-creator");
+      bidCreator.textContent = bid.bidder?.name || "Anonymous";
+      bidItem.appendChild(bidCreator);
+
+      bidsList.appendChild(bidItem);
+    });
+  } else {
+    const noBidsMessage = document.createElement("li");
+    noBidsMessage.classList.add("bid-item");
+    noBidsMessage.textContent = "No bids yet.";
+    bidsList.appendChild(noBidsMessage);
+  }
+
+  bidsContainer.appendChild(bidsList);
+  bidListContainer.appendChild(bidsContainer);
+  mainContainer.appendChild(bidListContainer);
+
+  // Description
+  const description = document.createElement("p");
+  description.textContent = listing.description || "No description available";
+  mainContainer.appendChild(description);
 
   // Bid Form
-  const bidFormHTML = hasExpired
-    ? `<button class="btn btn-secondary" disabled>Bid Closed</button>
-      <p class='info-message'><a href='/' class='go-back-link'>Go back to listings</a>.</p>`
-    : !isLoggedIn()
-      ? "<p>You need to log in to place a bid.</p>"
-      : isOwner
-        ? "<p>You cannot bid on your own listing.</p>"
-        : `
-     <div id="bid-form-container">
-       <form id="bid-form" data-listing-id="${listing.id}">
-         <label for="amount">Place your bid:</label>
-         <input type="number" id="amount" name="amount" min="1" required />
-         <button type="submit" class="btn btn-primary">Place Bid</button>
-       </form>
-     </div>
-   `;
-  const listingHTML = `
-    ${outputListings(listing)} <!-- Shared layout -->
-    
-    <!-- Recent Bids -->
-    <div id="bid-list-container">
-      <button id="bid-list-button" class="btn btn-primary">
-        Recent Bids
-      </button>
-      <div id="bids-container" class="hidden">
-        <ul id="bids-list">${bidsHTML}</ul>
-      </div>
-    </div>
+  const { hasExpired } = getListingDetails(listing);
+  const loggedInUser = JSON.parse(localStorage.getItem("user")); // Adjust storage location if needed
+  const isOwner = loggedInUser && loggedInUser.name === listing.seller.name;
 
-    <!-- Bid Form -->
-    ${bidFormHTML}
+  const bidFormContainer = document.createElement("div");
+  bidFormContainer.id = "bid-form-container";
 
-    <!-- Description -->
-    <p>${listing.description || "No description available"}</p>
+  if (hasExpired) {
+    const bidClosedButton = document.createElement("button");
+    bidClosedButton.classList.add("btn", "btn-secondary");
+    bidClosedButton.disabled = true;
+    bidClosedButton.textContent = "Bid Closed";
+    bidFormContainer.appendChild(bidClosedButton);
 
-    <!-- Gallery -->
-    <div id="media-gallery">${gallery}</div>
-  `;
+    const goBackLink = document.createElement("p");
+    goBackLink.innerHTML = `<a href='/' class='go-back-link'>Go back to listings</a>.`;
+    bidFormContainer.appendChild(goBackLink);
+  } else if (!isLoggedIn()) {
+    const loginMessage = document.createElement("p");
+    loginMessage.textContent = "You need to log in to place a bid.";
+    bidFormContainer.appendChild(loginMessage);
+  } else if (isOwner) {
+    const ownerMessage = document.createElement("p");
+    ownerMessage.textContent = "You cannot bid on your own listing.";
+    bidFormContainer.appendChild(ownerMessage);
+  } else {
+    const bidForm = document.createElement("form");
+    bidForm.id = "bid-form";
+    bidForm.setAttribute("data-listing-id", listing.id);
 
-  mainContainer.innerHTML = listingHTML;
+    const label = document.createElement("label");
+    label.htmlFor = "amount";
+    label.textContent = "Place your bid:";
+    bidForm.appendChild(label);
 
-  // Recent Bids
+    const input = document.createElement("input");
+    input.type = "number";
+    input.id = "amount";
+    input.name = "amount";
+    input.min = "1";
+    input.required = true;
+    bidForm.appendChild(input);
+
+    const submitButton = document.createElement("button");
+    submitButton.type = "submit";
+    submitButton.classList.add("btn", "btn-primary");
+    submitButton.textContent = "Place Bid";
+    bidForm.appendChild(submitButton);
+
+    bidFormContainer.appendChild(bidForm);
+  }
+
+  mainContainer.appendChild(bidFormContainer);
+
+  // Recent Bids Toggle
   recentBidsToggle("bid-list-button", "bids-container");
 
   // Initialize Bid Form if Active Auction
@@ -101,7 +161,10 @@ export async function displayUserListings(username) {
     const listingsContainer = document.getElementById("listings-container");
 
     if (listings.length === 0) {
-      listingsContainer.innerHTML = "<p>No listings created yet.</p>";
+      listingsContainer.innerHTML = "";
+      const noListingsMessage = document.createElement("p");
+      noListingsMessage.textContent = "No listings created yet.";
+      listingsContainer.appendChild(noListingsMessage);
       return;
     }
 
@@ -110,9 +173,8 @@ export async function displayUserListings(username) {
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
     console.error("Failed to fetch user listings:", error);
-
-    // Display an error message in the container if failed to fetch
-    document.getElementById("listings-container").innerHTML =
-      "<p>Unable to fetch your listings. Please try to reload page.</p>";
+    showErrorAlert(
+      "Unable to fetch your listings. Please try to reload the page.",
+    );
   }
 }

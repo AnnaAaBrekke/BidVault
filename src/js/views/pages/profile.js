@@ -14,13 +14,26 @@ function displayProfile(profile) {
   const bannerImg = document.getElementById("profile-banner");
   bannerImg.src = profile.banner.url || "../../src/images/banner-bid.jpg";
   bannerImg.alt = profile.banner.alt || "Default Banner";
+  // Set the profile name
+  const profileName = document.getElementById("profile-name");
+  profileName.textContent = profile.name || "Anonymous";
 
-  document.getElementById("profile-name").textContent =
-    profile.name || "Anonymous";
-  document.getElementById("profile-bio").textContent =
-    profile.bio || "No bio provided.";
-  document.getElementById("profile-credits").innerHTML =
-    `Current credit balance:${profile.credits || 0} credits`;
+  // Set the profile bio
+  const profileBio = document.getElementById("profile-bio");
+  profileBio.textContent = profile.bio || "No bio provided.";
+
+  // Set the profile credits dynamically
+  const profileCreditsContainer = document.getElementById("profile-credits");
+  profileCreditsContainer.textContent = ""; // Clear previous content
+
+  const creditsLabel = document.createElement("span");
+  creditsLabel.textContent = "Current credit balance: ";
+
+  const creditsValue = document.createElement("span");
+  creditsValue.textContent = `${profile.credits || 0} credits`;
+
+  profileCreditsContainer.appendChild(creditsLabel);
+  profileCreditsContainer.appendChild(creditsValue);
 
   setupPreviewInputs("avatar-update-input", "profile-avatar");
 }
