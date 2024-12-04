@@ -7,13 +7,13 @@ export function avatarUpdate() {
     "avatar-update-container",
   );
   const avatarUpdateInput = document.getElementById("avatar-update-input");
+  const avatarUpdateAlt = document.getElementById("avatar-update-alt"); // New alt input
   const avatarUpdateBtn = document.getElementById("avatar-update-btn");
   const avatarCancelBtn = document.getElementById("avatar-cancel-btn");
 
-  // Add (alt) here to ?? Because changing the images..
-
-  // Store the original avatar URL for fallback
+  // Store the original avatar URL and alt for fallback
   let originalAvatarUrl = avatarImg.src;
+  let originalAvatarAlt = avatarImg.alt;
   // Regular expression to validate URL: Chat GPT + https://regexr.com/3g1v7 created this
   const isValidUrl = (url) => {
     const urlPattern = /^https:\/\/[^\s?]+(?:\?[^\s#]*)?$/i;
@@ -33,14 +33,16 @@ export function avatarUpdate() {
     }
   };
 
-  avatarImg.addEventListener("click", async () => {
+  avatarImg.addEventListener("click", () => {
     avatarUpdateContainer.classList.remove("hidden");
-    avatarUpdateInput.value = originalAvatarUrl; // Prefill with current avatar
+    avatarUpdateInput.value = originalAvatarUrl; // Prefill with current avatar URL
+    avatarUpdateAlt.value = originalAvatarAlt; // Prefill with current avatar alt
     avatarUpdateInput.focus();
   });
 
   avatarUpdateBtn.addEventListener("click", async () => {
     const newAvatarUrl = avatarUpdateInput.value.trim();
+    const newAvatarAlt = avatarUpdateAlt.value.trim() || "User Avatar"; // Fallback alt text
 
     // Validate the new avatar URL
     if (!newAvatarUrl || !isValidUrl(newAvatarUrl)) {
@@ -56,13 +58,16 @@ export function avatarUpdate() {
     }
 
     try {
-      await updateProfile({ avatar: { url: newAvatarUrl } });
+      await updateProfile({ avatar: { url: newAvatarUrl, alt: newAvatarAlt } });
 
       avatarImg.src = newAvatarUrl;
+      avatarImg.alt = newAvatarAlt; // Update the alt text
 
       avatarUpdateContainer.classList.add("hidden");
       originalAvatarUrl = newAvatarUrl;
+      originalAvatarAlt = newAvatarAlt;
       avatarUpdateInput.value = "";
+      avatarUpdateAlt.value = "";
 
       showSuccessAlert("Avatar updated successfully!");
     } catch (error) {
@@ -74,6 +79,8 @@ export function avatarUpdate() {
   avatarCancelBtn.addEventListener("click", () => {
     avatarUpdateContainer.classList.add("hidden");
     avatarImg.src = originalAvatarUrl;
+    avatarImg.alt = originalAvatarAlt; // Revert to original alt text
     avatarUpdateInput.value = "";
+    avatarUpdateAlt.value = "";
   });
 }
