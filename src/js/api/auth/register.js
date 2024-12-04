@@ -11,12 +11,32 @@ import { handleError } from "../../global/errorMessage.js";
  */
 export async function register(userData) {
   try {
-    // Ensure payload includes only required fields
     const registerBody = {
       name: userData.name,
       email: userData.email,
       password: userData.password,
     };
+
+    // Add avatar field if provided
+    if (userData.avatarUrl) {
+      registerBody.avatar = {
+        url: userData.avatarUrl,
+        alt: userData.avatarAlt || "Default Avatar", // Fallback for alt
+      };
+    }
+
+    // Add banner field if provided
+    if (userData.bannerUrl) {
+      registerBody.banner = {
+        url: userData.bannerUrl,
+        alt: userData.bannerAlt || "Default Banner", // Fallback for alt
+      };
+    }
+
+    // Add bio if provided
+    if (userData.bio) {
+      registerBody.bio = userData.bio.trim(); // Ensure it's not just whitespace
+    }
 
     console.log("Registering with:", registerBody);
 
