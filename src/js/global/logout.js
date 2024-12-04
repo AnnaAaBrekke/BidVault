@@ -28,3 +28,5 @@ async function onLogout() {
 
   window.location.replace("/welcome");
 }
+
+// If not logged in then the log out button should not say logout but log in (later)
