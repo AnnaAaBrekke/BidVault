@@ -1,6 +1,5 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showErrorAlert } from "../../global/alert.js";
 import { handleError } from "../../global/errorMessage.js";
 
 /**
@@ -56,17 +55,12 @@ export async function register(userData) {
       return data;
     }
 
-    // Handle errors from API
     const errorDetails = await response.json().catch(() => response.text());
     console.error("Registration failed:", errorDetails);
-    showErrorAlert(
-      `Registration failed: ${errorDetails.message || "Please try again."}`,
-    );
-    throw new Error(
-      `Registration failed: ${errorDetails.message || "Unknown error"}`,
-    );
+
+    throw new Error(errorDetails.message || "Registration failed. Try again");
   } catch (error) {
-    handleError(error, "registering");
+    handleError(error, "register");
     throw error;
   }
 }

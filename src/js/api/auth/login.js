@@ -1,7 +1,6 @@
 import { API_AUTH_LOGIN } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showErrorAlert } from "../../global/alert.js";
-import { handleError } from "../../global/errorMessage.js";
+import { handleError } from "../../global/errorMessage.js"; // Import handleError instead of showErrorAlert
 
 /**
  * Logs in a user.
@@ -34,7 +33,6 @@ export async function login(userData) {
 
       localStorage.setItem("accessToken", token);
       localStorage.setItem("user", JSON.stringify(user));
-
       localStorage.setItem("name", user.name);
 
       console.log("Login successful:", user);
@@ -43,10 +41,10 @@ export async function login(userData) {
 
     const errorDetails = await response.json().catch(() => response.text());
     console.error("Login failed:", errorDetails);
-    showErrorAlert(
-      `Login failed: ${errorDetails.message || "Please check your credentials."}`,
+
+    throw new Error(
+      errorDetails.message || "Login failed. Please check your credentials.",
     );
-    throw new Error(`Login failed: ${errorDetails.message || "Unknown error"}`);
   } catch (error) {
     handleError(error, "logging in");
     throw error;

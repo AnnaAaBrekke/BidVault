@@ -435,3 +435,7 @@ footer {
     opacity 0.3s ease,
     transform 0.3s ease;
 }
+
+#listing img {
+  max-width: 200px;
+}
