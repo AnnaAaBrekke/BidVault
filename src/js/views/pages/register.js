@@ -7,4 +7,6 @@ setupPreviewInputs(
   "avatar-preview",
   "banner-url",
   "banner-preview",
+  "avatar-alt",
+  "banner-alt",
 );

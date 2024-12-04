@@ -1,6 +1,6 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { getHeaders } from "../headers.js";
-import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 
 /**
  * Registers a new user.
@@ -10,12 +10,32 @@ import { showErrorAlert } from "../../global/alert.js";
  */
 export async function register(userData) {
   try {
-    // Ensure payload includes only required fields
     const registerBody = {
       name: userData.name,
       email: userData.email,
       password: userData.password,
     };
+
+    // Add avatar field if provided
+    if (userData.avatarUrl) {
+      registerBody.avatar = {
+        url: userData.avatarUrl,
+        alt: userData.avatarAlt || "Default Avatar", // Fallback for alt
+      };
+    }
+
+    // Add banner field if provided
+    if (userData.bannerUrl) {
+      registerBody.banner = {
+        url: userData.bannerUrl,
+        alt: userData.bannerAlt || "Default Banner", // Fallback for alt
+      };
+    }
+
+    // Add bio if provided
+    if (userData.bio) {
+      registerBody.bio = userData.bio.trim(); // Ensure it's not just whitespace
+    }
 
     console.log("Registering with:", registerBody);
 
@@ -35,18 +55,12 @@ export async function register(userData) {
       return data;
     }
 
-    // Handle errors from API
     const errorDetails = await response.json().catch(() => response.text());
     console.error("Registration failed:", errorDetails);
-    showErrorAlert(
-      `Registration failed: ${errorDetails.message || "Please try again."}`,
-    );
-    throw new Error(
-      `Registration failed: ${errorDetails.message || "Unknown error"}`,
-    );
+
+    throw new Error(errorDetails.message || "Registration failed. Try again");
   } catch (error) {
-    console.error("Registration error:", error);
-    showErrorAlert(`An error occurred during registration: ${error.message}`);
+    handleError(error, "register");
     throw error;
   }
 }

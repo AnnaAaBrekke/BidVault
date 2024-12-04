@@ -3,7 +3,6 @@ import { isLoggedIn } from "../../global/authGuard.js";
 import { fetchListingsByUser } from "./listingService.js";
 import { getListingDetails, outputListings } from "./outputListing.js";
 import FormHandler from "../../components/form/formHandler.js";
-import { bidHandler } from "../../components/bid.js";
 import { recentBidsToggle } from "../../components/buttons.js";
 import { displayListings } from "./displayListings.js";
 
@@ -42,23 +41,26 @@ export function displaySingleListing(listing) {
 
   const { hasExpired } = getListingDetails(listing);
 
-  // Bid Form
-  const bidFormHTML =
-    isLoggedIn() && !hasExpired
-      ? `
-    <div id="bid-form-container">
-      <form id="bid-form" data-listing-id="${listing.id}">
-        <label for="bid-amount">Place your bid:</label>
-        <input type="number" id="bid-amount" name="bid-amount" min="1" required />
-        <button type="submit" class="btn btn-primary">Place Bid</button>
-      </form>
-    </div>
-  `
-      : isLoggedIn()
-        ? `  <button class="btn btn-secondary" disabled>Bid Closed</button>
-        <p class='info-message'><a href='/' class='go-back-link'>Go back to listings</a>.</p>`
-        : "<p>You need to log in to place a bid.</p>";
+  const loggedInUser = JSON.parse(localStorage.getItem("user")); // Adjust if user info is stored elsewhere
+  const isOwner = loggedInUser && loggedInUser.name === listing.seller.name;
 
+  // Bid Form
+  const bidFormHTML = hasExpired
+    ? `<button class="btn btn-secondary" disabled>Bid Closed</button>
+      <p class='info-message'><a href='/' class='go-back-link'>Go back to listings</a>.</p>`
+    : !isLoggedIn()
+      ? "<p>You need to log in to place a bid.</p>"
+      : isOwner
+        ? "<p>You cannot bid on your own listing.</p>"
+        : `
+     <div id="bid-form-container">
+       <form id="bid-form" data-listing-id="${listing.id}">
+         <label for="amount">Place your bid:</label>
+         <input type="number" id="amount" name="amount" min="1" required />
+         <button type="submit" class="btn btn-primary">Place Bid</button>
+       </form>
+     </div>
+   `;
   const listingHTML = `
     ${outputListings(listing)} <!-- Shared layout -->
     
@@ -88,9 +90,8 @@ export function displaySingleListing(listing) {
   recentBidsToggle("bid-list-button", "bids-container");
 
   // Initialize Bid Form if Active Auction
-  if (isLoggedIn() && !hasExpired) {
+  if (!hasExpired && isLoggedIn() && !isOwner) {
     FormHandler.initialize("#bid-form", "bidOnListing");
-    bidHandler();
   }
 }
 

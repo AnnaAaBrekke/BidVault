@@ -21,6 +21,6 @@ export function requireAuth(redirectUrl = "/welcome") {
 
     setTimeout(() => {
       window.location.href = redirectUrl;
-    }, 2000);
+    }, 1000);
   }
 }

@@ -7,6 +7,8 @@ import {
 import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
+import { handleError } from "../../global/errorMessage.js";
+import { validateImageUrl } from "../../global/validImg.js";
 
 export default class FormHandler {
   constructor() {}
@@ -44,24 +46,25 @@ export default class FormHandler {
   static getFormData(form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
-    // Collect media gallery inputs into an array of objects
-    const mediaInputs = Array.from(form.querySelectorAll(".media-input")); // Convert NodeList to Array
+    const mediaInputs = Array.from(form.querySelectorAll(".media-input"));
     const mediaUrls = [];
 
+    // Validate and collect media URLs
     mediaInputs.forEach((input) => {
-      if (input.value.trim()) {
-        // Add non-empty media URL as an object
-        mediaUrls.push({ url: input.value.trim(), alt: "" });
+      const url = input.value.trim();
+      if (url) {
+        if (!validateImageUrl(input)) {
+          // Skip invalid media URLs
+          return;
+        }
+        mediaUrls.push({ url, alt: "" });
       }
     });
 
-    // Assign the structured media array to data
     if (mediaUrls.length > 0) {
       data.media = mediaUrls;
     }
 
-    // Handle listingId if present
     const listingId = form.dataset.listingId;
     if (listingId) {
       data.listingId = listingId;
@@ -69,7 +72,6 @@ export default class FormHandler {
 
     return data;
   }
-
   /**
    * Validate form data based on the action.
    *
@@ -103,27 +105,15 @@ export default class FormHandler {
       }
     }
     if (action === "createListing") {
-      if (
-        !data.title ||
-        !data.mainImgUrl ||
-        !data.description ||
-        !data.endsAt
-      ) {
+      if (!data.title || !data.description || !data.endsAt) {
         return errors.requiredFields;
-      }
-
-      if (
-        !data.media ||
-        !Array.isArray(data.media) ||
-        data.media.length === 0
-      ) {
-        return "At least one media item is required.";
       }
     }
 
     if (action === "bidOnListing") {
       const amount = parseFloat(data.amount);
-      if (!amount || amount <= 0) {
+      console.log("Validating bid amount:", data.amount, "Parsed:", amount);
+      if (isNaN(amount) || amount <= 0) {
         return errors.invalidBid;
       }
     }
@@ -157,7 +147,10 @@ export default class FormHandler {
     };
 
     if (!actions[action]) {
-      showErrorAlert(`Unknown action: "${action}"`);
+      handleError(
+        new Error(`Unknown action: "${action}"`),
+        "FormHandler.initialize",
+      );
       console.error(`Unknown action: "${action}"`);
       return;
     }
@@ -178,9 +171,15 @@ export default class FormHandler {
         .querySelectorAll("input, textarea, button")
         .forEach((el) => (el.disabled = true));
 
-      console.log("Submitting login with data:", data); // Log before calling the login action
+      let result;
+      if (action === "bidOnListing") {
+        // Pass `listingId` and `amount` as separate arguments for the bid on listing
+        result = await actions[action](data.listingId, parseFloat(data.amount));
+      } else {
+        // Pass the entire `data` object for other actions
+        result = await actions[action](data);
+      }
 
-      const result = await actions[action](data);
       console.log("Action result:", result);
 
       showSuccessAlert(`${action} successful!`);
@@ -197,12 +196,11 @@ export default class FormHandler {
           window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        if (result?.id) {
-          setTimeout(() => {
-            // Redirect to profile update page
-            window.location.href = "/profile";
-          }, 1000);
-        }
+        // Check if result contains the name property
+        setTimeout(() => {
+          // Redirect to profile page after successful update
+          window.location.href = "/profile/";
+        }, 1500);
       } else if (action === "createListing") {
         if (result?.id) {
           setTimeout(() => {
@@ -212,15 +210,11 @@ export default class FormHandler {
           showErrorAlert("Failed to retrieve listing ID. Please try again.");
         }
       } else if (action === "bidOnListing") {
+        setTimeout(() => window.location.reload(), 1500);
         showSuccessAlert(`Bid of ${data.amount} credits placed successfully!`);
-        setTimeout(() => {
-          // Reload the page after placing the bid
-          window.location.reload();
-        }, 1500);
       }
     } catch (error) {
-      showErrorAlert(`An error occurred: ${error.message}`);
-      console.error(`Error during "${action}" submission:`, error);
+      handleError(error, action);
     } finally {
       form
         .querySelectorAll("input, textarea, button")

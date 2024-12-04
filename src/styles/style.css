@@ -47,6 +47,25 @@ main {
   max-width: 500px;
 }
 
+/* Invalid input field styling */
+input.invalid,
+textarea.invalid {
+  border-color: red; /* Red border for invalid inputs */
+  background-color: #f8d7da; /* Light red background to indicate an error */
+}
+
+input.invalid:focus,
+textarea.invalid:focus {
+  border-color: darkred; /* Darker border when focused */
+  outline: none;
+}
+
+/* Optional: error message styling */
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+}
+
 .section-register h1 {
   text-align: center;
   color: #007bff;
@@ -372,4 +391,51 @@ footer {
   height: auto;
   border-radius: 8px;
   border: 1px solid #ddd;
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Success alert */
+.alert-success {
+  background-color: #4caf50; /* Green */
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
+}
+
+/* Error alert */
+.alert-error {
+  background-color: #f44336; /* Red */
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+/* Show animation */
+.alert.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Fade-out animation */
+.alert.fade-out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+#listing img {
+  max-width: 200px;
 }

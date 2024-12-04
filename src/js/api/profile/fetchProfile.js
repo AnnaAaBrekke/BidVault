@@ -1,4 +1,5 @@
 import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
 
@@ -12,9 +13,6 @@ export async function fetchProfile() {
     const username = localStorage.getItem("name");
     const accessToken = localStorage.getItem("accessToken");
 
-    console.log("Username:", username);
-    console.log("Access Token:", accessToken); // Debug log
-
     if (!username || !accessToken) {
       showErrorAlert("Username or Access Token is missing. Please log in.");
       throw new Error("Missing username or access token.");
@@ -26,16 +24,13 @@ export async function fetchProfile() {
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      console.error("Error response:", errorMessage); // Debug log
-      throw new Error(`Error fetching profile: ${errorMessage}`);
+      throw new Error("Failed to fetch profile.");
     }
 
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    showErrorAlert(`Error fetching profile: ${error.message}`);
+    handleError(error, "fetching profile");
     throw error;
   }
 }

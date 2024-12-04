@@ -2,17 +2,18 @@ import { displayUserListings } from "../../api/listing/displayListing.js";
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import { avatarUpdate } from "../../components/avatar.js";
 import { setupPreviewInputs } from "../../components/previewHandler.js";
-import { showErrorAlert } from "../../global/alert.js";
+import { requireAuth } from "../../global/authGuard.js";
+
+requireAuth();
 
 function displayProfile(profile) {
   const avatarImg = document.getElementById("profile-avatar");
-  avatarImg.src = profile.avatar.url || "../../src/images/avatar.jpg";
-  avatarImg.alt = profile.avatar.alt || "Profile Avatar";
+  avatarImg.src = profile.avatar?.url || "../../src/images/avatar.jpg";
+  avatarImg.alt = profile.avatar?.alt || "Default Avatar";
 
-  document.getElementById("profile-banner").src =
-    profile.banner.url || "../images/banner-bid.jpg";
-  document.getElementById("profile-banner").alt =
-    profile.banner.alt || "Profile Banner";
+  const bannerImg = document.getElementById("profile-banner");
+  bannerImg.src = profile.banner.url || "../../src/images/banner-bid.jpg";
+  bannerImg.alt = profile.banner.alt || "Default Banner";
 
   document.getElementById("profile-name").textContent =
     profile.name || "Anonymous";
@@ -32,10 +33,10 @@ async function initProfile() {
 
     if (profile.name) {
       await displayUserListings(profile.name);
+      console.log(profile);
     }
   } catch (error) {
-    console.error("Failed to display and init profile", error);
-    showErrorAlert("Failed to display profile details");
+    console.error(error, "fetching profile details");
   }
 }
 
