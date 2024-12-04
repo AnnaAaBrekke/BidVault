@@ -40,7 +40,7 @@ export function initializeSearch(
       updateHeadline(query, results.length);
 
       // Clear previous results
-      listingsContainer.textContent = ""; 
+      listingsContainer.textContent = "";
 
       if (results.length === 0) {
         // Create a "no results" message dynamically
