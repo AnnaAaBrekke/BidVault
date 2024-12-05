@@ -15,7 +15,7 @@ function showAlert(message, type) {
 
   setTimeout(() => {
     alertContainer.classList.add("show");
-  }, 1000);
+  }, 500);
 
   setTimeout(() => {
     alertContainer.classList.remove("show");

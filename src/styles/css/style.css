@@ -469,3 +469,15 @@ footer {
 #listing img {
   max-width: 200px;
 }
+
+.image-preview {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.image-preview.hidden {
+  display: none;
+}

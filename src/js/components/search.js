@@ -1,6 +1,6 @@
-import { displayListings } from "../api/listing/displayListings.js";
 import { searchListings } from "../api/listing/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
+import { displayListings } from "./listings/displayListings.js";
 
 /**
  * Initializes the search functionality for a page.
@@ -21,13 +21,11 @@ export function initializeSearch(
   const searchHeadline = document.getElementById(searchHeadlineId);
 
   const updateHeadline = (query, resultsCount) => {
-    if (resultsCount > 0) {
-      searchHeadline.textContent = `Search Results for "${query}" (${resultsCount} found)`;
-      searchHeadline.classList.remove("hidden");
-    } else {
-      searchHeadline.textContent = `No results found for "${query}"`;
-      searchHeadline.classList.remove("hidden");
-    }
+    searchHeadline.textContent =
+      resultsCount > 0
+        ? `Search Results for "${query}" (${resultsCount} found)`
+        : `No results found for "${query}"`;
+    searchHeadline.classList.remove("hidden");
   };
 
   const handleSearch = async () => {
@@ -36,17 +34,31 @@ export function initializeSearch(
       showErrorAlert("Please enter your search.");
       return;
     }
+
     try {
       const results = await searchListings(query);
       updateHeadline(query, results.length);
+
+      // Clear previous results
+      listingsContainer.textContent = "";
+
       if (results.length === 0) {
-        listingsContainer.innerHTML = "<p>No results found.</p>";
+        // Create a "no results" message dynamically
+        const noResultsMessage = document.createElement("p");
+        noResultsMessage.textContent = "No listings found for this search.";
+        listingsContainer.appendChild(noResultsMessage);
       } else {
+        // Display search results
         displayListings(results);
       }
     } catch (error) {
       console.error(error, "searching listings");
-      listingsContainer.innerHTML = "<p>An error occurred while searching.</p>";
+
+      // Create an error message dynamically
+      listingsContainer.textContent = ""; // Clear container
+      const errorMessage = document.createElement("p");
+      errorMessage.textContent = "An error occurred while searching.";
+      listingsContainer.appendChild(errorMessage);
     }
   };
 

@@ -1,15 +1,21 @@
-import { displayListings } from "../../api/listing/displayListings.js";
 import { fetchListings } from "../../api/listing/listingService.js";
+import { displayListings } from "../../components/listings/displayListings.js";
 import { initializeSearch } from "../../components/search.js";
 
-// Main Function to Fetch and Display Listings
-async function main() {
+async function displayHome() {
   const listings = await fetchListings();
-  displayListings(listings);
+
+  // Sort listings by date created (newest first)
+  const sortedListings = listings.sort(
+    (a, b) => new Date(b.created) - new Date(a.created),
+  );
+  // 12 most recent listings
+  const recentListings = sortedListings.slice(0, 12);
+
+  displayListings(recentListings);
 }
 
-// Run the main function when the page loads
-main();
+displayHome();
 initializeSearch(
   "search-input",
   "search-button",

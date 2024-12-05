@@ -8,7 +8,7 @@ import { updateProfile } from "../../api/profile/update.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
 import { handleError } from "../../global/errorMessage.js";
-import { validateImageUrl } from "../../global/validImg.js";
+import { validateImageUrl } from "./utils/validImg.js";
 
 export default class FormHandler {
   constructor() {}

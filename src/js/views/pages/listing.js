@@ -1,5 +1,5 @@
-import { displaySingleListing } from "../../api/listing/displayListing.js";
 import { fetchSingleListing } from "../../api/listing/listingService.js";
+import { displaySingleListing } from "../../components/listings/displayListing.js";
 import { showErrorAlert } from "../../global/alert.js";
 import { handleError } from "../../global/errorMessage.js";
 
