@@ -1,7 +1,6 @@
 function notFound() {
   const notFoundContainer = document.createElement("div");
-  notFoundContainer.style.textAlign = "center";
-  notFoundContainer.style.marginTop = "50px";
+  notFoundContainer.classList.add("not-found-container");
 
   const heading = document.createElement("h1");
   heading.textContent = "404 - Page Not Found";
@@ -14,8 +13,10 @@ function notFound() {
 
   const homeLink = document.createElement("a");
   homeLink.href = "/";
-
+  homeLink.textContent = "Return to Home";
+  homeLink.classList.add("not-found-link");
   notFoundContainer.appendChild(homeLink);
+
   document.body.appendChild(notFoundContainer);
 
   setTimeout(() => {

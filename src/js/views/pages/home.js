@@ -2,14 +2,13 @@ import { displayListings } from "../../api/listing/displayListings.js";
 import { fetchListings } from "../../api/listing/listingService.js";
 import { initializeSearch } from "../../components/search.js";
 
-// Main Function to Fetch and Display Listings
-async function main() {
+async function displayHome() {
   const listings = await fetchListings();
   displayListings(listings);
 }
 
 // Run the main function when the page loads
-main();
+displayHome();
 initializeSearch(
   "search-input",
   "search-button",
