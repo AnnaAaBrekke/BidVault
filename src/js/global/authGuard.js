@@ -13,14 +13,14 @@ export function isLoggedIn() {
 /**
  * Redirects the user to the login page if not logged in.
  *
- * @param {string} [redirectUrl="/welcome"] - The URL to redirect to.
- */
-export function requireAuth(redirectUrl = "/welcome") {
+ * **/
+
+export function requireAuth() {
   if (!isLoggedIn()) {
     showErrorAlert("You must be logged in to view this page.");
 
     setTimeout(() => {
-      window.location.href = redirectUrl;
+      window.location.href = "/welcome";
     }, 1000);
   }
 }

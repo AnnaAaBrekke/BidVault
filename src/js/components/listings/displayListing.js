@@ -129,7 +129,7 @@ export function displaySingleListing(listing) {
   description.textContent = listing.description || "No description available";
   mainContainer.appendChild(description);
 
-  // Gallery 
+  // Gallery
   const galleryContainer = document.createElement("div");
   galleryContainer.id = "media-gallery";
 
