@@ -6,8 +6,6 @@ export default async function router(pathname = window.location.pathname) {
       .replace(/\/$/, "") || // Remove trailing slash
     "/"; // Default to "/" for the root path
 
-  console.log(`Routing to normalized path: ${normalizedPath}`);
-
   try {
     switch (normalizedPath) {
       case "/":
