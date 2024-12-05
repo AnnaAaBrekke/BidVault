@@ -1,8 +1,11 @@
 import { updateCountdown } from "../../components/countdown.js";
 
-function displayItemImg(media, altText, defaultUrl) {
-  const mediaUrl = media && media.length > 0 ? media[0].url : defaultUrl;
-  return `<img src="${mediaUrl}" alt="${altText}" class="listing-image" />`;
+function createImage(media, altText, defaultUrl) {
+  const img = document.createElement("img");
+  img.src = media && media.length > 0 ? media[0].url : defaultUrl;
+  img.alt = altText;
+  img.classList.add("listing-image");
+  return img;
 }
 
 function calculateCurrentBid(bids) {
@@ -24,39 +27,70 @@ export function getListingDetails(listing) {
 }
 
 export function outputListings(listing) {
-  const mediaHtml = displayItemImg(
+  const { hasExpired, lastBid } = getListingDetails(listing);
+
+  // Create main container
+  const listingContent = document.createElement("div");
+  listingContent.classList.add("listing-content");
+  if (hasExpired) listingContent.classList.add("expired");
+
+  // Add listing image
+  const mediaImg = createImage(
     listing.media,
     listing.title,
     "../../src/images/logo.jpg",
   );
+  listingContent.appendChild(mediaImg);
 
-  const { hasExpired, lastBid } = getListingDetails(listing);
+  // Add seller container
+  const sellerContainer = document.createElement("div");
+  sellerContainer.id = "seller-container";
 
-  // Call updateCountdown and set interval only if the listing is not expired
-  if (!hasExpired) {
+  const sellerAvatar = document.createElement("img");
+  sellerAvatar.src =
+    listing.seller?.avatar?.url || "../../src/images/avatar.jpg";
+  sellerAvatar.alt = `${listing.seller?.name || "Seller"}'s avatar`;
+  sellerAvatar.classList.add("seller-avatar");
+  sellerContainer.appendChild(sellerAvatar);
+
+  const sellerName = document.createElement("p");
+  const strongName = document.createElement("strong");
+  strongName.textContent = listing.seller?.name || "Unknown Seller";
+  sellerName.appendChild(strongName);
+  sellerContainer.appendChild(sellerName);
+
+  listingContent.appendChild(sellerContainer);
+
+  // Add title
+  const title = document.createElement("h2");
+  title.textContent = listing.title;
+  listingContent.appendChild(title);
+
+  // Add bid info
+  const currentBid = document.createElement("p");
+  currentBid.textContent = `${hasExpired ? "Winning Bid" : "Current Bid"}: ${lastBid} credits`;
+  listingContent.appendChild(currentBid);
+
+  const totalBids = document.createElement("p");
+  totalBids.textContent = `Bids: ${listing._count?.bids || 0}`;
+  listingContent.appendChild(totalBids);
+
+  // Countdown
+  const countdown = document.createElement("p");
+  countdown.id = `countdown-${listing.id}`;
+  listingContent.appendChild(countdown);
+
+  // If expired, add closed message
+  if (hasExpired) {
+    const closedMessage = document.createElement("p");
+    closedMessage.classList.add("closed-message");
+    closedMessage.textContent = "This auction has ended.";
+    listingContent.appendChild(closedMessage);
+  } else {
+    // Update countdown if not expired
     updateCountdown(listing.endsAt, listing.id);
     setInterval(() => updateCountdown(listing.endsAt, listing.id), 1000);
   }
-  let listingHTML = `
-  <div class="listing-content ${hasExpired ? "expired" : ""}">
-    ${mediaHtml}
-    <div id="seller-container">
-      <img src="${listing.seller?.avatar?.url || "../../src/images/avatar.jpg"}"
-           alt="${listing.seller?.name || "Seller"}'s avatar" class="seller-avatar" />
-      <p><strong>${listing.seller?.name || "Unknown Seller"}</strong></p>
-    </div>
-  
-    <h2>${listing.title}</h2>
-    <p><strong>${hasExpired ? "Winning Bid" : "Current Bid"}:</strong> ${lastBid} credits</p>
-    <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
-    <p id="countdown-${listing.id}"></p>
-`;
 
-  if (hasExpired) {
-    listingHTML += `
-    <p class="closed-message">This auction has ended.</p>
-  `;
-  }
-
-  return listingHTML;
+  return listingContent;
 }

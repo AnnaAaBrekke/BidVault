@@ -9,11 +9,12 @@ import { showErrorAlert } from "../../global/alert.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
-  mainContainer.innerHTML = ""; // Clear previous content
 
-  // Output shared layout using `outputListings`
-  const sharedLayout = document.createElement("div");
-  sharedLayout.innerHTML = outputListings(listing);
+  while (mainContainer.firstChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
+
+  const sharedLayout = outputListings(listing);
   mainContainer.appendChild(sharedLayout);
 
   // Gallery
@@ -107,7 +108,11 @@ export function displaySingleListing(listing) {
     bidFormContainer.appendChild(bidClosedButton);
 
     const goBackLink = document.createElement("p");
-    goBackLink.innerHTML = `<a href='/' class='go-back-link'>Go back to listings</a>.`;
+    const backLink = document.createElement("a");
+    backLink.href = "/";
+    backLink.classList.add("go-back-link");
+    backLink.textContent = "Go back to listings";
+    goBackLink.appendChild(backLink);
     bidFormContainer.appendChild(goBackLink);
   } else if (!isLoggedIn()) {
     const loginMessage = document.createElement("p");
@@ -160,8 +165,11 @@ export async function displayUserListings(username) {
     const listings = await fetchListingsByUser(username);
     const listingsContainer = document.getElementById("listings-container");
 
+    while (listingsContainer.firstChild) {
+      listingsContainer.removeChild(listingsContainer.firstChild);
+    }
+
     if (listings.length === 0) {
-      listingsContainer.innerHTML = "";
       const noListingsMessage = document.createElement("p");
       noListingsMessage.textContent = "No listings created yet.";
       listingsContainer.appendChild(noListingsMessage);
