@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js}", "./index.html", "./welcome.html"], // Add paths to your HTML and JS files
+  content: [
+    "./index.html",
+    "./welcome.html",
+    "./auth/**/*.html",
+    "./profile/**/*.html",
+    "./listing/**/*.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
   },

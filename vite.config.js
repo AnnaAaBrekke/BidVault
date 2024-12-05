@@ -8,6 +8,9 @@ const __dirname = dirname(__filename);
 
 export default defineConfig({
   appType: "mpa",
+  css: {
+    postcss: "./postcss.config.js",
+  },
   build: {
     rollupOptions: {
       input: {
