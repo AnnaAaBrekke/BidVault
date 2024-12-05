@@ -1,6 +1,6 @@
-import { updateProfile } from "../api/profile/update.js";
-import { showErrorAlert, showSuccessAlert } from "../global/alert.js";
-import { validateImageUrl } from "../global/validImg.js";
+import { updateProfile } from "../../api/profile/update.js";
+import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
+import { validateImageUrl } from "../../global/validImg.js";
 
 export function avatarUpdate() {
   const avatarImg = document.getElementById("profile-avatar");

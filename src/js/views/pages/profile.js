@@ -1,6 +1,6 @@
 import { displayUserListings } from "../../api/listing/displayListing.js";
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
-import { avatarUpdate } from "../../components/avatar.js";
+import { avatarUpdate } from "../../components/profile/avatar.js";
 import { displayProfile } from "../../components/profile/displayProfile.js";
 import { requireAuth } from "../../global/authGuard.js";
 
