@@ -124,12 +124,12 @@ export function displaySingleListing(listing) {
 
   mainContainer.appendChild(bidFormContainer);
 
-  // Description (Moved here after the bid form)
+  // Description
   const description = document.createElement("p");
   description.textContent = listing.description || "No description available";
   mainContainer.appendChild(description);
 
-  // Gallery (Moved here after the description)
+  // Gallery 
   const galleryContainer = document.createElement("div");
   galleryContainer.id = "media-gallery";
 
@@ -149,10 +149,10 @@ export function displaySingleListing(listing) {
   }
   mainContainer.appendChild(galleryContainer);
 
-  // Recent Bids Toggle
+  // Recent Bids (toggle)
   recentBidsToggle("bid-list-button", "bids-container");
 
-  // Initialize Bid Form if Active Auction
+  // Initialize Bid Form if it is an Active Auction
   if (!hasExpired && isLoggedIn() && !isOwner) {
     FormHandler.initialize("#bid-form", "bidOnListing");
   }

@@ -13,7 +13,7 @@ export async function handleError(error, operation) {
 
   if (error.response) {
     try {
-      const errorData = await error.response.json(); // Assuming the response is JSON
+      const errorData = await error.response.json();
 
       if (errorData && errorData.errors && errorData.errors.length > 0) {
         errorMessage = errorData.errors[0];

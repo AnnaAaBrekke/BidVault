@@ -1,4 +1,5 @@
 import { deleteListing } from "../api/listing/listingService.js";
+import { showSuccessAlert } from "../global/alert.js";
 
 export async function handleDelete(event) {
   if (!event.target.matches(".delete-button, .delete-button *")) {
@@ -20,6 +21,8 @@ export async function handleDelete(event) {
 
     const listingElement = document.getElementById(`listing-${listingId}`);
     if (listingElement) listingElement.remove();
+
+    showSuccessAlert("Listing deleted successfully.");
   } catch (error) {
     console.error(error, "deleting listing");
   }

@@ -24,12 +24,17 @@
         <h1 id="create-listing-title" class="title">Create New Listing</h1>
         <form id="create-listing-form" class="form form-create-listing">
           <!-- Main Image -->
-          <label for="mainImgUrl" class="form-label">Main Image</label>
+          <img
+            id="main-image-preview"
+            class="image-preview"
+            alt="Main Image Preview"
+          />
+          <label for="mainImgUrl">Main Image</label>
           <input
             type="url"
             id="mainImgUrl"
             name="mainImgUrl"
-            class="form-input media-input"
+            class="form-input"
             placeholder="Enter main image URL"
             required
           />
@@ -37,7 +42,7 @@
             type="text"
             class="form-input media-alt"
             name="mediaAlt"
-            placeholder="Enter alt text for main image (optional)"
+            placeholder="Enter alt text for main image"
           />
 
           <!-- Title -->
@@ -78,6 +83,7 @@
           <div id="media-container" class="media-container">
             <!-- Initial 5 Media Input Fields -->
             <div class="media-item">
+              <img class="image-preview hidden" alt="Gallery Image 1 Preview" />
               <input
                 type="url"
                 class="form-input media-input"
@@ -85,56 +91,60 @@
                 placeholder="Enter the URL for Media 1"
                 required
               />
+              <input
+                type="text"
+                class="form-input media-alt"
+                name="mediaAlt"
+                placeholder="Enter alt text for Media 1"
+              />
             </div>
-            <input
-              type="text"
-              class="form-input media-alt"
-              name="mediaAlt"
-              placeholder="Enter alt text for Media 1 (optional)"
-            />
             <div class="media-item">
+              <img class="image-preview hidden" alt="Gallery Image 2 Preview" />
               <input
                 type="url"
                 class="form-input media-input"
                 name="media"
                 placeholder="Enter the URL for Media 2"
               />
+              <input
+                type="text"
+                class="form-input media-alt"
+                name="mediaAlt"
+                placeholder="Enter alt text for Media 2"
+              />
             </div>
-            <input
-              type="text"
-              class="form-input media-alt"
-              name="mediaAlt"
-              placeholder="Enter alt text for Media 2 (optional)"
-            />
             <div class="media-item">
+              <img class="image-preview hidden" alt="Gallery Image 3 Preview" />
               <input
                 type="url"
                 class="form-input media-input"
                 name="media"
                 placeholder="Enter the URL for Media 3"
               />
+              <input
+                type="text"
+                class="form-input media-alt"
+                name="mediaAlt"
+                placeholder="Enter alt text for Media 3"
+              />
             </div>
-            <input
-              type="text"
-              class="form-input media-alt"
-              name="mediaAlt"
-              placeholder="Enter alt text for Media 3 (optional)"
-            />
             <div class="media-item">
+              <img class="image-preview hidden" alt="Gallery Image 4 Preview" />
               <input
                 type="url"
                 class="form-input media-input"
                 name="media"
                 placeholder="Enter the URL for Media 4"
               />
+              <input
+                type="text"
+                class="form-input media-alt"
+                name="mediaAlt"
+                placeholder="Enter alt text for Media 4"
+              />
             </div>
-            <input
-              type="text"
-              class="form-input media-alt"
-              name="mediaAlt"
-              placeholder="Enter alt text for Media 4 (optional)"
-            />
             <div class="media-item">
+              <img class="image-preview hidden" alt="Gallery Image 5 Preview" />
               <input
                 type="url"
                 class="form-input media-input"
@@ -145,7 +155,7 @@
                 type="text"
                 class="form-input media-alt"
                 name="mediaAlt"
-                placeholder="Enter alt text for Media 5 (optional)"
+                placeholder="Enter alt text for Media 5"
               />
             </div>
           </div>

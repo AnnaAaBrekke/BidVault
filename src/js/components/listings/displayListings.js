@@ -14,8 +14,8 @@ export function displayListings(listings, addDeleteButtons = false) {
     listingDiv.id = `listing-${listing.id}`;
     listingDiv.classList.add("listing");
 
-    //  listing content using outputListings
-    const listingContent = outputListings(listing); // Now returns a DOM element
+    // Listing content using outputListings (shared output)
+    const listingContent = outputListings(listing); 
     listingDiv.appendChild(listingContent);
 
     // 'View Details' button
