@@ -1,4 +1,4 @@
-import { setupPreviewInputs } from "../previewHandler.js";
+import { setupPreviewInputs } from "../form/utils/previewHandler.js";
 
 /**
  * Display profile information dynamically.

@@ -1,4 +1,4 @@
-import { validateImageUrl } from "../global/validImg.js";
+import { validateImageUrl } from "./validImg.js";
 
 export function setupPreviewInputs(
   avatarInputId,

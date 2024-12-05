@@ -1,4 +1,4 @@
-import { showErrorAlert } from "./alert.js";
+import { showErrorAlert } from "../../../global/alert.js";
 
 /**
  * Validates a single media URL or input field.

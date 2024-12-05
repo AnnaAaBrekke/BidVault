@@ -1,7 +1,7 @@
 import { fetchProfile } from "../../api/profile/fetchProfile.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { populateUpdateForm } from "../../components/form/populateForm.js";
-import { setupPreviewInputs } from "../../components/previewHandler.js";
+import { setupPreviewInputs } from "../../components/form/utils/previewHandler.js";
 import { showErrorAlert } from "../../global/alert.js";
 import { setLogoutListener } from "../../global/logout.js";
 

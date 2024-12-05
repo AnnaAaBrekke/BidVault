@@ -1,11 +1,8 @@
-import { handleDelete } from "../../components/delete.js";
 import { isLoggedIn } from "../../global/authGuard.js";
-import { fetchListingsByUser } from "./listingService.js";
-import { getListingDetails, outputListings } from "./outputListing.js";
-import FormHandler from "../../components/form/formHandler.js";
-import { recentBidsToggle } from "../../components/buttons.js";
-import { displayListings } from "./displayListings.js";
-import { showErrorAlert } from "../../global/alert.js";
+import { outputListings } from "./outputListing.js";
+import FormHandler from "../form/formHandler.js";
+import { recentBidsToggle } from "../buttons.js";
+import { bidTimeDetails } from "./utils/timeBid.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -93,7 +90,7 @@ export function displaySingleListing(listing) {
   mainContainer.appendChild(description);
 
   // Bid Form
-  const { hasExpired } = getListingDetails(listing);
+  const { hasExpired } = bidTimeDetails(listing);
   const loggedInUser = JSON.parse(localStorage.getItem("user")); // Adjust storage location if needed
   const isOwner = loggedInUser && loggedInUser.name === listing.seller.name;
 
@@ -157,32 +154,5 @@ export function displaySingleListing(listing) {
   // Initialize Bid Form if Active Auction
   if (!hasExpired && isLoggedIn() && !isOwner) {
     FormHandler.initialize("#bid-form", "bidOnListing");
-  }
-}
-
-export async function displayUserListings(username) {
-  try {
-    const listings = await fetchListingsByUser(username);
-    const listingsContainer = document.getElementById("listings-container");
-
-    while (listingsContainer.firstChild) {
-      listingsContainer.removeChild(listingsContainer.firstChild);
-    }
-
-    if (listings.length === 0) {
-      const noListingsMessage = document.createElement("p");
-      noListingsMessage.textContent = "No listings created yet.";
-      listingsContainer.appendChild(noListingsMessage);
-      return;
-    }
-
-    displayListings(listings, true);
-
-    listingsContainer.addEventListener("click", handleDelete);
-  } catch (error) {
-    console.error("Failed to fetch user listings:", error);
-    showErrorAlert(
-      "Unable to fetch your listings. Please try to reload the page.",
-    );
   }
 }

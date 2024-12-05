@@ -1,5 +1,5 @@
-import { displayListings } from "../../api/listing/displayListings.js";
 import { fetchListings } from "../../api/listing/listingService.js";
+import { displayListings } from "../../components/listings/displayListings.js";
 import { initializeSearch } from "../../components/search.js";
 
 async function displayHome() {
