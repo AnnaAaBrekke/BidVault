@@ -7,32 +7,13 @@ import { bidTimeDetails } from "./utils/timeBid.js";
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
 
+  // Clear the container
   while (mainContainer.firstChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
 
   const sharedLayout = outputListings(listing);
   mainContainer.appendChild(sharedLayout);
-
-  // Gallery
-  const galleryContainer = document.createElement("div");
-  galleryContainer.id = "media-gallery";
-
-  if (listing.media.length > 1) {
-    listing.media.slice(1).forEach((media) => {
-      const img = document.createElement("img");
-      img.src = media.url;
-      img.alt = media.alt || "Listing Media";
-      img.classList.add("gallery-image");
-      galleryContainer.appendChild(img);
-    });
-  } else {
-    const noMediaMessage = document.createElement("p");
-    noMediaMessage.textContent =
-      "No additional media available for this listing.";
-    galleryContainer.appendChild(noMediaMessage);
-  }
-  mainContainer.appendChild(galleryContainer);
 
   // Bids Section
   const bidListContainer = document.createElement("div");
@@ -83,11 +64,6 @@ export function displaySingleListing(listing) {
   bidsContainer.appendChild(bidsList);
   bidListContainer.appendChild(bidsContainer);
   mainContainer.appendChild(bidListContainer);
-
-  // Description
-  const description = document.createElement("p");
-  description.textContent = listing.description || "No description available";
-  mainContainer.appendChild(description);
 
   // Bid Form
   const { hasExpired } = bidTimeDetails(listing);
@@ -147,6 +123,31 @@ export function displaySingleListing(listing) {
   }
 
   mainContainer.appendChild(bidFormContainer);
+
+  // Description (Moved here after the bid form)
+  const description = document.createElement("p");
+  description.textContent = listing.description || "No description available";
+  mainContainer.appendChild(description);
+
+  // Gallery (Moved here after the description)
+  const galleryContainer = document.createElement("div");
+  galleryContainer.id = "media-gallery";
+
+  if (listing.media.length > 1) {
+    listing.media.slice(1).forEach((media) => {
+      const img = document.createElement("img");
+      img.src = media.url;
+      img.alt = media.alt || "Listing Media";
+      img.classList.add("gallery-image");
+      galleryContainer.appendChild(img);
+    });
+  } else {
+    const noMediaMessage = document.createElement("p");
+    noMediaMessage.textContent =
+      "No additional media available for this listing.";
+    galleryContainer.appendChild(noMediaMessage);
+  }
+  mainContainer.appendChild(galleryContainer);
 
   // Recent Bids Toggle
   recentBidsToggle("bid-list-button", "bids-container");
