@@ -3,6 +3,7 @@ import { outputListings } from "./outputListing.js";
 import FormHandler from "../form/formHandler.js";
 import { recentBidsToggle } from "../buttons.js";
 import { bidTimeDetails } from "./utils/timeBid.js";
+import { renderMedia } from "./utils/media.js";
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -130,25 +131,9 @@ export function displaySingleListing(listing) {
   mainContainer.appendChild(description);
 
   // Gallery
-  const galleryContainer = document.createElement("div");
-  galleryContainer.id = "media-gallery";
-
-  if (listing.media.length > 1) {
-    listing.media.slice(1).forEach((media) => {
-      const img = document.createElement("img");
-      img.src = media.url;
-      img.alt = media.alt || "Listing Media";
-      img.classList.add("gallery-image");
-      galleryContainer.appendChild(img);
-    });
-  } else {
-    const noMediaMessage = document.createElement("p");
-    noMediaMessage.textContent =
-      "No additional media available for this listing.";
-    galleryContainer.appendChild(noMediaMessage);
-  }
-  mainContainer.appendChild(galleryContainer);
-
+  // Gallery Section (Replaces existing logic)
+  const mediaElement = renderMedia(listing.media, true); // Include gallery images
+  mainContainer.appendChild(mediaElement);
   // Recent Bids (toggle)
   recentBidsToggle("bid-list-button", "bids-container");
 

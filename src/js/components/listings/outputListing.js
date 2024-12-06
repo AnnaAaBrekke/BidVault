@@ -1,4 +1,5 @@
 import { updateCountdown } from "./utils/countDown.js";
+import { renderMedia } from "./utils/media.js";
 import { bidTimeDetails } from "./utils/timeBid.js";
 
 export function outputListings(listing) {
@@ -9,17 +10,11 @@ export function outputListings(listing) {
   listingContent.classList.add("listing-content");
   if (hasExpired) listingContent.classList.add("expired");
 
-  // Listing image
-  const mediaImg = document.createElement("img");
-  mediaImg.src =
-    listing.media && listing.media.length > 0
-      ? listing.media[0].url
-      : "../src/images/logo.jpg";
-  mediaImg.alt = listing.title;
-  mediaImg.classList.add("listing-image");
-  listingContent.appendChild(mediaImg);
+  // Media Section (uses the reusable renderMedia function)
+  const mediaElement = renderMedia(listing.media); // Only show main media for listings
+  listingContent.appendChild(mediaElement);
 
-  // Seller container
+  // Seller Info
   const sellerContainer = document.createElement("div");
   sellerContainer.id = "seller-container";
 
@@ -42,7 +37,7 @@ export function outputListings(listing) {
   title.textContent = listing.title;
   listingContent.appendChild(title);
 
-  // Bid info
+  // Bid Info
   const currentBid = document.createElement("p");
   currentBid.textContent = `${hasExpired ? "Winning Bid" : "Current Bid"}: ${lastBid} credits`;
   listingContent.appendChild(currentBid);
@@ -51,19 +46,19 @@ export function outputListings(listing) {
   totalBids.textContent = `Bids: ${listing._count?.bids || 0}`;
   listingContent.appendChild(totalBids);
 
-  // Countdown
+  // Countdown Section
   const countdown = document.createElement("p");
   countdown.id = `countdown-${listing.id}`;
   listingContent.appendChild(countdown);
 
-  // If expired, add closed message
+  // If auction has ended, show a closed message
   if (hasExpired) {
     const closedMessage = document.createElement("p");
     closedMessage.classList.add("closed-message");
     closedMessage.textContent = "This auction has ended.";
     listingContent.appendChild(closedMessage);
   } else {
-    // Update countdown if not expired
+    // Update countdown for active auctions
     updateCountdown(listing.endsAt, listing.id);
     setInterval(() => updateCountdown(listing.endsAt, listing.id), 1000);
   }
