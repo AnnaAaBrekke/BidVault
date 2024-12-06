@@ -37,7 +37,10 @@ async function onLogout() {
   localStorage.removeItem("user");
   sessionStorage.removeItem("accessToken");
 
-  // Prevents back navigation by replacing the history
+  // Clear the browser's history - prevents navigation backwords
   window.location.replace("/welcome");
-  window.history.replaceState(null, "", "/welcome");
+  setTimeout(() => {
+    history.pushState(null, "", "/welcome");
+    window.history.pushState(null, "", "/welcome");
+  }, 100);
 }
