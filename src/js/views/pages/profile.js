@@ -1,4 +1,4 @@
-import { fetchProfile } from "../../api/profile/fetchProfile.js";
+import { profileService } from "../../api/services/profileService.js";
 import { displayUserListings } from "../../components/listings/displayUserListings.js";
 import { avatarUpdate } from "../../components/profile/avatar.js";
 import { displayProfile } from "../../components/profile/displayProfile.js";
@@ -8,7 +8,7 @@ requireAuth();
 
 async function initProfile() {
   try {
-    const profile = await fetchProfile();
+    const profile = await profileService.fetchProfile();
     displayProfile(profile);
     avatarUpdate();
 
