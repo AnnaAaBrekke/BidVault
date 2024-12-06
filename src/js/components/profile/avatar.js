@@ -1,4 +1,4 @@
-import { updateProfile } from "../../api/profile/update.js";
+import { profileService } from "../../api/services/profileService.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { validateImageUrl } from "../form/utils/validImg.js";
 
@@ -37,7 +37,9 @@ export function avatarUpdate() {
 
     try {
       // Update the profile with the new avatar
-      await updateProfile({ avatar: { url: newAvatarUrl, alt: newAvatarAlt } });
+      await profileService.updateProfile({
+        avatar: { url: newAvatarUrl, alt: newAvatarAlt },
+      });
 
       // Update the image and alt text in the UI
       avatarImg.src = newAvatarUrl;

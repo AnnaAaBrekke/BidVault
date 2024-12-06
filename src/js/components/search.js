@@ -1,4 +1,4 @@
-import { searchListings } from "../api/listing/listingService.js";
+import { listingService } from "../api/services/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
 import { displayListings } from "./listings/displayListings.js";
 
@@ -36,7 +36,7 @@ export function initializeSearch(
     }
 
     try {
-      const results = await searchListings(query);
+      const results = await listingService.searchListings(query);
       updateHeadline(query, results.length);
 
       // Clear previous results

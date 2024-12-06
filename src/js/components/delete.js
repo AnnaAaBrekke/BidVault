@@ -1,4 +1,4 @@
-import { deleteListing } from "../api/listing/listingService.js";
+import { listingService } from "../api/services/listingService.js";
 import { showSuccessAlert } from "../global/alert.js";
 
 export async function handleDelete(event) {
@@ -17,7 +17,7 @@ export async function handleDelete(event) {
       return;
     }
 
-    await deleteListing(listingId);
+    await listingService.deleteListing(listingId);
 
     const listingElement = document.getElementById(`listing-${listingId}`);
     if (listingElement) listingElement.remove();
