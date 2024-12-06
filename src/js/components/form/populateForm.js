@@ -6,12 +6,12 @@ export function populateUpdateForm(profile) {
   const avatarPreview = document.getElementById("avatar-preview");
   const bannerPreview = document.getElementById("banner-preview");
 
-  avatarPreview.src = profile.avatar?.url || "../../src/images/avatar.jpg";
+  avatarPreview.src = profile.avatar?.url || "../src/images/avatar.jpg";
   avatarPreview.alt = profile.avatar?.url
     ? `Avatar image from ${profile.avatar.url}`
     : "Default Avatar";
 
-  bannerPreview.src = profile.banner?.url || "../../src/images/banner-bid.jpg";
+  bannerPreview.src = profile.banner?.url || "../src/images/banner-bid.jpg";
   bannerPreview.alt = profile.banner?.url
     ? `Banner image from ${profile.banner.url}`
     : "Default Banner";

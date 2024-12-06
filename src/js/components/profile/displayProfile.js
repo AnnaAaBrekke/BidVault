@@ -7,12 +7,12 @@ import { setupPreviewInputs } from "../form/utils/previewHandler.js";
 export function displayProfile(profile) {
   // Avatar setup
   const avatarImg = document.getElementById("profile-avatar");
-  avatarImg.src = profile.avatar?.url || "../../src/images/avatar.jpg";
+  avatarImg.src = profile.avatar?.url || "../src/images/avatar.jpg";
   avatarImg.alt = profile.avatar?.alt || "Default Avatar";
 
   // Banner setup
   const bannerImg = document.getElementById("profile-banner");
-  bannerImg.src = profile.banner?.url || "../../src/images/banner-bid.jpg";
+  bannerImg.src = profile.banner?.url || "../src/images/banner-bid.jpg";
   bannerImg.alt = profile.banner?.alt || "Default Banner";
 
   // Profile name

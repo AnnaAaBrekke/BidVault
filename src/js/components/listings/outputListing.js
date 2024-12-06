@@ -14,7 +14,7 @@ export function outputListings(listing) {
   mediaImg.src =
     listing.media && listing.media.length > 0
       ? listing.media[0].url
-      : "../../src/images/logo.jpg";
+      : "../src/images/logo.jpg";
   mediaImg.alt = listing.title;
   mediaImg.classList.add("listing-image");
   listingContent.appendChild(mediaImg);
@@ -25,7 +25,7 @@ export function outputListings(listing) {
 
   const sellerAvatar = document.createElement("img");
   sellerAvatar.src =
-    listing.seller?.avatar?.url || "../../src/images/avatar.jpg";
+    listing.seller?.avatar?.url || "../src/images/avatar.jpg";
   sellerAvatar.alt = `${listing.seller?.name || "Seller"}'s avatar`;
   sellerAvatar.classList.add("seller-avatar");
   sellerContainer.appendChild(sellerAvatar);

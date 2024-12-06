@@ -24,10 +24,10 @@ export function setupPreviewInputs(
       // Validate the avatar URL and provide feedback
       if (url && !validateImageUrl(url, avatarUrlInput)) {
         avatarUrlInput.classList.add("invalid"); // Highlight invalid input
-        avatarPreview.src = "../../src/images/avatar.jpg"; // Reset preview
+        avatarPreview.src = "../src/images/avatar.jpg"; // Reset preview
       } else {
         avatarUrlInput.classList.remove("invalid"); // Remove invalid styling
-        avatarPreview.src = url || "../../src/images/avatar.jpg"; // Update preview
+        avatarPreview.src = url || "../src/images/avatar.jpg"; // Update preview
       }
     });
 
@@ -47,10 +47,10 @@ export function setupPreviewInputs(
       // Validate the banner URL and provide feedback
       if (url && !validateImageUrl(url, bannerUrlInput)) {
         bannerUrlInput.classList.add("invalid"); // Highlight invalid input
-        bannerPreview.src = "../../src/images/banner-bid.jpg"; // Reset preview
+        bannerPreview.src = "../src/images/banner-bid.jpg"; // Reset preview
       } else {
         bannerUrlInput.classList.remove("invalid"); // Remove invalid styling
-        bannerPreview.src = url || "../../src/images/banner-bid.jpg"; // Update preview
+        bannerPreview.src = url || "../src/images/banner-bid.jpg"; // Update preview
       }
     });
 
