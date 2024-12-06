@@ -24,7 +24,8 @@ export function outputListings(listing) {
   sellerContainer.id = "seller-container";
 
   const sellerAvatar = document.createElement("img");
-  sellerAvatar.src = listing.seller?.avatar?.url || "../src/images/avatar.jpg";
+  sellerAvatar.src =
+    listing.seller?.avatar?.url || "../src/images/avatar.jpg";
   sellerAvatar.alt = `${listing.seller?.name || "Seller"}'s avatar`;
   sellerAvatar.classList.add("seller-avatar");
   sellerContainer.appendChild(sellerAvatar);
