@@ -1,3 +1,4 @@
+import { showErrorAlert } from "../../global/alert.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { getHeaders } from "../headers.js";
 import { MainService } from "./mainService.js";
@@ -12,8 +13,19 @@ class ProfileService extends MainService {
       const username = localStorage.getItem("name");
       const accessToken = localStorage.getItem("accessToken");
 
-      if (!username || !accessToken) {
-        throw new Error("Missing username or access token.");
+      console.log("Username from localStorage:", username);
+      console.log("AccessToken from localStorage:", accessToken);
+
+      if (!username) {
+        console.error("Username is missing from localStorage.");
+        showErrorAlert("You must log in to view your profile.");
+        throw new Error("Missing username.");
+      }
+
+      if (!accessToken) {
+        console.error("Access token is missing from localStorage.");
+        showErrorAlert("You must log in to view your profile.");
+        throw new Error("Missing access token.");
       }
 
       return this.fetchRequest(`/${username}`, {
@@ -21,8 +33,8 @@ class ProfileService extends MainService {
         headers: await getHeaders(),
       });
     } catch (error) {
-      console.error("Error fetching profile:", error);
-      throw error; // Propagate the error to be handled by the caller.
+      console.error("Error fetching profile:", error.message);
+      throw error;
     }
   }
 

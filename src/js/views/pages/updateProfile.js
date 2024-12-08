@@ -9,7 +9,13 @@ setLogoutListener();
 
 async function initUpdateForm() {
   try {
+    console.log("Initializing update form...");
     const profile = await profileService.fetchProfile();
+
+    if (!profile) {
+      throw new Error("Profile data is missing or invalid.");
+    }
+
     populateUpdateForm(profile);
     setupPreviewInputs(
       "avatar-url",

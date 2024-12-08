@@ -33,9 +33,8 @@ async function onLogout() {
   }
 
   // Clear session and local storage
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("user");
-  sessionStorage.removeItem("accessToken");
+  localStorage.clear();
+  sessionStorage.clear();
 
   // Clear the browser's history - prevents navigation backwords
   window.location.replace("/welcome");

@@ -8,19 +8,35 @@ class AuthService extends MainService {
   }
 
   async login(userData) {
-    const response = await this.fetchRequest(`/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(await getHeaders(false)),
-      },
-      body: JSON.stringify(userData),
-    });
+    try {
+      const response = await this.fetchRequest(`/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(await getHeaders(false)),
+        },
+        body: JSON.stringify(userData),
+      });
 
-    const { accessToken, ...user } = response;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("user", JSON.stringify(user));
-    return user;
+      console.log("Login response:", response);
+
+      if (!response || !response.name || !response.accessToken) {
+        throw new Error("Invalid login response. Missing required fields.");
+      }
+
+      localStorage.clear();
+
+      const { accessToken, name, ...user } = response;
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("name", name); // Store only the username
+      localStorage.setItem("user", JSON.stringify(user)); // Optionally store the full user object
+
+      console.log("Login successful. Stored name:", name);
+      return user;
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      throw error;
+    }
   }
 
   async register(userData) {
