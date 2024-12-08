@@ -1,5 +1,10 @@
 // SOURCE: https://medium.com/geekculture/23-javascript-countdown-timer-for-website-273efc2f5618
 
+/**
+ * Updates the countdown timer for an auction.
+ * @param {string} endDate - The end date and time of the auction in ISO format.
+ * @param {string} listingId - The unique identifier for the listing.
+ */
 export function updateCountdown(endDate, listingId) {
   const countdownElement = document.getElementById(`countdown-${listingId}`);
   if (!countdownElement) return;
