@@ -6,6 +6,9 @@ import { validateImageUrl } from "./utils/validImg.js";
 import { authService } from "../../api/services/authService.js";
 import { profileService } from "../../api/services/profileService.js";
 
+/**
+ * Handles form initialization, validation, and submission for various actions.
+ */
 export default class FormHandler {
   constructor() {}
 
@@ -13,7 +16,7 @@ export default class FormHandler {
    * Initialize the FormHandler for a specific form.
    *
    * @param {string} formId - The ID of the form to initialize.
-   * @param {string} action - The action to perform (login, register, update, create).
+   * @param {string} action - The action to perform (e.g., login, register, update).
    */
   static initialize(formId, action) {
     const form = document.querySelector(formId);
@@ -31,9 +34,10 @@ export default class FormHandler {
   }
 
   /**
-   * Extract and structure form data.
-   * @param {HTMLFormElement} form
-   * @returns {Object} - Form data as an object.
+   * Extracts and structures form data for submission.
+   *
+   * @param {HTMLFormElement} form - The form element to process.
+   * @returns {Object} - An object containing the form data.
    */
   static getFormData(form) {
     const formData = new FormData(form);
@@ -41,12 +45,10 @@ export default class FormHandler {
     const mediaInputs = Array.from(form.querySelectorAll(".media-input"));
     const mediaUrls = [];
 
-    // Validate and collect media URLs
     mediaInputs.forEach((input) => {
       const url = input.value.trim();
       if (url) {
         if (!validateImageUrl(input)) {
-          // Skip invalid media URLs
           return;
         }
         mediaUrls.push({ url, alt: "" });
@@ -64,12 +66,13 @@ export default class FormHandler {
 
     return data;
   }
+
   /**
-   * Validate form data based on the action.
+   * Validates form data based on the specified action.
    *
-   * @param {Object} data - Form data.
-   * @param {string} action - Action type.
-   * @returns {string|null} - Validation error message or null if valid.
+   * @param {Object} data - The form data to validate.
+   * @param {string} action - The action to perform (e.g., login, register).
+   * @returns {string|null} - An error message if validation fails, or null if valid.
    */
   static validateFormData(data, action) {
     const errors = {
@@ -113,10 +116,10 @@ export default class FormHandler {
   }
 
   /**
-   * Handle form submission.
+   * Handles the form submission process, including validation and action execution.
    *
-   * @param {HTMLFormElement} form
-   * @param {string} action - The action to perform (login, register, update, create, bidOnListing).
+   * @param {HTMLFormElement} form - The form being submitted.
+   * @param {string} action - The action to perform (e.g., login, register, bidOnListing).
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
@@ -146,7 +149,6 @@ export default class FormHandler {
       return;
     }
 
-    // Ensure user is logged in for actions requiring authentication
     const authRequiredActions = [
       "bidOnListing",
       "updateProfile",
@@ -164,10 +166,8 @@ export default class FormHandler {
 
       let result;
       if (action === "bidOnListing") {
-        // Pass `listingId` and `amount` as separate arguments for the bid on listing
         result = await actions[action](data.listingId, parseFloat(data.amount));
       } else {
-        // Pass the entire `data` object for other actions
         result = await actions[action](data);
       }
 
@@ -175,20 +175,16 @@ export default class FormHandler {
 
       showSuccessAlert(`${action} successful!`);
 
-      // Redirect based on the action performed
       if (action === "login") {
         setTimeout(() => {
-          // Redirect to home after successful login
           window.location.href = "/";
         }, 1500);
       } else if (action === "register") {
         setTimeout(() => {
-          // Redirect to the welcome page after successful registration
           window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
         setTimeout(() => {
-          // Redirect to profile page after successful update
           window.location.href = "/profile/";
         }, 1500);
       } else if (action === "createListing") {

@@ -1,10 +1,12 @@
 import { showErrorAlert } from "./alert.js";
 
 /**
- * Handle errors by showing an error alert with the appropriate message.
+ * Handles errors by logging them, extracting relevant error messages, and displaying an alert to the user.
  *
- * @param {Error} error - The error object.
- * @param {string} operation - The operation that failed.
+ * @param {Error|Object} error - The error object or response containing details about the error.
+ * @param {string} operation - A description of the operation during which the error occurred.
+ * @async
+ * @returns {Promise<void>} - Resolves when the error has been handled and displayed to the user.
  */
 export async function handleError(error, operation) {
   console.error(`Error during ${operation}:`, error);

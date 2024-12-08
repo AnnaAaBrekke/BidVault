@@ -1,5 +1,9 @@
 import { handleError } from "./errorMessage.js";
 
+/**
+ * Sets up a logout button listener to handle user login/logout actions dynamically.
+ * Updates the button text and behavior based on the user's login state.
+ */
 export function setLogoutListener() {
   const logoutBtn = document.getElementById("logout-button");
   if (logoutBtn) {
@@ -26,17 +30,22 @@ export function setLogoutListener() {
   }
 }
 
+/**
+ * Handles the logout process, clearing user session data and redirecting to the welcome page.
+ *
+ * @async
+ * @returns {Promise<void>} - Resolves when the logout process is complete.
+ */
 async function onLogout() {
   if (!localStorage.getItem("accessToken")) {
     console.warn("No active session found.");
     return;
   }
 
-  // Clear session and local storage
   localStorage.clear();
   sessionStorage.clear();
 
-  // Clear the browser's history - prevents navigation backwords
+  // Clear the browser's history to prevent backward navigation
   window.location.replace("/welcome");
   setTimeout(() => {
     history.pushState(null, "", "/welcome");

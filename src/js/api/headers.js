@@ -1,10 +1,11 @@
 import { isLoggedIn } from "../global/authGuard.js";
 
 /**
- * Generates headers for API requests, including API key and optional access token.
+ * Generates HTTP headers for API requests, including authentication and API key headers.
  *
- * @param {boolean} [includeAuth=true] - Whether to include the Authorization header.
- * @returns {Headers} - A Headers object with the necessary headers.
+ * @param {boolean} [includeAuth=true] - Determines whether to include the Authorization header.
+ * @returns {Promise<Headers>} - A promise that resolves to a `Headers` object containing the necessary headers.
+ * @throws {Error} - Throws an error if the API key is missing in the environment configuration.
  */
 export async function getHeaders(includeAuth = true) {
   const headers = new Headers();

@@ -1,10 +1,17 @@
+/**
+ * Dynamically imports and routes the user to the appropriate page module based on the provided pathname.
+ *
+ * - Normalizes the path to ensure consistency by removing "index.html" and trailing slashes.
+ * - Dynamically imports the required module for the given route.
+ * - Defaults to a "not found" page if the route is unrecognized.
+ *
+ * @async
+ * @param {string} [pathname=window.location.pathname] - The current path to route, defaults to the browser's current pathname.
+ * @returns {Promise<void>} - Resolves when the appropriate page module is successfully loaded.
+ */
 export default async function router(pathname = window.location.pathname) {
-  // Normalize path: remove "index.html" if present, and remove trailing slash
   const normalizedPath =
-    pathname
-      .replace(/\/index\.html$/, "") // Remove /index.html if present
-      .replace(/\/$/, "") || // Remove trailing slash
-    "/"; // Default to "/" for the root path
+    pathname.replace(/\/index\.html$/, "").replace(/\/$/, "") || "/";
 
   try {
     switch (normalizedPath) {

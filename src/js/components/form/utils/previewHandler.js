@@ -1,5 +1,10 @@
 import { validateImageUrl } from "./validImg.js";
 
+/**
+ * Sets up preview functionality for avatar and banner inputs, allowing real-time image and alt text updates.
+ *
+ * **/
+
 export function setupPreviewInputs(
   avatarInputId,
   avatarPreviewId,
@@ -21,17 +26,16 @@ export function setupPreviewInputs(
     avatarUrlInput.addEventListener("input", () => {
       const url = avatarUrlInput.value;
 
-      // Validate the avatar URL and provide feedback
+      // Validate the URL and provides feedback
       if (url && !validateImageUrl(url, avatarUrlInput)) {
         avatarUrlInput.classList.add("invalid"); // Highlight invalid input
-        avatarPreview.src = "../src/images/avatar.jpg"; // Reset preview
+        avatarPreview.src = "../../src/images/avatar.jpg"; // Reset preview
       } else {
         avatarUrlInput.classList.remove("invalid"); // Remove invalid styling
-        avatarPreview.src = url || "../src/images/avatar.jpg"; // Update preview
+        avatarPreview.src = url || "../../src/images/avatar.jpg"; // Update preview
       }
     });
 
-    // Handle alt text updates
     if (avatarAltInput) {
       avatarAltInput.addEventListener("input", () => {
         avatarPreview.alt = avatarAltInput.value || "Default Avatar";
@@ -39,12 +43,10 @@ export function setupPreviewInputs(
     }
   }
 
-  // Handle banner input changes
   if (bannerUrlInput && bannerPreview) {
     bannerUrlInput.addEventListener("input", () => {
       const url = bannerUrlInput.value;
 
-      // Validate the banner URL and provide feedback
       if (url && !validateImageUrl(url, bannerUrlInput)) {
         bannerUrlInput.classList.add("invalid"); // Highlight invalid input
         bannerPreview.src = "../src/images/banner-bid.jpg"; // Reset preview
@@ -54,7 +56,6 @@ export function setupPreviewInputs(
       }
     });
 
-    // Handle alt text updates
     if (bannerAltInput) {
       bannerAltInput.addEventListener("input", () => {
         bannerPreview.alt = bannerAltInput.value || "Default Banner";
@@ -63,27 +64,26 @@ export function setupPreviewInputs(
   }
 }
 
+/**
+ * Sets up a preview for the main image and a gallery of media inputs, allowing real-time updates.
+ */
 export function setupMainImgPreview() {
-  // Main Image Preview
   const mainImgInput = document.getElementById("mainImgUrl");
   const mainImgPreview = document.getElementById("main-image-preview");
   const mainImgLabel = document.querySelector('label[for="mainImgUrl"]');
 
-  // Ensure elements exist
   if (mainImgInput && mainImgPreview && mainImgLabel) {
-    // Move the preview image above the label
     mainImgLabel.parentNode.insertBefore(mainImgPreview, mainImgLabel);
 
-    // Add event listener to update the main image preview
     mainImgInput.addEventListener("input", () => {
       const url = mainImgInput.value;
 
       if (validateImageUrl(url)) {
-        mainImgPreview.src = url; // Set the image source
-        mainImgPreview.classList.remove("hidden"); // Show the preview
+        mainImgPreview.src = url;
+        mainImgPreview.classList.remove("hidden");
       } else {
-        mainImgPreview.src = ""; // Clear the image source
-        mainImgPreview.classList.add("hidden"); // Hide the preview
+        mainImgPreview.src = "";
+        mainImgPreview.classList.add("hidden");
       }
     });
   } else {
@@ -93,15 +93,12 @@ export function setupMainImgPreview() {
   // Gallery Previews
   const mediaInputs = document.querySelectorAll(".media-input");
   mediaInputs.forEach((input, index) => {
-    // Create a preview image for each media input
     const preview = document.createElement("img");
     preview.alt = `Gallery Image ${index + 1} Preview`;
     preview.classList.add("image-preview", "hidden");
 
-    // Insert the preview above the input
     input.parentNode.insertBefore(preview, input);
 
-    // Add event listener to update the gallery preview
     input.addEventListener("input", () => {
       const url = input.value;
 
