@@ -68,8 +68,11 @@ export function displaySingleListing(listing) {
 
   // Bid Form
   const { hasExpired } = bidTimeDetails(listing);
-  const loggedInUser = JSON.parse(localStorage.getItem("user")); // Adjust storage location if needed
-  const isOwner = loggedInUser && loggedInUser.name === listing.seller.name;
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
+  const isOwner =
+    loggedInUser?.email?.toLowerCase() ===
+    listing?.seller?.email?.toLowerCase();
 
   const bidFormContainer = document.createElement("div");
   bidFormContainer.id = "bid-form-container";
@@ -131,9 +134,9 @@ export function displaySingleListing(listing) {
   mainContainer.appendChild(description);
 
   // Gallery
-  // Gallery Section (Replaces existing logic)
-  const mediaElement = renderMedia(listing.media, true); // Include gallery images
+  const mediaElement = renderMedia(listing.media, true);
   mainContainer.appendChild(mediaElement);
+
   // Recent Bids (toggle)
   recentBidsToggle("bid-list-button", "bids-container");
 

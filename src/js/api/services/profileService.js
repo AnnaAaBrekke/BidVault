@@ -13,9 +13,6 @@ class ProfileService extends MainService {
       const username = localStorage.getItem("name");
       const accessToken = localStorage.getItem("accessToken");
 
-      console.log("Username from localStorage:", username);
-      console.log("AccessToken from localStorage:", accessToken);
-
       if (!username) {
         console.error("Username is missing from localStorage.");
         showErrorAlert("You must log in to view your profile.");

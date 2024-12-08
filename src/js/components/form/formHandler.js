@@ -22,12 +22,8 @@ export default class FormHandler {
       throw new Error(`Form with ID "${formId}" not found.`);
     }
 
-    console.log(`Initializing form with ID: ${formId}`);
-
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      console.log("Submit event prevented");
 
       const handler = new FormHandler();
       await handler.handleSubmit(form, action);
@@ -108,7 +104,6 @@ export default class FormHandler {
 
     if (action === "bidOnListing") {
       const amount = parseFloat(data.amount);
-      console.log("Validating bid amount:", data.amount, "Parsed:", amount);
       if (isNaN(amount) || amount <= 0) {
         return errors.invalidBid;
       }
@@ -125,7 +120,6 @@ export default class FormHandler {
    */
   async handleSubmit(form, action) {
     const data = FormHandler.getFormData(form);
-    console.log("Form Input Data Submitted:", data);
 
     const validationError = FormHandler.validateFormData(data, action);
 
@@ -183,8 +177,6 @@ export default class FormHandler {
 
       // Redirect based on the action performed
       if (action === "login") {
-        console.log("Redirecting to /");
-
         setTimeout(() => {
           // Redirect to home after successful login
           window.location.href = "/";

@@ -9,7 +9,6 @@ setLogoutListener();
 
 async function initUpdateForm() {
   try {
-    console.log("Initializing update form...");
     const profile = await profileService.fetchProfile();
 
     if (!profile) {
