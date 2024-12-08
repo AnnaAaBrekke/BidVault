@@ -24,8 +24,8 @@ export function avatarUpdate() {
    */
   avatarImg.addEventListener("click", () => {
     avatarUpdateContainer.classList.remove("hidden");
-    avatarUpdateInput.value = originalAvatarUrl; 
-    avatarUpdateAlt.value = originalAvatarAlt; 
+    avatarUpdateInput.value = originalAvatarUrl;
+    avatarUpdateAlt.value = originalAvatarAlt;
     avatarUpdateInput.focus();
   });
 
@@ -35,7 +35,7 @@ export function avatarUpdate() {
    */
   avatarUpdateBtn.addEventListener("click", async () => {
     const newAvatarUrl = avatarUpdateInput.value.trim();
-    const newAvatarAlt = avatarUpdateAlt.value.trim() || "User Avatar"; 
+    const newAvatarAlt = avatarUpdateAlt.value.trim() || "User Avatar";
 
     // Validate the new avatar URL and provide feedback
     if (!validateImageUrl(newAvatarUrl)) {

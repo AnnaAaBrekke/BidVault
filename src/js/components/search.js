@@ -1,3 +1,6 @@
+import { listingService } from "../api/services/listingService.js";
+import { showErrorAlert } from "../global/alert.js";
+import { displayListings } from "./listings/displayListings.js";
 /**
  * Initializes the search functionality for a page.
  * @param {string} searchInputId - The ID of the search input element.
