@@ -104,22 +104,22 @@ npm run lint
 
 ## 🔑 Key Routes
 
-| Path              | Description                  |
-| ----------------- | ---------------------------- |
-| `/`               | Home page                    |
-| `/welcome`        | Welcome page (login)         |
-| `/auth/register`  | User registration            |
-| `/profile`        | User profile                 |
-| `/profile/update` | Update profile information   |
-| `/listing/create` | Create a new auction listing |
+| Path              | Description                  | Link                                                          |
+| ----------------- | ---------------------------- | ------------------------------------------------------------- |
+| `/`               | Home page                    | [Home](https://bidvault.netlify.app/)                         |
+| `/welcome`        | Welcome page (login)         | [Welcome](https://bidvault.netlify.app/welcome)               |
+| `/auth/register`  | User registration            | [Register](https://bidvault.netlify.app/auth/register)        |
+| `/profile`        | User profile                 | [Profile](https://bidvault.netlify.app/profile)               |
+| `/profile/update` | Update profile information   | [Update Profile](https://bidvault.netlify.app/profile/update) |
+| `/listing/create` | Create a new auction listing | [Create Listing](https://bidvault.netlify.app/listing/create) |
 
 ## 🔧 Tools & Technologies
 
-Frontend: Vite, Tailwind CSS
-Styling: Tailwind CSS, Sass
-Linting & Formatting: ESLint, Prettier
-Git Hooks: Husky
+- **Frontend:** Vite, Tailwind CSS
+- **Styling:** Tailwind CSS, Sass
+- **Linting & Formatting:** ESLint, Prettier
+- **Git Hooks:** Husky
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License.
