@@ -1,6 +1,6 @@
-# 🚀 BidVault - Auction Platform
+# BidVault - Auction Platform
 
-##(Screenshots)
+## (Screenshots Will Be Inserted Later)
 
 Welcome to **BidVault**, an online auction site where users can add items for bidding and place bids on other users' items. The platform is designed to be user-friendly, ensuring seamless navigation and interactions for both registered and non-registered users.
 
@@ -11,11 +11,11 @@ Access the application here: [BidVault](https://bidvault.netlify.app/welcome)
 
 ## ✨ Features
 
-- **👥 User Registration and Credits**:  
+- **🎟️ User Registration and Credits**:  
   New users are provided with 1000 credits to start bidding and selling.
-- **📦 Auction Listings**:  
+- **📝 Auction Listings**:  
   Users can list items for auction and bid on other users' listings.
-- **🔍 Guest Access**:  
+- **👤 Guest Access**:  
   Non-registered users can browse auction listings but cannot place bids.
 - **⚡ Dynamic Routing**:  
   Efficient page navigation using dynamic module imports.
@@ -34,9 +34,8 @@ Access the application here: [BidVault](https://bidvault.netlify.app/welcome)
 1. **Clone the Repository**:
 
    ```bash
-   git clone <https://github.com/AnnaAaBrekke/BidVault.git>
+   git clone https://github.com/AnnaAaBrekke/BidVault.git
    cd bidvault
-
    ```
 
 2. **Install Dependencies:**:
@@ -50,7 +49,6 @@ Access the application here: [BidVault](https://bidvault.netlify.app/welcome)
 
    ```bash
    npm run prepare
-
    ```
 
 4. **Environment Variables:**:
