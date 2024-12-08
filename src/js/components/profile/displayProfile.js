@@ -51,6 +51,6 @@ export function displayProfile(profile) {
   try {
     setupPreviewInputs("avatar-update-input", "profile-avatar");
   } catch (error) {
-    console.warn("Failed to set up preview inputs:", error.message);
+    console.error("Failed to set up preview inputs:", error.message);
   }
 }

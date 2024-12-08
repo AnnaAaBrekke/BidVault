@@ -7,7 +7,6 @@ import { requireAuth } from "../../global/authGuard.js";
 requireAuth();
 async function initProfile() {
   try {
-    console.log("Initializing profile...");
     console.log("localStorage content:", {
       name: localStorage.getItem("name"),
       accessToken: localStorage.getItem("accessToken"),

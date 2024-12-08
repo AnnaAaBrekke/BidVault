@@ -195,7 +195,6 @@ export default class FormHandler {
           window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        // Check if result contains the name property
         setTimeout(() => {
           // Redirect to profile page after successful update
           window.location.href = "/profile/";
