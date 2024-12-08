@@ -9,7 +9,7 @@ export function displayListings(listings, addDeleteButtons = false) {
   }
 
   listings.forEach((listing) => {
-    // main listing container
+    // Main listing container
     const listingDiv = document.createElement("div");
     listingDiv.id = `listing-${listing.id}`;
     listingDiv.classList.add("listing");
@@ -38,7 +38,6 @@ export function displayListings(listings, addDeleteButtons = false) {
       listingDiv.appendChild(deleteButton);
     }
 
-    // Append the listing to the container
     listingsContainer.appendChild(listingDiv);
   });
 }

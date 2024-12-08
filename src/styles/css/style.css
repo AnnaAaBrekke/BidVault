@@ -851,3 +851,15 @@ footer {
 .image-preview.hidden {
   display: none;
 }
+
+.clear-button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.clear-button:hover {
+  color: darkred;
+}

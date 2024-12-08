@@ -10,8 +10,8 @@ export function outputListings(listing) {
   listingContent.classList.add("listing-content");
   if (hasExpired) listingContent.classList.add("expired");
 
-  // Media Section (uses the reusable renderMedia function)
-  const mediaElement = renderMedia(listing.media); // Only show main media for listings
+  // Media Section 
+  const mediaElement = renderMedia(listing.media); 
   listingContent.appendChild(mediaElement);
 
   // Seller Info

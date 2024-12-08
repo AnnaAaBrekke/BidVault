@@ -1,7 +1,3 @@
-import { listingService } from "../api/services/listingService.js";
-import { showErrorAlert } from "../global/alert.js";
-import { displayListings } from "./listings/displayListings.js";
-
 /**
  * Initializes the search functionality for a page.
  * @param {string} searchInputId - The ID of the search input element.
@@ -20,6 +16,13 @@ export function initializeSearch(
   const listingsContainer = document.getElementById(listingsContainerId);
   const searchHeadline = document.getElementById(searchHeadlineId);
 
+  let clearButton;
+
+  /**
+   * Updates the search headline with the query and results count.
+   * @param {string} query - The search query entered by the user.
+   * @param {number} resultsCount - The number of results returned by the search.
+   */
   const updateHeadline = (query, resultsCount) => {
     searchHeadline.textContent =
       resultsCount > 0
@@ -28,6 +31,10 @@ export function initializeSearch(
     searchHeadline.classList.remove("hidden");
   };
 
+  /**
+   * Handles the search functionality by fetching results based on the user's query.
+   * Displays the results or a message if no results are found.
+   */
   const handleSearch = async () => {
     const query = searchInput.value.trim();
     if (!query) {
@@ -39,36 +46,51 @@ export function initializeSearch(
       const results = await listingService.searchListings(query);
       updateHeadline(query, results.length);
 
-      // Clear previous results
       listingsContainer.textContent = "";
 
       if (results.length === 0) {
-        // Create a "no results" message dynamically
         const noResultsMessage = document.createElement("p");
         noResultsMessage.textContent = "No listings found for this search.";
         listingsContainer.appendChild(noResultsMessage);
       } else {
-        // Display search results
         displayListings(results);
+      }
+
+      if (!clearButton) {
+        clearButton = document.createElement("button");
+        clearButton.textContent = "X";
+        clearButton.classList.add("clear-button");
+        listingsContainer.parentElement.insertBefore(
+          clearButton,
+          listingsContainer,
+        );
+        clearButton.addEventListener("click", handleClear);
       }
     } catch (error) {
       console.error(error, "searching listings");
 
-      // Create an error message dynamically
-      listingsContainer.textContent = ""; // Clear container
+      listingsContainer.textContent = "";
       const errorMessage = document.createElement("p");
       errorMessage.textContent = "An error occurred while searching.";
       listingsContainer.appendChild(errorMessage);
     }
   };
 
-  // Event listener for search button on click
-  searchButton.addEventListener("click", handleSearch);
+  /**
+   * Handles clearing the search results and redirects the user to the home page.
+   */
+  const handleClear = () => {
+    window.location.href = "/";
+  };
 
-  // Event listener for keypress (Enter key)
+  // Event listeners for search functionality
+  searchButton.addEventListener("click", handleSearch);
   searchInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       handleSearch();
     }
   });
+
+  // Display initial listings on page load
+  displayListings();
 }
