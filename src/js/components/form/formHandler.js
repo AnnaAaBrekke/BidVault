@@ -1,14 +1,10 @@
-import { login } from "../../api/auth/login.js";
-import { register } from "../../api/auth/register.js";
-import {
-  bidOnListing,
-  createListing,
-} from "../../api/listing/listingService.js";
-import { updateProfile } from "../../api/profile/update.js";
+import { listingService } from "../../api/services/listingService.js";
 import { showErrorAlert, showSuccessAlert } from "../../global/alert.js";
 import { isLoggedIn } from "../../global/authGuard.js";
 import { handleError } from "../../global/errorMessage.js";
 import { validateImageUrl } from "./utils/validImg.js";
+import { authService } from "../../api/services/authService.js";
+import { profileService } from "../../api/services/profileService.js";
 
 export default class FormHandler {
   constructor() {}
@@ -139,11 +135,12 @@ export default class FormHandler {
     }
 
     const actions = {
-      register,
-      login,
-      updateProfile,
-      createListing,
-      bidOnListing,
+      register: (data) => authService.register(data),
+      login: (data) => authService.login(data),
+      updateProfile: (data) => profileService.updateProfile(data),
+      createListing: (data) => listingService.createListing(data),
+      bidOnListing: (listingId, amount) =>
+        listingService.bidOnListing(listingId, amount),
     };
 
     if (!actions[action]) {
@@ -185,7 +182,9 @@ export default class FormHandler {
       showSuccessAlert(`${action} successful!`);
 
       // Redirect based on the action performed
-      if (action === "login" && result?.accessToken) {
+      if (action === "login") {
+        console.log("Redirecting to /");
+
         setTimeout(() => {
           // Redirect to home after successful login
           window.location.href = "/";
@@ -196,7 +195,6 @@ export default class FormHandler {
           window.location.href = "/welcome";
         }, 1500);
       } else if (action === "updateProfile") {
-        // Check if result contains the name property
         setTimeout(() => {
           // Redirect to profile page after successful update
           window.location.href = "/profile/";

@@ -1,4 +1,4 @@
-import { fetchSingleListing } from "../../api/listing/listingService.js";
+import { listingService } from "../../api/services/listingService.js";
 import { displaySingleListing } from "../../components/listings/displayListing.js";
 import { showErrorAlert } from "../../global/alert.js";
 import { handleError } from "../../global/errorMessage.js";
@@ -14,7 +14,7 @@ async function initSingleListing() {
   }
 
   try {
-    const listing = await fetchSingleListing(listingId);
+    const listing = await listingService.fetchSingleListing(listingId);
     displaySingleListing(listing);
   } catch (error) {
     handleError(error, "loading listing details");

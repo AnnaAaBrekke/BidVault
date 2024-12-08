@@ -1,41 +1,56 @@
-import { setupPreviewInputs } from "../form/utils/previewHandler.js";
+import { setupPreviewInputs } from "../form/utils/previewHandler";
 
-/**
- * Display profile information dynamically.
- * @param {Object} profile - The profile data to display.
- */
 export function displayProfile(profile) {
+  if (!profile) {
+    console.error("Profile data is missing.");
+    return;
+  }
+
   // Avatar setup
   const avatarImg = document.getElementById("profile-avatar");
-  avatarImg.src = profile.avatar?.url || "../src/images/avatar.jpg";
-  avatarImg.alt = profile.avatar?.alt || "Default Avatar";
+  if (avatarImg) {
+    avatarImg.src = profile.avatar?.url || "../src/images/avatar.jpg";
+    avatarImg.alt = profile.avatar?.alt || "Default Avatar";
+  }
 
   // Banner setup
   const bannerImg = document.getElementById("profile-banner");
-  bannerImg.src = profile.banner?.url || "../src/images/banner-bid.jpg";
-  bannerImg.alt = profile.banner?.alt || "Default Banner";
+  if (bannerImg) {
+    bannerImg.src = profile.banner?.url || "../src/images/banner-bid.jpg";
+    bannerImg.alt = profile.banner?.alt || "Default Banner";
+  }
 
   // Profile name
   const profileName = document.getElementById("profile-name");
-  profileName.textContent = profile.name || "Anonymous";
+  if (profileName) {
+    profileName.textContent = profile.name || "Anonymous";
+  }
 
   // Profile bio
   const profileBio = document.getElementById("profile-bio");
-  profileBio.textContent = profile.bio || "No bio provided.";
+  if (profileBio) {
+    profileBio.textContent = profile.bio || "No bio provided.";
+  }
 
   // Profile credits
   const profileCreditsContainer = document.getElementById("profile-credits");
-  profileCreditsContainer.textContent = ""; // Clear previous content
+  if (profileCreditsContainer) {
+    profileCreditsContainer.textContent = ""; // Clear previous content
 
-  const creditsLabel = document.createElement("span");
-  creditsLabel.textContent = "Current credit balance: ";
+    const creditsLabel = document.createElement("span");
+    creditsLabel.textContent = "Current credit balance: ";
 
-  const creditsValue = document.createElement("span");
-  creditsValue.textContent = `${profile.credits || 0} credits`;
+    const creditsValue = document.createElement("span");
+    creditsValue.textContent = `${profile.credits || 0} credits`;
 
-  profileCreditsContainer.appendChild(creditsLabel);
-  profileCreditsContainer.appendChild(creditsValue);
+    profileCreditsContainer.appendChild(creditsLabel);
+    profileCreditsContainer.appendChild(creditsValue);
+  }
 
   // Preview input setup
-  setupPreviewInputs("avatar-update-input", "profile-avatar");
+  try {
+    setupPreviewInputs("avatar-update-input", "profile-avatar");
+  } catch (error) {
+    console.error("Failed to set up preview inputs:", error.message);
+  }
 }

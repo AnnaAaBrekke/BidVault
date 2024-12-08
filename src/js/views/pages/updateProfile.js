@@ -1,4 +1,4 @@
-import { fetchProfile } from "../../api/profile/fetchProfile.js";
+import { profileService } from "../../api/services/profileService.js";
 import FormHandler from "../../components/form/formHandler.js";
 import { populateUpdateForm } from "../../components/form/populateForm.js";
 import { setupPreviewInputs } from "../../components/form/utils/previewHandler.js";
@@ -9,7 +9,13 @@ setLogoutListener();
 
 async function initUpdateForm() {
   try {
-    const profile = await fetchProfile();
+    console.log("Initializing update form...");
+    const profile = await profileService.fetchProfile();
+
+    if (!profile) {
+      throw new Error("Profile data is missing or invalid.");
+    }
+
     populateUpdateForm(profile);
     setupPreviewInputs(
       "avatar-url",

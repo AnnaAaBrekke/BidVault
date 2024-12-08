@@ -1,9 +1,9 @@
-import { fetchListings } from "../../api/listing/listingService.js";
+import { listingService } from "../../api/services/listingService.js";
 import { displayListings } from "../../components/listings/displayListings.js";
 import { initializeSearch } from "../../components/search.js";
 
 async function displayHome() {
-  const listings = await fetchListings();
+  const listings = await listingService.fetchListings();
 
   // Sort listings by date created (newest first)
   const sortedListings = listings.sort(
