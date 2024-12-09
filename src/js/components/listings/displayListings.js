@@ -6,6 +6,7 @@ export function displayListings(
   addDeleteButtons = false,
   isLastPage,
   isSearchResults = false,
+  isProfile = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
   const seeMoreButton = document.getElementById("see-more-btn");
@@ -49,8 +50,8 @@ export function displayListings(
     listingsContainer.appendChild(listingDiv);
   });
 
-  // Add "See More" button if not search results and not the last page
-  if (!isSearchResults) {
+  // Add "See More" button if conditions allow
+  if (!isProfile && !isSearchResults) {
     if (!isLastPage) {
       if (!seeMoreButton) {
         const newButton = document.createElement("button");
