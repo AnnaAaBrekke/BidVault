@@ -1,11 +1,12 @@
 // @use "./components/header";
+@use "./components/buttons";
+@use "./base/card";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Add your custom SASS styles below */
-// @use "./components/button";
 // @use "./components/tag";
 // @use "./components/alert";
 // @use "./layouts/header";

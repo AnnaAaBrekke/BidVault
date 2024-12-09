@@ -1,0 +1,45 @@
+/* card.scss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.listing {
+  @apply bg-white shadow-lg rounded-lg p-4 mb-6 flex flex-col justify-between transition hover:shadow-xl;
+
+  & .listing-content {
+    @apply flex-grow;
+  }
+
+  & .view-details-btn {
+    @apply text-blue-600 hover:text-blue-800 font-medium mt-4;
+  }
+
+  & .delete-button {
+    @apply bg-red-500 text-white rounded-full p-2 hover:bg-red-700 transition;
+  }
+
+  & .delete-button i {
+    @apply text-lg;
+  }
+}
+
+.listings-container {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+}
+
+/* Seller Container */
+#seller-container {
+  @apply flex items-center mt-4 space-x-4;
+
+  .seller-avatar {
+    @apply w-10 h-10 rounded-full border border-gray-300;
+  }
+
+  p {
+    @apply text-gray-700 font-medium;
+  }
+
+  strong {
+    @apply text-gray-900;
+  }
+}

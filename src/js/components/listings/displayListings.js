@@ -1,31 +1,38 @@
+import { loadMoreListings } from "../pagnation.js";
 import { outputListings } from "./outputListing.js";
 
-export function displayListings(listings, addDeleteButtons = false) {
+export function displayListings(
+  listings,
+  addDeleteButtons = false,
+  isLastPage,
+  isSearchResults = false,
+  isProfile = false,
+) {
   const listingsContainer = document.getElementById("listings-container");
+  let seeMoreButton = document.getElementById("see-more-btn");
 
-  // Clear the container
-  while (listingsContainer.firstChild) {
-    listingsContainer.removeChild(listingsContainer.firstChild);
+  // If no "See More" button exists, clear the container before appending listings
+  if (!seeMoreButton) {
+    while (listingsContainer.firstChild) {
+      listingsContainer.removeChild(listingsContainer.firstChild);
+    }
   }
 
+  // Render each listing
   listings.forEach((listing) => {
-    // Main listing container
     const listingDiv = document.createElement("div");
     listingDiv.id = `listing-${listing.id}`;
     listingDiv.classList.add("listing");
 
-    // Listing content using outputListings (shared output)
     const listingContent = outputListings(listing);
     listingDiv.appendChild(listingContent);
 
-    // 'View Details' button
     const viewDetailsButton = document.createElement("a");
     viewDetailsButton.href = `../listing/?id=${listing.id}`;
     viewDetailsButton.classList.add("view-details-btn");
     viewDetailsButton.textContent = "View Details";
     listingDiv.appendChild(viewDetailsButton);
 
-    // Delete button
     if (addDeleteButtons) {
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("delete-button");
@@ -40,4 +47,23 @@ export function displayListings(listings, addDeleteButtons = false) {
 
     listingsContainer.appendChild(listingDiv);
   });
+
+  // Remove the existing "See More" button (if any) and recreate it
+  if (seeMoreButton) {
+    seeMoreButton.remove();
+  }
+
+  // Handle "See More" button placement
+  if (!isProfile && !isSearchResults) {
+    if (!isLastPage) {
+      seeMoreButton = document.createElement("button");
+      seeMoreButton.id = "see-more-btn";
+      seeMoreButton.textContent = "See More";
+      seeMoreButton.classList.add("see-more-btn");
+      seeMoreButton.addEventListener("click", loadMoreListings);
+
+      // Append the button after all the listings
+      listingsContainer.appendChild(seeMoreButton);
+    }
+  }
 }
