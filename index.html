@@ -15,7 +15,7 @@
       class="flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between"
     >
       <!-- Avatar on the Left (Visible only when logged in) -->
-      <div id="avatar-container" class="hidden sm:flex items-center space-x-3">
+      <div id="avatar-container" class="flex items-center space-x-3">
         <a href="/profile/" class="flex items-center space-x-3">
           <img
             id="profile-avatar"
@@ -23,7 +23,8 @@
             alt="Avatar"
             class="h-10 w-10 rounded-full object-cover"
           />
-          <div class="text-sm">
+          <!-- Hide text on smaller screens -->
+          <div class="hidden sm:block text-sm">
             <p class="text-gray-600">Creator</p>
             <p id="profile-name" class="font-medium text-gray-800">Anonymous</p>
           </div>
@@ -32,7 +33,11 @@
 
       <!-- Logo in the Center -->
       <div class="flex justify-center">
-        <img src="src/images/logo.jpg" alt="Site Logo" class="h-10 w-auto" />
+        <img
+          src="src/images/logo.jpg"
+          alt="Site Logo"
+          class="h-10 w-auto m-1"
+        />
       </div>
 
       <!-- Hamburger Menu and Dropdown for Logged-in Users -->
