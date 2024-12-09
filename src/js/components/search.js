@@ -56,7 +56,7 @@ export function initializeSearch(
         noResultsMessage.textContent = "No listings found for this search.";
         listingsContainer.appendChild(noResultsMessage);
       } else {
-        displayListings(results);
+        displayListings(results, false, true, false); // Pass `false` for `showSeeMoreButton`
       }
 
       if (!clearButton) {

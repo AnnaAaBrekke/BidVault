@@ -5,11 +5,12 @@ export function displayListings(
   listings,
   addDeleteButtons = false,
   isLastPage,
+  isSearchResults = false, // New parameter to identify search results
 ) {
   const listingsContainer = document.getElementById("listings-container");
   const seeMoreButton = document.getElementById("see-more-btn");
 
-  // If not appending, clear the container
+  // Clear the container if not appending
   if (!seeMoreButton) {
     while (listingsContainer.firstChild) {
       listingsContainer.removeChild(listingsContainer.firstChild);
@@ -49,18 +50,20 @@ export function displayListings(
     listingsContainer.appendChild(listingDiv);
   });
 
-  // Add "See More" button
-  if (!isLastPage) {
-    if (!seeMoreButton) {
-      const newButton = document.createElement("button");
-      newButton.id = "see-more-btn";
-      newButton.textContent = "See More";
-      newButton.classList.add("see-more-btn");
-      newButton.addEventListener("click", loadMoreListings); // Attach the function
-      listingsContainer.appendChild(newButton);
+  // Add "See More" button if not search results and not the last page
+  if (!isSearchResults) {
+    if (!isLastPage) {
+      if (!seeMoreButton) {
+        const newButton = document.createElement("button");
+        newButton.id = "see-more-btn";
+        newButton.textContent = "See More";
+        newButton.classList.add("see-more-btn");
+        newButton.addEventListener("click", loadMoreListings); // Attach the function
+        listingsContainer.appendChild(newButton);
+      }
+    } else if (seeMoreButton) {
+      // Remove the button if no more pages
+      seeMoreButton.remove();
     }
-  } else if (seeMoreButton) {
-    // Remove the button if no more pages
-    seeMoreButton.remove();
   }
 }
