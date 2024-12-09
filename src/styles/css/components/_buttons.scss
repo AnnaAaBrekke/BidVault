@@ -1,8 +1,8 @@
 .see-more-btn {
-  @apply relative w-[200px] h-[60px] top-0 left-0 bg-[#111111] rounded-md flex items-center justify-center text-white text-[18px] leading-[21px] font-normal;
+  @apply w-[200px] h-[60px] bg-[#111111] rounded-md flex items-center justify-center text-white text-[18px] leading-[21px] font-normal mt-4;
 
   &:hover {
-    @apply bg-white text-[#111111] border-black border-2;
+    @apply bg-white text-[#111111] border-green-200;
 
     &:focus {
       @apply outline-none;
