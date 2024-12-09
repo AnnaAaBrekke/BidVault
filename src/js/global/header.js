@@ -1,22 +1,23 @@
 import { profileService } from "../api/services/profileService";
-import { showErrorAlert } from "../global/alert";
-import { isLoggedIn } from "../global/authGuard";
+import { showErrorAlert } from "./alert";
+import { isLoggedIn } from "./authGuard";
 
-export function renderHeader(isLoggedIn) {
+export async function setupHeader() {
+  const checkLoginStatus = await isLoggedIn();
+  renderHeader(checkLoginStatus);
+
+  if (checkLoginStatus) {
+    const profileHeader = await profileService.fetchProfile();
+    populateHeader(profileHeader);
+    hamburgerDropdown();
+  }
+}
+
+function renderHeader(isLoggedIn) {
   const avatarContainer = document.getElementById("avatar-container");
   const hamburgerContainer = document.getElementById("hamburger-container");
   const loggedInMenu = document.getElementById("logged-in-menu");
   const notLoggedInMenu = document.getElementById("not-logged-in-menu");
-
-  if (
-    !avatarContainer ||
-    !hamburgerContainer ||
-    !notLoggedInMenu ||
-    !loggedInMenu
-  ) {
-    console.error("Header elements not found in the DOM.");
-    return;
-  }
 
   if (isLoggedIn) {
     // Show avatar, hamburger menu, and logged-in dropdown
@@ -33,7 +34,7 @@ export function renderHeader(isLoggedIn) {
   }
 }
 
-export async function populateHeader(profile) {
+function populateHeader(profile) {
   const avatarImg = document.getElementById("header-profile-avatar");
   const profileName = document.getElementById("header-profile-name");
 
@@ -46,7 +47,7 @@ export async function populateHeader(profile) {
   }
 }
 
-export function hamburgerDropdown() {
+function hamburgerDropdown() {
   const hamburgerMenu = document.getElementById("hamburger-menu");
   const dropdownMenu = document.getElementById("dropdown-menu");
 
@@ -77,15 +78,4 @@ export function hamburgerDropdown() {
       console.log("Escape key pressed. Dropdown closed.");
     }
   });
-}
-
-export async function header() {
-  const checkLoginStatus = await isLoggedIn();
-  renderHeader(checkLoginStatus);
-
-  if (checkLoginStatus) {
-    const profileHeader = await profileService.fetchProfile();
-    populateHeader(profileHeader);
-    hamburgerDropdown();
-  }
 }
