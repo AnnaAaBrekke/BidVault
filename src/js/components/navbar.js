@@ -3,22 +3,30 @@ import { showErrorAlert } from "../global/alert";
 export function renderHeader(isLoggedIn) {
   const avatarContainer = document.getElementById("avatar-container");
   const hamburgerContainer = document.getElementById("hamburger-container");
+  const loggedInMenu = document.getElementById("logged-in-menu");
   const notLoggedInMenu = document.getElementById("not-logged-in-menu");
 
-  if (!avatarContainer || !hamburgerContainer || !notLoggedInMenu) {
+  if (
+    !avatarContainer ||
+    !hamburgerContainer ||
+    !notLoggedInMenu ||
+    !loggedInMenu
+  ) {
     console.error("Header elements not found in the DOM.");
     return;
   }
 
   if (isLoggedIn) {
-    // Show avatar and hamburger menu
+    // Show avatar, hamburger menu, and logged-in dropdown
     avatarContainer.classList.remove("hidden");
     hamburgerContainer.classList.remove("hidden");
+    loggedInMenu.classList.remove("hidden");
     notLoggedInMenu.classList.add("hidden");
   } else {
-    // Show login/register buttons
+    // Show not-logged-in menu and hide others
     avatarContainer.classList.add("hidden");
     hamburgerContainer.classList.add("hidden");
+    loggedInMenu.classList.add("hidden");
     notLoggedInMenu.classList.remove("hidden");
   }
 }
