@@ -1,34 +1,44 @@
-import { setupPreviewInputs } from "../form/utils/previewHandler";
+import { setupPreviewInputs } from "../form/utils/previewHandler.js";
 
 export function displayProfile(profile) {
   if (!profile) {
     console.error("Profile data is missing.");
     return;
   }
+
   // Avatar setup
   const avatarImg = document.getElementById("profile-avatar");
+  console.log("Avatar DOM Element:", avatarImg);
+
   if (avatarImg) {
     avatarImg.src = profile.avatar?.url || "../src/images/avatar.jpg";
     avatarImg.alt = profile.avatar?.alt || "Default Avatar";
   }
   // Banner setup
   const bannerImg = document.getElementById("profile-banner");
+  console.log("Banner DOM Element:", bannerImg);
+
   if (bannerImg) {
     bannerImg.src = profile.banner?.url || "../src/images/banner-bid.jpg";
-    bannerImg.alt = profile.banner?.alt || "Default Banner";
   }
   // Profile name
   const profileName = document.getElementById("profile-name");
+  console.log("Name DOM Element:", profileName);
+
   if (profileName) {
     profileName.textContent = profile.name || "Anonymous";
   }
   // Profile bio
   const profileBio = document.getElementById("profile-bio");
+
   if (profileBio) {
     profileBio.textContent = profile.bio || "No bio provided.";
+    console.log("Bio DOM Element:", profileBio);
   }
   // Profile credits
   const profileCreditsContainer = document.getElementById("profile-credits");
+  console.log("Credits DOM Element:", profileCreditsContainer);
+
   if (profileCreditsContainer) {
     profileCreditsContainer.textContent = ""; // Clear previous content
 

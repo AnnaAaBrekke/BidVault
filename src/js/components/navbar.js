@@ -1,4 +1,6 @@
+import { profileService } from "../api/services/profileService";
 import { showErrorAlert } from "../global/alert";
+import { isLoggedIn } from "../global/authGuard";
 
 export function renderHeader(isLoggedIn) {
   const avatarContainer = document.getElementById("avatar-container");
@@ -32,7 +34,7 @@ export function renderHeader(isLoggedIn) {
 }
 
 export async function populateHeader(profile) {
-  const avatarImg = document.getElementById("profile-avatar");
+  const avatarImg = document.getElementById("header-profile-avatar");
   const profileName = document.getElementById("profile-name");
 
   if (profile) {
@@ -75,4 +77,15 @@ export function hamburgerDropdown() {
       console.log("Escape key pressed. Dropdown closed.");
     }
   });
+}
+
+export async function header() {
+  const checkLoginStatus = await isLoggedIn();
+  renderHeader(checkLoginStatus);
+
+  if (checkLoginStatus) {
+    const profileHeader = await profileService.fetchProfile();
+    populateHeader(profileHeader);
+    hamburgerDropdown();
+  }
 }
