@@ -1,11 +1,19 @@
+import { loadMoreListings } from "../pagnation.js";
 import { outputListings } from "./outputListing.js";
 
-export function displayListings(listings, addDeleteButtons = false) {
+export function displayListings(
+  listings,
+  addDeleteButtons = false,
+  isLastPage,
+) {
   const listingsContainer = document.getElementById("listings-container");
+  const seeMoreButton = document.getElementById("see-more-btn");
 
-  // Clear the container
-  while (listingsContainer.firstChild) {
-    listingsContainer.removeChild(listingsContainer.firstChild);
+  // If not appending, clear the container
+  if (!seeMoreButton) {
+    while (listingsContainer.firstChild) {
+      listingsContainer.removeChild(listingsContainer.firstChild);
+    }
   }
 
   listings.forEach((listing) => {
@@ -40,4 +48,19 @@ export function displayListings(listings, addDeleteButtons = false) {
 
     listingsContainer.appendChild(listingDiv);
   });
+
+  // Add "See More" button
+  if (!isLastPage) {
+    if (!seeMoreButton) {
+      const newButton = document.createElement("button");
+      newButton.id = "see-more-btn";
+      newButton.textContent = "See More";
+      newButton.classList.add("see-more-btn");
+      newButton.addEventListener("click", loadMoreListings); // Attach the function
+      listingsContainer.appendChild(newButton);
+    }
+  } else if (seeMoreButton) {
+    // Remove the button if no more pages
+    seeMoreButton.remove();
+  }
 }

@@ -20,11 +20,14 @@ class ListingService extends MainService {
    * @async
    * @returns {Promise<Object[]>} - Resolves with an array of listings.
    */
-  async fetchListings() {
-    return this.fetchRequest(`/listings/${INCLUDE_BIDS_AND_SELLER}`, {
-      method: "GET",
-      headers: await getHeaders(),
-    });
+  async fetchListings(page = 1, limit = 12) {
+    return this.fetchRequest(
+      `/listings?page=${page}&limit=${limit}&${INCLUDE_BIDS_AND_SELLER}`,
+      {
+        method: "GET",
+        headers: await getHeaders(),
+      },
+    );
   }
 
   /**
