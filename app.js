@@ -13,12 +13,12 @@ router();
 setLogoutListener();
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const checkLoginStatus = await isLoggedIn(); // Replace with your auth check logic
+  const checkLoginStatus = await isLoggedIn();
   renderHeader(checkLoginStatus);
-  hamburgerDropdown();
 
-  if (isLoggedIn) {
-    const profile = await profileService.fetchProfile(); // Fetch the user's profile
+  if (checkLoginStatus) {
+    const profile = await profileService.fetchProfile();
     populateHeader(profile);
+    hamburgerDropdown();
   }
 });

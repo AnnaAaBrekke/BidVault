@@ -1,33 +1,38 @@
-export function renderHeader(isLoggedIn) {
-  const loggedInMenu = document.getElementById("logged-in-menu");
-  const notLoggedInMenu = document.getElementById("not-logged-in");
+import { showErrorAlert } from "../global/alert";
 
-  if (!loggedInMenu || !notLoggedInMenu) {
-    console.error("Header menu sections not found in the DOM.");
+export function renderHeader(isLoggedIn) {
+  const avatarContainer = document.getElementById("avatar-container");
+  const hamburgerContainer = document.getElementById("hamburger-container");
+  const notLoggedInMenu = document.getElementById("not-logged-in-menu");
+
+  if (!avatarContainer || !hamburgerContainer || !notLoggedInMenu) {
+    console.error("Header elements not found in the DOM.");
     return;
   }
 
   if (isLoggedIn) {
-    loggedInMenu.classList.remove("hidden");
+    // Show avatar and hamburger menu
+    avatarContainer.classList.remove("hidden");
+    hamburgerContainer.classList.remove("hidden");
     notLoggedInMenu.classList.add("hidden");
   } else {
-    loggedInMenu.classList.add("hidden");
+    // Show login/register buttons
+    avatarContainer.classList.add("hidden");
+    hamburgerContainer.classList.add("hidden");
     notLoggedInMenu.classList.remove("hidden");
   }
 }
+
 export async function populateHeader(profile) {
   const avatarImg = document.getElementById("profile-avatar");
   const profileName = document.getElementById("profile-name");
 
   if (profile) {
-    // Set avatar image
     avatarImg.src = profile.avatar?.url || "src/images/avatar.jpg";
     avatarImg.alt = profile.avatar?.alt || "Default Avatar";
-
-    // Set profile name
     profileName.textContent = profile.name || "Anonymous";
   } else {
-    console.warn("No profile data available");
+    showErrorAlert("No profile data available.");
   }
 }
 
@@ -35,26 +40,31 @@ export function hamburgerDropdown() {
   const hamburgerMenu = document.getElementById("hamburger-menu");
   const dropdownMenu = document.getElementById("dropdown-menu");
 
-  // Toggle dropdown visibility on hamburger click
+  if (!hamburgerMenu || !dropdownMenu) {
+    console.error("Hamburger menu or dropdown menu not found in the DOM.");
+    return;
+  }
+
   hamburgerMenu.addEventListener("click", (event) => {
-    event.stopPropagation(); // Prevent bubbling
-    dropdownMenu.classList.toggle("hidden"); // Toggle visibility
+    event.stopPropagation();
+    dropdownMenu.classList.toggle("hidden");
+    console.log("Hamburger menu clicked. Dropdown visibility toggled.");
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (event) => {
     if (
       !hamburgerMenu.contains(event.target) &&
       !dropdownMenu.contains(event.target)
     ) {
       dropdownMenu.classList.add("hidden");
+      console.log("Clicked outside. Dropdown closed.");
     }
   });
 
-  // Close dropdown on Escape key press
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       dropdownMenu.classList.add("hidden");
+      console.log("Escape key pressed. Dropdown closed.");
     }
   });
 }

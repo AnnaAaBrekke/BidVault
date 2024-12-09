@@ -14,8 +14,8 @@
     <header
       class="flex items-center bg-gray-50 shadow-md px-8 py-6 justify-between"
     >
-      <!-- Avatar on the Left (Static) -->
-      <div id="avatar-container" class="flex items-center space-x-3">
+      <!-- Avatar on the Left (Visible only when logged in) -->
+      <div id="avatar-container" class="hidden flex items-center space-x-3">
         <a href="/profile/" class="flex items-center space-x-3">
           <img
             id="profile-avatar"
@@ -35,8 +35,28 @@
         <img src="src/images/logo.jpg" alt="Site Logo" class="h-14 w-auto" />
       </div>
 
-      <!-- Hamburger Menu on the Right -->
-      <div class="relative">
+      <!-- Buttons for Not Logged-in Users -->
+      <div
+        id="not-logged-in-menu"
+        class="hidden flex items-center justify-end space-x-4"
+      >
+        <a
+          href="/welcome"
+          class="flex items-center justify-center px-6 py-2 bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
+        >
+          Login
+        </a>
+        <a
+          href="/auth/register/"
+          class="flex items-center justify-center px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
+        >
+          Register
+        </a>
+      </div>
+
+      <!-- Hamburger Menu and Dropdown for Logged-in Users -->
+      <div id="hamburger-container" class="relative">
+        <!-- Hamburger Button -->
         <button
           id="hamburger-menu"
           class="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full hover:bg-gray-300"
@@ -49,8 +69,8 @@
           id="dropdown-menu"
           class="hidden absolute right-0 mt-4 w-64 bg-white shadow-md rounded-lg divide-y divide-gray-200 z-50"
         >
-          <!-- Logged-in Dropdown -->
-          <div id="logged-in-menu" class="hidden">
+          <!-- Logged-in Menu -->
+          <div id="logged-in-menu">
             <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
               <a href="/profile/" class="font-semibold text-gray-800"
                 >Your Profile</a
@@ -70,26 +90,8 @@
               id="logout-button"
               class="py-3 px-6 text-center font-semibold text-red-600 hover:bg-gray-100 cursor-pointer"
             >
-              Logout Account
+              <a href="/welcome">Log out</a>
             </div>
-          </div>
-          <!-- Not Logged-in Section -->
-          <div
-            id="not-logged-in"
-            class="hidden flex items-center justify-end space-x-4"
-          >
-            <a
-              href="/welcome"
-              class="flex items-center justify-center px-6 py-2 bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
-            >
-              Login
-            </a>
-            <a
-              href="/auth/register/"
-              class="flex items-center justify-center px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
-            >
-              Register
-            </a>
           </div>
         </div>
       </div>
