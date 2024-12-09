@@ -93,7 +93,4 @@ export function initializeSearch(
       handleSearch();
     }
   });
-
-  // Display initial listings on page load
-  displayListings();
 }
