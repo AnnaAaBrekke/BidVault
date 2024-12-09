@@ -35,7 +35,7 @@ export function renderHeader(isLoggedIn) {
 
 export async function populateHeader(profile) {
   const avatarImg = document.getElementById("header-profile-avatar");
-  const profileName = document.getElementById("profile-name");
+  const profileName = document.getElementById("header-profile-name");
 
   if (profile) {
     avatarImg.src = profile.avatar?.url || "src/images/avatar.jpg";
