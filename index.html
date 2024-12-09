@@ -11,76 +11,87 @@
     ></script>
   </head>
   <body>
-    <header class="flex items-center bg-gray-50 shadow-md px-8 py-6">
-      <!-- Avatar and Dropdown Section -->
-      <div class="flex items-center space-x-3 cursor-pointer w-1/3">
-        <!-- Avatar -->
-        <div
-          id="avatar-container"
-          class="flex items-center space-x-3 cursor-pointer"
-        >
+    <header
+      class="flex items-center bg-gray-50 shadow-md px-8 py-6 justify-between"
+    >
+      <!-- Avatar on the Left (Static) -->
+      <div id="avatar-container" class="flex items-center space-x-3">
+        <a href="/profile/" class="flex items-center space-x-3">
           <img
+            id="profile-avatar"
             src="src/images/avatar.jpg"
             alt="Avatar"
             class="h-10 w-10 rounded-full object-cover"
           />
           <div class="text-sm">
             <p class="text-gray-600">Creator</p>
-            <p class="font-medium text-gray-800">Anna</p>
+            <p id="profile-name" class="font-medium text-gray-800">Anonymous</p>
           </div>
-        </div>
+        </a>
+      </div>
+
+      <!-- Logo in the Center -->
+      <div class="flex justify-center">
+        <img src="src/images/logo.jpg" alt="Site Logo" class="h-14 w-auto" />
+      </div>
+
+      <!-- Hamburger Menu on the Right -->
+      <div class="relative">
+        <button
+          id="hamburger-menu"
+          class="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full hover:bg-gray-300"
+        >
+          <i class="fa-solid fa-bars text-xl text-gray-800"></i>
+        </button>
 
         <!-- Dropdown Menu -->
         <div
           id="dropdown-menu"
-          class="hidden absolute left-0 mt-4 w-64 bg-white shadow-md rounded-lg divide-y divide-gray-200 z-50"
+          class="hidden absolute right-0 mt-4 w-64 bg-white shadow-md rounded-lg divide-y divide-gray-200 z-50"
         >
-          <!-- Dropdown Items -->
-          <div
-            class="py-3 px-6 flex items-center justify-between hover:bg-gray-100 cursor-pointer"
-          >
-            <div class="flex items-center">
-              <div class="bg-orange-400 h-6 w-6 rounded-full mr-3"></div>
-              <a href="/profile" class="font-semibold text-gray-800"
+          <!-- Logged-in Dropdown -->
+          <div id="logged-in-menu" class="hidden">
+            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
+              <a href="/profile/" class="font-semibold text-gray-800"
                 >Your Profile</a
               >
             </div>
-            <span class="text-gray-500">&gt;</span>
-          </div>
-          <div
-            class="py-3 px-6 flex items-center justify-between hover:bg-gray-100 cursor-pointer"
-          >
-            <div class="flex items-center">
-              <div class="bg-orange-400 h-6 w-6 rounded-full mr-3"></div>
-              <a href="/listing/create" class="font-semibold text-gray-800"
+            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
+              <a href="/listing/create/" class="font-semibold text-gray-800"
                 >Create Listing</a
               >
             </div>
-            <span class="text-gray-500">&gt;</span>
-          </div>
-          <div
-            class="py-3 px-6 flex items-center justify-between hover:bg-gray-100 cursor-pointer"
-          >
-            <div class="flex items-center">
-              <div class="bg-orange-400 h-6 w-6 rounded-full mr-3"></div>
-              <a href="/profile/update" class="font-semibold text-gray-800"
+            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
+              <a href="/profile/update/" class="font-semibold text-gray-800"
                 >Update Profile</a
               >
             </div>
-            <span class="text-gray-500">&gt;</span>
+            <div
+              id="logout-button"
+              class="py-3 px-6 text-center font-semibold text-red-600 hover:bg-gray-100 cursor-pointer"
+            >
+              Logout Account
+            </div>
           </div>
-          <!-- Logout Button -->
+          <!-- Not Logged-in Section -->
           <div
-            id="logout-button"
-            class="py-3 px-6 bg-white text-center font-semibold text-red-600 hover:bg-gray-100 cursor-pointer"
+            id="not-logged-in"
+            class="hidden flex items-center justify-end space-x-4"
           >
-            Logout Account
+            <a
+              href="/welcome"
+              class="flex items-center justify-center px-6 py-2 bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Login
+            </a>
+            <a
+              href="/auth/register/"
+              class="flex items-center justify-center px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
+            >
+              Register
+            </a>
           </div>
         </div>
-      </div>
-      <!-- Logo Section (Center) -->
-      <div class="flex justify-center w-1/3">
-        <img src="src/images/logo.jpg" alt="Site Logo" class="h-14 w-auto" />
       </div>
     </header>
 
