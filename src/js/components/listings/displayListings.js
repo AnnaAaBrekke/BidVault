@@ -5,12 +5,11 @@ export function displayListings(
   listings,
   addDeleteButtons = false,
   isLastPage,
-  isSearchResults = false, // New parameter to identify search results
+  isSearchResults = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
   const seeMoreButton = document.getElementById("see-more-btn");
 
-  // Clear the container if not appending
   if (!seeMoreButton) {
     while (listingsContainer.firstChild) {
       listingsContainer.removeChild(listingsContainer.firstChild);
@@ -58,11 +57,11 @@ export function displayListings(
         newButton.id = "see-more-btn";
         newButton.textContent = "See More";
         newButton.classList.add("see-more-btn");
-        newButton.addEventListener("click", loadMoreListings); // Attach the function
+        newButton.addEventListener("click", loadMoreListings);
         listingsContainer.appendChild(newButton);
       }
     } else if (seeMoreButton) {
-      // Remove the button if no more pages
+      // Removes the button
       seeMoreButton.remove();
     }
   }

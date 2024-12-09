@@ -15,10 +15,12 @@ class ListingService extends MainService {
   }
 
   /**
-   * Fetches all listings, including bids and seller information.
+   * Fetches a paginated list of listings, including bids and seller information.
    *
    * @async
-   * @returns {Promise<Object[]>} - Resolves with an array of listings.
+   * @param {number} [page=1] - The page number to retrieve (default is 1).
+   * @param {number} [limit=12] - The number of listings per page (default is 12).
+   * @returns {Promise<Object[]>} - Resolves to an array of listings, each containing bids and seller information.
    */
   async fetchListings(page = 1, limit = 12) {
     return this.fetchRequest(

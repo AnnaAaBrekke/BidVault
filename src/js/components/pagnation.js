@@ -1,11 +1,15 @@
 import { listingService } from "../api/services/listingService.js";
 import { displayListings } from "./listings/displayListings.js";
 
-// Define state variables
-let currentPage = 1; // Tracks the current page
-const itemsPerPage = 12; // Number of items per page
-let isLastPage = false; // Tracks if the last page has been reached
+let currentPage = 1;
+const itemsPerPage = 12;
+let isLastPage = false;
 
+/**
+ * Loads more listings when the user reaches the end of the current page.
+ * Fetches additional listings from the service and displays them,
+ * marking if the last page is reached based on the response.
+ */
 export async function loadMoreListings() {
   if (isLastPage) return;
 

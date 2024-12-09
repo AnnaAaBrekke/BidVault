@@ -1,8 +1,11 @@
 import { listingService } from "../api/services/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
 import { displayListings } from "./listings/displayListings.js";
+
 /**
  * Initializes the search functionality for a page.
+ * Sets up the search input, button, and event listeners for searching and clearing results.
+ *
  * @param {string} searchInputId - The ID of the search input element.
  * @param {string} searchButtonId - The ID of the search button element.
  * @param {string} listingsContainerId - The ID of the container to display search results.
@@ -23,6 +26,7 @@ export function initializeSearch(
 
   /**
    * Updates the search headline with the query and results count.
+   *
    * @param {string} query - The search query entered by the user.
    * @param {number} resultsCount - The number of results returned by the search.
    */
@@ -36,7 +40,8 @@ export function initializeSearch(
 
   /**
    * Handles the search functionality by fetching results based on the user's query.
-   * Displays the results or a message if no results are found.
+   * If no results are found, displays a "No results" message.
+   * If results are found, displays the listings.
    */
   const handleSearch = async () => {
     const query = searchInput.value.trim();
@@ -80,7 +85,7 @@ export function initializeSearch(
   };
 
   /**
-   * Handles clearing the search results and redirects the user to the home page.
+   * Clears the search results and redirects the user to the home page.
    */
   const handleClear = () => {
     window.location.href = "/";
