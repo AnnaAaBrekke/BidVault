@@ -71,26 +71,51 @@
         >
           <!-- Logged-in Menu -->
           <div id="logged-in-menu">
-            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
-              <a href="/profile/" class="font-semibold text-gray-800"
-                >Your Profile</a
-              >
+            <!-- Your Profile -->
+            <div
+              class="flex items-center justify-between py-3 px-6 hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-user text-orange-500"></i>
+                <a href="/profile/" class="font-semibold text-gray-800"
+                  >Your Profile</a
+                >
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
             </div>
-            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
-              <a href="/listing/create/" class="font-semibold text-gray-800"
-                >Create Listing</a
-              >
+            <!-- Your Listings -->
+            <div
+              class="flex items-center justify-between py-3 px-6 hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-image text-orange-500"></i>
+                <a href="/listing/create/" class="font-semibold text-gray-800"
+                  >Your Listings</a
+                >
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
             </div>
-            <div class="py-3 px-6 hover:bg-gray-100 cursor-pointer">
-              <a href="/profile/update/" class="font-semibold text-gray-800"
-                >Update Profile</a
-              >
+            <!-- Update Profile -->
+            <div
+              class="flex items-center justify-between py-3 px-6 hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-gear text-orange-500"></i>
+                <a href="/profile/update/" class="font-semibold text-gray-800"
+                  >Update Profile</a
+                >
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400"></i>
             </div>
+            <!-- Logout -->
             <div
               id="logout-button"
-              class="py-3 px-6 text-center font-semibold text-red-600 hover:bg-gray-100 cursor-pointer"
+              class="flex items-center justify-center py-4 px-6 mt-4 bg-white border-2 border-gray-800 rounded-lg hover:bg-gray-100 cursor-pointer"
             >
-              <a href="/welcome">Log out</a>
+              <i class="fa-solid fa-right-from-bracket text-gray-500 mr-3"></i>
+              <a href="/welcome" class="font-semibold text-gray-800"
+                >Logout Account</a
+              >
             </div>
           </div>
         </div>
