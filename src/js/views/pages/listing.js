@@ -14,16 +14,11 @@ async function initSingleListing() {
   }
 
   try {
-    // Show loader while fetching the listing
-    displaySingleListing(null, true);
-
     const listing = await listingService.fetchSingleListing(listingId);
-
-    // Render the listing and hide the loader
-    displaySingleListing(listing, false);
+    displaySingleListing(listing);
   } catch (error) {
     handleError(error, "loading listing details");
-    throw new Error();
+    throw error;
   }
 }
 

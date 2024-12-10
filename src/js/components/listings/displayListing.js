@@ -6,13 +6,11 @@ import { bidTimeDetails } from "./utils/timeBid.js";
 import { renderMedia } from "./utils/media.js";
 import { hideCardLoaders, showCardLoaders } from "../../global/loader.js";
 
-export function displaySingleListing(listing, loading = false) {
+showCardLoaders("single-listing", 1); // Show 1 loader for the single view
+
+export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
 
-  if (loading) {
-    showCardLoaders("single-listing", 1); // Show 1 loader for the single view
-    return;
-  }
   hideCardLoaders("single-listing");
   // Clear the container
   while (mainContainer.firstChild) {
