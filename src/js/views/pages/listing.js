@@ -17,7 +17,6 @@ async function initSingleListing() {
     // Show loader while fetching the listing
     displaySingleListing(null, true);
 
-    // Fetch the single listing
     const listing = await listingService.fetchSingleListing(listingId);
 
     // Render the listing and hide the loader
