@@ -1,0 +1,58 @@
+.form {
+  @apply flex flex-col gap-4 w-80 justify-center p-3; // Use Tailwind's flex utilities and spacing scale
+}
+
+.form-label {
+  @apply font-bold; // Tailwind's font-weight utility
+}
+
+.form-input,
+.form-textarea,
+.btn {
+  @apply w-full p-2 border border-gray-300 rounded-md text-sm; // Width, padding, border, and rounded corners
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  @apply border-blue-500 outline-none; // Tailwind's focus utilities
+}
+
+.form-textarea {
+  @apply resize-y h-20; // Allow vertical resizing and set a fixed height
+}
+
+.avatar-container,
+.banner-container {
+  @apply flex flex-col items-center gap-2; // Flexbox column layout with spacing
+}
+
+.avatar-label img,
+.banner-label img {
+  @apply w-20 h-full border-2 border-dashed border-gray-300 cursor-pointer object-cover; // Width, dashed border, cursor, and object-fit
+}
+
+.avatar-text,
+.banner-text {
+  @apply text-xs text-gray-600 text-center; // Small text, gray color, and centered alignment
+}
+
+/* Place Bid Section */
+.form-bid {
+  @apply flex flex-col gap-2;
+}
+
+.form-input {
+  @apply p-2 text-base border border-gray-300 rounded-md;
+
+  &:focus {
+    @apply outline-none border-blue-500;
+  }
+}
+
+.btn-submit {
+  @apply p-2.5 text-base bg-blue-500 text-white rounded-md cursor-pointer transition-colors;
+
+  &:hover {
+    @apply bg-blue-700;
+  }
+}

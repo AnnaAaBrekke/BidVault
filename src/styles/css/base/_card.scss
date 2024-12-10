@@ -4,27 +4,40 @@
 @tailwind utilities;
 
 .listing {
-  @apply bg-white shadow-lg rounded-lg p-4 mb-6 flex flex-col justify-between transition hover:shadow-xl;
+  @apply bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden p-2 transition-transform transform duration-200 ease-in-out;
 
-  & .listing-content {
-    @apply flex-grow;
-  }
-
-  & .view-details-btn {
-    @apply text-blue-600 hover:text-blue-800 font-medium mt-4;
-  }
-
-  & .delete-button {
-    @apply bg-red-500 text-white rounded-full p-2 hover:bg-red-700 transition;
-  }
-
-  & .delete-button i {
-    @apply text-lg;
+  &:hover {
+    @apply scale-105 shadow-lg;
   }
 }
 
-.listings-container {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+/* Listing image */
+.listing-image {
+  @apply w-full h-40 object-cover rounded-lg;
+}
+
+/* Listing title */
+.listing h2 {
+  @apply text-lg my-2 text-gray-800;
+}
+
+/* Listing description */
+.listing p {
+  @apply my-1 text-gray-600 text-sm leading-relaxed;
+}
+
+/* Button for viewing details */
+.view-details-btn {
+  @apply inline-block mt-2 px-3 py-2 text-sm text-white bg-blue-500 rounded transition-colors duration-200 ease-in-out text-center;
+
+  &:hover {
+    @apply bg-blue-700;
+  }
+}
+
+/* Media Section */
+.main-media-item img {
+  @apply w-full h-auto max-w-3xl mx-auto rounded-lg;
 }
 
 /* Seller Container */
@@ -42,4 +55,21 @@
   strong {
     @apply text-gray-900;
   }
+}
+
+/* Bids Section */
+.bids-list {
+  @apply list-none p-0;
+}
+
+.bid-item {
+  @apply p-2 border-b border-gray-300;
+
+  &:last-child {
+    @apply border-b-0;
+  }
+}
+
+.bid-amount {
+  @apply font-bold text-blue-500;
 }
