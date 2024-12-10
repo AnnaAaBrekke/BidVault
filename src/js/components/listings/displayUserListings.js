@@ -1,6 +1,9 @@
 import { listingService } from "../../api/services/listingService";
 import { showErrorAlert } from "../../global/alert";
-import { hideCardLoaders, showCardLoaders } from "../../global/loader";
+import {
+  hideCardLoaders,
+  showCardLoaders,
+} from "../../global/loaders/loaderCard";
 import { handleDelete } from "../delete";
 import { displayListings } from "./displayListings";
 

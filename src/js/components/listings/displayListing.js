@@ -4,7 +4,10 @@ import FormHandler from "../form/formHandler.js";
 import { recentBidsToggle } from "../buttons.js";
 import { bidTimeDetails } from "./utils/timeBid.js";
 import { renderMedia } from "./utils/media.js";
-import { hideCardLoaders, showCardLoaders } from "../../global/loader.js";
+import {
+  hideCardLoaders,
+  showCardLoaders,
+} from "../../global/loaders/loaderCard.js";
 
 showCardLoaders("single-listing", 1); // Show 1 loader for the single view
 

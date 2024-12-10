@@ -1,4 +1,7 @@
-import { hideCardLoaders, showCardLoaders } from "../../global/loader.js";
+import {
+  hideCardLoaders,
+  showCardLoaders,
+} from "../../global/loaders/loaderCard.js";
 import { loadMoreListings } from "../pagnation.js";
 import { outputListings } from "./outputListing.js";
 

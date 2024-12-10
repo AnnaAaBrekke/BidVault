@@ -1,6 +1,9 @@
 import { listingService } from "../api/services/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
-import { hideCardLoaders, showCardLoaders } from "../global/loader.js";
+import {
+  hideCardLoaders,
+  showCardLoaders,
+} from "../global/loaders/loaderCard.js";
 import { displayListings } from "./listings/displayListings.js";
 
 /**
