@@ -4,10 +4,16 @@ import FormHandler from "../form/formHandler.js";
 import { recentBidsToggle } from "../buttons.js";
 import { bidTimeDetails } from "./utils/timeBid.js";
 import { renderMedia } from "./utils/media.js";
+import { hideCardLoaders, showCardLoaders } from "../../global/loader.js";
 
-export function displaySingleListing(listing) {
+export function displaySingleListing(listing, loading = false) {
   const mainContainer = document.getElementById("single-listing");
 
+  if (loading) {
+    showCardLoaders("single-listing", 1); // Show 1 loader for the single view
+    return;
+  }
+  hideCardLoaders("single-listing");
   // Clear the container
   while (mainContainer.firstChild) {
     mainContainer.removeChild(mainContainer.firstChild);
