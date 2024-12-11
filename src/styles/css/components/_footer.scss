@@ -1,3 +1,22 @@
-footer {
-  @apply text-center py-2 bg-gray-100 text-sm;
+#footer {
+  background-color: #f9fafb; /* bg-gray-50 */
+  margin-top: 2rem; /* mt-8 */
+  position: sticky; /* Make it sticky */
+  bottom: 0; /* Stick to the bottom of the viewport */
+  z-index: 10; /* Ensure it stays above other content */
+
+  .footer-content {
+    text-align: center;
+    padding: 1.5rem 0; /* py-6 */
+
+    .footer-logo {
+      height: 2.5rem; /* h-10 */
+      margin: 0 auto; /* mx-auto */
+    }
+
+    .footer-line {
+      border-color: #d1d5db; /* border-gray-300 */
+      margin: 1rem 0; /* my-4 */
+    }
+  }
 }
