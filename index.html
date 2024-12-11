@@ -112,17 +112,32 @@
     </header>
 
     <main id="main-content" class="main">
-      <section id="intro-section">
-        <h1 id="site-title" class="title">Bid Vault (HOME)</h1>
-        <p id="intro-text" class="paragraph">
-          Browse and bid on a variety of items, or create your own listing for
-          others to bid on.
-        </p>
-        <a href="#listing-section" id="btn-scroll">Start your journey here!</a>
+      <section
+        id="intro-section"
+        class="relative bg-cover bg-center flex flex-col items-center justify-center p-8"
+      >
+        <div class="text-center bg-white p-6 rounded-lg shadow-md">
+          <h1 id="site-title" class="text-3xl font-bold text-gray-900 mb-4">
+            Bid Vault
+          </h1>
+          <p
+            id="intro-text"
+            class="paragraph text-lg text-gray-700 leading-relaxed mb-6"
+          >
+            Browse and bid on a variety of items, or create your own listing for
+            others to bid on.
+          </p>
+          <button
+            class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100"
+          >
+            <a href="#listing-section" id="btn-scroll"
+              >Start your journey here</a
+            >
+          </button>
+        </div>
       </section>
 
       <section id="listing-section">
-        <h2>Listings</h2>
         <div
           id="search-container"
           class="search-wrapper flex p-2 bg-white rounded-full shadow-md gap-1 border border-gray-300"
