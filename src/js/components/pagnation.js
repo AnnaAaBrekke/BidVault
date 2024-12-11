@@ -37,8 +37,6 @@ export async function loadMoreListings() {
 
     // Increment the page counter after successfully loading listings
     currentPage += 1;
-
-    // If "See More" button exists, ensure the event listener is attached
   } catch (error) {
     console.error("Error loading more listings:", error);
     hideCardLoaders("listings-container");

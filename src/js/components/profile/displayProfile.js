@@ -22,7 +22,6 @@ export function displayProfile(profile) {
   }
   // Profile name
   const profileName = document.getElementById("profile-name");
-  console.log("Name DOM Element:", profileName);
 
   if (profileName) {
     profileName.textContent = profile.name || "Anonymous";
@@ -36,7 +35,6 @@ export function displayProfile(profile) {
   }
   // Profile credits
   const profileCreditsContainer = document.getElementById("profile-credits");
-  console.log("Credits DOM Element:", profileCreditsContainer);
 
   if (profileCreditsContainer) {
     profileCreditsContainer.textContent = ""; // Clear previous content
