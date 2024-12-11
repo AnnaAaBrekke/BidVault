@@ -93,69 +93,40 @@
                 Update Profile
               </span>
             </a>
-            <div
-              id="logout-button"
-              class="flex items-center justify-center sm:w-auto w-auto px-4 py-2 sm:px-6 sm:py-3 gap-2 bg-white border-2 border-gray-800 rounded-md hover:bg-gray-100 cursor-pointer"
-            >
-              <i
-                class="fa-solid fa-right-from-bracket text-gray-700 sm:text-gray-700 text-lg"
-              ></i>
-              <span class="logout-text font-semibold text-sm hidden sm:inline">
-                Logout Account
-              </span>
+            <div id="logout-button" class="logout-btn">
+              <i class="logout-icon fa-solid fa-right-from-bracket"></i>
+              <span class="logout-text"> Logout Account </span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Not Logged-in Menu -->
-      <div
-        id="not-logged-in-menu"
-        class="hidden flex items-center justify-end space-x-1 sm:space-x-4"
-      >
-        <a
-          href="/welcome"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
-        >
-          Login
-        </a>
-        <a
-          href="/auth/register/"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-800 text-white rounded-lg hover:bg-gray-700"
-        >
-          Register
-        </a>
+      <div id="not-logged-in-menu" class="not-logged-in-nav">
+        <a href="/welcome" class="login-nav">Login</a>
+        <a href="/auth/register/" class="register-nav">Register</a>
       </div>
     </header>
 
-    <main
-      id="main-content"
-      class="main flex flex-col justify-center p-4 space-y-6"
-    >
+    <main id="main-content" class="main">
       <!-- Profile Section -->
-      <section id="profile-section" class="space-y-4">
-        <div id="banner-container" class="banner-container relative">
+      <section id="profile-section" class="section section-profile">
+        <div id="banner-container" class="banner-container">
           <img
             id="profile-banner"
-            class="profile-banner w-full h-48 object-cover rounded-lg shadow-lg"
+            class="profile-banner"
             src="../src/images/banner-bid.jpg"
             alt="Profile Banner"
           />
         </div>
-        <div
-          id="profile-info"
-          class="profile-info flex flex-col items-center text-center space-y-4"
-        >
+        <div id="profile-info" class="profile-info">
           <img
             id="profile-avatar"
-            class="profile-avatar h-20 w-20 rounded-full border-4 border-white shadow-md cursor-pointer hover:scale-105 transition-transform"
+            class="profile-avatar"
             src="../src/images/avatar.jpg"
             alt="Profile Avatar"
           />
-          <div
-            id="avatar-update-container"
-            class="hidden shadow-lg p-4 rounded-lg w-80 space-y-3 z-10"
-          >
+          <div id="avatar-update-container" class="hidden">
             <!-- URL Input for Avatar -->
             <label for="avatar-update-input" class="form-label"
               >Avatar URL:</label
@@ -180,36 +151,24 @@
             />
 
             <!-- Buttons -->
-            <button
-              id="avatar-update-btn"
-              class="btn px-4 py-2 text-white bg-black rounded-lg hover:bg-grey-900"
-            >
-              Update Avatar
-            </button>
-            <button
-              id="avatar-cancel-btn"
-              class="btn btn-icon px-4 py-2 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300"
-            >
+            <button id="avatar-update-btn" class="btn">Update Avatar</button>
+            <button id="avatar-cancel-btn" class="btn btn-icon">
               <i class="fa-solid fa-x"></i>
             </button>
           </div>
 
           <h1 id="profile-name" class="profile-name">Anna</h1>
-          <p
-            id="profile-bio"
-            class="profile-bio text-sm text-gray-600 leading-relaxed"
-          >
+          <p id="profile-bio" class="profile-bio">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <p id="profile-credits" class="profile-credits text-sm text-gray-800">
-            Current credit balance:
-            <span class="font-semibold text-blue-500">1000 credits</span>
+          <p id="profile-credits" class="profile-credits">
+            Current credit balance: <span>1000 credits</span>
           </p>
           <a
             href="/profile/update"
             id="update-profile-btn"
-            class="btn btn-update-profile px-4 py-2 bg-black text-white rounded-lg shadow hover:bg-grey-900"
+            class="btn btn-update-profile"
           >
             Update Profile
           </a>

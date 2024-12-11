@@ -92,38 +92,18 @@
                 Update Profile
               </span>
             </a>
-            <div
-              id="logout-button"
-              class="flex items-center justify-center sm:w-auto w-auto px-4 py-2 sm:px-6 sm:py-3 gap-2 bg-white border-2 border-gray-800 rounded-md hover:bg-gray-100 cursor-pointer"
-            >
-              <i
-                class="fa-solid fa-right-from-bracket text-gray-700 sm:text-gray-700 text-lg"
-              ></i>
-              <span class="logout-text font-semibold text-sm hidden sm:inline">
-                Logout Account
-              </span>
+            <div id="logout-button" class="logout-btn">
+              <i class="logout-icon fa-solid fa-right-from-bracket"></i>
+              <span class="logout-text"> Logout Account </span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Not Logged-in Menu -->
-      <div
-        id="not-logged-in-menu"
-        class="hidden flex items-center justify-end space-x-1 sm:space-x-4"
-      >
-        <a
-          href="/welcome"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
-        >
-          Login
-        </a>
-        <a
-          href="/auth/register/"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-800 text-white rounded-lg hover:bg-gray-700"
-        >
-          Register
-        </a>
+      <div id="not-logged-in-menu" class="not-logged-in-nav">
+        <a href="/welcome" class="login-nav">Login</a>
+        <a href="/auth/register/" class="register-nav">Register</a>
       </div>
     </header>
 
@@ -301,7 +281,7 @@
           <button
             type="submit"
             id="create-listing-submit"
-            class="btn btn-submit"
+            class="button submit-form-btn"
           >
             Create Listing
           </button>

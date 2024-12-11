@@ -48,11 +48,3 @@
     @apply outline-none border-blue-500;
   }
 }
-
-.btn-submit {
-  @apply p-2.5 text-base bg-blue-500 text-white rounded-md cursor-pointer transition-colors;
-
-  &:hover {
-    @apply bg-blue-700;
-  }
-}

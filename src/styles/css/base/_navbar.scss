@@ -1,0 +1,20 @@
+// Styles for the not-logged-in-menu container
+.not-logged-in-nav {
+  @apply flex items-center justify-end space-x-1 sm:space-x-4;
+
+  .login-nav {
+    @apply flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-200 border border-gray-400 text-gray-800 rounded-lg transition-all;
+
+    &:hover {
+      @apply bg-gray-300;
+    }
+  }
+
+  .register-nav {
+    @apply flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-800 text-white rounded-lg transition-all;
+
+    &:hover {
+      @apply bg-gray-700;
+    }
+  }
+}

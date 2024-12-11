@@ -1,11 +1,71 @@
-.see-more-btn {
-  @apply w-[200px] h-[60px] bg-[#111111] rounded-md flex items-center justify-center text-white text-[18px] leading-[21px] font-normal mt-4;
+// Mixin for button and on hover
+@mixin button-hover($bg, $text) {
+  &:hover {
+    background-color: $bg;
+    color: $text;
+    border-color: $text;
+  }
+}
+
+// General button styles
+.button {
+  @apply rounded-md py-3 px-8 transition-all w-full;
+
+  &.see-more-btn {
+    @apply bg-black text-white text-lg border border-transparent;
+    @include button-hover(white, black);
+  }
+
+  &.view-details-btn {
+    @apply bg-black text-white font-semibold text-sm inline-flex justify-center items-center border border-transparent;
+    @include button-hover(white, black);
+  }
+
+  &.start-journey-btn {
+    @apply border border-black text-black text-xl;
+    @include button-hover(black, white);
+    padding: 1rem 1.5rem;
+  }
+
+  &.place-bid-btn {
+    @apply bg-black text-white border-gray-800 font-semibold text-sm px-6 py-3 border border-transparent;
+
+    @include button-hover(white, black);
+  }
+
+  &.submit-form-btn {
+    @apply bg-black text-white font-medium text-lg border-none px-10 py-4 rounded-lg flex items-center justify-center transition-all;
+
+    @include button-hover(white, black);
+  }
+}
+
+// Log Out Button Styles
+.logout-btn {
+  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-full gap-2; // Full width button
+
+  .logout-icon {
+    @apply text-gray-500;
+  }
+
+  .logout-text {
+    @apply text-center;
+  }
 
   &:hover {
-    @apply bg-white text-[#111111] border-green-200;
+    @apply bg-black text-white border-white;
+  }
+}
 
-    &:focus {
-      @apply outline-none;
-    }
+// Last Bid Badge
+.recent-bids-btn {
+  @apply flex items-center justify-center bg-gray-200 text-black text-sm  font-normal rounded-lg px-4 py-2 gap-2 relative;
+
+  .last-bid-text {
+    @apply text-black text-sm font-normal;
+  }
+
+  .cancel-icon {
+    @apply hidden w-4 h-4;
   }
 }

@@ -20,7 +20,7 @@ export function displayListings(
 
     const viewDetailsButton = document.createElement("a");
     viewDetailsButton.href = `../listing/?id=${listing.id}`;
-    viewDetailsButton.classList.add("view-details-btn");
+    viewDetailsButton.classList.add("button", "view-details-btn");
     viewDetailsButton.textContent = "View Details";
     listingDiv.appendChild(viewDetailsButton);
 
@@ -52,7 +52,7 @@ export function displayListings(
       seeMoreButton = document.createElement("button");
       seeMoreButton.id = "see-more-btn";
       seeMoreButton.textContent = "See More";
-      seeMoreButton.classList.add("see-more-btn");
+      seeMoreButton.classList.add("button", "see-more-btn");
       seeMoreButton.addEventListener("click", loadMoreListings);
 
       // Append the button after all the listings

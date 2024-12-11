@@ -29,7 +29,7 @@ export function displaySingleListing(listing) {
 
   const bidListButton = document.createElement("button");
   bidListButton.id = "bid-list-button";
-  bidListButton.classList.add("btn", "btn-primary");
+  bidListButton.classList.add("recent-bids-btn");
   bidListButton.textContent = "Recent Bids";
   bidListContainer.appendChild(bidListButton);
 
@@ -126,7 +126,7 @@ export function displaySingleListing(listing) {
 
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
-    submitButton.classList.add("btn", "btn-primary");
+    submitButton.classList.add("button", "place-bid-btn");
     submitButton.textContent = "Place Bid";
     bidForm.appendChild(submitButton);
 
