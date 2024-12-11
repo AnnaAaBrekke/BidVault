@@ -28,7 +28,12 @@ export class MainService {
       const response = await fetch(`${this.apiBase}${endpoint}`, options);
 
       if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
+        const errorMessage = await handleError(
+          { response },
+          `API request to ${this.apiBase}${endpoint}`,
+        );
+
+        throw new Error(errorMessage);
       }
 
       const contentType = response.headers.get("Content-Type");
@@ -39,8 +44,7 @@ export class MainService {
 
       return true;
     } catch (error) {
-      handleError(error, `API request to ${this.apiBase}${endpoint}`);
-      console.error(`Error during fetchRequest to ${endpoint}:`, error);
+      await handleError(error, `API request to ${this.apiBase}${endpoint}`);
       throw error;
     }
   }
