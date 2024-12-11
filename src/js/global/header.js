@@ -3,13 +3,6 @@ import { showErrorAlert } from "./alert";
 import { isLoggedIn } from "./authGuard";
 
 export async function setupHeader() {
-  const currentPage = window.location.pathname;
-
-  // Skip rendering header for the register page
-  if (currentPage.includes("auth/register/")) {
-    return;
-  }
-
   const checkLoginStatus = await isLoggedIn();
   renderHeader(checkLoginStatus);
 

@@ -1,9 +1,5 @@
 import { listingService } from "../api/services/listingService.js";
 import { showErrorAlert } from "../global/alert.js";
-import {
-  hideCardLoaders,
-  showCardLoaders,
-} from "../global/loaders/loaderCard.js";
 import { displayListings } from "./listings/displayListings.js";
 
 /**
@@ -55,11 +51,7 @@ export function initializeSearch(
     }
 
     try {
-      showCardLoaders(listingsContainerId, 6);
       const results = await listingService.searchListings(query);
-
-      hideCardLoaders(listingsContainerId);
-
       updateHeadline(query, results.length);
 
       listingsContainer.textContent = "";
@@ -69,7 +61,7 @@ export function initializeSearch(
         noResultsMessage.textContent = "No listings found for this search.";
         listingsContainer.appendChild(noResultsMessage);
       } else {
-        displayListings(results, false, true, false);
+        displayListings(results, false, true, false); // Pass `false` for `showSeeMoreButton`
       }
 
       if (!clearButton) {
@@ -84,8 +76,6 @@ export function initializeSearch(
       }
     } catch (error) {
       console.error(error, "searching listings");
-
-      hideCardLoaders(listingsContainerId);
 
       listingsContainer.textContent = "";
       const errorMessage = document.createElement("p");

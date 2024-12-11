@@ -128,34 +128,25 @@
       </div>
     </header>
 
-    <main
-      id="main-content"
-      class="main flex flex-col justify-center p-4 space-y-6"
-    >
+    <main id="main-content" class="main">
       <!-- Profile Section -->
-      <section id="profile-section" class="space-y-4">
-        <div id="banner-container" class="banner-container relative">
+      <section id="profile-section" class="section section-profile">
+        <div id="banner-container" class="banner-container">
           <img
             id="profile-banner"
-            class="profile-banner w-full h-48 object-cover rounded-lg shadow-lg"
+            class="profile-banner"
             src="../src/images/banner-bid.jpg"
             alt="Profile Banner"
           />
         </div>
-        <div
-          id="profile-info"
-          class="profile-info flex flex-col items-center text-center space-y-4"
-        >
+        <div id="profile-info" class="profile-info">
           <img
             id="profile-avatar"
-            class="profile-avatar h-20 w-20 rounded-full border-4 border-white shadow-md cursor-pointer hover:scale-105 transition-transform"
+            class="profile-avatar"
             src="../src/images/avatar.jpg"
             alt="Profile Avatar"
           />
-          <div
-            id="avatar-update-container"
-            class="hidden shadow-lg p-4 rounded-lg w-80 space-y-3 z-10"
-          >
+          <div id="avatar-update-container" class="hidden">
             <!-- URL Input for Avatar -->
             <label for="avatar-update-input" class="form-label"
               >Avatar URL:</label
@@ -180,36 +171,24 @@
             />
 
             <!-- Buttons -->
-            <button
-              id="avatar-update-btn"
-              class="btn px-4 py-2 text-white bg-black rounded-lg hover:bg-grey-900"
-            >
-              Update Avatar
-            </button>
-            <button
-              id="avatar-cancel-btn"
-              class="btn btn-icon px-4 py-2 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300"
-            >
+            <button id="avatar-update-btn" class="btn">Update Avatar</button>
+            <button id="avatar-cancel-btn" class="btn btn-icon">
               <i class="fa-solid fa-x"></i>
             </button>
           </div>
 
           <h1 id="profile-name" class="profile-name">Anna</h1>
-          <p
-            id="profile-bio"
-            class="profile-bio text-sm text-gray-600 leading-relaxed"
-          >
+          <p id="profile-bio" class="profile-bio">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <p id="profile-credits" class="profile-credits text-sm text-gray-800">
-            Current credit balance:
-            <span class="font-semibold text-blue-500">1000 credits</span>
+          <p id="profile-credits" class="profile-credits">
+            Current credit balance: <span>1000 credits</span>
           </p>
           <a
             href="/profile/update"
             id="update-profile-btn"
-            class="btn btn-update-profile px-4 py-2 bg-black text-white rounded-lg shadow hover:bg-grey-900"
+            class="btn btn-update-profile"
           >
             Update Profile
           </a>

@@ -5,6 +5,7 @@ export function displayProfile(profile) {
     console.error("Profile data is missing.");
     return;
   }
+
   // Avatar setup
   const avatarImg = document.getElementById("profile-avatar");
   console.log("Avatar DOM Element:", avatarImg);

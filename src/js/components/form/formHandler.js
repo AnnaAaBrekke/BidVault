@@ -5,10 +5,6 @@ import { handleError } from "../../global/errorMessage.js";
 import { validateImageUrl } from "./utils/validImg.js";
 import { authService } from "../../api/services/authService.js";
 import { profileService } from "../../api/services/profileService.js";
-import {
-  hideFormLoader,
-  showFormLoader,
-} from "../../global/loaders/loaderForm.js";
 
 /**
  * Handles form initialization, validation, and submission for various actions.
@@ -22,18 +18,12 @@ export default class FormHandler {
    * @param {string} formId - The ID of the form to initialize.
    * @param {string} action - The action to perform (e.g., login, register, update).
    */
-  static async initialize(formId, action) {
+  static initialize(formId, action) {
     const form = document.querySelector(formId);
 
     if (!form) {
       throw new Error(`Form with ID "${formId}" not found.`);
     }
-
-    showFormLoader(form);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    hideFormLoader(form);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();

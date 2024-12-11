@@ -14,8 +14,6 @@ export async function loadMoreListings() {
   if (isLastPage) return; // Stop if no more pages are available
 
   try {
-    displayListings([], false, false, false, false, true); // Show loaders
-
     // Fetch listings for the current page
     const listings = await listingService.fetchListings(
       currentPage,
@@ -28,7 +26,7 @@ export async function loadMoreListings() {
     }
 
     // Display the fetched listings
-    displayListings(listings, false, isLastPage, false, false); // Render data
+    displayListings(listings, false, isLastPage, false);
 
     // Increment the page counter after successfully loading listings
     currentPage += 1;

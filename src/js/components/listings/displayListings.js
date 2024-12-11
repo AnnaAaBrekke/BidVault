@@ -1,7 +1,3 @@
-import {
-  hideCardLoaders,
-  showCardLoaders,
-} from "../../global/loaders/loaderCard.js";
 import { loadMoreListings } from "../pagnation.js";
 import { outputListings } from "./outputListing.js";
 
@@ -11,17 +7,8 @@ export function displayListings(
   isLastPage,
   isSearchResults = false,
   isProfile = false,
-  loading = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
-
-  if (loading) {
-    showCardLoaders("listings-container", 12);
-    return;
-  }
-
-  hideCardLoaders("listings-container");
-
   let seeMoreButton = document.getElementById("see-more-btn");
 
   // If no "See More" button exists, clear the container before appending listings
