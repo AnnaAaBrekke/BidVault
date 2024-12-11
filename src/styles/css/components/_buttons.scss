@@ -2,7 +2,7 @@
 
 // General button styles
 .button {
-  @apply rounded-md py-3 px-8 transition-all w-full border-2;
+  @apply rounded-md py-3 px-8 transition-all w-full border inline-flex justify-center items-center;
   background-color: $button-bg;
   color: $font-secondary;
   border-color: $button-bg;
@@ -11,23 +11,23 @@
   &:hover {
     background-color: $button-hover;
     color: $font-main;
-    border-color: $button-hover; // Ensure border color changes on hover
   }
 
   &.see-more-btn {
-    @apply text-lg border border-transparent;
+    @apply text-lg;
   }
 
   &.view-details-btn {
-    @apply font-semibold text-sm inline-flex justify-center items-center border border-transparent;
+    @apply text-sm;
   }
 
+  // Do i need this? DRY Later
   &.place-bid-btn {
-    @apply border-gray-800 font-semibold text-sm px-6 py-3 border border-transparent;
+    @apply text-sm px-6 py-3;
   }
 
   &.submit-form-btn {
-    @apply font-medium text-lg border-none px-10 py-4 rounded-lg flex items-center justify-center transition-all;
+    @apply text-lg px-10 py-4;
   }
 }
 
