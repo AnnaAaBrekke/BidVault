@@ -2,10 +2,6 @@
   @apply flex flex-col;
 }
 
-#avatar-container {
-  @apply flex flex-col items-center gap-4;
-}
-
 .avatar-label {
   @apply items-center cursor-pointer relative;
 }
