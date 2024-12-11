@@ -1,50 +1,49 @@
-@import "../base/colours";
-
-// Mixin for button and on hover
-@mixin button-hover($bg, $text) {
-  &:hover {
-    background-color: $bg;
-    color: $text;
-    border-color: $text;
-  }
-}
+@use "../base/colours" as *;
 
 // General button styles
 .button {
-  @apply rounded-md py-3 px-8 transition-all w-full;
+  @apply rounded-md py-3 px-8 transition-all w-full border-2;
+  background-color: $button-bg;
+  color: $font-secondary;
+  border-color: $button-bg;
+
+  // Hover effects
+  &:hover {
+    background-color: $button-hover;
+    color: $font-main;
+    border-color: $button-hover; // Ensure border color changes on hover
+  }
 
   &.see-more-btn {
-    @apply bg-black text-white text-lg border border-transparent;
-    @include button-hover(white, black);
+    @apply text-lg border border-transparent;
   }
 
   &.view-details-btn {
-    @apply bg-black text-white font-semibold text-sm inline-flex justify-center items-center border border-transparent;
-    @include button-hover(white, black);
-  }
-
-  &.start-journey-btn {
-    @apply border border-black text-black text-xl;
-    @include button-hover(black, white);
-    padding: 1rem 1.5rem;
+    @apply font-semibold text-sm inline-flex justify-center items-center border border-transparent;
   }
 
   &.place-bid-btn {
-    @apply bg-black text-white border-gray-800 font-semibold text-sm px-6 py-3 border border-transparent;
-
-    @include button-hover(white, black);
+    @apply border-gray-800 font-semibold text-sm px-6 py-3 border border-transparent;
   }
 
   &.submit-form-btn {
-    @apply bg-black text-white font-medium text-lg border-none px-10 py-4 rounded-lg flex items-center justify-center transition-all;
+    @apply font-medium text-lg border-none px-10 py-4 rounded-lg flex items-center justify-center transition-all;
+  }
+}
 
-    @include button-hover(white, black);
+.start-journey-btn {
+  @apply border border-black text-black text-xl;
+  background-color: $primary-bg;
+
+  &:hover {
+    background-color: $button-bg; // Corrected to use $primary-bg
+    color: $font-secondary; // Corrected to use $font-main
   }
 }
 
 // Log Out Button Styles
 .logout-btn {
-  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-full gap-2; // Full width button
+  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-full gap-2;
 
   .logout-icon {
     @apply text-gray-500;
@@ -55,13 +54,14 @@
   }
 
   &:hover {
-    @apply bg-black text-white border-white;
+    background-color: $secondary-bg;
+    border-color: $button-bg;
   }
 }
 
 // Last Bid Badge
 .recent-bids-btn {
-  @apply flex items-center justify-center bg-gray-200 text-black text-sm  font-normal rounded-lg px-4 py-2 gap-2 relative;
+  @apply flex items-center justify-center bg-gray-200 text-black text-sm font-normal rounded-lg px-4 py-2 gap-2 relative;
 
   .last-bid-text {
     @apply text-black text-sm font-normal;
