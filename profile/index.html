@@ -9,6 +9,14 @@
       src="https://kit.fontawesome.com/ead288c181.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="../app.js"></script>
+    <style>
+      /* Additional custom styles */
+      #profile-banner {
+        background: url("../src/images/banner-bid.jpg") no-repeat center center;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
     <header
@@ -108,94 +116,116 @@
       </div>
     </header>
 
-    <main id="main-content" class="main">
-      <!-- Profile Section -->
-      <section id="profile-section" class="section section-profile">
-        <div id="banner-container" class="banner-container">
+    <main id="main-content" class="p-6">
+      <section id="profile-section" class="flex flex-col lg:flex-row-reverse">
+        <div id="banner-container" class="lg:w-2/3 w-full">
           <img
             id="profile-banner"
-            class="profile-banner"
+            class="w-full h-56 object-cover"
             src="../src/images/banner-bid.jpg"
             alt="Profile Banner"
           />
         </div>
-        <div id="profile-info" class="profile-info">
+        <div
+          id="profile-info"
+          class="bg-white shadow-lg p-6 rounded-lg lg:w-1/3 w-full"
+        >
           <img
             id="profile-avatar"
-            class="profile-avatar"
+            class="avatar-label w-40 h-40 rounded-full object-cover mx-auto"
             src="../src/images/avatar.jpg"
             alt="Profile Avatar"
           />
-          <div id="avatar-update-container" class="hidden">
-            <!-- URL Input for Avatar -->
-            <label for="avatar-update-input" class="form-label"
-              >Avatar URL:</label
+          <div id="avatar-update-container" class="hidden mt-4">
+            <label
+              for="avatar-update-input"
+              class="form-label block text-sm font-medium text-gray-700"
             >
+              Avatar URL:
+            </label>
             <input
               type="url"
               id="avatar-update-input"
-              class="form-input"
+              class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter new avatar image URL"
             />
-
-            <!-- Alt Text Input for Avatar -->
-            <label for="avatar-update-alt" class="form-label"
-              >Avatar Alt Text:</label
+            <label
+              for="avatar-update-alt"
+              class="form-label block mt-4 text-sm font-medium text-gray-700"
             >
+              Avatar Alt Text:
+            </label>
             <input
               type="text"
               id="avatar-update-alt"
-              class="form-input"
+              class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter new alt text for avatar image"
               maxlength="100"
             />
-
-            <!-- Buttons -->
-            <button id="avatar-update-btn" class="btn">Update Avatar</button>
-            <button id="avatar-cancel-btn" class="btn btn-icon">
-              <i class="fa-solid fa-x"></i>
-            </button>
+            <div class="flex justify-end mt-4">
+              <button
+                id="avatar-update-btn"
+                class="btn bg-indigo-600 text-white px-4 py-2 rounded-lg"
+              >
+                Update Avatar
+              </button>
+              <button
+                id="avatar-cancel-btn"
+                class="btn btn-icon ml-2 text-gray-500"
+              >
+                <i class="fa-solid fa-x"></i>
+              </button>
+            </div>
           </div>
+          <h1 id="profile-name" class="text-center text-2xl font-semibold mt-4">
+            Anna
+          </h1>
 
-          <h1 id="profile-name" class="profile-name">Anna</h1>
-          <p id="profile-bio" class="profile-bio">
+          <p id="profile-credits" class="text-center text-gray-800 mt-4">
+            Current credit balance:
+            <span class="text-orange-500 font-bold">1000 credits</span>
+          </p>
+          <p id="profile-bio" class="text-center text-gray-600 mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p id="profile-credits" class="profile-credits">
-            Current credit balance: <span>1000 credits</span>
           </p>
           <a
             href="/profile/update"
             id="update-profile-btn"
-            class="btn btn-update-profile"
+            class="block bg-indigo-600 text-white text-center py-2 rounded-lg mt-4 hover:bg-indigo-700"
           >
             Update Profile
           </a>
         </div>
       </section>
-
-      <section id="user-listings">
-        <h3>Your Listings</h3>
-        <div id="listings-container"></div>
+      <section id="user-listings" class="mt-8">
+        <h3 class="text-xl font-semibold mb-4">Your Listings</h3>
+        <div
+          id="listings-container"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        ></div>
       </section>
     </main>
-    <footer id="footer" class="footer">
-      <div class="footer-content">
+
+    <footer id="footer" class="bg-gray-50 mt-8">
+      <div class="text-center py-6">
         <img
           src="../src/images/logo.jpg"
           alt="Bid Vault Logo"
-          class="footer-logo"
+          class="h-10 mx-auto"
         />
-        <hr class="footer-line" />
-        <p>&copy; 2018 — 2024</p>
-        <div class="footer-links">
-          <a href="/privacy.html" class="footer-link">Privacy</a>
-          <span class="footer-divider">—</span>
-          <a href="/terms.html" class="footer-link">Terms</a>
+        <hr class="border-gray-300 my-4" />
+        <p class="text-gray-600 text-sm">&copy; 2018 — 2024</p>
+        <div class="flex justify-center space-x-4 mt-2">
+          <a href="/privacy.html" class="text-sm text-gray-600 hover:underline"
+            >Privacy</a
+          >
+          <span class="text-gray-400">—</span>
+          <a href="/terms.html" class="text-sm text-gray-600 hover:underline"
+            >Terms</a
+          >
         </div>
       </div>
     </footer>
   </body>
-  <script type="module" src="../app.js"></script>
 </html>

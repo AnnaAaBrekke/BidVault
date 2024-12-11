@@ -2,44 +2,38 @@
   @apply flex flex-col;
 }
 
-.update-profile-section {
-  @apply max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-8 flex flex-col; // Centered container
-}
-
-// Avatar Section
 #avatar-container {
-  @apply flex flex-col items-center gap-4; // Centered layout
+  @apply flex flex-col items-center gap-4;
 }
 
 .avatar-label {
-  @apply flex flex-col items-center cursor-pointer relative; // Label with relative positioning for overlay
+  @apply items-center cursor-pointer relative;
 }
 
 .avatar-preview {
-  @apply w-32 h-32 rounded-full border-4 border-gray-300 object-cover; // Avatar preview image
+  @apply w-32 h-32 rounded-full border-4 border-gray-300 object-cover;
 }
 
 .avatar-text,
 .banner-text {
-  @apply text-sm text-gray-500 mt-2; // Subtle text for avatar instructions
-}
-// Add overlay for editing icon
-.avatar-label:hover::before {
-  content: "+";
-  @apply absolute flex justify-center items-center text-white bg-black/60 w-32 h-32 rounded-full text-2xl; // Overlay
+  @apply text-sm text-gray-500;
 }
 
-// Labels
-.form-label {
-  @apply text-base font-normal text-gray-800 mt-2; // Larger and slightly darker labels
+.avatar-label:hover::before {
+  content: "+";
+  @apply absolute flex justify-center items-center text-white bg-black/60 w-32 h-32 rounded-full text-2xl;
 }
-// Input and Textarea Fields
+
+.form-label {
+  @apply text-base font-normal text-gray-800 mb-4;
+}
+
 .form-input,
 .form-textarea {
-  @apply w-full h-12 border border-gray-300 rounded-md text-base text-gray-700 shadow-sm p-3; // Uniform height for input fields
-  @apply focus:ring-2 focus:ring-gray-400 focus:outline-none items-center; // Focus effects
+  @apply w-full h-12 border border-gray-300 rounded-md text-base text-gray-700 shadow-sm p-3;
+  @apply focus:ring-2 focus:ring-gray-400 focus:outline-none items-center;
 }
 
 .banner-preview {
-  @apply w-full h-40 rounded-md border border-gray-300 object-cover shadow-sm; // Banner preview with softer edges
+  @apply w-full h-40 rounded-md border border-gray-300 object-cover shadow-sm;
 }
