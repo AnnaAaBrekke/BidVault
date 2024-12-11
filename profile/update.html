@@ -168,38 +168,38 @@
               maxlength="100"
             />
           </div>
+          <div>
+            <!-- Name -->
+            <label for="name" class="form-label">Name:</label>
+            <input
+              type="text"
+              id="name"
+              class="form-input"
+              name="name"
+              placeholder="Update your username"
+              pattern="^[a-zA-Z0-9_]+$"
+              title="Name must only contain letters, numbers, and underscores (_)"
+              required
+            />
 
-          <!-- Name -->
-          <label for="name" class="form-label">Name:</label>
-          <input
-            type="text"
-            id="name"
-            class="form-input"
-            name="name"
-            placeholder="Update your username"
-            pattern="^[a-zA-Z0-9_]+$"
-            title="Name must only contain letters, numbers, and underscores (_)"
-            required
-          />
-
-          <!-- Bio -->
-          <label for="bio" class="form-label">Bio:</label>
-          <textarea
-            id="bio"
-            class="form-textarea"
-            name="bio"
-            placeholder="Update your bio"
-            maxlength="160"
-          ></textarea>
-
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            id="update-profile-submit"
-            class="button submit-form-btn"
-          >
-            Save Changes
-          </button>
+            <!-- Bio -->
+            <label for="bio" class="form-label">Bio:</label>
+            <textarea
+              id="bio"
+              class="form-textarea"
+              name="bio"
+              placeholder="Update your bio"
+              maxlength="160"
+            ></textarea>
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              id="update-profile-submit"
+              class="button submit-form-btn"
+            >
+              Save Changes
+            </button>
+          </div>
         </form>
       </section>
     </main>

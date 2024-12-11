@@ -1,0 +1,45 @@
+.form {
+  @apply flex flex-col;
+}
+
+.update-profile-section {
+  @apply max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-8 flex flex-col; // Centered container
+}
+
+// Avatar Section
+#avatar-container {
+  @apply flex flex-col items-center gap-4; // Centered layout
+}
+
+.avatar-label {
+  @apply flex flex-col items-center cursor-pointer relative; // Label with relative positioning for overlay
+}
+
+.avatar-preview {
+  @apply w-32 h-32 rounded-full border-4 border-gray-300 object-cover; // Avatar preview image
+}
+
+.avatar-text,
+.banner-text {
+  @apply text-sm text-gray-500 mt-2; // Subtle text for avatar instructions
+}
+// Add overlay for editing icon
+.avatar-label:hover::before {
+  content: "+";
+  @apply absolute flex justify-center items-center text-white bg-black/60 w-32 h-32 rounded-full text-2xl; // Overlay
+}
+
+// Labels
+.form-label {
+  @apply text-base font-normal text-gray-800 mt-2; // Larger and slightly darker labels
+}
+// Input and Textarea Fields
+.form-input,
+.form-textarea {
+  @apply w-full h-12 border border-gray-300 rounded-md text-base text-gray-700 shadow-sm p-3; // Uniform height for input fields
+  @apply focus:ring-2 focus:ring-gray-400 focus:outline-none items-center; // Focus effects
+}
+
+.banner-preview {
+  @apply w-full h-40 rounded-md border border-gray-300 object-cover shadow-sm; // Banner preview with softer edges
+}
