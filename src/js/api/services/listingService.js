@@ -24,7 +24,7 @@ class ListingService extends MainService {
    */
   async fetchListings(page = 1, limit = 12) {
     return this.fetchRequest(
-      `/listings?page=${page}&limit=${limit}&${INCLUDE_BIDS_AND_SELLER}`,
+      `/listings${INCLUDE_BIDS_AND_SELLER}&page=${page}&limit=${limit}`,
       {
         method: "GET",
         headers: await getHeaders(),

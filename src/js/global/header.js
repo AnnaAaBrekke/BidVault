@@ -66,7 +66,6 @@ function hamburgerDropdown() {
   hamburgerMenu.addEventListener("click", (event) => {
     event.stopPropagation();
     dropdownMenu.classList.toggle("hidden");
-    console.log("Hamburger menu clicked. Dropdown visibility toggled.");
   });
 
   document.addEventListener("click", (event) => {
@@ -75,14 +74,12 @@ function hamburgerDropdown() {
       !dropdownMenu.contains(event.target)
     ) {
       dropdownMenu.classList.add("hidden");
-      console.log("Clicked outside. Dropdown closed.");
     }
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       dropdownMenu.classList.add("hidden");
-      console.log("Escape key pressed. Dropdown closed.");
     }
   });
 }

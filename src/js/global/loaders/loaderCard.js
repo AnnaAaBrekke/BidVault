@@ -33,17 +33,23 @@ export function showCardLoaders(containerId, count = 6) {
     return;
   }
 
+  // Clear the container before adding loaders
   container.innerHTML = "";
 
   for (let i = 0; i < count; i++) {
-    container.appendChild(createCardSkeleton());
+    const loader = createCardSkeleton();
+    loader.classList.add("card-loader"); // Add a shared class for all loaders
+    container.appendChild(loader);
   }
 }
-
 export function hideCardLoaders(containerId) {
   const container = document.getElementById(containerId);
-  if (!container) return;
+  if (!container) {
+    console.error(`Container with ID "${containerId}" not found.`);
+    return;
+  }
 
-  const skeletonLoader = container.querySelector("#skeletonLoader");
-  if (skeletonLoader) skeletonLoader.classList.add("hidden");
+  // Select all elements with the "card-loader" class and remove them
+  const loaders = container.querySelectorAll(".card-loader");
+  loaders.forEach((loader) => loader.remove());
 }
