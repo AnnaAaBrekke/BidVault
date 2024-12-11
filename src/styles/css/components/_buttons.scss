@@ -1,3 +1,5 @@
+@import "../base/colours";
+
 // Mixin for button and on hover
 @mixin button-hover($bg, $text) {
   &:hover {
