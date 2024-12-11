@@ -143,17 +143,24 @@
 
       <section id="listing-section">
         <h2>Listings</h2>
-        <div id="search-container" class="search-wrapper">
+        <div
+          id="search-container"
+          class="search-wrapper flex items-center space-x-2 p-4 bg-gray-100 rounded-lg shadow-md"
+        >
           <input
             type="text"
             id="search-input"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
             placeholder="Search listings..."
           />
           <button id="search-button" class="search-btn">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-        <h3 id="search-results-headline" class="hidden search-headline">
+        <h3
+          id="search-results-headline"
+          class="hidden search-headline mt-4 text-lg font-semibold text-gray-700"
+        >
           Search Results
         </h3>
         <div

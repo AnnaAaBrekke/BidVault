@@ -1,0 +1,7 @@
+.form-loader-wrapper {
+  @apply absolute top-0 left-0 w-full h-full flex items-center justify-center bg-white z-50 opacity-75;
+}
+
+.animate-pulse .rounded {
+  @apply rounded-md;
+}

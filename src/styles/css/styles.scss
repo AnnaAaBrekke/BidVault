@@ -6,6 +6,7 @@
 @use "./components/media";
 @use "./components/alert";
 @use "./components/avatarUpdate";
+@use "./components/loader";
 
 @tailwind base;
 @tailwind components;

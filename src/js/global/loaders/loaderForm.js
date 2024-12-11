@@ -1,29 +1,48 @@
-export function createFormSkeleton() {
+export function createFormSkeleton(form) {
   const skeleton = document.createElement("div");
-  skeleton.classList.add("animate-pulse", "space-y-4", "p-4", "form-skeleton");
-
-  // Avatar placeholder
-  const avatarPlaceholder = document.createElement("div");
-  avatarPlaceholder.classList.add(
-    "rounded-full",
-    "h-16",
-    "w-16",
-    "bg-gray-300",
-    "mx-auto",
+  skeleton.classList.add(
+    "animate-pulse",
+    "space-y-4",
+    "p-4",
+    "form-skeleton",
+    "max-w-sm",
+    "h-auto",
   );
-  skeleton.appendChild(avatarPlaceholder);
 
-  // Input field placeholders
-  for (let i = 0; i < 5; i++) {
-    const inputPlaceholder = document.createElement("div");
-    inputPlaceholder.classList.add("h-5", "bg-gray-300", "rounded", "w-full");
-    skeleton.appendChild(inputPlaceholder);
-  }
+  const header = document.createElement("div");
+  header.classList.add("w-40", "h-4", "bg-gray-300", "rounded", "mb-4");
+  skeleton.appendChild(header);
 
-  // Submit button placeholder
-  const buttonPlaceholder = document.createElement("div");
-  buttonPlaceholder.classList.add("h-10", "bg-gray-400", "rounded", "w-full");
-  skeleton.appendChild(buttonPlaceholder);
+  // Dynamically create skeleton fields based on the form structure
+  const fields = form.querySelectorAll("input, textarea, button");
+  fields.forEach((field) => {
+    const formFieldSkeleton = document.createElement("div");
+
+    if (field.tagName === "TEXTAREA") {
+      formFieldSkeleton.classList.add(
+        "h-16",
+        "bg-gray-300",
+        "rounded",
+        "w-full",
+      );
+    } else if (field.tagName === "BUTTON") {
+      formFieldSkeleton.classList.add(
+        "h-8",
+        "bg-gray-400",
+        "rounded",
+        "w-full",
+      );
+    } else {
+      formFieldSkeleton.classList.add(
+        "h-10",
+        "bg-gray-300",
+        "rounded",
+        "w-full",
+      );
+    }
+
+    skeleton.appendChild(formFieldSkeleton);
+  });
 
   return skeleton;
 }
@@ -34,7 +53,6 @@ export function showFormLoader(form) {
     return;
   }
 
-  // Ensure the form doesn't already have a loader
   if (form.querySelector(".form-loader-wrapper")) {
     console.warn("Loader already exists in the form.");
     return;
@@ -57,7 +75,7 @@ export function showFormLoader(form) {
     "form-loader-wrapper",
   );
 
-  const skeleton = createFormSkeleton();
+  const skeleton = createFormSkeleton(form); // Pass the form element to create the skeleton dynamically
   loaderWrapper.appendChild(skeleton);
 
   // Ensure relative positioning for the form
