@@ -13,7 +13,7 @@ export function createFormSkeleton(form) {
   header.classList.add("w-40", "h-4", "bg-gray-300", "rounded", "mb-4");
   skeleton.appendChild(header);
 
-  // Dynamically create skeleton fields based on the form structure
+  // Dynamically creates the skeleton fields based on the form structure
   const fields = form.querySelectorAll("input, textarea, button");
   fields.forEach((field) => {
     const formFieldSkeleton = document.createElement("div");
@@ -58,7 +58,6 @@ export function showFormLoader(form) {
     return;
   }
 
-  // Create loader wrapper
   const loaderWrapper = document.createElement("div");
   loaderWrapper.classList.add(
     "absolute",
@@ -75,10 +74,9 @@ export function showFormLoader(form) {
     "form-loader-wrapper",
   );
 
-  const skeleton = createFormSkeleton(form); // Pass the form element to create the skeleton dynamically
+  const skeleton = createFormSkeleton(form);
   loaderWrapper.appendChild(skeleton);
 
-  // Ensure relative positioning for the form
   if (!["relative", "absolute"].includes(form.style.position)) {
     form.style.position = "relative";
   }
@@ -92,7 +90,6 @@ export function hideFormLoader(form) {
     return;
   }
 
-  // Find and remove the loader wrapper
   const loaderWrapper = form.querySelector(".form-loader-wrapper");
   if (loaderWrapper) {
     loaderWrapper.remove();

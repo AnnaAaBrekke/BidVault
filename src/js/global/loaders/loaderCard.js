@@ -8,12 +8,10 @@ export function createCardSkeleton() {
     "animate-pulse",
   );
 
-  // Header placeholder
   const header = document.createElement("div");
   header.classList.add("w-2/3", "h-4", "bg-gray-300", "rounded", "mb-2");
   skeleton.appendChild(header);
 
-  // Body placeholders
   for (let i = 0; i < 2; i++) {
     const bodyLine = document.createElement("div");
     bodyLine.classList.add("w-full", "h-8", "bg-gray-300", "rounded", "mb-2");
@@ -35,7 +33,6 @@ export function showCardLoaders(containerId, count = 6) {
     return;
   }
 
-  // Clear previous content to avoid overlapping loaders
   container.innerHTML = "";
 
   for (let i = 0; i < count; i++) {
