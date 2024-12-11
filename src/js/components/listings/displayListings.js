@@ -1,7 +1,3 @@
-import {
-  hideCardLoaders,
-  showCardLoaders,
-} from "../../global/loaders/loaderCard.js";
 import { loadMoreListings } from "../pagnation.js";
 import { outputListings } from "./outputListing.js";
 
@@ -11,26 +7,8 @@ export function displayListings(
   isLastPage,
   isSearchResults = false,
   isProfile = false,
-  loading = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
-
-  if (loading) {
-    showCardLoaders("listings-container", 12);
-    return;
-  }
-
-  hideCardLoaders("listings-container");
-
-  let seeMoreButton = document.getElementById("see-more-btn");
-
-  // If no "See More" button exists, clear the container before appending listings
-  if (!seeMoreButton) {
-    while (listingsContainer.firstChild) {
-      listingsContainer.removeChild(listingsContainer.firstChild);
-    }
-  }
-
   // Render each listing
   listings.forEach((listing) => {
     const listingDiv = document.createElement("div");
@@ -61,13 +39,15 @@ export function displayListings(
     listingsContainer.appendChild(listingDiv);
   });
 
+  let seeMoreButton = document.getElementById("see-more-btn");
+
   // Remove the existing "See More" button (if any) and recreate it
   if (seeMoreButton) {
     seeMoreButton.remove();
   }
 
   // Handle "See More" button placement
-  if (!isProfile && !isSearchResults) {
+  if (!isProfile && !isSearchResults && !isLastPage) {
     if (!isLastPage) {
       seeMoreButton = document.createElement("button");
       seeMoreButton.id = "see-more-btn";
