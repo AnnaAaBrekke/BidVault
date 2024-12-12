@@ -71,3 +71,20 @@
     @apply hidden w-4 h-4;
   }
 }
+
+// Delete Button Styles
+.delete-button {
+  @apply flex items-center justify-center bg-gray-500 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-1 right-3 z-30; /* Positioned in the top-right corner inside the card */
+
+  .delete-icon {
+    @apply text-white text-xl;
+  }
+
+  &:hover {
+    @apply bg-red-700;
+  }
+
+  &:active {
+    @apply bg-red-800;
+  }
+}

@@ -30,10 +30,10 @@ export function displayListings(
       deleteButton.setAttribute("data-listing-id", listing.id);
 
       const deleteIcon = document.createElement("i");
-      deleteIcon.classList.add("fa-solid", "fa-xmark");
+      deleteIcon.classList.add("delete-icon", "fa-solid", "fa-trash");
       deleteButton.appendChild(deleteIcon);
 
-      listingDiv.appendChild(deleteButton);
+      listingContent.appendChild(deleteButton);
     }
 
     listingsContainer.appendChild(listingDiv);
