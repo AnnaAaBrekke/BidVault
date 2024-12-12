@@ -41,16 +41,15 @@
   }
 }
 
-// Log Out Button Styles
 .logout-btn {
-  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-full gap-2;
+  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-full m-3;
 
   .logout-icon {
-    @apply text-gray-500;
+    @apply text-gray-500 mr-2;
   }
 
-  .logout-text {
-    @apply text-center;
+  span.logout-text {
+    @apply font-medium text-sm;
   }
 
   &:hover {

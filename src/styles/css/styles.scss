@@ -11,6 +11,7 @@
 @use "./base/main";
 @use "./base/single";
 @use "./base//text";
+@use "./components/header";
 
 @tailwind base;
 @tailwind components;
