@@ -12,6 +12,7 @@
 @use "./base/single";
 @use "./base//text";
 @use "./components/header";
+@use "./components/countDown";
 
 @tailwind base;
 @tailwind components;
