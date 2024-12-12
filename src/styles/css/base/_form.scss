@@ -21,7 +21,7 @@
 }
 
 .form-label {
-  @apply text-base font-normal text-gray-800 mb-4;
+  @apply text-base font-normal text-gray-800 mt-2;
 }
 
 .form-input,
@@ -44,4 +44,8 @@
   input[type="number"] {
     @apply form-input;
   }
+}
+
+#login-form .form-input {
+  @apply w-96;
 }

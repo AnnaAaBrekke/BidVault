@@ -77,7 +77,10 @@
     </header>
 
     <main id="main-content" class="main">
-      <section class="bg-secondaryBg object-cover w-full h-full">
+      <section
+        id="welcome"
+        class="main bg-secondaryBg object-cover w-full h-full"
+      >
         <!-- About Section -->
         <section
           id="about-section"
@@ -109,12 +112,14 @@
         </section>
       </section>
 
-      <section class="bg-secondaryBg">
+      <section class="main bg-secondaryBg-flipped">
         <section
           id="login-section"
           class="absolute bottom-1/4 left-4 p-8 flex flex-col items-center justify-center"
         >
-          <h2 id="login-title">Login</h2>
+          <h2 id="login-title" class="text-3xl font-bold text-gray-900 mb-4">
+            Login
+          </h2>
           <form id="login-form" class="form">
             <label for="email" class="form-label">Email</label>
             <input
