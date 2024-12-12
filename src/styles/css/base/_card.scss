@@ -1,49 +1,59 @@
-/* card.scss */
+@use "../base/colours" as *;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.listing {
-  @apply bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden p-2 transition-transform transform duration-200 ease-in-out;
+.listing-content {
+  @apply relative w-full space-y-3 h-[625px] shadow-lg bg-primary-bg;
 
-  &:hover {
-    @apply scale-105 shadow-lg;
-  }
-}
-
-/* Listing image */
-.listing-image {
-  @apply w-full h-40 object-cover rounded-lg;
-}
-
-/* Listing title */
-.listing h2 {
-  @apply text-lg my-2 text-gray-800;
-}
-
-/* Listing description */
-.listing p {
-  @apply my-1 text-gray-600 text-sm leading-relaxed;
-}
-
-/* Media Section */
-.main-media-item img {
-  @apply w-full h-auto max-w-3xl mx-auto rounded-lg;
-}
-
-/* Seller Container */
-#seller-container {
-  @apply flex items-center mt-4 space-x-4;
-
-  .seller-avatar {
-    @apply w-10 h-10 rounded-full border border-gray-300;
+  .main-media {
+    @apply absolute inset-x-0 top-0 h-[60%] bg-cover rounded-t-lg; /* Media occupies the top 60% */
   }
 
-  p {
-    @apply text-gray-700 font-medium;
+  .seller-container {
+    @apply absolute left-4 top-[52%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
+
+    .seller-avatar {
+      @apply w-10 h-10 rounded-full flex items-center justify-center;
+      background-color: $secondary-2;
+    }
+
+    .creator-details {
+      @apply flex flex-col;
+
+      .creator-label {
+        @apply text-xs font-normal;
+        color: $font-secondary;
+      }
+
+      .creator-name {
+        @apply text-sm font-medium;
+        color: $font-secondary;
+      }
+    }
   }
 
-  strong {
-    @apply text-gray-900;
+  .details-container {
+    @apply relative px-6 pt-4 space-y-2 z-10;
+
+    .auction-title {
+      @apply text-lg font-medium;
+      color: $font-main;
+    }
+
+    .last-bid {
+      @apply text-xs tracking-wide;
+      color: $font-secondary-2;
+    }
+
+    .bid-amount {
+      @apply text-sm font-medium;
+      color: $accent;
+    }
+
+    .closed-message {
+      @apply text-sm font-bold;
+      color: $accent;
+    }
   }
 }

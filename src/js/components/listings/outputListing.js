@@ -16,7 +16,7 @@ export function outputListings(listing) {
 
   // Seller Info
   const sellerContainer = document.createElement("div");
-  sellerContainer.id = "seller-container";
+  sellerContainer.classList.add("seller-container");
 
   const sellerAvatar = document.createElement("img");
   sellerAvatar.src = listing.seller?.avatar?.url || "../src/images/avatar.jpg";
@@ -24,32 +24,49 @@ export function outputListings(listing) {
   sellerAvatar.classList.add("seller-avatar");
   sellerContainer.appendChild(sellerAvatar);
 
-  const sellerName = document.createElement("p");
-  const strongName = document.createElement("strong");
-  strongName.textContent = listing.seller?.name || "Unknown Seller";
-  sellerName.appendChild(strongName);
-  sellerContainer.appendChild(sellerName);
+  const sellerDetails = document.createElement("div");
+  sellerDetails.classList.add("creator-details");
 
+  const creatorLabel = document.createElement("p");
+  creatorLabel.textContent = "Creator";
+  creatorLabel.classList.add("creator-label");
+  sellerDetails.appendChild(creatorLabel);
+
+  const creatorName = document.createElement("p");
+  creatorName.textContent = listing.seller?.name || "Anonymous";
+  creatorName.classList.add("creator-name");
+  sellerDetails.appendChild(creatorName);
+
+  sellerContainer.appendChild(sellerDetails);
   listingContent.appendChild(sellerContainer);
+
+  // Details Container
+  const detailsContainer = document.createElement("div");
+  detailsContainer.classList.add("details-container");
 
   // Title
   const title = document.createElement("h2");
   title.textContent = listing.title;
-  listingContent.appendChild(title);
+  title.classList.add("auction-title");
+  detailsContainer.appendChild(title);
 
-  // Bid Info
+  // Current Bid
   const currentBid = document.createElement("p");
   currentBid.textContent = `${hasExpired ? "Winning Bid" : "Current Bid"}: ${lastBid} credits`;
-  listingContent.appendChild(currentBid);
+  currentBid.classList.add("last-bid");
+  detailsContainer.appendChild(currentBid);
 
+  // Total Bids
   const totalBids = document.createElement("p");
   totalBids.textContent = `Bids: ${listing._count?.bids || 0}`;
-  listingContent.appendChild(totalBids);
-
+  totalBids.classList.add("bid-amount");
+  detailsContainer.appendChild(totalBids);
   // Countdown Section
   const countdown = document.createElement("p");
   countdown.id = `countdown-${listing.id}`;
   listingContent.appendChild(countdown);
+
+  listingContent.appendChild(detailsContainer);
 
   // If auction has ended, show a closed message
   if (hasExpired) {
