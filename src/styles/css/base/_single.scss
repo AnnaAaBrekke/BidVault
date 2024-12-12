@@ -1,0 +1,24 @@
+#single-listing {
+  @apply text-gray-800; // Tailwind classes for text styling
+
+  h2 {
+    @apply text-xl font-semibold mb-2 text-black; // Tailwind classes for headings
+  }
+
+  p {
+    @apply text-base mb-5 text-gray-600; // Tailwind classes for paragraphs
+  }
+
+  .gallery-container {
+    @apply grid grid-cols-3 gap-4 md:grid-cols-4; // Tailwind grid layout with responsiveness
+
+    .gallery-image {
+      @apply w-full h-auto border-2 border-gray-300 rounded-lg shadow-lg; // Tailwind for responsive and styled images
+      transition: transform 0.2s ease-in-out; // SASS for smooth hover animation
+
+      &:hover {
+        @apply scale-105 border-gray-800; // Tailwind for hover effects
+      }
+    }
+  }
+}

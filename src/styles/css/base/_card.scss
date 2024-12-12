@@ -57,3 +57,27 @@
     }
   }
 }
+
+.single-listing-layout {
+  display: flex; // Use flexbox for layout
+  flex-wrap: wrap; // Allow wrapping if the container gets too small
+  background-color: #ffffff; // Light background for distinction
+
+  .shared-layout {
+    flex: 2; // Takes up two-thirds of the available space
+    max-width: 70%; // Prevents it from growing too large
+    padding: 20px; // Add padding for a cleaner look
+    border-radius: 8px; // Rounded corners
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Subtle shadow
+  }
+
+  .sidebar {
+    flex: 1; // Takes up one-third of the available space
+    margin: 2rem; // Add padding for a clean look
+    border-radius: 8px; // Rounded corners
+
+    .bid-section-container {
+      margin-bottom: 20px; // Space between different sidebar sections
+    }
+  }
+}

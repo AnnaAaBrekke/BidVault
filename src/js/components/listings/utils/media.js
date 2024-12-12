@@ -2,19 +2,16 @@ export function renderMedia(mediaList, includeGallery = false) {
   const mediaContainer = document.createElement("div");
   mediaContainer.classList.add("media-container");
 
-  // Main media (fallback if none exists)
-  const mainMedia = document.createElement("img");
-  mainMedia.src =
-    mediaList && mediaList.length > 0
-      ? mediaList[0].url
-      : "../src/images/logo.jpg";
-  mainMedia.alt =
-    mediaList && mediaList.length > 0
-      ? mediaList[0].alt || "Main Media"
-      : "Default Media";
-  mainMedia.classList.add("main-media");
-  mediaContainer.appendChild(mainMedia);
+  // Main media
+  if (mediaList && mediaList.length > 0) {
+    const mainMedia = document.createElement("img");
+    mainMedia.src = mediaList[0].url;
+    mainMedia.alt = mediaList[0].alt || "Main Media";
+    mainMedia.classList.add("main-media");
+    mediaContainer.appendChild(mainMedia);
+  }
 
+  // Render gallery images
   if (includeGallery && mediaList.length > 1) {
     const galleryContainer = document.createElement("div");
     galleryContainer.classList.add("gallery-container");

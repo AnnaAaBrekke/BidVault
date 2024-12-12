@@ -33,3 +33,15 @@
 .banner-preview {
   @apply w-full h-40 rounded-md border border-gray-300 object-cover shadow-sm;
 }
+
+#bid-form-container {
+  @apply form;
+
+  label {
+    @apply form-label;
+  }
+
+  input[type="number"] {
+    @apply form-input;
+  }
+}

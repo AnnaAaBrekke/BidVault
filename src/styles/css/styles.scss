@@ -9,6 +9,8 @@
 @use "./components/loader";
 @use "./base/navbar";
 @use "./base/main";
+@use "./base/single";
+@use "./base//text";
 
 @tailwind base;
 @tailwind components;
