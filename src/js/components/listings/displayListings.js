@@ -43,14 +43,24 @@ export function displayListings(
   // Handle "See More" button placement
   if (!isProfile && !isSearchResults && !isLastPage) {
     if (!isLastPage) {
+      // Create a container for the "See More" button
+      const seeMoreContainer = document.createElement("div");
+      seeMoreContainer.classList.add("see-more-container");
+
+      // Create the "See More" button
       seeMoreButton = document.createElement("button");
       seeMoreButton.id = "see-more-btn";
       seeMoreButton.textContent = "See More";
       seeMoreButton.classList.add("button", "see-more-btn");
+
+      // Add the click event to the button
       seeMoreButton.addEventListener("click", loadMoreListings);
 
-      // Append the button after all the listings
-      listingsContainer.appendChild(seeMoreButton);
+      // Append the button to the container
+      seeMoreContainer.appendChild(seeMoreButton);
+
+      // Append the container to the parent element (e.g., after listings)
+      listingsContainer.parentElement.appendChild(seeMoreContainer);
     }
   }
 }
