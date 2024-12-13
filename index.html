@@ -83,24 +83,28 @@
     <main id="main-content" class="main">
       <section
         id="intro-section"
-        class="main bg-primaryBg w-full h-full object-cover"
+        class="bg-primaryBg bg-cover bg-center h-screen w-screen"
       >
         <div
-          class="absolute top-32 md:left-1/2 sm:left-0 flex flex-col items-center justify-center p-8"
+          class="box-content items-center justify-center m-10 p-3 lg:w-1/3 sm:w-auto absolute lg:left-1/2 lg:top-auto"
         >
           <div class="text-center bg-white p-6 rounded-lg shadow-md">
-            <h1 id="site-title" class="text-3xl font-bold text-gray-900 mb-4">
+            <h1 id="site-title" class="text-4xl font-bold text-gray-900 m-4">
               Bid Vault
             </h1>
             <p
               id="intro-text"
-              class="paragraph text-lg text-gray-700 leading-relaxed mb-6"
+              class="paragraph text-lg text-font-main mb-6 p-3"
             >
-              Browse and bid on a variety of items, or create your own listing
-              for others to bid on.
+              Discover a dynamic auction platform where you can showcase your
+              items for bidding and compete for incredible finds. New users
+              receive 1000 credits to kickstart their journey—credits you can
+              earn by selling your items or spend on exciting bids. While anyone
+              can browse our extensive listings, only registered users can join
+              the action and place bids.
             </p>
             <button
-              class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100"
+              class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium"
             >
               <a href="#listing-section" id="btn-scroll"
                 >Start your journey here</a
@@ -111,9 +115,12 @@
       </section>
 
       <section id="listing-section">
+        <h2 class="text-3xl font-semibold text-font-main text-center mb-4 mt-4">
+          Listings
+        </h2>
         <div
           id="search-container"
-          class="search-wrapper flex items-center px-4 py-2 bg-white rounded-full shadow-lg gap-2 border border-gray-200 m-5 w-80"
+          class="search-wrapper flex items-center px-4 py-2 bg-white rounded-full shadow-lg gap-2 border border-gray-200 mt-5 mb-5 w-80"
         >
           <input
             type="text"

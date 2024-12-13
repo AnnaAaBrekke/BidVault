@@ -1,7 +1,11 @@
 .main {
-  @apply flex justify-center flex-wrap gap-4 min-h-screen pt-7; // Center content and allow wrapping
+  @apply flex justify-center flex-wrap gap-4 min-h-screen pt-7 m-1; // Center content and allow wrapping
 }
 
 .listings-layout {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-4 bg-gray-100 min-h-screen;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-gray-100 min-h-screen;
+}
+
+.body {
+  @apply bg-primary-bg;
 }

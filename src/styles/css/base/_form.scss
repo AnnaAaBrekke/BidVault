@@ -1,5 +1,5 @@
 .form {
-  @apply flex flex-col;
+  @apply flex flex-col mb-20;
 }
 
 .avatar-label {
@@ -18,7 +18,7 @@
 .form-label,
 .avatar-text,
 .banner-text {
-  @apply text-base font-normal text-gray-800 mt-2 mb-1;
+  @apply text-lg font-normal text-gray-800 mt-2 mb-1;
 }
 
 .form-input,

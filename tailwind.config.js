@@ -37,10 +37,8 @@ export default {
         },
       },
       backgroundImage: {
-        primaryBg:
-          "url('https://plus.unsplash.com/premium_photo-1668359409669-9b174a7921c3?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        secondaryBg:
-          "url('https://plus.unsplash.com/premium_photo-1669068928203-9893a841b4a4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        primaryBg: "url('src/images/DesignSheet-Bg.jpg')",
+        secondaryBg: "url('src/images/DesignSheet-bg2.jpg')",
       },
     },
   },

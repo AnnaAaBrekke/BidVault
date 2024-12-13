@@ -76,33 +76,30 @@
       </div>
     </header>
 
-    <main id="main-content" class="main">
-      <section
-        id="welcome"
-        class="main bg-secondaryBg object-cover w-full h-full"
-      >
+    <main
+      id="main-content"
+      class="main bg-secondaryBg bg-cover bg-center h-screen w-screen"
+    >
+      <section id="welcome">
         <!-- About Section -->
         <section
           id="about-section"
-          class="absolute top-32 md:left-1/2 sm:left-0 flex flex-col items-center justify-center p-8"
+          class="box-content m-10 p-3 lg:w-1/3 sm:w-auto absolute top-28 left-1/2 transform -translate-x-1/2 flex items-center justify-center"
         >
           <div class="text-center bg-white p-6 rounded-lg shadow-md">
-            <h1
-              id="welcome-title"
-              class="text-3xl font-bold text-gray-900 mb-4"
-            >
+            <h1 id="welcome-title" class="text-5xl font-bold text-gray-900 m-4">
               Bid Vault
             </h1>
             <p
               id="about-text"
-              class="text-lg text-gray-700 leading-relaxed mb-6"
+              class="text-xl text-font-main leading-relaxed m-6"
             >
               Discover Rare Treasures, Bid with Confidence, and Sell with Ease.
               <br />
               Step into the exciting world of Bid Vault.
             </p>
             <button
-              class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100"
+              class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-secondary-1 font-medium"
             >
               <a href="#login-section" id="btn-scroll"
                 >Start your journey here</a
@@ -112,44 +109,42 @@
         </section>
       </section>
 
-      <section class="main bg-secondaryBg-flipped">
-        <section
-          id="login-section"
-          class="absolute bottom-1/4 left-4 p-8 flex flex-col items-center justify-center"
-        >
-          <h2 id="login-title" class="text-3xl font-bold text-gray-900 mb-4">
+      <section
+        id="login-section"
+        class="bg-primary-bg absolute lg:bottom-40 p-8 flex flex-col items-center justify-center rounded-lg"
+      >
+        <h2 id="login-title" class="text-3xl font-bold text-gray-900 mb-4">
+          Login
+        </h2>
+        <form id="login-form" class="form">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+
+          <button
+            type="submit"
+            id="login-submit"
+            class="button submit-form-btn"
+          >
             Login
-          </h2>
-          <form id="login-form" class="form">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              class="form-input"
-              name="email"
-              placeholder="Enter your email"
-              required
-            />
-
-            <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="form-input"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
-
-            <button
-              type="submit"
-              id="login-submit"
-              class="button submit-form-btn"
-            >
-              Login
-            </button>
-          </form>
-        </section>
+          </button>
+        </form>
       </section>
     </main>
 
