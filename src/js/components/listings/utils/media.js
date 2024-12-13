@@ -8,8 +8,7 @@ export function renderMedia(mediaList, includeGallery = false) {
     mainMedia.src = mediaList[0].url;
     mainMedia.alt = mediaList[0].alt || "Main Media";
   } else {
-    mainMedia.src =
-      "https://fastly.picsum.photos/id/32/4032/3024.jpg?hmac=n7I3OdGszMIwuGcvplNthgBmAxvAZ3rNBBSuDFZaItQ";
+    mainMedia.src = "https://picsum.photos/id/139/367/267";
     mainMedia.alt = "Placeholder Image";
   }
   mainMedia.classList.add("main-media");

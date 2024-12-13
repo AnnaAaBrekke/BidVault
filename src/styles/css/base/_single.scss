@@ -4,9 +4,24 @@
   h2 {
     @apply text-xl font-semibold mb-2 text-black; // Tailwind classes for headings
   }
+  .sidebar .seller-container {
+    @apply flex flex-col items-start p-4 border rounded-lg bg-gray-50 shadow-md; // Sidebar-specific styles
+  }
 
-  p {
-    @apply text-base mb-5 text-gray-600; // Tailwind classes for paragraphs
+  .seller-container .seller-avatar {
+    @apply w-16 h-16 mb-2; // Larger avatar for sidebar
+  }
+
+  .seller-container .creator-details {
+    @apply flex flex-col items-start space-y-1;
+
+    .creator-label {
+      @apply text-xs text-gray-500; // Muted label
+    }
+
+    .creator-name {
+      @apply text-sm font-semibold text-gray-800; // Emphasized name
+    }
   }
 
   .gallery-container {
@@ -14,11 +29,6 @@
 
     .gallery-image {
       @apply w-full h-auto border-2 border-gray-300 rounded-lg shadow-lg; // Tailwind for responsive and styled images
-      transition: transform 0.2s ease-in-out; // SASS for smooth hover animation
-
-      &:hover {
-        @apply scale-105 border-gray-800; // Tailwind for hover effects
-      }
     }
   }
 }
