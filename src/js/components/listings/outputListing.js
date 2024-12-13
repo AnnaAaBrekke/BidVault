@@ -81,7 +81,7 @@ export function outputListings(listing, isSingleListingPage = false) {
     viewDetailsButton.href = `../listing/?id=${listing.id}`;
     viewDetailsButton.classList.add("button", "view-details-btn");
     viewDetailsButton.textContent = "View Details";
-    detailsContainer.appendChild(viewDetailsButton);
+    detailsContainer.appendChild(viewDetailsButton); 
   }
 
   listingContent.appendChild(detailsContainer);

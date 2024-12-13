@@ -2,17 +2,21 @@ export function renderMedia(mediaList, includeGallery = false) {
   const mediaContainer = document.createElement("div");
   mediaContainer.classList.add("media-container");
 
-  // Main media
+  // Main media or placeholder
+  const mainMedia = document.createElement("img");
   if (mediaList && mediaList.length > 0) {
-    const mainMedia = document.createElement("img");
     mainMedia.src = mediaList[0].url;
     mainMedia.alt = mediaList[0].alt || "Main Media";
-    mainMedia.classList.add("main-media");
-    mediaContainer.appendChild(mainMedia);
+  } else {
+    mainMedia.src =
+      "https://fastly.picsum.photos/id/32/4032/3024.jpg?hmac=n7I3OdGszMIwuGcvplNthgBmAxvAZ3rNBBSuDFZaItQ";
+    mainMedia.alt = "Placeholder Image";
   }
+  mainMedia.classList.add("main-media");
+  mediaContainer.appendChild(mainMedia);
 
   // Render gallery images
-  if (includeGallery && mediaList.length > 1) {
+  if (includeGallery && mediaList && mediaList.length > 1) {
     const galleryContainer = document.createElement("div");
     galleryContainer.classList.add("gallery-container");
 

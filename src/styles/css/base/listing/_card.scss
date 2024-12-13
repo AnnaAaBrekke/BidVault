@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 .listing-content {
-  @apply relative flex flex-col w-full h-[625px] shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
+  @apply relative flex flex-col w-full h-full shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
 
   .main-media {
     @apply w-full bg-cover rounded-t-lg h-96;
   }
 
   .seller-container {
-    @apply absolute left-4 top-[55%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
+    @apply absolute left-4 top-[48%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
 
     .seller-avatar {
       @apply w-10 h-10 rounded-full flex items-center justify-center bg-secondary-2;

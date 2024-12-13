@@ -7,26 +7,24 @@
   color: $font-secondary;
   border-color: $button-bg;
 
-  // Hover effects
   &:hover {
     background-color: $button-hover;
     color: $font-main;
   }
 
-  &.see-more-btn {
+  .see-more-btn {
     @apply text-lg;
   }
 
-  &.view-details-btn {
-    @apply text-sm;
+  .view-details-btn {
+    @apply mb-4;
   }
-
   // Do i need this? DRY Later
-  &.place-bid-btn {
+  .place-bid-btn {
     @apply text-sm px-6 py-3;
   }
 
-  &.submit-form-btn {
+  .submit-form-btn {
     @apply text-lg px-10 py-4;
   }
 }
