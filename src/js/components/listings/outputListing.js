@@ -1,8 +1,8 @@
-import { updateCountdown } from "./utils/countDown.js";
+import { renderAuctionStatus } from "./utils/status.js";
 import { renderMedia } from "./utils/media.js";
 import { bidTimeDetails } from "./utils/timeBid.js";
 
-export function outputListings(listing) {
+export function outputListings(listing, isSingleListingPage = false) {
   const { hasExpired, lastBid } = bidTimeDetails(listing);
 
   // Create main container
@@ -72,23 +72,18 @@ export function outputListings(listing) {
   totalBids.classList.add("bid-amount");
   detailsContainer.appendChild(totalBids);
 
-  // Countdown Section
-  const countdown = document.createElement("p");
-  countdown.id = `countdown-${listing.id}`;
-  countdown.classList.add("countdown-timer"); // Add a class for styling
+  // Auction Status (Countdown or Closed Message)
+  renderAuctionStatus(detailsContainer, hasExpired, listing.endsAt, listing.id);
 
-  // If auction has ended, replace countdown with closed message
-  if (hasExpired) {
-    const closedMessage = document.createElement("p");
-    closedMessage.classList.add("closed-message");
-    closedMessage.textContent = "This auction has ended.";
-    detailsContainer.appendChild(closedMessage);
-  } else {
-    detailsContainer.appendChild(countdown);
-    // Update countdown for active auctions
-    updateCountdown(listing.endsAt, listing.id);
-    setInterval(() => updateCountdown(listing.endsAt, listing.id), 1000);
+  // View Details Button (Only if not a single listing page)
+  if (!isSingleListingPage) {
+    const viewDetailsButton = document.createElement("a");
+    viewDetailsButton.href = `../listing/?id=${listing.id}`;
+    viewDetailsButton.classList.add("button", "view-details-btn");
+    viewDetailsButton.textContent = "View Details";
+    detailsContainer.appendChild(viewDetailsButton);
   }
+
   listingContent.appendChild(detailsContainer);
 
   return listingContent;

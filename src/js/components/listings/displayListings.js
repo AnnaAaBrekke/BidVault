@@ -15,14 +15,8 @@ export function displayListings(
     listingDiv.id = `listing-${listing.id}`;
     listingDiv.classList.add("listing");
 
-    const listingContent = outputListings(listing);
+    const listingContent = outputListings(listing, false);
     listingDiv.appendChild(listingContent);
-
-    const viewDetailsButton = document.createElement("a");
-    viewDetailsButton.href = `../listing/?id=${listing.id}`;
-    viewDetailsButton.classList.add("button", "view-details-btn");
-    viewDetailsButton.textContent = "View Details";
-    listingDiv.appendChild(viewDetailsButton);
 
     if (addDeleteButtons) {
       const deleteButton = document.createElement("button");

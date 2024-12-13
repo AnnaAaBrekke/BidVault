@@ -2,7 +2,7 @@
 
 // General button styles
 .button {
-  @apply rounded-md py-3 px-8 transition-all w-full border inline-flex justify-center items-center;
+  @apply rounded-md py-3 px-8 transition-all w-full border inline-flex justify-center items-center mt-4;
   background-color: $button-bg;
   color: $font-secondary;
   border-color: $button-bg;
@@ -27,7 +27,7 @@
   }
 
   &.submit-form-btn {
-    @apply text-lg px-10 py-4 mt-4;
+    @apply text-lg px-10 py-4;
   }
 }
 

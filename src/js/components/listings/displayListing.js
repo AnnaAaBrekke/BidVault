@@ -26,7 +26,7 @@ export function displaySingleListing(listing) {
   // Shared Layout Section
   const sharedLayoutSection = document.createElement("div");
   sharedLayoutSection.classList.add("shared-layout");
-  const sharedLayout = outputListings(listing);
+  const sharedLayout = outputListings(listing, true);
   sharedLayoutSection.appendChild(sharedLayout);
 
   // Sidebar Section

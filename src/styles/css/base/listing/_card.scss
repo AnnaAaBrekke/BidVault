@@ -1,4 +1,3 @@
-@use "../base/colours" as *;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,21 +13,18 @@
     @apply absolute left-4 top-[55%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
 
     .seller-avatar {
-      @apply w-10 h-10 rounded-full flex items-center justify-center;
-      background-color: $secondary-2;
+      @apply w-10 h-10 rounded-full flex items-center justify-center bg-secondary-2;
     }
 
     .creator-details {
       @apply flex flex-col;
 
       .creator-label {
-        @apply text-xs font-normal;
-        color: $font-secondary;
+        @apply text-xs font-normal text-font-secondary;
       }
 
       .creator-name {
-        @apply text-sm font-medium;
-        color: $font-secondary;
+        @apply text-sm font-medium text-font-secondary;
       }
     }
   }
@@ -37,23 +33,29 @@
     @apply relative p-6 space-y-2 z-10;
 
     .auction-title {
-      @apply text-2xl font-bold text-gray-900 mb-4 break-words overflow-hidden h-14;
-      color: $font-main;
+      @apply text-2xl font-bold text-gray-900 mb-4 break-words overflow-hidden h-14 text-font-main;
     }
 
     .last-bid,
-    .bid-amount {
-      @apply tracking-wide font-medium;
-      color: $font-secondary-2;
+    .bid-amount,
+    .countdown-label {
+      @apply tracking-wide font-medium text-font-secondary2;
     }
 
-    .countdown-timer {
-      @apply text-center text-lg font-semibold py-4 px-6 rounded-lg shadow-md;
+    .countdown-row {
+      @apply flex flex-row items-center justify-start space-x-4 pt-2 text-secondary-1; // Flexbox for row layout
+    }
+
+    .countdown-box {
+      @apply items-center justify-center w-auto px-3 py-2 bg-gray-100 rounded-lg shadow-md; // Adjust box size for row layout
+    }
+
+    .countdown-value {
+      @apply text-lg font-bold text-secondary-1; // Bold value styling
     }
 
     .closed-message {
-      @apply text-center text-lg font-semibold py-4;
-      color: $font-secondary-2;
+      @apply text-center text-lg font-semibold py-4 text-font-secondary2;
     }
   }
 }
