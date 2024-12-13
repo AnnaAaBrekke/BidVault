@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xxl: "1700px",
+      },
       colors: {
         primary: {
           bg: "#ffffff", // Background Colour

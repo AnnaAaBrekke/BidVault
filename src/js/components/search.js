@@ -74,12 +74,19 @@ export function initializeSearch(
 
       if (!clearButton) {
         clearButton = document.createElement("button");
-        clearButton.textContent = "X";
         clearButton.classList.add("clear-button");
+        clearButton.setAttribute("aria-label", "Clear Listings");
+
+        const icon = document.createElement("i");
+        icon.classList.add("fa-solid", "fa-arrow-back");
+        clearButton.appendChild(icon);
+
         listingsContainer.parentElement.insertBefore(
           clearButton,
           listingsContainer,
         );
+
+        // Add event listener
         clearButton.addEventListener("click", handleClear);
       }
     } catch (error) {

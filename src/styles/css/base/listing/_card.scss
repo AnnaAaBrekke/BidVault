@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.listing {
+  @apply flex
+}
+
 .listing-content {
-  @apply relative flex flex-col w-96 h-full shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
+  @apply relative flex flex-col w-full max-w-xs h-full shadow-lg bg-primary-bg rounded-lg;
 
   .seller-container {
     @apply absolute top-[50%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;
