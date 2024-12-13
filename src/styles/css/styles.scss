@@ -5,14 +5,12 @@
 @use "./components/footer";
 @use "./components/media";
 @use "./components/alert";
-@use "./components/avatarUpdate";
 @use "./components/loader";
 @use "./base/navbar";
 @use "./base/main";
 @use "./base/listing/singleListing";
 @use "./base//text";
 @use "./components/header";
-@use "./components/countDown";
 
 @tailwind base;
 @tailwind components;

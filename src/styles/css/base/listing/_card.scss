@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .listing {
-  @apply flex m-3;
+  @apply flex;
 }
 
 .listing-content {
-  @apply relative flex flex-col w-full max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
+  @apply relative flex flex-col w-fit max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
 }
 
 .seller-container {
@@ -49,11 +49,11 @@
   }
 
   .countdown-row {
-    @apply flex flex-row items-center justify-start space-x-4 pt-2 h-fit;
+    @apply flex flex-row items-center justify-start space-x-2 pt-2 h-fit;
   }
 
   .countdown-box {
-    @apply items-center justify-center w-auto px-3 py-2 bg-gray-100 rounded-lg shadow-md h-fit;
+    @apply items-center justify-center w-auto px-3 py-2 bg-gray-100 rounded-lg shadow-md;
   }
 
   .countdown-value {
