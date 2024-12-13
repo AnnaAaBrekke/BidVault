@@ -1,5 +1,5 @@
 .main {
-  @apply flex justify-center items-start flex-wrap gap-4 bg-gray-100 min-h-screen; // Center content and allow wrapping
+  @apply flex justify-center flex-wrap gap-4 min-h-screen pt-7; // Center content and allow wrapping
 }
 
 .listings-layout {
