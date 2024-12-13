@@ -3,13 +3,12 @@ import { outputListings } from "./outputListing.js";
 
 export function displayListings(
   listings,
-  addDeleteButtons = false,
-  isLastPage,
+  isUserListings = false,
+  isLastPage = false,
   isSearchResults = false,
   isProfile = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
-  // Render each listing
   listings.forEach((listing) => {
     const listingDiv = document.createElement("div");
     listingDiv.id = `listing-${listing.id}`;
@@ -18,7 +17,8 @@ export function displayListings(
     const listingContent = outputListings(listing, false);
     listingDiv.appendChild(listingContent);
 
-    if (addDeleteButtons) {
+    // Add delete button only for user listings
+    if (isUserListings) {
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("delete-button");
       deleteButton.setAttribute("data-listing-id", listing.id);

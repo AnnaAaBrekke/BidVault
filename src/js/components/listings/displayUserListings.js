@@ -1,11 +1,11 @@
-import { listingService } from "../../api/services/listingService";
-import { showErrorAlert } from "../../global/alert";
+import { listingService } from "../../api/services/listingService.js";
+import { showErrorAlert } from "../../global/alert.js";
 import {
   hideCardLoaders,
   showCardLoaders,
-} from "../../global/loaders/loaderCard";
-import { handleDelete } from "../delete";
-import { displayListings } from "./displayListings";
+} from "../../global/loaders/loaderCard.js";
+import { handleDelete } from "../delete.js";
+import { displayListings } from "./displayListings.js";
 
 export async function displayUserListings(username) {
   showCardLoaders("listings-container", 6);
@@ -26,7 +26,7 @@ export async function displayUserListings(username) {
       return;
     }
 
-    displayListings(listings, true, false, false, true, false);
+    displayListings(listings, true, false, false, true);
 
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
