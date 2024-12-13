@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 .listing-content {
-  @apply relative flex flex-col w-full h-full shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
-
-  .main-media {
-    @apply w-full bg-cover rounded-t-lg h-96;
-  }
+  @apply relative flex flex-col w-96 h-full shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
 
   .seller-container {
     @apply absolute top-[50%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;

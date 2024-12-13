@@ -1,13 +1,3 @@
-/* Media Gallery Section */
-.media-gallery {
-  @apply grid gap-2; // Apply grid layout with a gap between items
-  @apply grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))]; // Custom grid template for responsive behavior
-}
-
-.media-gallery img {
-  @apply w-full h-auto rounded-lg border border-gray-300; // Full-width images with rounded corners and a border
-}
-
 /* Image preview */
 .image-preview {
   @apply max-w-[100px] max-h-[100px] mt-2 border border-gray-300 rounded-md;
@@ -16,4 +6,16 @@
 /* Hidden state */
 .image-preview {
   @apply hidden;
+}
+
+.main-media {
+  @apply w-full bg-cover rounded-t-lg h-96;
+}
+
+.gallery-container {
+  @apply grid gap-1 grid-cols-[repeat(auto-fit,_minmax(150px,_2fr))] m-2;
+
+  .gallery-image {
+    @apply w-full h-auto border-2 border-gray-300 rounded-lg shadow-lg;
+  }
 }

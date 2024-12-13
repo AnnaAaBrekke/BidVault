@@ -144,18 +144,27 @@ export function displaySingleListing(listing) {
   // Add layout container to main container
   mainContainer.appendChild(layoutContainer);
 
-  // Description
+  // Description Section
+  const descriptionContainer = document.createElement("div");
+  descriptionContainer.classList.add("description-container");
+
   const descriptionTitle = document.createElement("h2");
   descriptionTitle.textContent = "Description";
-  mainContainer.appendChild(descriptionTitle);
+  descriptionTitle.classList.add("description-title");
 
   const description = document.createElement("p");
   description.textContent = listing.description || "No description available";
-  mainContainer.appendChild(description);
+  description.classList.add("description-content");
+
+  descriptionContainer.appendChild(descriptionTitle);
+  descriptionContainer.appendChild(description);
+
+  mainContainer.appendChild(descriptionContainer);
 
   // Gallery
   const galleryTitle = document.createElement("h2");
   galleryTitle.textContent = "Gallery";
+  galleryTitle.classList.add("gallery-title");
 
   if (listing.media && listing.media.length > 1) {
     // Add gallery title and render media only if there's a gallery
@@ -171,6 +180,7 @@ export function displaySingleListing(listing) {
     mainContainer.appendChild(noMediaMessage);
   }
 
+  console.log(listing);
   console.log(listing.media);
 
   // Recent Bids Toggle
