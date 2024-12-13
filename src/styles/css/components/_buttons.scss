@@ -1,6 +1,5 @@
 @use "../base/colours" as *;
 
-// General button styles
 .button {
   @apply rounded-md py-3 px-8 transition-all w-full border inline-flex justify-center items-center mt-4;
   background-color: $button-bg;
@@ -34,8 +33,8 @@
   background-color: $primary-bg;
 
   &:hover {
-    background-color: $button-bg; // Corrected to use $primary-bg
-    color: $font-secondary; // Corrected to use $font-main
+    background-color: $button-bg;
+    color: $font-secondary;
   }
 }
 
@@ -69,9 +68,9 @@
   }
 }
 
-// Delete Button Styles
+// Delete Button
 .delete-button {
-  @apply flex items-center justify-center bg-gray-500 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-3 right-3 z-30; /* Positioned in the top-right corner inside the card */
+  @apply flex items-center justify-center bg-gray-500 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-3 right-3 z-30;
 
   .delete-icon {
     @apply text-white text-xl;
@@ -90,7 +89,7 @@
   @apply absolute bottom-0 right-[-15px] text-accent bg-primary-bg rounded-full p-2 hover:bg-accent focus:outline-none; // Core styles
 
   i {
-    @apply text-4xl; // Icon size
+    @apply text-4xl;
   }
 }
 

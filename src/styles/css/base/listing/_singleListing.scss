@@ -1,17 +1,17 @@
 #single-listing {
-  @apply text-gray-800 p-5 m-1 overflow-hidden; // Base text styling
+  @apply text-gray-800 p-5 m-1 overflow-hidden;
 
   h2 {
-    @apply text-xl font-semibold mb-4 text-black break-words; // Headings
+    @apply text-xl font-semibold mb-4 text-black break-words;
   }
 
   .description-container {
-    @apply pt-6 mt-6; // Styling for the description box
+    @apply pt-6 mt-6;
   }
 
   .description-title,
   .gallery-title {
-    @apply text-xl font-bold m-3 text-font-main; // Styling for the description title
+    @apply text-xl font-bold m-3 text-font-main;
   }
 
   .description-content {

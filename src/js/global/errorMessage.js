@@ -15,7 +15,6 @@ export async function handleError(error, operation) {
 
   if (error.response) {
     try {
-      // Parse the response JSON to extract error details
       const errorData = await error.response.json();
       if (errorData?.errors?.length) {
         // Extract the first error message

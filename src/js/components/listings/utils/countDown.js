@@ -10,7 +10,7 @@ export function updateCountdown(endDate, listingId) {
     countdownElement.textContent = "This auction has ended.";
     countdownElement.classList.add("expired");
   } else {
-    // Calculate time components
+    // Calculate time components -  chatGPT created this
     const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30.44));
     const days = Math.floor((timeRemaining / (1000 * 60 * 60 * 24)) % 30);
     const hours = Math.floor(
@@ -24,7 +24,6 @@ export function updateCountdown(endDate, listingId) {
     // Clear the existing content
     countdownElement.innerHTML = "";
 
-    // Helper to create a box
     const createBox = (label, value) => {
       const box = document.createElement("div");
       box.classList.add("countdown-box");

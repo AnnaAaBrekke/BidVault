@@ -3,7 +3,6 @@ import { initializeSearch } from "../../components/search.js";
 
 loadMoreListings();
 
-// Initialize search functionality
 initializeSearch(
   "search-input",
   "search-button",

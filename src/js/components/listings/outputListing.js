@@ -5,7 +5,7 @@ import { bidTimeDetails } from "./utils/timeBid.js";
 export function outputListings(listing, isSingleListingPage = false) {
   const { hasExpired, lastBid } = bidTimeDetails(listing);
 
-  // Create main container
+  // Main container
   const listingContent = document.createElement("div");
   listingContent.classList.add("listing-content");
   if (hasExpired) listingContent.classList.add("expired");

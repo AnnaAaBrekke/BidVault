@@ -17,7 +17,6 @@ export function renderMedia(mediaList, includeGallery = false) {
 
     mediaContainer.appendChild(galleryContainer);
   } else {
-    // Render only the main media (or placeholder)
     const mainMedia = document.createElement("img");
     if (mediaList && mediaList.length > 0) {
       mainMedia.src = mediaList[0].url;

@@ -1,22 +1,22 @@
 #bids-container {
-  @apply hidden; // Initially hidden, toggle visibility when required
+  @apply hidden;
 
   #bids-list {
-    @apply list-none space-y-4; // Remove default list styles and add spacing between list items
+    @apply list-none space-y-4;
 
     .bid-item {
-      @apply flex flex-col; // Stack items vertically
+      @apply flex flex-col;
 
       .bid-amount {
-        @apply text-[#BF6A02] font-semibold text-base leading-[1.4]; // Custom color, font family, and line-height
+        @apply text-[#BF6A02] font-semibold text-base leading-[1.4];
       }
 
       .bid-time {
-        @apply text-gray-500 text-sm leading-[1.4]; // Gray text, smaller font for timestamp
+        @apply text-gray-500 text-sm leading-[1.4];
       }
 
       .bid-creator {
-        @apply hidden; // Hide by default (adjust this based on your requirements)
+        @apply hidden;
       }
     }
   }

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-// Header container
 .header-container {
   @apply flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between sticky;
 }

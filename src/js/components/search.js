@@ -73,7 +73,7 @@ export function initializeSearch(
       }
 
       if (!clearButton) {
-        clearButton = document.createElement("button"); // Fixed here
+        clearButton = document.createElement("button");
         clearButton.textContent = "Clear Search";
         clearButton.classList.add("clear-button");
 
@@ -102,7 +102,6 @@ export function initializeSearch(
     window.location.href = "/";
   };
 
-  // Event listeners for search functionality
   searchButton.addEventListener("click", handleSearch);
   searchInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {

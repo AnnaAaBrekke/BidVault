@@ -9,7 +9,7 @@ import {
   showCardLoaders,
 } from "../../global/loaders/loaderCard.js";
 
-showCardLoaders("single-listing", 1); // Show 1 loader for the single view
+showCardLoaders("single-listing", 1); 
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -167,16 +167,15 @@ export function displaySingleListing(listing) {
   galleryTitle.classList.add("gallery-title");
 
   if (listing.media && listing.media.length > 1) {
-    // Add gallery title and render media only if there's a gallery
     mainContainer.appendChild(galleryTitle);
 
-    const mediaElements = renderMedia(listing.media, true); // Include gallery
+    const mediaElements = renderMedia(listing.media, true);
     mainContainer.appendChild(mediaElements);
   } else {
     // Display a "No gallery/media" message
     const noMediaMessage = document.createElement("p");
     noMediaMessage.textContent = "Gallery is empty.";
-    noMediaMessage.classList.add("no-media-message"); // Optional: Add a class for styling
+    noMediaMessage.classList.add("no-media-message"); 
     mainContainer.appendChild(noMediaMessage);
   }
 
