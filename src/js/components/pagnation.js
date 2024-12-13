@@ -33,7 +33,7 @@ export async function loadMoreListings() {
     hideCardLoaders("listings-container");
 
     // Display the fetched listings
-    displayListings(listings, false, isLastPage, false), false; // Render data
+    displayListings(listings, false, isLastPage, false); // Render data
 
     // Increment the page counter after successfully loading listings
     currentPage += 1;

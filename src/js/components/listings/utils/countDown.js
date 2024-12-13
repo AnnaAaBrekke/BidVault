@@ -47,7 +47,7 @@ export function updateCountdown(endDate, listingId) {
     row.classList.add("countdown-row");
 
     if (months > 0) {
-      row.appendChild(createBox("Months", months));
+      row.appendChild(createBox(" Months", months));
     }
     row.appendChild(createBox(" Days", days));
     row.appendChild(createBox(`${hours}h ${minutes}m ${seconds}s`));

@@ -9,7 +9,7 @@ import {
   showCardLoaders,
 } from "../../global/loaders/loaderCard.js";
 
-showCardLoaders("single-listing", 1); 
+showCardLoaders("single-listing", 1);
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
@@ -175,7 +175,7 @@ export function displaySingleListing(listing) {
     // Display a "No gallery/media" message
     const noMediaMessage = document.createElement("p");
     noMediaMessage.textContent = "Gallery is empty.";
-    noMediaMessage.classList.add("no-media-message"); 
+    noMediaMessage.classList.add("no-media-message");
     mainContainer.appendChild(noMediaMessage);
   }
 
