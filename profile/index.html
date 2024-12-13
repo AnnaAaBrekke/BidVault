@@ -83,7 +83,7 @@
         <div id="banner-container" class="lg:w-2/3 w-full">
           <img
             id="profile-banner"
-            class="w-full h-56 object-cover"
+            class="w-full h-auto sm:h-96 object-cover"
             src="../src/images/banner-bid.jpg"
             alt="Profile Banner"
           />
@@ -133,7 +133,9 @@
               placeholder="Enter new alt text for avatar image"
               maxlength="100"
             />
-            <div class="flex justify-between items-center mt-4 space-x-4">
+            <div
+              class="flex justify-between items-center mt-4 sm:space-x-4 lg:flex-col"
+            >
               <button
                 id="avatar-update-btn"
                 class="button bg-accent border-accent font-semibold"
