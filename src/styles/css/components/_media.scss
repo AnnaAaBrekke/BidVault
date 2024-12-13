@@ -3,11 +3,6 @@
   @apply max-w-[100px] max-h-[100px] mt-2 border border-gray-300 rounded-md;
 }
 
-/* Hidden state */
-.image-preview {
-  @apply hidden;
-}
-
 .main-media {
   @apply w-full bg-cover rounded-t-lg h-96;
 }
