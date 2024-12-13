@@ -546,19 +546,6 @@ footer {
   color: #333;
 }
 
-.btn-update-profile {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-update-profile:hover {
-  background: #0056b3;
-}
-
 .btn-icon {
   background: none;
   border: none;

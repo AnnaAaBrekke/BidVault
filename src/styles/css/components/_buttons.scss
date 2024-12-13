@@ -85,3 +85,11 @@
     @apply bg-red-800;
   }
 }
+
+#avatar-edit-icon {
+  @apply absolute bottom-0 right-[-15px] text-accent bg-primary-bg rounded-full p-2 hover:bg-accent focus:outline-none; // Core styles
+
+  i {
+    @apply text-4xl; // Icon size
+  }
+}

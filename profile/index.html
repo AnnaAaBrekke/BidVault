@@ -90,14 +90,23 @@
         </div>
         <div
           id="profile-info"
-          class="bg-white shadow-lg p-6 rounded-lg lg:w-1/3 w-full"
+          class="bg-white shadow-lg p-6 rounded-lg lg:w-1/3 w-full relative"
         >
-          <img
-            id="profile-avatar"
-            class="avatar-label w-40 h-40 rounded-full object-cover mx-auto"
-            src="../src/images/avatar.jpg"
-            alt="Profile Avatar"
-          />
+          <!-- Avatar Image -->
+          <div class="relative w-40 h-40 mx-auto">
+            <img
+              id="profile-avatar"
+              class="w-full h-full rounded-full object-cover"
+              src="../src/images/avatar.jpg"
+              alt="Profile Avatar"
+            />
+            <!-- Camera Icon Update Avatar -->
+            <button id="avatar-edit-icon" aria-label="Edit Avatar">
+              <i class="fa-solid fa-camera"></i>
+            </button>
+          </div>
+
+          <!-- Update Avatar Form -->
           <div id="avatar-update-container" class="hidden mt-4">
             <label
               for="avatar-update-input"
@@ -124,21 +133,24 @@
               placeholder="Enter new alt text for avatar image"
               maxlength="100"
             />
-            <div class="flex justify-end mt-4">
+            <div class="flex justify-between items-center mt-4 space-x-4">
               <button
                 id="avatar-update-btn"
-                class="btn bg-indigo-600 text-white px-4 py-2 rounded-lg"
+                class="button bg-accent border-accent font-semibold"
               >
                 Update Avatar
               </button>
               <button
                 id="avatar-cancel-btn"
-                class="btn btn-icon ml-2 text-gray-500"
+                class="button bg-secondary-2 border-secondary-1 font-semibold"
+                aria-label="Cancel"
               >
-                <i class="fa-solid fa-x"></i>
+                <i class="fa-solid fa-x mr-2"></i>
+                Cancel
               </button>
             </div>
           </div>
+
           <h1 id="profile-name" class="text-center text-2xl font-semibold mt-4">
             Anna
           </h1>
@@ -151,11 +163,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <a
-            href="/profile/update"
-            id="update-profile-btn"
-            class="block bg-indigo-600 text-white text-center py-2 rounded-lg mt-4 hover:bg-indigo-700"
-          >
+          <a href="/profile/update" id="update-profile-btn" class="button">
             Update Profile
           </a>
         </div>

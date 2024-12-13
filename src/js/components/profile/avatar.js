@@ -8,6 +8,7 @@ import { validateImageUrl } from "../form/utils/validImg.js";
  */
 export function avatarUpdate() {
   const avatarImg = document.getElementById("profile-avatar");
+  const avatarEditIcon = document.getElementById("avatar-edit-icon"); // New camera icon
   const avatarUpdateContainer = document.getElementById(
     "avatar-update-container",
   );
@@ -20,9 +21,9 @@ export function avatarUpdate() {
   let originalAvatarAlt = avatarImg.alt;
 
   /**
-   * Opens the avatar update container and pre-fills the input fields with the current avatar details.
+   * Opens the avatar update container when the camera icon is clicked.
    */
-  avatarImg.addEventListener("click", () => {
+  avatarEditIcon.addEventListener("click", () => {
     avatarUpdateContainer.classList.remove("hidden");
     avatarUpdateInput.value = originalAvatarUrl;
     avatarUpdateAlt.value = originalAvatarAlt;
@@ -31,15 +32,13 @@ export function avatarUpdate() {
 
   /**
    * Updates the user's avatar image and alt text.
-   * Performs URL validation and sends the updated details to the profile service.
    */
   avatarUpdateBtn.addEventListener("click", async () => {
     const newAvatarUrl = avatarUpdateInput.value.trim();
     const newAvatarAlt = avatarUpdateAlt.value.trim() || "User Avatar";
 
-    // Validate the new avatar URL and provide feedback
     if (!validateImageUrl(newAvatarUrl)) {
-      avatarUpdateInput.classList.add("invalid"); // Highlight invalid input
+      avatarUpdateInput.classList.add("invalid");
       showErrorAlert("Please enter a valid HTTPS URL for the avatar.");
       return;
     }
@@ -49,11 +48,9 @@ export function avatarUpdate() {
         avatar: { url: newAvatarUrl, alt: newAvatarAlt },
       });
 
-      // Update the image and alt text in the UI
       avatarImg.src = newAvatarUrl;
       avatarImg.alt = newAvatarAlt;
 
-      // Reset inputs and hide the container
       avatarUpdateContainer.classList.add("hidden");
       originalAvatarUrl = newAvatarUrl;
       originalAvatarAlt = newAvatarAlt;
@@ -68,29 +65,27 @@ export function avatarUpdate() {
   });
 
   /**
-   * Cancels the avatar update and reverts any changes made to the input fields.
+   * Cancels the avatar update process.
    */
   avatarCancelBtn.addEventListener("click", () => {
     avatarUpdateContainer.classList.add("hidden");
-    avatarImg.src = originalAvatarUrl; // Revert to the original URL
-    avatarImg.alt = originalAvatarAlt; // Revert to the original alt text
+    avatarImg.src = originalAvatarUrl;
+    avatarImg.alt = originalAvatarAlt;
     avatarUpdateInput.value = "";
     avatarUpdateAlt.value = "";
-    avatarUpdateInput.classList.remove("invalid"); // Remove invalid styling
+    avatarUpdateInput.classList.remove("invalid");
   });
 
   /**
-   * Validates the avatar URL dynamically as the user types.
-   * Adds or removes invalid styling based on the validity of the URL.
+   * Validates the avatar URL dynamically.
    */
   avatarUpdateInput.addEventListener("input", () => {
     const url = avatarUpdateInput.value.trim();
 
-    // Validate the avatar URL dynamically
     if (url && validateImageUrl(url)) {
-      avatarUpdateInput.classList.remove("invalid"); // Remove invalid styling
+      avatarUpdateInput.classList.remove("invalid");
     } else if (url) {
-      avatarUpdateInput.classList.add("invalid"); // Highlight invalid input
+      avatarUpdateInput.classList.add("invalid");
     }
   });
 }
