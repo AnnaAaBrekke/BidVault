@@ -30,7 +30,7 @@ export default {
           secondary1: "#848484", // Text Colour
           secondary2: "#727272", // Text Colour
         },
-        accent: "#ed893e", // Icon and Font Colour
+        accent: "#b45309", // Icon and Font Colour
         button: {
           bg: "#111111", // Button Colour
           hover: "#ffffff", // Button Hover
