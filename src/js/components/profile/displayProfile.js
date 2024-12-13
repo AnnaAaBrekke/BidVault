@@ -31,7 +31,7 @@ export function displayProfile(profile) {
 
   if (profileBio) {
     profileBio.textContent = profile.bio || "No bio provided.";
-    console.log("Bio DOM Element:", profileBio);
+    profileBio.classList.add("text-lg", "text-font-secondary2");
   }
   // Profile credits
   const profileCreditsContainer = document.getElementById("profile-credits");
@@ -41,9 +41,11 @@ export function displayProfile(profile) {
 
     const creditsLabel = document.createElement("span");
     creditsLabel.textContent = "Current credit balance: ";
+    creditsLabel.classList.add("text-lg");
 
     const creditsValue = document.createElement("span");
     creditsValue.textContent = `${profile.credits || 0} credits`;
+    creditsValue.classList.add("text-accent");
 
     profileCreditsContainer.appendChild(creditsLabel);
     profileCreditsContainer.appendChild(creditsValue);
