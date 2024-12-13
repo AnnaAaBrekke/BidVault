@@ -7,7 +7,7 @@
 }
 
 .listing-content {
-  @apply relative flex flex-col w-full max-w-full h-full shadow-lg bg-primary-bg rounded-lg;
+  @apply relative flex flex-col w-full max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
 
   .seller-container {
     @apply absolute top-[50%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;
@@ -65,6 +65,10 @@
   }
 }
 
+// #profile-page .seller-container {
+//   @apply absolute top-[60%];
+
+// mAKE SASSS LATER
 .single-listing-layout {
   display: flex; // Use flexbox for layout
   flex-wrap: wrap; // Allow wrapping if the container gets too small
