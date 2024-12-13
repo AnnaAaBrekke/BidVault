@@ -29,7 +29,7 @@
 }
 
 .start-journey-btn {
-  @apply border border-black text-black text-xl;
+  @apply border border-black text-black text-xl bg-primary-bg;
   background-color: $primary-bg;
 
   &:hover {

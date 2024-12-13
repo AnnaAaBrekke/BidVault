@@ -15,25 +15,25 @@ export default {
       },
       colors: {
         primary: {
-          bg: "#ffffff", // Background Colour
-          alt: "#f8f8f8", // Banner Colour
+          bg: "#ffffff",
+          alt: "#f8f8f8",
           secondary: "#d9d9d9",
         },
         secondary: {
-          1: "#7d9da9", // Background and Font Colour
-          2: "#a4b9c2", // Secondary Colour
-          3: "#c1d3d9", // Secondary Colour
+          1: "#7d9da9",
+          2: "#a4b9c2",
+          3: "#c1d3d9",
         },
         font: {
-          main: "#000000", // Main Text Colour
+          main: "#000000",
           secondary: "#ffffff",
-          secondary1: "#848484", // Text Colour
-          secondary2: "#727272", // Text Colour
+          secondary1: "#848484",
+          secondary2: "#727272",
         },
-        accent: "#b45309", // Icon and Font Colour
+        accent: "#b45309",
         button: {
-          bg: "#111111", // Button Colour
-          hover: "#ffffff", // Button Hover
+          bg: "#111111",
+          hover: "#ffffff",
         },
       },
       backgroundImage: {

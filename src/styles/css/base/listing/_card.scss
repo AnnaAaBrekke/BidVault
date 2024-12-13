@@ -58,9 +58,9 @@
 
   .countdown-value {
     @apply text-sm font-bold;
-
-    .closed-message {
-      @apply text-center text-lg font-semibold py-4 text-font-secondary2;
-    }
   }
+}
+
+.closed-message {
+  @apply text-center text-lg font-semibold py-4 text-font-secondary2;
 }
