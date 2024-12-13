@@ -7,11 +7,11 @@
 }
 
 .listing-content {
-  @apply relative flex flex-col w-fit max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
+  @apply relative flex flex-col w-full max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
 }
 
 .seller-container {
-  @apply absolute top-[50%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;
+  @apply absolute top-[53%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.085),
@@ -39,7 +39,7 @@
   @apply relative p-6 space-y-2 z-10;
 
   .auction-title {
-    @apply text-2xl font-bold text-gray-900 mb-4 break-words overflow-hidden h-14 text-font-main;
+    @apply text-2xl font-bold text-gray-900 break-words overflow-hidden text-font-main;
   }
 
   .last-bid,
@@ -61,34 +61,6 @@
 
     .closed-message {
       @apply text-center text-lg font-semibold py-4 text-font-secondary2;
-    }
-  }
-}
-
-// #profile-page .seller-container {
-//   @apply absolute top-[60%];
-
-// mAKE SASSS LATER
-.single-listing-layout {
-  display: flex; // Use flexbox for layout
-  flex-wrap: wrap; // Allow wrapping if the container gets too small
-  background-color: #ffffff; // Light background for distinction
-
-  .shared-layout {
-    flex: 2; // Takes up two-thirds of the available space
-    max-width: 70%; // Prevents it from growing too large
-    padding: 20px; // Add padding for a cleaner look
-    border-radius: 8px; // Rounded corners
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Subtle shadow
-  }
-
-  .sidebar {
-    flex: 1; // Takes up one-third of the available space
-    margin: 2rem; // Add padding for a clean look
-    border-radius: 8px; // Rounded corners
-
-    .bid-section-container {
-      margin-bottom: 20px; // Space between different sidebar sections
     }
   }
 }
