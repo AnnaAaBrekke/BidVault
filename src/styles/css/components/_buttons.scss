@@ -70,7 +70,7 @@
 
 // Delete Button
 .delete-button {
-  @apply flex items-center justify-center bg-gray-500 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-3 right-3 z-30;
+  @apply flex items-center justify-center bg-secondary-1 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-3 right-3 z-30;
 
   .delete-icon {
     @apply text-white text-xl;

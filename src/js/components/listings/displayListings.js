@@ -22,6 +22,10 @@ export function displayListings(
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("delete-button");
       deleteButton.setAttribute("data-listing-id", listing.id);
+      deleteButton.setAttribute(
+        "aria-label",
+        `Delete listing with ID ${listing.id}`,
+      );
 
       const deleteIcon = document.createElement("i");
       deleteIcon.classList.add("delete-icon", "fa-solid", "fa-trash");
