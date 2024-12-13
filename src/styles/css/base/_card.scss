@@ -4,14 +4,14 @@
 @tailwind utilities;
 
 .listing-content {
-  @apply relative w-full space-y-3 h-[625px] shadow-lg bg-primary-bg;
+  @apply relative flex flex-col w-full h-[625px] shadow-lg bg-primary-bg rounded-lg; // Flex column layout for proper stacking
 
   .main-media {
-    @apply absolute inset-x-0 top-0 h-[60%] bg-cover rounded-t-lg; /* Media occupies the top 60% */
+    @apply w-full bg-cover rounded-t-lg h-96;
   }
 
   .seller-container {
-    @apply absolute left-4 top-[52%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
+    @apply absolute left-4 top-[55%] flex items-center space-x-3 transform -translate-y-1/2 z-30; /* Positioned over the media */
 
     .seller-avatar {
       @apply w-10 h-10 rounded-full flex items-center justify-center;
@@ -34,26 +34,26 @@
   }
 
   .details-container {
-    @apply relative px-6 pt-4 space-y-2 z-10;
+    @apply relative p-6 space-y-2 z-10;
 
     .auction-title {
-      @apply text-lg font-medium;
+      @apply text-2xl font-bold text-gray-900 mb-4 break-words overflow-hidden h-14;
       color: $font-main;
     }
 
-    .last-bid {
-      @apply text-xs tracking-wide;
+    .last-bid,
+    .bid-amount {
+      @apply tracking-wide font-medium;
       color: $font-secondary-2;
     }
 
-    .bid-amount {
-      @apply text-sm font-medium;
-      color: $accent;
+    .countdown-timer {
+      @apply text-center text-lg font-semibold py-4 px-6 rounded-lg shadow-md;
     }
 
     .closed-message {
-      @apply text-sm font-bold;
-      color: $accent;
+      @apply text-center text-lg font-semibold py-4;
+      color: $font-secondary-2;
     }
   }
 }

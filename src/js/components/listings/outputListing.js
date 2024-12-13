@@ -52,8 +52,18 @@ export function outputListings(listing) {
 
   // Current Bid
   const currentBid = document.createElement("p");
-  currentBid.textContent = `${hasExpired ? "Winning Bid" : "Current Bid"}: ${lastBid} credits`;
   currentBid.classList.add("last-bid");
+
+  const bidText = document.createTextNode(
+    `${hasExpired ? "Winning Bid" : "Current Bid"}: `,
+  );
+  currentBid.appendChild(bidText);
+
+  const bidAmount = document.createElement("span");
+  bidAmount.textContent = `${lastBid} credits`;
+  bidAmount.classList.add("text-accent");
+  currentBid.appendChild(bidAmount);
+
   detailsContainer.appendChild(currentBid);
 
   // Total Bids
@@ -61,24 +71,25 @@ export function outputListings(listing) {
   totalBids.textContent = `Bids: ${listing._count?.bids || 0}`;
   totalBids.classList.add("bid-amount");
   detailsContainer.appendChild(totalBids);
+
   // Countdown Section
   const countdown = document.createElement("p");
   countdown.id = `countdown-${listing.id}`;
-  listingContent.appendChild(countdown);
+  countdown.classList.add("countdown-timer"); // Add a class for styling
 
-  listingContent.appendChild(detailsContainer);
-
-  // If auction has ended, show a closed message
+  // If auction has ended, replace countdown with closed message
   if (hasExpired) {
     const closedMessage = document.createElement("p");
     closedMessage.classList.add("closed-message");
     closedMessage.textContent = "This auction has ended.";
-    listingContent.appendChild(closedMessage);
+    detailsContainer.appendChild(closedMessage);
   } else {
+    detailsContainer.appendChild(countdown);
     // Update countdown for active auctions
     updateCountdown(listing.endsAt, listing.id);
     setInterval(() => updateCountdown(listing.endsAt, listing.id), 1000);
   }
+  listingContent.appendChild(detailsContainer);
 
   return listingContent;
 }
