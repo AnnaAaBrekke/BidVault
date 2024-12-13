@@ -9,27 +9,37 @@ import {
   showCardLoaders,
 } from "../../global/loaders/loaderCard.js";
 
-showCardLoaders("single-listing", 1); // Show 1 loader for the single view
+showCardLoaders("single-listing", 1);
 
 export function displaySingleListing(listing) {
   const mainContainer = document.getElementById("single-listing");
 
   hideCardLoaders("single-listing");
-  // Clear the container
   while (mainContainer.firstChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
 
-  const sharedLayout = outputListings(listing);
-  mainContainer.appendChild(sharedLayout);
+  // Main Layout Container
+  const layoutContainer = document.createElement("div");
+  layoutContainer.classList.add("single-listing-layout");
 
-  // Bids Section
+  // Shared Layout Section
+  const sharedLayoutSection = document.createElement("div");
+  sharedLayoutSection.classList.add("shared-layout");
+  const sharedLayout = outputListings(listing, true);
+  sharedLayoutSection.appendChild(sharedLayout);
+
+  // Sidebar Section
+  const sidebar = document.createElement("div");
+  sidebar.classList.add("sidebar");
+
+  // Recent Bids Section
   const bidListContainer = document.createElement("div");
-  bidListContainer.id = "bid-list-container";
+  bidListContainer.classList.add("bid-section-container");
 
   const bidListButton = document.createElement("button");
   bidListButton.id = "bid-list-button";
-  bidListButton.classList.add("btn", "btn-primary");
+  bidListButton.classList.add("recent-bids-btn");
   bidListButton.textContent = "Recent Bids";
   bidListContainer.appendChild(bidListButton);
 
@@ -46,7 +56,7 @@ export function displaySingleListing(listing) {
       bidItem.classList.add("bid-item");
 
       const bidAmount = document.createElement("span");
-      bidAmount.classList.add("bid-amount");
+      bidAmount.classList.add("bid-amount", "text-accent");
       bidAmount.textContent = `${bid.amount} credits`;
       bidItem.appendChild(bidAmount);
 
@@ -71,9 +81,9 @@ export function displaySingleListing(listing) {
 
   bidsContainer.appendChild(bidsList);
   bidListContainer.appendChild(bidsContainer);
-  mainContainer.appendChild(bidListContainer);
+  sidebar.appendChild(bidListContainer);
 
-  // Bid Form
+  // Bid Form Section
   const { hasExpired } = bidTimeDetails(listing);
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
@@ -90,14 +100,6 @@ export function displaySingleListing(listing) {
     bidClosedButton.disabled = true;
     bidClosedButton.textContent = "Bid Closed";
     bidFormContainer.appendChild(bidClosedButton);
-
-    const goBackLink = document.createElement("p");
-    const backLink = document.createElement("a");
-    backLink.href = "/";
-    backLink.classList.add("go-back-link");
-    backLink.textContent = "Go back to listings";
-    goBackLink.appendChild(backLink);
-    bidFormContainer.appendChild(goBackLink);
   } else if (!isLoggedIn()) {
     const loginMessage = document.createElement("p");
     loginMessage.textContent = "You need to log in to place a bid.";
@@ -113,7 +115,7 @@ export function displaySingleListing(listing) {
 
     const label = document.createElement("label");
     label.htmlFor = "amount";
-    label.textContent = "Place your bid:";
+    label.textContent = "Type your credit amount:";
     bidForm.appendChild(label);
 
     const input = document.createElement("input");
@@ -126,28 +128,64 @@ export function displaySingleListing(listing) {
 
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
-    submitButton.classList.add("btn", "btn-primary");
+    submitButton.classList.add("button", "place-bid-btn");
     submitButton.textContent = "Place Bid";
     bidForm.appendChild(submitButton);
 
     bidFormContainer.appendChild(bidForm);
   }
 
-  mainContainer.appendChild(bidFormContainer);
+  sidebar.appendChild(bidFormContainer);
 
-  // Description
+  // Append sections to layout container
+  layoutContainer.appendChild(sharedLayoutSection);
+  layoutContainer.appendChild(sidebar);
+
+  // Add layout container to main container
+  mainContainer.appendChild(layoutContainer);
+
+  // Description Section
+  const descriptionContainer = document.createElement("div");
+  descriptionContainer.classList.add("description-container");
+
+  const descriptionTitle = document.createElement("h2");
+  descriptionTitle.textContent = "Description";
+  descriptionTitle.classList.add("description-title");
+
   const description = document.createElement("p");
   description.textContent = listing.description || "No description available";
-  mainContainer.appendChild(description);
+  description.classList.add("description-content");
+
+  descriptionContainer.appendChild(descriptionTitle);
+  descriptionContainer.appendChild(description);
+
+  mainContainer.appendChild(descriptionContainer);
 
   // Gallery
-  const mediaElement = renderMedia(listing.media, true);
-  mainContainer.appendChild(mediaElement);
+  const galleryTitle = document.createElement("h2");
+  galleryTitle.textContent = "Gallery";
+  galleryTitle.classList.add("gallery-title");
 
-  // Recent Bids (toggle)
+  if (listing.media && listing.media.length > 1) {
+    mainContainer.appendChild(galleryTitle);
+
+    const mediaElements = renderMedia(listing.media, true);
+    mainContainer.appendChild(mediaElements);
+  } else {
+    // Display a "No gallery/media" message
+    const noMediaMessage = document.createElement("p");
+    noMediaMessage.textContent = "Gallery is empty.";
+    noMediaMessage.classList.add("no-media-message");
+    mainContainer.appendChild(noMediaMessage);
+  }
+
+  console.log(listing);
+  console.log(listing.media);
+
+  // Recent Bids Toggle
   recentBidsToggle("bid-list-button", "bids-container");
 
-  // Initialize Bid Form if it is an Active Auction
+  // Initialize Bid Form if Active Auction
   if (!hasExpired && isLoggedIn() && !isOwner) {
     FormHandler.initialize("#bid-form", "bidOnListing");
   }

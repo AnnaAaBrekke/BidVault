@@ -9,24 +9,23 @@
       src="https://kit.fontawesome.com/ead288c181.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="../app.js"></script>
   </head>
-  <body>
-    <header
-      class="flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between"
-    >
+  <body id="profile-page">
+    <header class="header-container">
       <!-- Avatar on the Left (Visible only when logged in) -->
-      <div id="avatar-container" class="hidden flex items-center space-x-3">
-        <a href="/profile/" class="flex items-center space-x-3">
+      <div id="avatar-container" class="avatar-container hidden">
+        <a href="/profile/" class="avatar-link">
           <img
             id="header-profile-avatar"
             src="../src/images/avatar.jpg"
             alt="Avatar"
-            class="h-10 w-10 rounded-full object-cover"
+            class="avatar-img"
           />
           <!-- Hide text on smaller screens -->
-          <div class="hidden sm:block text-sm">
-            <p class="text-gray-600">Creator</p>
-            <p id="header-profile-name" class="font-medium text-gray-800">
+          <div class="avatar-text">
+            <p class="avatar-creator-label">Creator</p>
+            <p id="header-profile-name" class="avatar-creator-name">
               Anonymous
             </p>
           </div>
@@ -34,13 +33,9 @@
       </div>
 
       <!-- Logo in the Center -->
-      <div class="flex justify-center">
+      <div class="logo-container">
         <a href="/">
-          <img
-            src="../src/images/logo.jpg"
-            alt="Site Logo"
-            class="h-10 w-auto m-1"
-          />
+          <img src="../src/images/logo.jpg" alt="Site Logo" class="logo-img" />
         </a>
       </div>
 
@@ -49,194 +44,152 @@
         <button
           id="hamburger-menu"
           class="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Toggle navigation menu"
+          title="Toggle navigation menu"
         >
           <i class="fa-solid fa-bars text-xl text-gray-800"></i>
         </button>
 
-        <!-- Dropdown Menu -->
-        <div
-          id="dropdown-menu"
-          class="hidden absolute right-0 mt-2 bg-white shadow-md rounded-lg divide-y divide-gray-200 z-50 sm:w-64 sm:flex-col w-40 flex flex-col items-center py-2"
-        >
+        <div id="dropdown-menu" class="dropdown-menu hidden">
           <!-- Logged-in Menu -->
           <div id="logged-in-menu" class="hidden">
-            <a
-              href="/profile/"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-user text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Your Profile
-              </span>
+            <a href="/profile/" class="dropdown-link">
+              <i class="fa-solid fa-user dropdown-icon"></i>
+              <span class="dropdown-text">Your Profile</span>
             </a>
-            <a
-              href="/listing/create"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-circle-plus text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Create Listing
-              </span>
+            <a href="/listing/create" class="dropdown-link">
+              <i class="fa-solid fa-circle-plus dropdown-icon"></i>
+              <span class="dropdown-text">Create Listing</span>
             </a>
-            <a
-              href="/profile/update"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-gear text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Update Profile
-              </span>
+            <a href="/profile/update" class="dropdown-link">
+              <i class="fa-solid fa-gear dropdown-icon"></i>
+              <span class="dropdown-text">Update Profile</span>
             </a>
-            <div
-              id="logout-button"
-              class="flex items-center justify-center sm:w-auto w-auto px-4 py-2 sm:px-6 sm:py-3 gap-2 bg-white border-2 border-gray-800 rounded-md hover:bg-gray-100 cursor-pointer"
-            >
-              <i
-                class="fa-solid fa-right-from-bracket text-gray-700 sm:text-gray-700 text-lg"
-              ></i>
-              <span class="logout-text font-semibold text-sm hidden sm:inline">
-                Logout Account
-              </span>
+            <div id="logout-button" class="logout-btn">
+              <i class="logout-icon fa-solid fa-right-from-bracket"></i>
+              <span class="logout-text">Logout Account</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Not Logged-in Menu -->
-      <div
-        id="not-logged-in-menu"
-        class="hidden flex items-center justify-end space-x-1 sm:space-x-4"
-      >
-        <a
-          href="/welcome"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
-        >
-          Login
-        </a>
-        <a
-          href="/auth/register/"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-800 text-white rounded-lg hover:bg-gray-700"
-        >
-          Register
-        </a>
+      <div id="not-logged-in-menu" class="not-logged-in-nav">
+        <a href="/welcome" class="login-nav">Login</a>
+        <a href="/auth/register/" class="register-nav">Register</a>
       </div>
     </header>
 
-    <main
-      id="main-content"
-      class="main flex flex-col justify-center p-4 space-y-6"
-    >
-      <!-- Profile Section -->
-      <section id="profile-section" class="space-y-4">
-        <div id="banner-container" class="banner-container relative">
+    <main id="main-content" class="p-6">
+      <section id="profile-section" class="flex flex-col lg:flex-row-reverse">
+        <div id="banner-container" class="lg:w-2/3 w-full">
           <img
             id="profile-banner"
-            class="profile-banner w-full h-48 object-cover rounded-lg shadow-lg"
+            class="w-full h-auto sm:h-96 object-cover rounder-lg"
             src="../src/images/banner-bid.jpg"
             alt="Profile Banner"
           />
         </div>
         <div
           id="profile-info"
-          class="profile-info flex flex-col items-center text-center space-y-4"
+          class="bg-white shadow-lg p-6 rounded-lg lg:w-1/3 w-full relative"
         >
-          <img
-            id="profile-avatar"
-            class="profile-avatar h-20 w-20 rounded-full border-4 border-white shadow-md cursor-pointer hover:scale-105 transition-transform"
-            src="../src/images/avatar.jpg"
-            alt="Profile Avatar"
-          />
-          <div
-            id="avatar-update-container"
-            class="hidden shadow-lg p-4 rounded-lg w-80 space-y-3 z-10"
-          >
-            <!-- URL Input for Avatar -->
-            <label for="avatar-update-input" class="form-label"
-              >Avatar URL:</label
-            >
-            <input
-              type="url"
-              id="avatar-update-input"
-              class="form-input"
-              placeholder="Enter new avatar image URL"
+          <!-- Avatar Image -->
+          <div class="relative w-40 h-40 mx-auto">
+            <img
+              id="profile-avatar"
+              class="w-full h-full rounded-full object-cover"
+              src="../src/images/avatar.jpg"
+              alt="Profile Avatar"
             />
-
-            <!-- Alt Text Input for Avatar -->
-            <label for="avatar-update-alt" class="form-label"
-              >Avatar Alt Text:</label
-            >
-            <input
-              type="text"
-              id="avatar-update-alt"
-              class="form-input"
-              placeholder="Enter new alt text for avatar image"
-              maxlength="100"
-            />
-
-            <!-- Buttons -->
-            <button
-              id="avatar-update-btn"
-              class="btn px-4 py-2 text-white bg-black rounded-lg hover:bg-grey-900"
-            >
-              Update Avatar
-            </button>
-            <button
-              id="avatar-cancel-btn"
-              class="btn btn-icon px-4 py-2 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300"
-            >
-              <i class="fa-solid fa-x"></i>
+            <!-- Camera Icon Update Avatar -->
+            <button id="avatar-edit-icon" aria-label="Edit Avatar">
+              <i class="fa-solid fa-camera"></i>
             </button>
           </div>
 
-          <h1 id="profile-name" class="profile-name">Anna</h1>
-          <p
-            id="profile-bio"
-            class="profile-bio text-sm text-gray-600 leading-relaxed"
-          >
+          <!-- Update Avatar Form -->
+          <div id="avatar-update-container" class="hidden mt-4">
+            <label
+              for="avatar-update-input"
+              class="form-label block text-sm font-medium text-gray-700"
+            >
+              Avatar URL:
+            </label>
+            <input
+              type="url"
+              id="avatar-update-input"
+              class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter new avatar image URL"
+            />
+            <label
+              for="avatar-update-alt"
+              class="form-label block mt-4 text-sm font-medium text-gray-700"
+            >
+              Avatar Alt Text:
+            </label>
+            <input
+              type="text"
+              id="avatar-update-alt"
+              class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter new alt text for avatar image"
+              maxlength="100"
+            />
+            <div
+              class="flex justify-between items-center mt-4 sm:space-x-4 lg:flex-col"
+            >
+              <button
+                id="avatar-update-btn"
+                class="button bg-accent border-accent font-semibold"
+              >
+                Update Avatar
+              </button>
+              <button
+                id="avatar-cancel-btn"
+                class="button bg-secondary-2 border-secondary-1 font-semibold"
+                aria-label="Cancel"
+              >
+                <i class="fa-solid fa-x mr-2"></i>
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <h1 id="profile-name" class="text-center text-2xl font-semibold mt-4">
+            Anna
+          </h1>
+
+          <p id="profile-credits" class="text-center text-gray-800 mt-4">
+            Current credit balance:
+            <span>1000 credits</span>
+          </p>
+          <p id="profile-bio" class="text-center text-gray-600 mt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <p id="profile-credits" class="profile-credits text-sm text-gray-800">
-            Current credit balance:
-            <span class="font-semibold text-blue-500">1000 credits</span>
-          </p>
-          <a
-            href="/profile/update"
-            id="update-profile-btn"
-            class="btn btn-update-profile px-4 py-2 bg-black text-white rounded-lg shadow hover:bg-grey-900"
-          >
+          <a href="/profile/update" id="update-profile-btn" class="button">
             Update Profile
           </a>
         </div>
       </section>
-
-      <section id="user-listings">
-        <h3>Your Listings</h3>
-        <div id="listings-container"></div>
+      <section id="user-listings" class="mt-8">
+        <h3 class="text-xl font-semibold mb-4">Your Listings</h3>
+        <div id="listings-container" class="listings-layout">></div>
       </section>
     </main>
+
     <footer id="footer" class="footer">
       <div class="footer-content">
-        <img
-          src="../src/images/logo.jpg"
-          alt="Bid Vault Logo"
-          class="footer-logo"
-        />
+        <a href="/">
+          <img
+            src="../src/images/logo.jpg"
+            alt="Site Logo"
+            class="footer-logo"
+          />
+        </a>
         <hr class="footer-line" />
         <p>&copy; 2018 — 2024</p>
-        <div class="footer-links">
-          <a href="/privacy.html" class="footer-link">Privacy</a>
-          <span class="footer-divider">—</span>
-          <a href="/terms.html" class="footer-link">Terms</a>
-        </div>
       </div>
     </footer>
   </body>
-  <script type="module" src="../app.js"></script>
 </html>

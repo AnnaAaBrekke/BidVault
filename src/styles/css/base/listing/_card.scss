@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.listing {
+  @apply flex;
+}
+
+.listing-content {
+  @apply relative flex flex-col w-full max-w-full h-fit shadow-lg bg-primary-bg rounded-lg;
+}
+
+.seller-container {
+  @apply absolute top-[53%] flex items-center space-x-3 transform -translate-y-1/2 z-30 text-white p-5 rounded-t-sm w-full;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.085),
+    rgba(0, 0, 0, 0.8)
+  );
+
+  .seller-avatar {
+    @apply w-10 h-10 rounded-full flex items-center justify-center bg-secondary-2;
+  }
+
+  .creator-details {
+    @apply flex flex-col;
+
+    .creator-label {
+      @apply text-sm font-normal text-font-secondary;
+    }
+
+    .creator-name {
+      @apply text-lg font-medium text-font-secondary;
+    }
+  }
+}
+
+.details-container {
+  @apply relative p-6 space-y-2 z-10;
+
+  .auction-title {
+    @apply text-2xl font-bold text-gray-900 break-words overflow-hidden text-font-main;
+  }
+
+  .last-bid,
+  .bid-amount,
+  .countdown-label {
+    @apply tracking-wide font-medium text-font-secondary2;
+  }
+
+  .countdown-row {
+    @apply flex flex-row items-center justify-start space-x-2 pt-2 h-fit;
+  }
+
+  .countdown-box {
+    @apply items-center justify-center w-auto px-3 py-2 bg-gray-100 rounded-lg shadow-md;
+  }
+
+  .countdown-value {
+    @apply text-sm font-bold;
+  }
+}
+
+.closed-message {
+  @apply text-center text-lg font-semibold py-4 text-font-secondary2;
+}

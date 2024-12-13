@@ -1,0 +1,48 @@
+.form {
+  @apply flex flex-col mb-10;
+}
+
+.avatar-label {
+  @apply items-center cursor-pointer relative;
+}
+
+.avatar-preview {
+  @apply w-32 h-32 rounded-full border-4 border-gray-300 object-cover;
+}
+
+.avatar-label:hover::before {
+  content: "+";
+  @apply absolute flex justify-center items-center text-white bg-black/60 w-32 h-32 rounded-full text-2xl;
+}
+
+.form-label,
+.avatar-text,
+.banner-text {
+  @apply text-lg font-normal text-gray-800 mt-2 mb-1;
+}
+
+.form-input,
+.form-textarea {
+  @apply w-full h-12 border border-gray-300 rounded-md text-base text-gray-700 shadow-sm p-3 mb-2;
+  @apply focus:ring-2 focus:ring-gray-400 focus:outline-none items-center;
+}
+
+.banner-preview {
+  @apply w-full h-40 rounded-md border border-gray-300 object-cover shadow-sm mb-2;
+}
+
+#bid-form-container {
+  @apply form;
+
+  label {
+    @apply form-label;
+  }
+
+  input[type="number"] {
+    @apply form-input;
+  }
+}
+
+#login-form .form-input {
+  @apply w-96;
+}

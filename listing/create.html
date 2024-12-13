@@ -10,22 +10,20 @@
     ></script>
   </head>
   <body>
-    <header
-      class="flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between"
-    >
+    <header class="header-container">
       <!-- Avatar on the Left (Visible only when logged in) -->
-      <div id="avatar-container" class="hidden flex items-center space-x-3">
-        <a href="/profile/" class="flex items-center space-x-3">
+      <div id="avatar-container" class="avatar-container hidden">
+        <a href="/profile/" class="avatar-link">
           <img
             id="header-profile-avatar"
             src="../src/images/avatar.jpg"
             alt="Avatar"
-            class="h-10 w-10 rounded-full object-cover"
+            class="avatar-img"
           />
           <!-- Hide text on smaller screens -->
-          <div class="hidden sm:block text-sm">
-            <p class="text-gray-600">Creator</p>
-            <p id="header-profile-name" class="font-medium text-gray-800">
+          <div class="avatar-text">
+            <p class="avatar-creator-label">Creator</p>
+            <p id="header-profile-name" class="avatar-creator-name">
               Anonymous
             </p>
           </div>
@@ -33,13 +31,9 @@
       </div>
 
       <!-- Logo in the Center -->
-      <div class="flex justify-center">
+      <div class="logo-container">
         <a href="/">
-          <img
-            src="../src/images/logo.jpg"
-            alt="Site Logo"
-            class="h-10 w-auto m-1"
-          />
+          <img src="../src/images/logo.jpg" alt="Site Logo" class="logo-img" />
         </a>
       </div>
 
@@ -48,91 +42,49 @@
         <button
           id="hamburger-menu"
           class="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Toggle navigation menu"
+          title="Toggle navigation menu"
         >
           <i class="fa-solid fa-bars text-xl text-gray-800"></i>
         </button>
 
-        <!-- Dropdown Menu -->
-        <div
-          id="dropdown-menu"
-          class="hidden absolute right-0 mt-2 bg-white shadow-md rounded-lg divide-y divide-gray-200 z-50 sm:w-64 sm:flex-col w-40 flex flex-col items-center py-2"
-        >
+        <div id="dropdown-menu" class="dropdown-menu hidden">
           <!-- Logged-in Menu -->
           <div id="logged-in-menu" class="hidden">
-            <a
-              href="/profile/"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-user text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Your Profile
-              </span>
+            <a href="/profile/" class="dropdown-link">
+              <i class="fa-solid fa-user dropdown-icon"></i>
+              <span class="dropdown-text">Your Profile</span>
             </a>
-            <a
-              href="/listing/create"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-circle-plus text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Create Listing
-              </span>
+            <a href="/listing/create" class="dropdown-link">
+              <i class="fa-solid fa-circle-plus dropdown-icon"></i>
+              <span class="dropdown-text">Create Listing</span>
             </a>
-            <a
-              href="/profile/update"
-              class="sm:flex-row sm:text-left flex flex-col items-center text-center py-2 hover:bg-gray-100 w-full"
-            >
-              <i class="fa-solid fa-gear text-orange-500"></i>
-              <span
-                class="block sm:inline sm:ml-2 text-xs sm:text-sm font-semibold text-gray-800"
-              >
-                Update Profile
-              </span>
+            <a href="/profile/update" class="dropdown-link">
+              <i class="fa-solid fa-gear dropdown-icon"></i>
+              <span class="dropdown-text">Update Profile</span>
             </a>
-            <div
-              id="logout-button"
-              class="flex items-center justify-center sm:w-auto w-auto px-4 py-2 sm:px-6 sm:py-3 gap-2 bg-white border-2 border-gray-800 rounded-md hover:bg-gray-100 cursor-pointer"
-            >
-              <i
-                class="fa-solid fa-right-from-bracket text-gray-700 sm:text-gray-700 text-lg"
-              ></i>
-              <span class="logout-text font-semibold text-sm hidden sm:inline">
-                Logout Account
-              </span>
+            <div id="logout-button" class="logout-btn">
+              <i class="logout-icon fa-solid fa-right-from-bracket"></i>
+              <span class="logout-text">Logout Account</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Not Logged-in Menu -->
-      <div
-        id="not-logged-in-menu"
-        class="hidden flex items-center justify-end space-x-1 sm:space-x-4"
-      >
-        <a
-          href="/welcome"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-200 border border-gray-400 text-gray-800 rounded-lg hover:bg-gray-300"
-        >
-          Login
-        </a>
-        <a
-          href="/auth/register/"
-          class="flex items-center justify-center px-2 py-1 text-xs sm:px-6 sm:py-2 sm:text-base bg-gray-800 text-white rounded-lg hover:bg-gray-700"
-        >
-          Register
-        </a>
+      <div id="not-logged-in-menu" class="not-logged-in-nav">
+        <a href="/welcome" class="login-nav">Login</a>
+        <a href="/auth/register/" class="register-nav">Register</a>
       </div>
     </header>
-
-    <main id="main-content" class="main">
-      <section
-        id="create-listing-section"
-        class="section section-create-listing"
-      >
-        <h1 id="create-listing-title" class="title">Create New Listing</h1>
+    <main id="main-content" class="main bg-secondary-2 w-full object-cover">
+      <section id="create-listing-section" class="p-20">
+        <h1
+          id="create-listing-title"
+          class="text-3xl font-bold text-gray-900 mb-4 text-center"
+        >
+          Create New Listing
+        </h1>
         <form id="create-listing-form" class="form form-create-listing">
           <!-- Main Image -->
           <img
@@ -141,7 +93,7 @@
             alt="Main Image Preview"
             src="https://via.placeholder.com/150"
           />
-          <label for="mainImgUrl">Main Image</label>
+          <label for="mainImgUrl" class="form-label">Main Image URL:</label>
           <input
             type="url"
             id="mainImgUrl"
@@ -150,15 +102,19 @@
             placeholder="Enter main image URL"
             required
           />
+          <label for="mediaAlt" class="form-label"
+            >Alt Text for Main Image:</label
+          >
           <input
             type="text"
+            id="mediaAlt"
             class="form-input media-alt"
             name="mediaAlt"
             placeholder="Enter alt text for main image"
           />
 
           <!-- Title -->
-          <label for="title" class="form-label">Title:</label>
+          <label for="title" class="form-label">Listing Title:</label>
           <input
             type="text"
             id="title"
@@ -200,6 +156,7 @@
                 alt="Gallery Image 1 Preview"
                 src="https://via.placeholder.com/150"
               />
+              <label for="media1" class="form-label">Media 1 URL:</label>
               <input
                 type="url"
                 id="media1"
@@ -208,8 +165,12 @@
                 placeholder="Enter the URL for Media 1"
                 required
               />
+              <label for="mediaAlt1" class="form-label"
+                >Alt Text for Media 1:</label
+              >
               <input
                 type="text"
+                id="mediaAlt1"
                 class="form-input media-alt"
                 name="mediaAlt"
                 placeholder="Enter alt text for Media 1"
@@ -221,6 +182,7 @@
                 alt="Gallery Image 2 Preview"
                 src="https://via.placeholder.com/150"
               />
+              <label for="media2" class="form-label">Media 2 URL:</label>
               <input
                 type="url"
                 id="media2"
@@ -228,8 +190,12 @@
                 name="media"
                 placeholder="Enter the URL for Media 2"
               />
+              <label for="mediaAlt2" class="form-label"
+                >Alt Text for Media 2:</label
+              >
               <input
                 type="text"
+                id="mediaAlt2"
                 class="form-input media-alt"
                 name="mediaAlt"
                 placeholder="Enter alt text for Media 2"
@@ -241,6 +207,7 @@
                 alt="Gallery Image 3 Preview"
                 src="https://via.placeholder.com/150"
               />
+              <label for="media3" class="form-label">Media 3 URL:</label>
               <input
                 type="url"
                 id="media3"
@@ -248,8 +215,12 @@
                 name="media"
                 placeholder="Enter the URL for Media 3"
               />
+              <label for="mediaAlt3" class="form-label"
+                >Alt Text for Media 3:</label
+              >
               <input
                 type="text"
+                id="mediaAlt3"
                 class="form-input media-alt"
                 name="mediaAlt"
                 placeholder="Enter alt text for Media 3"
@@ -261,6 +232,7 @@
                 alt="Gallery Image 4 Preview"
                 src="https://via.placeholder.com/150"
               />
+              <label for="media4" class="form-label">Media 4 URL:</label>
               <input
                 type="url"
                 id="media4"
@@ -268,8 +240,12 @@
                 name="media"
                 placeholder="Enter the URL for Media 4"
               />
+              <label for="mediaAlt4" class="form-label"
+                >Alt Text for Media 4:</label
+              >
               <input
                 type="text"
+                id="mediaAlt4"
                 class="form-input media-alt"
                 name="mediaAlt"
                 placeholder="Enter alt text for Media 4"
@@ -281,6 +257,7 @@
                 alt="Gallery Image 5 Preview"
                 src="https://via.placeholder.com/150"
               />
+              <label for="media5" class="form-label">Media 5 URL:</label>
               <input
                 type="url"
                 id="media5"
@@ -288,8 +265,12 @@
                 name="media"
                 placeholder="Enter the URL for Media 5"
               />
+              <label for="mediaAlt5" class="form-label"
+                >Alt Text for Media 5:</label
+              >
               <input
                 type="text"
+                id="mediaAlt5"
                 class="form-input media-alt"
                 name="mediaAlt"
                 placeholder="Enter alt text for Media 5"
@@ -301,7 +282,7 @@
           <button
             type="submit"
             id="create-listing-submit"
-            class="btn btn-submit"
+            class="button submit-form-btn"
           >
             Create Listing
           </button>
@@ -309,7 +290,17 @@
       </section>
     </main>
     <footer id="footer" class="footer">
-      <p>&copy; 2024 Bid Vault</p>
+      <div class="footer-content">
+        <a href="/">
+          <img
+            src="../src/images/logo.jpg"
+            alt="Site Logo"
+            class="footer-logo"
+          />
+        </a>
+        <hr class="footer-line" />
+        <p>&copy; 2018 — 2024</p>
+      </div>
     </footer>
     <script type="module" src="../app.js"></script>
   </body>

@@ -8,7 +8,7 @@ export function setLogoutListener() {
     const isLoggedIn = !!localStorage.getItem("accessToken");
     logoutText.textContent = isLoggedIn ? "Logout" : "Login";
 
-    logoutBtn.replaceWith(logoutBtn.cloneNode(true)); // Remove previous listeners
+    logoutBtn.replaceWith(logoutBtn.cloneNode(true));
     const updatedLogoutBtn = document.getElementById("logout-button");
 
     if (isLoggedIn) {

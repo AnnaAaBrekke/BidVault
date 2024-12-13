@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-container {
+  @apply flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between sticky top-0 z-40;
+}
+
+// Avatar container
+.avatar-container {
+  @apply flex items-center space-x-3;
+}
+
+.avatar-link {
+  @apply flex items-center space-x-3;
+}
+
+.avatar-img {
+  @apply h-10 w-10 rounded-full object-cover;
+}
+
+.avatar-text {
+  @apply hidden sm:block text-sm;
+}
+
+.avatar-creator-label {
+  @apply text-gray-600;
+}
+
+.avatar-creator-name {
+  @apply font-medium text-gray-800;
+}
+
+// Logo container
+.logo-container {
+  @apply flex justify-center;
+}
+
+.logo-img {
+  @apply h-10 w-auto m-1;
+}
+
+// Dropdown menu
+.dropdown-menu {
+  @apply absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-200 z-50 sm:w-64 flex flex-col items-start py-2;
+}
+
+.dropdown-link {
+  @apply flex items-center gap-3 px-4 py-3 w-full text-sm text-gray-800 hover:bg-gray-50 rounded transition;
+}
+
+.dropdown-icon {
+  @apply text-orange-500;
+}
+
+.dropdown-text {
+  @apply font-semibold;
+}

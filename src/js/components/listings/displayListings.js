@@ -3,37 +3,35 @@ import { outputListings } from "./outputListing.js";
 
 export function displayListings(
   listings,
-  addDeleteButtons = false,
-  isLastPage,
+  isUserListings = false,
+  isLastPage = false,
   isSearchResults = false,
   isProfile = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
-  // Render each listing
   listings.forEach((listing) => {
     const listingDiv = document.createElement("div");
     listingDiv.id = `listing-${listing.id}`;
     listingDiv.classList.add("listing");
 
-    const listingContent = outputListings(listing);
+    const listingContent = outputListings(listing, false);
     listingDiv.appendChild(listingContent);
 
-    const viewDetailsButton = document.createElement("a");
-    viewDetailsButton.href = `../listing/?id=${listing.id}`;
-    viewDetailsButton.classList.add("view-details-btn");
-    viewDetailsButton.textContent = "View Details";
-    listingDiv.appendChild(viewDetailsButton);
-
-    if (addDeleteButtons) {
+    // Add delete button only for user listings
+    if (isUserListings) {
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("delete-button");
       deleteButton.setAttribute("data-listing-id", listing.id);
+      deleteButton.setAttribute(
+        "aria-label",
+        `Delete listing with ID ${listing.id}`,
+      );
 
       const deleteIcon = document.createElement("i");
-      deleteIcon.classList.add("fa-solid", "fa-xmark");
+      deleteIcon.classList.add("delete-icon", "fa-solid", "fa-trash");
       deleteButton.appendChild(deleteIcon);
 
-      listingDiv.appendChild(deleteButton);
+      listingContent.appendChild(deleteButton);
     }
 
     listingsContainer.appendChild(listingDiv);
@@ -41,22 +39,26 @@ export function displayListings(
 
   let seeMoreButton = document.getElementById("see-more-btn");
 
-  // Remove the existing "See More" button (if any) and recreate it
   if (seeMoreButton) {
     seeMoreButton.remove();
   }
 
-  // Handle "See More" button placement
   if (!isProfile && !isSearchResults && !isLastPage) {
     if (!isLastPage) {
+      // "See More" button
+      const seeMoreContainer = document.createElement("div");
+      seeMoreContainer.classList.add("see-more-container");
+
       seeMoreButton = document.createElement("button");
       seeMoreButton.id = "see-more-btn";
       seeMoreButton.textContent = "See More";
-      seeMoreButton.classList.add("see-more-btn");
+      seeMoreButton.classList.add("button", "see-more-btn");
+
       seeMoreButton.addEventListener("click", loadMoreListings);
 
-      // Append the button after all the listings
-      listingsContainer.appendChild(seeMoreButton);
+      seeMoreContainer.appendChild(seeMoreButton);
+
+      listingsContainer.parentElement.appendChild(seeMoreContainer);
     }
   }
 }

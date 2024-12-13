@@ -1,0 +1,46 @@
+#single-listing {
+  @apply text-gray-800 p-5 m-1 overflow-hidden;
+
+  h2 {
+    @apply text-xl font-semibold text-black break-words;
+  }
+
+  .description-container {
+    @apply pt-6 mt-6;
+  }
+
+  .description-title,
+  .gallery-title {
+    @apply text-xl font-bold m-3 text-font-main;
+  }
+
+  .description-content {
+    @apply text-lg leading-relaxed m-3 text-font-secondary2 font-medium;
+  }
+
+  .seller-container {
+    @apply top-[52%];
+  }
+}
+
+// mAKE SASSS LATER
+.single-listing-layout {
+  display: flex; // Use flexbox for layout
+  flex-wrap: wrap; // Allow wrapping if the container gets too small
+  background-color: #ffffff; // Light background for distinction
+
+  .shared-layout {
+    flex: 2; // Takes up two-thirds of the available space
+    max-width: 70%; // Prevents it from growing too large
+  }
+
+  .sidebar {
+    flex: 1; // Takes up one-third of the available space
+    margin: 2rem; // Add padding for a clean look
+    border-radius: 8px; // Rounded corners
+
+    .bid-section-container {
+      margin-bottom: 20px; // Space between different sidebar sections
+    }
+  }
+}

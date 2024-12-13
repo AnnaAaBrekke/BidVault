@@ -1,0 +1,23 @@
+#bids-container {
+  @apply hidden;
+
+  #bids-list {
+    @apply list-none space-y-4;
+
+    .bid-item {
+      @apply flex flex-col;
+
+      .bid-amount {
+        @apply text-[#BF6A02] font-semibold text-base leading-[1.4];
+      }
+
+      .bid-time {
+        @apply text-gray-500 text-sm leading-[1.4];
+      }
+
+      .bid-creator {
+        @apply hidden;
+      }
+    }
+  }
+}

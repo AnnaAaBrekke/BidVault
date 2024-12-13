@@ -1,11 +1,98 @@
-.see-more-btn {
-  @apply w-[200px] h-[60px] bg-[#111111] rounded-md flex items-center justify-center text-white text-[18px] leading-[21px] font-normal mt-4;
+@use "../base/colours" as *;
+
+.button {
+  @apply rounded-md py-3 px-8 transition-all w-full border inline-flex justify-center items-center mt-4;
+  background-color: $button-bg;
+  color: $font-secondary;
+  border-color: $button-bg;
 
   &:hover {
-    @apply bg-white text-[#111111] border-green-200;
-
-    &:focus {
-      @apply outline-none;
-    }
+    background-color: $button-hover;
+    color: $font-main;
   }
+
+  .see-more-btn {
+    @apply text-xl;
+  }
+
+  .view-details-btn {
+    @apply mb-4;
+  }
+  // Do i need this? DRY Later
+  .place-bid-btn {
+    @apply text-sm px-6 py-3;
+  }
+
+  .submit-form-btn {
+    @apply text-lg px-10 py-4;
+  }
+}
+
+.start-journey-btn {
+  @apply border border-black text-black text-xl bg-primary-bg;
+  background-color: $primary-bg;
+
+  &:hover {
+    background-color: $button-bg;
+    color: $font-secondary;
+  }
+}
+
+.logout-btn {
+  @apply flex items-center justify-center bg-white text-black text-lg border-2 border-black rounded-md py-3 px-8 transition-all w-fit m-3;
+
+  .logout-icon {
+    @apply text-gray-500 mr-2;
+  }
+
+  span.logout-text {
+    @apply font-medium text-sm;
+  }
+
+  &:hover {
+    background-color: $secondary-bg;
+    border-color: $button-bg;
+  }
+}
+
+// Last Bid Badge
+.recent-bids-btn {
+  @apply flex items-center justify-center bg-gray-200 text-black text-sm font-normal rounded-lg px-4 py-2 gap-2 relative;
+
+  .last-bid-text {
+    @apply text-black text-sm font-normal;
+  }
+
+  .cancel-icon {
+    @apply hidden w-4 h-4;
+  }
+}
+
+// Delete Button
+.delete-button {
+  @apply flex items-center justify-center bg-secondary-1 text-white text-sm font-medium rounded-md px-2 py-1.5 transition-all absolute top-3 right-3 z-30;
+
+  .delete-icon {
+    @apply text-white text-xl;
+  }
+
+  &:hover {
+    @apply bg-red-700;
+  }
+
+  &:active {
+    @apply bg-red-800;
+  }
+}
+
+#avatar-edit-icon {
+  @apply absolute bottom-0 right-[-15px] text-accent bg-primary-bg rounded-full p-2 hover:bg-accent focus:outline-none; // Core styles
+
+  i {
+    @apply text-4xl;
+  }
+}
+
+.clear-button {
+  @apply text-lg font-medium text-font-secondary2;
 }

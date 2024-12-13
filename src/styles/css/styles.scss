@@ -1,12 +1,16 @@
 // @use "./components/header";
 @use "./components/buttons";
-@use "./base/card";
-@use "./components/form";
+@use "./base/listing/card";
+@use "./base/form";
 @use "./components/footer";
 @use "./components/media";
 @use "./components/alert";
-@use "./components/avatarUpdate";
 @use "./components/loader";
+@use "./base/navbar";
+@use "./base/main";
+@use "./base/listing/singleListing";
+@use "./base/text";
+@use "./components/header";
 
 @tailwind base;
 @tailwind components;

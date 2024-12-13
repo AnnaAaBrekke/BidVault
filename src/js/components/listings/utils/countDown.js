@@ -1,10 +1,3 @@
-// SOURCE: https://medium.com/geekculture/23-javascript-countdown-timer-for-website-273efc2f5618
-
-/**
- * Updates the countdown timer for an auction.
- * @param {string} endDate - The end date and time of the auction in ISO format.
- * @param {string} listingId - The unique identifier for the listing.
- */
 export function updateCountdown(endDate, listingId) {
   const countdownElement = document.getElementById(`countdown-${listingId}`);
   if (!countdownElement) return;
@@ -17,9 +10,9 @@ export function updateCountdown(endDate, listingId) {
     countdownElement.textContent = "This auction has ended.";
     countdownElement.classList.add("expired");
   } else {
-    // Copied from ChatGPT:
+    // Calculate time components -  chatGPT created this
     const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30.44));
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24)) % 30;
+    const days = Math.floor((timeRemaining / (1000 * 60 * 60 * 24)) % 30);
     const hours = Math.floor(
       (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
@@ -28,18 +21,37 @@ export function updateCountdown(endDate, listingId) {
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    let countdownText = "";
+    // Clear the existing content
+    countdownElement.innerHTML = "";
 
-    // Display months if greater than 0
+    const createBox = (label, value) => {
+      const box = document.createElement("div");
+      box.classList.add("countdown-box");
+
+      const valueElement = document.createElement("span");
+      valueElement.textContent = value;
+      valueElement.classList.add("countdown-value");
+
+      const labelElement = document.createElement("span");
+      labelElement.textContent = label;
+      labelElement.classList.add("countdown-label");
+
+      box.appendChild(valueElement);
+      box.appendChild(labelElement);
+
+      return box;
+    };
+
+    // Add countdown boxes in a row layout
+    const row = document.createElement("div");
+    row.classList.add("countdown-row");
+
     if (months > 0) {
-      countdownText += `${months} month${months > 1 ? "s" : ""}, `;
-      // Do not include seconds if months
-      countdownText += `${days} day${days !== 1 ? "s" : ""}, ${hours}h ${minutes}m`;
-    } else {
-      // Include seconds when no months
-      countdownText += `${days} day${days !== 1 ? "s" : ""}, ${hours}h ${minutes}m ${seconds}s`;
+      row.appendChild(createBox(" Months", months));
     }
+    row.appendChild(createBox(" Days", days));
+    row.appendChild(createBox(`${hours}h ${minutes}m ${seconds}s`));
 
-    countdownElement.textContent = `Ends in: ${countdownText}`;
+    countdownElement.appendChild(row);
   }
 }

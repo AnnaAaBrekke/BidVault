@@ -19,9 +19,14 @@
         </a>
       </div>
     </header>
-    <main id="main-content" class="main">
-      <section id="register-section">
-        <h1 id="register-title">Register</h1>
+    <main id="main-content" class="main bg-secondary-2">
+      <section id="register-section" class="p-20">
+        <h1
+          id="register-title"
+          class="text-center text-3xl font-bold text-gray-900 mb-4"
+        >
+          Register
+        </h1>
         <form id="register-form" class="form">
           <!-- Avatar Section -->
           <div id="avatar-container">
@@ -32,7 +37,7 @@
                 src="../../src/images/avatar.jpg"
                 alt="Default Avatar"
               />
-              <span class="avatar-text">Click to upload an avatar</span>
+              <span class="avatar-text">Avatar Url</span>
             </label>
             <input
               type="url"
@@ -41,7 +46,7 @@
               name="avatarUrl"
               placeholder="Enter avatar image URL"
             />
-            <label for="avatar-alt" class="form-label">Avatar Alt Text:</label>
+            <label for="avatar-alt" class="form-label">Avatar Alt Text</label>
             <input
               type="text"
               id="avatar-alt"
@@ -58,7 +63,7 @@
               <img
                 id="banner-preview"
                 class="banner-preview"
-                src="../../src/images/banner-bid.jpg"
+                src="../../src/images/banner-placeholder.jpg"
                 alt="Default Banner"
               />
               <span class="banner-text">Click to upload a banner</span>
@@ -70,7 +75,7 @@
               name="bannerUrl"
               placeholder="Enter a URL for your banner image"
             />
-            <label for="banner-alt" class="form-label">Banner Alt Text:</label>
+            <label for="banner-alt" class="form-label">Banner Alt Text</label>
             <input
               type="text"
               id="banner-alt"
@@ -82,7 +87,7 @@
           </div>
 
           <!-- Name -->
-          <label for="name" class="form-label">Name:</label>
+          <label for="name" class="form-label">Name</label>
           <input
             type="text"
             id="name"
@@ -95,7 +100,7 @@
           />
 
           <!-- Email -->
-          <label for="email" class="form-label">Email:</label>
+          <label for="email" class="form-label">Email</label>
           <input
             type="email"
             id="email"
@@ -108,7 +113,7 @@
           />
 
           <!-- Password -->
-          <label for="password" class="form-label">Password:</label>
+          <label for="password" class="form-label">Password</label>
           <input
             type="password"
             id="password"
@@ -120,7 +125,7 @@
           />
 
           <!-- Bio -->
-          <label for="bio" class="form-label">Bio:</label>
+          <label for="bio" class="form-label">Bio</label>
           <textarea
             id="bio"
             class="form-textarea"
@@ -130,7 +135,11 @@
           ></textarea>
 
           <!-- Submit Button -->
-          <button type="submit" id="register-submit" class="btn">
+          <button
+            type="submit"
+            id="register-submit"
+            class="button submit-form-btn"
+          >
             Register
           </button>
         </form>
@@ -138,18 +147,15 @@
     </main>
     <footer id="footer" class="footer">
       <div class="footer-content">
-        <img
-          src="../../src/images/logo.jpg"
-          alt="Bid Vault Logo"
-          class="footer-logo"
-        />
+        <a href="/">
+          <img
+            src="../../src/images/logo.jpg"
+            alt="Site Logo"
+            class="footer-logo"
+          />
+        </a>
         <hr class="footer-line" />
         <p>&copy; 2018 — 2024</p>
-        <div class="footer-links">
-          <a href="/privacy.html" class="footer-link">Privacy</a>
-          <span class="footer-divider">—</span>
-          <a href="/terms.html" class="footer-link">Terms</a>
-        </div>
       </div>
     </footer>
     <script type="module" src="../../app.js"></script>
