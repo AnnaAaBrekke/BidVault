@@ -16,11 +16,11 @@ export function validateImageUrl(input) {
 
     // Validate and provide feedback for input fields
     if (!url || !urlPattern.test(url)) {
-      input.classList.add("invalid");
+      input.classList.add("border-red-500"); // Add red border
       showErrorAlert("The provided media URL is invalid.");
       return false;
     } else {
-      input.classList.remove("invalid");
+      input.classList.remove("border-red-500");
     }
   } else {
     console.error("Invalid parameter passed to validateImageUrl.");
