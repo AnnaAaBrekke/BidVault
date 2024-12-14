@@ -52,6 +52,25 @@ export default class FormHandler {
   static getFormData(form) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    const avatarUrl = form.querySelector("#avatar-url")?.value.trim();
+    const avatarAlt = form.querySelector("#avatar-alt")?.value.trim();
+    if (avatarUrl) {
+      data.avatar = {
+        url: avatarUrl,
+        alt: avatarAlt || "",
+      };
+    }
+
+    const bannerUrl = form.querySelector("#banner-url")?.value.trim();
+    const bannerAlt = form.querySelector("#banner-alt")?.value.trim();
+    if (bannerUrl) {
+      data.banner = {
+        url: bannerUrl,
+        alt: bannerAlt || "",
+      };
+    }
+
     const mediaInputs = Array.from(form.querySelectorAll(".media-input"));
     const mediaUrls = [];
 
@@ -107,6 +126,21 @@ export default class FormHandler {
       }
       if (!data.password || data.password.length < 8) {
         return errors.shortPassword;
+      }
+
+      if (
+        data.avatar &&
+        data.avatar.url &&
+        !validateImageUrl(data.avatar.url)
+      ) {
+        return errors.invalidUrl;
+      }
+      if (
+        data.banner &&
+        data.banner.url &&
+        !validateImageUrl(data.banner.url)
+      ) {
+        return errors.invalidUrl;
       }
     }
     if (action === "createListing") {
