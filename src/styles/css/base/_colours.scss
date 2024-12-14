@@ -1,28 +1,22 @@
 // Primary Colors
-$primary-bg: #ffffff; // Background Colour
-$primary-bg-alt: #f8f8f8; // Banner Colour
-$secondary-bg: #d9d9d9; // Banner Colour
+$primary-bg: #ffffff;
+$primary-bg-alt: #f8f8f8;
+$secondary-bg: #d9d9d9;
 
 // Secondary Colors
-$secondary-1: #7d9da9; // Background and Font Colour
-$secondary-2: #a4b9c2; // Secondary Colour
-$secondary-3: #c1d3d9; // Secondary Colour
+$secondary-1: #7d9da9;
+$secondary-2: #a4b9c2;
+$secondary-3: #c1d3d9;
 
 // Font Colors
-$font-main: #000000; // Main Text Colour
-$font-secondary: #ffffff; // Main Text Colour
-$font-secondary1: #848484; // Text Colour
-$font-secondary2: #727272; // Text Colour
+$font-main: #000000;
+$font-secondary: #ffffff;
+$font-secondary1: #848484;
+$font-secondary2: #727272;
 
 // Accent Colors
-$accent: #ed893e; // Icon and Font Colour
+$accent: #b45309;
 
 // Button Colors
-$button-bg: #111111; // Button Colour
-$button-hover: #ffffff; // Button Hover
-
-$bg-overlay: linear-gradient(
-  178.94deg,
-  rgba(0, 0, 0, 0) 67.29%,
-  rgba(0, 0, 0, 1) 101.95%
-);
+$button-bg: #111111;
+$button-hover: #ffffff;

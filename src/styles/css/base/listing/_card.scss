@@ -39,7 +39,7 @@
   @apply relative p-6 space-y-2 z-10;
 
   .auction-title {
-    @apply text-2xl font-bold text-gray-900 break-words overflow-hidden text-font-main;
+    @apply text-2xl font-bold break-words overflow-hidden text-font-main truncate;
   }
 
   .last-bid,

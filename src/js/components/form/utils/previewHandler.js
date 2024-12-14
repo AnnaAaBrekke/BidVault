@@ -28,11 +28,11 @@ export function setupPreviewInputs(
 
       // Validate the URL and provides feedback
       if (url && !validateImageUrl(url, avatarUrlInput)) {
-        avatarUrlInput.classList.add("border-red-500"); // Highlight invalid input
-        avatarPreview.src = "../../src/images/avatar.jpg"; // Reset preview
+        avatarUrlInput.classList.add("border-red-500"); 
+        avatarPreview.src = "../../src/images/avatar.jpg"; 
       } else {
-        avatarUrlInput.classList.remove("border-red-500"); // Remove invalid styling
-        avatarPreview.src = url || "../../src/images/avatar.jpg"; // Update preview
+        avatarUrlInput.classList.remove("border-red-500"); 
+        avatarPreview.src = url || "../../src/images/avatar.jpg";
       }
     });
 
@@ -48,11 +48,11 @@ export function setupPreviewInputs(
       const url = bannerUrlInput.value;
 
       if (url && !validateImageUrl(url, bannerUrlInput)) {
-        bannerUrlInput.classList.add("border-red-500"); // Highlight invalid input
-        bannerPreview.src = "../src/images/banner-bid.jpg"; // Reset preview
+        bannerUrlInput.classList.add("border-red-500"); 
+        bannerPreview.src = "../src/images/banner-bid.jpg"; 
       } else {
-        bannerUrlInput.classList.remove("border-red-500"); // Remove invalid styling
-        bannerPreview.src = url || "../src/images/banner-bid.jpg"; // Update preview
+        bannerUrlInput.classList.remove("border-red-500"); 
+        bannerPreview.src = url || "../src/images/banner-bid.jpg"; 
       }
     });
 

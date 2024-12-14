@@ -179,9 +179,6 @@ export function displaySingleListing(listing) {
     mainContainer.appendChild(noMediaMessage);
   }
 
-  console.log(listing);
-  console.log(listing.media);
-
   // Recent Bids Toggle
   recentBidsToggle("bid-list-button", "bids-container");
 

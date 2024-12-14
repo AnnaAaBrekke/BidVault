@@ -24,7 +24,6 @@ export async function loadMoreListings() {
       currentPage,
       itemsPerPage,
     );
-    console.log(`Fetched listings for page ${currentPage}:`, listings);
 
     // Check if it's the last page based on the response
     if (listings.length < itemsPerPage) {

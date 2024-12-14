@@ -23,24 +23,23 @@
   }
 }
 
-// mAKE SASSS LATER
 .single-listing-layout {
-  display: flex; // Use flexbox for layout
-  flex-wrap: wrap; // Allow wrapping if the container gets too small
-  background-color: #ffffff; // Light background for distinction
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
 
   .shared-layout {
-    flex: 2; // Takes up two-thirds of the available space
-    max-width: 70%; // Prevents it from growing too large
+    flex: 2;
+    max-width: 70%;
   }
 
   .sidebar {
-    flex: 1; // Takes up one-third of the available space
-    margin: 2rem; // Add padding for a clean look
-    border-radius: 8px; // Rounded corners
+    flex: 1;
+    margin: 2rem;
+    border-radius: 8px;
 
     .bid-section-container {
-      margin-bottom: 20px; // Space between different sidebar sections
+      margin-bottom: 20px;
     }
   }
 }

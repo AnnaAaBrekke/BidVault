@@ -16,7 +16,7 @@ export function validateImageUrl(input) {
 
     // Validate and provide feedback for input fields
     if (!url || !urlPattern.test(url)) {
-      input.classList.add("border-red-500"); // Add red border
+      input.classList.add("border-red-500");
       showErrorAlert("The provided media URL is invalid.");
       return false;
     } else {

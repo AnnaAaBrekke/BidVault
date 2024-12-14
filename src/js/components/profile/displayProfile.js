@@ -7,7 +7,6 @@ export function displayProfile(profile) {
   }
   // Avatar setup
   const avatarImg = document.getElementById("profile-avatar");
-  console.log("Avatar DOM Element:", avatarImg);
 
   if (avatarImg) {
     avatarImg.src = profile.avatar?.url || "../src/images/avatar.jpg";
@@ -15,7 +14,6 @@ export function displayProfile(profile) {
   }
   // Banner setup
   const bannerImg = document.getElementById("profile-banner");
-  console.log("Banner DOM Element:", bannerImg);
 
   if (bannerImg) {
     bannerImg.src = profile.banner?.url || "../src/images/banner-bid.jpg";
@@ -37,8 +35,7 @@ export function displayProfile(profile) {
   const profileCreditsContainer = document.getElementById("profile-credits");
 
   if (profileCreditsContainer) {
-    profileCreditsContainer.textContent = ""; // Clear previous content
-
+    profileCreditsContainer.textContent = "";
     const creditsLabel = document.createElement("span");
     creditsLabel.textContent = "Current credit balance: ";
     creditsLabel.classList.add("text-lg");

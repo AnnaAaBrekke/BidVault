@@ -215,8 +215,6 @@ export default class FormHandler {
         result = await actions[action](data);
       }
 
-      console.log("Action result:", result);
-
       showSuccessAlert(`${action} successful!`);
 
       if (action === "login") {

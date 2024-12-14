@@ -2,3 +2,19 @@
   font-weight: 600;
   font-size: large;
 }
+
+.h1-base {
+  @apply text-gray-900 font-bold;
+}
+
+.paragraph {
+  @apply text-font-main leading-relaxed text-lg mb-6 p-3;
+}
+
+.text-spacing-default {
+  @apply mb-4;
+}
+
+.text-spacing-large {
+  @apply m-4;
+}
