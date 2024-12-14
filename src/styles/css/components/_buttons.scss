@@ -57,7 +57,7 @@
 
 // Last Bid Badge
 .recent-bids-btn {
-  @apply flex items-center justify-center bg-gray-200 text-black text-sm font-normal rounded-lg px-4 py-2 gap-2 relative;
+  @apply flex items-center justify-center bg-gray-200 text-black text-2xl font-medium rounded-lg px-4 py-2 gap-2 relative hover:bg-accent;
 
   .last-bid-text {
     @apply text-black text-sm font-normal;

@@ -24,19 +24,28 @@
 }
 
 .single-listing-layout {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(#a4b9c2, white) padding-box;
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
+  justify-content: center;
+  margin: 3rem;
+  padding: 3rem;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06);
 
-  .shared-layout {
+  .shared-layout .main-media {
     flex: 2;
-    max-width: 70%;
+    max-width: 800px;
   }
 
   .sidebar {
     flex: 1;
     margin: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
 
     .bid-section-container {
       margin-bottom: 20px;
