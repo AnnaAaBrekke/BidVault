@@ -37,8 +37,8 @@ export default {
         },
       },
       backgroundImage: {
-        primaryBg: "url('./public/images/DesignSheet-Bg.jpg')",
-        secondaryBg: "url(./public/images/DesignSheet-bg2.jpg')",
+        primaryBg: "url('./public/DesignSheet-Bg.jpg')",
+        secondaryBg: "url(./public/DesignSheet-bg2.jpg')",
       },
     },
   },
