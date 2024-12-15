@@ -41,7 +41,7 @@ export default {
         secondaryBg: "url('/DesignSheet-bg2.jpg')",
       },
       fontFamily: {
-        display: ["Roboto", "sans-serif"],
+        display: ["Poppins", "sans-serif"],
       },
     },
   },
