@@ -1,11 +1,11 @@
 .main {
-  @apply flex justify-center flex-col gap-4 min-h-screen pt-7 m-1;
+  @apply flex justify-center flex-col gap-4 min-h-screen pt-7 m-1 w-screen mx-auto;
 }
 
 .listings-layout {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-gray-100 min-h-screen items-center;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-h-screen items-center max-w-screen-2xl w-full mx-auto;
 }
 
 .body {
-  @apply bg-primary-bg;
+  @apply bg-secondary-3 w-full min-h-screen;
 }

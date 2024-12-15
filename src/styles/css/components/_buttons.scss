@@ -96,3 +96,7 @@
 .clear-button {
   @apply text-lg font-medium text-font-secondary2;
 }
+
+.add-image-btn {
+  @apply bg-secondary-2 border-white hover:border-accent;
+}

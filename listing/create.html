@@ -77,7 +77,10 @@
         <a href="/auth/register/" class="register-nav">Register</a>
       </div>
     </header>
-    <main id="main-content" class="main bg-secondary-2 w-full object-cover">
+    <main
+      id="main-content"
+      class="main bg-primaryBg bg-cover bg-center w-screen"
+    >
       <section id="create-listing-section" class="lg:px-80 sm:px-32">
         <h1
           id="create-listing-title"
@@ -176,107 +179,11 @@
                 placeholder="Enter alt text for Media 1"
               />
             </div>
-            <div class="media-item">
-              <img
-                class="image-preview hidden"
-                alt="Gallery Image 2 Preview"
-                src="https://via.placeholder.com/150"
-              />
-              <label for="media2" class="form-label">Media 2 URL:</label>
-              <input
-                type="url"
-                id="media2"
-                class="form-input media-input"
-                name="media"
-                placeholder="Enter the URL for Media 2"
-              />
-              <label for="mediaAlt2" class="form-label"
-                >Alt Text for Media 2:</label
-              >
-              <input
-                type="text"
-                id="mediaAlt2"
-                class="form-input media-alt"
-                name="mediaAlt"
-                placeholder="Enter alt text for Media 2"
-              />
-            </div>
-            <div class="media-item">
-              <img
-                class="image-preview hidden"
-                alt="Gallery Image 3 Preview"
-                src="https://via.placeholder.com/150"
-              />
-              <label for="media3" class="form-label">Media 3 URL:</label>
-              <input
-                type="url"
-                id="media3"
-                class="form-input media-input"
-                name="media"
-                placeholder="Enter the URL for Media 3"
-              />
-              <label for="mediaAlt3" class="form-label"
-                >Alt Text for Media 3:</label
-              >
-              <input
-                type="text"
-                id="mediaAlt3"
-                class="form-input media-alt"
-                name="mediaAlt"
-                placeholder="Enter alt text for Media 3"
-              />
-            </div>
-            <div class="media-item">
-              <img
-                class="image-preview hidden"
-                alt="Gallery Image 4 Preview"
-                src="https://via.placeholder.com/150"
-              />
-              <label for="media4" class="form-label">Media 4 URL:</label>
-              <input
-                type="url"
-                id="media4"
-                class="form-input media-input"
-                name="media"
-                placeholder="Enter the URL for Media 4"
-              />
-              <label for="mediaAlt4" class="form-label"
-                >Alt Text for Media 4:</label
-              >
-              <input
-                type="text"
-                id="mediaAlt4"
-                class="form-input media-alt"
-                name="mediaAlt"
-                placeholder="Enter alt text for Media 4"
-              />
-            </div>
-            <div class="media-item">
-              <img
-                class="image-preview hidden"
-                alt="Gallery Image 5 Preview"
-                src="https://via.placeholder.com/150"
-              />
-              <label for="media5" class="form-label">Media 5 URL:</label>
-              <input
-                type="url"
-                id="media5"
-                class="form-input media-input"
-                name="media"
-                placeholder="Enter the URL for Media 5"
-              />
-              <label for="mediaAlt5" class="form-label"
-                >Alt Text for Media 5:</label
-              >
-              <input
-                type="text"
-                id="mediaAlt5"
-                class="form-input media-alt"
-                name="mediaAlt"
-                placeholder="Enter alt text for Media 5"
-              />
-            </div>
           </div>
+
+          <button type="button" id="add-image-btn" class="button add-image-btn">
+            Add More Images
+          </button>
 
           <!-- Submit -->
           <button
