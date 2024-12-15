@@ -5,7 +5,6 @@ export function displayListings(
   listings,
   isUserListings = false,
   isLastPage = false,
-  isSearchResults = false,
   isProfile = false,
 ) {
   const listingsContainer = document.getElementById("listings-container");
@@ -43,22 +42,20 @@ export function displayListings(
     seeMoreButton.remove();
   }
 
-  if (!isProfile && !isSearchResults && !isLastPage) {
-    if (!isLastPage) {
-      // "See More" button
-      const seeMoreContainer = document.createElement("div");
-      seeMoreContainer.classList.add("see-more-container");
+  if (!isProfile && !isLastPage) {
+    // "See More" button
+    const seeMoreContainer = document.createElement("div");
+    seeMoreContainer.classList.add("see-more-container");
 
-      seeMoreButton = document.createElement("button");
-      seeMoreButton.id = "see-more-btn";
-      seeMoreButton.textContent = "Next Page";
-      seeMoreButton.classList.add("button", "see-more-btn");
+    seeMoreButton = document.createElement("button");
+    seeMoreButton.id = "see-more-btn";
+    seeMoreButton.textContent = "See More";
+    seeMoreButton.classList.add("button", "see-more-btn");
 
-      seeMoreButton.addEventListener("click", loadMoreListings);
+    seeMoreButton.addEventListener("click", loadMoreListings);
 
-      seeMoreContainer.appendChild(seeMoreButton);
+    seeMoreContainer.appendChild(seeMoreButton);
 
-      listingsContainer.parentElement.appendChild(seeMoreContainer);
-    }
+    listingsContainer.parentElement.appendChild(seeMoreContainer);
   }
 }
