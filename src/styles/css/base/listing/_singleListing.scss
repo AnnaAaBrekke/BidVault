@@ -1,5 +1,5 @@
 #single-listing {
-  @apply text-gray-800 p-5 m-1 overflow-hidden;
+  @apply text-gray-800 overflow-hidden m-5 p-5;
 
   h2 {
     @apply text-xl font-semibold text-black break-words;
@@ -19,36 +19,24 @@
   }
 
   .seller-container {
-    @apply top-[52%];
+    @apply top-[58%];
   }
-}
 
-.single-listing-layout {
-  border: 2px solid transparent;
-  border-radius: 12px;
-  background: linear-gradient(#a4b9c2, white) padding-box;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #ffffff;
-  justify-content: center;
-  margin: 3rem;
-  padding: 3rem;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 1px 3px rgba(0, 0, 0, 0.06);
+  .single-listing-layout {
+    @apply flex flex-wrap gap-4 p-20 rounded-lg shadow-lg justify-center;
+    background: linear-gradient(#a4b9c2, white) padding-box;
 
-  .shared-layout .main-media {
-    flex: 2;
-    max-width: 800px;
+    // On small screens, make the layout vertical
+    @media (max-width: 640px) {
+      @apply flex-col items-center;
+    }
+  }
+
+  .shared-layout {
+    @apply flex-grow max-w-[500px];
   }
 
   .sidebar {
-    flex: 1;
-    margin: 2rem;
-    border-radius: 12px;
-
-    .bid-section-container {
-      margin-bottom: 20px;
-    }
+    @apply flex flex-col items-center w-full max-w-[400px] m-10;
   }
 }

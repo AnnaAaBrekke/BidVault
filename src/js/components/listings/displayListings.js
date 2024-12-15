@@ -51,7 +51,7 @@ export function displayListings(
 
       seeMoreButton = document.createElement("button");
       seeMoreButton.id = "see-more-btn";
-      seeMoreButton.textContent = "See More";
+      seeMoreButton.textContent = "Next Page";
       seeMoreButton.classList.add("button", "see-more-btn");
 
       seeMoreButton.addEventListener("click", loadMoreListings);
