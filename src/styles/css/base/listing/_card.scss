@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .listing {
-  @apply flex;
+  @apply flex max-h-[720px];
 }
 
 .listing-content {
@@ -49,7 +49,7 @@
   }
 
   .countdown-row {
-    @apply flex flex-row items-center justify-start space-x-2 pt-2 h-fit;
+    @apply flex flex-row items-center justify-start space-x-2 pt-2 h-[55px];
   }
 
   .countdown-box {

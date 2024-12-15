@@ -36,14 +36,14 @@ export function displayListings(
     listingsContainer.appendChild(listingDiv);
   });
 
+  // Remove existing "See More" button
   let seeMoreButton = document.getElementById("see-more-btn");
-
   if (seeMoreButton) {
     seeMoreButton.remove();
   }
 
+  // Only display "See More" button if NOT on the profile page and NOT on the last page
   if (!isProfile && !isLastPage) {
-    // "See More" button
     const seeMoreContainer = document.createElement("div");
     seeMoreContainer.classList.add("see-more-container");
 

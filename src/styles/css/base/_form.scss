@@ -1,5 +1,5 @@
 .form {
-  @apply flex flex-col mb-10 justify-center max-w-[60%] mx-auto;
+  @apply bg-primary-bg p-10 rounded-lg shadow-lg flex flex-col mb-10 justify-center max-w-[600px] mx-auto;
 }
 
 .avatar-label {

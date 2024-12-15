@@ -26,7 +26,7 @@ export async function displayUserListings(username) {
       return;
     }
 
-    displayListings(listings, true, false, false, true);
+    displayListings(listings, true, false, true);
 
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
