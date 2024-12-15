@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .header-container {
-  @apply flex items-center bg-gray-50 shadow-md px-4 py-4 justify-between sticky top-0 z-40;
+  @apply flex items-center bg-primary-alt shadow-md px-4 py-4 justify-between sticky top-0 z-40;
 }
 
 // Avatar container
