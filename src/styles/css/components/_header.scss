@@ -42,7 +42,7 @@
 
 // Dropdown menu
 .dropdown-menu {
-  @apply absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-200 z-50 sm:w-64 flex flex-col items-start py-2;
+  @apply absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-200 z-50 w-44 flex flex-col items-start py-2;
 }
 
 .dropdown-link {
