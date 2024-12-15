@@ -12,7 +12,7 @@
   }
 
   .see-more-btn {
-    @apply text-xl;
+    @apply text-xl max-w-[300px];
   }
 
   .view-details-btn {
@@ -55,16 +55,16 @@
   }
 }
 
-// Last Bid Badge
+// Recent Bids Button
 .recent-bids-btn {
-  @apply flex items-center justify-center bg-gray-200 text-black text-sm font-normal rounded-lg px-4 py-2 gap-2 relative;
+  @apply flex items-center justify-center bg-primary-bg text-black font-medium rounded-lg px-4 py-2 gap-2 relative hover:bg-accent max-h-[50px] max-w-[300px] w-full text-lg;
 
   .last-bid-text {
     @apply text-black text-sm font-normal;
   }
 
   .cancel-icon {
-    @apply hidden w-4 h-4;
+    @apply w-4 h-4;
   }
 }
 
@@ -95,4 +95,12 @@
 
 .clear-button {
   @apply text-lg font-medium text-font-secondary2;
+}
+
+.add-image-btn {
+  @apply bg-accent border-white hover:border-accent;
+}
+// Disabled Button
+.disabled-btn {
+  @apply pointer-events-none bg-gray-700 border-none max-h-[50px] max-w-[300px] text-sm text-nowrap flex flex-col;
 }

@@ -5,9 +5,10 @@ import {
 } from "../global/loaders/loaderCard.js";
 import { displayListings } from "./listings/displayListings.js";
 
-let currentPage = 1; // Tracks the current page
-const itemsPerPage = 12; // Number of items per page
-let isLastPage = false; // Tracks if the last page is reached
+let currentPage = 1;
+const itemsPerPage = 12;
+let isLastPage = false;
+let allListings = [];
 
 /**
  * Loads more listings when the user requests or scrolls to the end.
@@ -15,26 +16,27 @@ let isLastPage = false; // Tracks if the last page is reached
  * handling pagination dynamically.
  */
 export async function loadMoreListings() {
-  if (isLastPage) return; // Stop if no more pages are available
+  if (isLastPage) return;
 
   try {
     showCardLoaders("listings-container", 12);
+
     // Fetch listings for the current page
     const listings = await listingService.fetchListings(
       currentPage,
       itemsPerPage,
     );
 
-    // Check if it's the last page based on the response
     if (listings.length < itemsPerPage) {
       isLastPage = true;
     }
+
+    allListings = [...allListings, ...listings];
+
     hideCardLoaders("listings-container");
 
-    // Display the fetched listings
-    displayListings(listings, false, isLastPage, false); // Render data
+    displayListings(allListings, false, isLastPage, false);
 
-    // Increment the page counter after successfully loading listings
     currentPage += 1;
   } catch (error) {
     console.error("Error loading more listings:", error);

@@ -8,6 +8,7 @@ import {
   hideCardLoaders,
   showCardLoaders,
 } from "../../global/loaders/loaderCard.js";
+import { showErrorAlert } from "../../global/alert.js";
 
 showCardLoaders("single-listing", 1);
 
@@ -95,20 +96,19 @@ export function displaySingleListing(listing) {
   bidFormContainer.id = "bid-form-container";
 
   if (hasExpired) {
+    // If the auction has expired, show "Bid Closed" button
     const bidClosedButton = document.createElement("button");
     bidClosedButton.classList.add("btn", "btn-secondary");
     bidClosedButton.disabled = true;
     bidClosedButton.textContent = "Bid Closed";
     bidFormContainer.appendChild(bidClosedButton);
   } else if (!isLoggedIn()) {
+    // If the user is not logged in, show login message
     const loginMessage = document.createElement("p");
     loginMessage.textContent = "You need to log in to place a bid.";
     bidFormContainer.appendChild(loginMessage);
-  } else if (isOwner) {
-    const ownerMessage = document.createElement("p");
-    ownerMessage.textContent = "You cannot bid on your own listing.";
-    bidFormContainer.appendChild(ownerMessage);
   } else {
+    // Otherwise, display the form
     const bidForm = document.createElement("form");
     bidForm.id = "bid-form";
     bidForm.setAttribute("data-listing-id", listing.id);
@@ -124,12 +124,34 @@ export function displaySingleListing(listing) {
     input.name = "amount";
     input.min = "1";
     input.required = true;
+
+    if (isOwner) {
+      // Disable the input field if the user is the owner
+      input.disabled = true;
+    }
+
     bidForm.appendChild(input);
 
     const submitButton = document.createElement("button");
     submitButton.type = "submit";
     submitButton.classList.add("button", "place-bid-btn");
     submitButton.textContent = "Place Bid";
+
+    if (isOwner) {
+      // Disable the input field for the owner
+      input.disabled = true;
+
+      // Add the disabled styling via class
+      submitButton.classList.add("disabled-btn");
+      submitButton.textContent = "Bid disabled";
+
+      // Attach a click event listener to the button
+      submitButton.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent any default behavior
+        showErrorAlert("You cannot bid on your own listing.");
+      });
+    }
+
     bidForm.appendChild(submitButton);
 
     bidFormContainer.appendChild(bidForm);

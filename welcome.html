@@ -80,38 +80,41 @@
 
     <main
       id="main-content"
-      class="main bg-secondaryBg bg-cover bg-center h-screen w-screen p-6"
+      class="bg-secondaryBg bg-cover bg-center w-screen h-[100vh]"
     >
       <!-- About Section -->
       <section
         id="about-section"
-        class="relative mx-auto lg:w-2/3 sm:w-4/5 px-6 py-8 rounded-xl text-center flex flex-col items-center space-y-6"
+        class="mx-auto lg:w-2/3 sm:w-4/5 px-12 py-8 rounded-xl text-center flex flex-col items-center space-y-6"
       >
-        <div class="text-center bg-white p-6 rounded-lg shadow-md">
+        <div class="text-center bg-primary-bg p-6 rounded-lg shadow-md">
           <h1 id="welcome-title" class="h1-base text-5xl text-spacing-large">
-            Welcome To Bid Vault
+            Welcome
           </h1>
           <p id="about-text" class="paragraph text-xl m-6">
             Discover Rare Treasures, Bid with Confidence, and Sell with Ease.
             <br />
             Step into the exciting world of Bid Vault.
           </p>
-          <button
-            class="px-6 py-3 text-gray-900 border border-gray-300 rounded-lg hover:bg-secondary-1 font-medium"
-          >
-            <a href="#login-section" id="btn-scroll">Start your journey here</a>
-          </button>
+          <img
+            src="/src/images/logo.jpg"
+            alt="Site Logo"
+            class="items-center mx-auto"
+          />
         </div>
       </section>
 
       <section
         id="login-section"
-        class="relative px-6 py-8 rounded-xl flex flex-col items-center mb-10"
+        class="relative rounded-xl flex flex-col items-center mt-20 shadow-sm"
       >
-        <h2 id="login-title" class="text-3xl font-bold text-gray-900 mb-4">
-          Login
-        </h2>
-        <form id="login-form" class="form">
+        <form id="login-form" class="form rounded-lg bg-primary-bg p-8">
+          <h2
+            id="login-title"
+            class="text-3xl font-bold text-gray-900 mb-4 text-center"
+          >
+            Login
+          </h2>
           <label for="email" class="form-label">Email</label>
           <input
             type="email"

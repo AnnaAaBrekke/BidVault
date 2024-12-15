@@ -1,5 +1,5 @@
 .form {
-  @apply flex flex-col mb-10;
+  @apply bg-primary-bg p-10 rounded-lg shadow-lg flex flex-col mb-10 justify-center max-w-[600px] mx-auto;
 }
 
 .avatar-label {
@@ -32,14 +32,14 @@
 }
 
 #bid-form-container {
-  @apply form;
+  @apply mx-auto pt-5;
 
   label {
-    @apply form-label;
+    @apply form-label flex flex-col;
   }
 
   input[type="number"] {
-    @apply form-input;
+    @apply form-input max-w-[300px];
   }
 }
 
