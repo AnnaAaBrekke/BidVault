@@ -35,14 +35,13 @@ export default {
           bg: "#111111",
           hover: "#ffffff",
         },
-        background: {
-          "luxury-gradient":
-            "linear-gradient(to right, #1e3a8a, #6d28d9, #000000)",
-        },
       },
       backgroundImage: {
         primaryBg: "url('/DesignSheet-Bg.jpg')",
         secondaryBg: "url('/DesignSheet-bg2.jpg')",
+      },
+      fontFamily: {
+        display: ["Roboto", "sans-serif"],
       },
     },
   },
