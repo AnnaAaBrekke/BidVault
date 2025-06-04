@@ -1,7 +1,5 @@
 # BidVault - Auction Platform
 
-![Home Page](./public/HomeBidVault.png)
-
 Welcome to **BidVault**, an online auction site where users can add items for bidding and place bids on other users' items. The platform is designed to be user-friendly, ensuring seamless navigation and interactions for both registered and non-registered users.
 
 🔗 **Live Demo**  
