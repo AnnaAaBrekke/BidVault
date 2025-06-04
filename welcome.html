@@ -18,7 +18,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body id="welcomePage">
+  <body id="welcomePage" class="flex flex-col min-h-screen">
     <header class="header-container">
       <!-- Avatar on the Left (Visible only when logged in) -->
       <div id="avatar-container" class="avatar-container hidden">
@@ -89,7 +89,7 @@
 
     <main
       id="main-content"
-      class="bg-secondaryBg bg-cover bg-center w-screen h-[100vh] flex-grow"
+      class="bg-secondaryBg bg-cover bg-center w-full flex-grow flex flex-col justify-center items-center"
     >
       <!-- About Section -->
       <section
@@ -115,7 +115,7 @@
 
       <section
         id="login-section"
-        class="relative rounded-xl flex flex-col items-center mt-20 shadow-sm mb-10"
+        class="relative rounded-xl flex flex-col items-center mt-6 shadow-sm mb-10"
       >
         <form id="login-form" class="form rounded-lg bg-primary-bg p-8">
           <h2
