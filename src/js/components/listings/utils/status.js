@@ -1,4 +1,4 @@
-import { updateCountdown } from "./countDown.js";
+import { updateCountdown } from "./countdown.js";
 
 /**
  * Renders the countdown or closed message.
