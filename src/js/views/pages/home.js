@@ -1,4 +1,4 @@
-import { loadMoreListings } from "../../components/pagnation.js";
+import { loadMoreListings } from "../../components/pagination.js";
 import { initializeSearch } from "../../components/search.js";
 
 loadMoreListings();
