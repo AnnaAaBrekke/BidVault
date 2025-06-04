@@ -1,5 +1,6 @@
 import { listingService } from "../../api/services/listingService.js";
 import { showErrorAlert } from "../../global/alert.js";
+import { handleError } from "../../global/errorMessage.js";
 import {
   hideCardLoaders,
   showCardLoaders,
@@ -31,9 +32,6 @@ export async function displayUserListings(username) {
     listingsContainer.addEventListener("click", handleDelete);
   } catch (error) {
     hideCardLoaders("listings-container");
-    console.error("Failed to fetch user listings:", error);
-    showErrorAlert(
-      "Unable to fetch your listings. Please try to reload the page.",
-    );
+    await handleError(error, "fetching user listings");
   }
 }
