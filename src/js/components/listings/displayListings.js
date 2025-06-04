@@ -1,4 +1,4 @@
-import { loadMoreListings } from "../pagnation.js";
+import { loadMoreListings } from "../pagination.js";
 import { outputListings } from "./outputListing.js";
 
 export function displayListings(
